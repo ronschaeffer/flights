@@ -1,19 +1,24 @@
 # Set content type correctly in fastapi for image files
 # add image files to flights dictionary with correct url
 
-from flights_server_module import start_server
-
+# Standard library imports
 import time
 from datetime import datetime
+import json
+import subprocess
+import os
+
+# Third-party imports
 import requests
 import paho.mqtt.client as mqtt
-import json
 import yaml
 import haversine
 import shapely.geometry
 from tabulate import tabulate
-import subprocess
 from flydenity import Parser
+
+# Local application/library-specific imports
+from flights_server_module import start_server
 
 # Configuration Variables
 MQTT_TOPIC_VISIBLE = "flights/visible"
