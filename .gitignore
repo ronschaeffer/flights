@@ -86,6 +86,7 @@ ipython_config.py
 
 # virtualenv
 venv/
+.venv
 ENV/
 env/
 .env/
