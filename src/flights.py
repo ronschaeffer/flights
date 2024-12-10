@@ -1,9 +1,6 @@
 # Set content type correctly in fastapi for image files
 # add image files to flights dictionary with correct url
 
-# Set content type correctly in fastapi for image files
-# add image files to flights dictionary with correct url
-
 import time
 from datetime import datetime
 import requests
