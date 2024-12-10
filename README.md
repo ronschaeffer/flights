@@ -1,2 +1,2 @@
 # flights
-Process ADB dump files to publish with MQTT &amp; serve; Also use with Home Assistant
+Provides enhanced ADS-B data via MQTT and HTTP endpoints, suitable for integration with Home Assistant
