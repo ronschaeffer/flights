@@ -12,6 +12,7 @@ import shapely.geometry
 from tabulate import tabulate
 import subprocess
 from flydenity import Parser
+from flights_server_module import start_server  # Import the new module
 
 # Configuration Variables
 TOPIC_VISIBLE = "flights/visible"
@@ -40,7 +41,6 @@ CLOSEST_AIRCRAFT_JSON_FILE_PATH = "./output/closest_aircraft.json"
 ALL_AIRCRAFT_JSON_FILE_PATH = "./output/all_aircraft.json"
 FLIGHTS_WITHIN_DEFINED_ZONE_JSON_FILE_PATH = "./output/flights_within_defined_zone.json"
 FLIGHTS_WITHIN_DEFINED_RADIUS_JSON_FILE_PATH = "./output/flights_within_defined_radius.json"
-FASTAPI_SCRIPT = "flights_server.py"
 
 # Get the latest receiver dump data
 def get_receiver_data(dump_url, example_dump):
@@ -323,7 +323,7 @@ if __name__ == "__main__":
     client.connect(MQTT_BROKER, MQTT_BROKER_PORT)
     client.loop_start()
 
-    process = subprocess.Popen(["python", FASTAPI_SCRIPT, "--port", str(FASTAPI_PORT)])
+    start_server(FASTAPI_PORT)  # Use the imported start_server function
 
     reg_parser = Parser()
     previous_closest_aircraft = None
