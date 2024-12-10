@@ -1,0 +1,68 @@
+# Check interval
+check_interval: 15  # Seconds to wait between each check of the aircraft_dump_url
+
+# MQTT 
+mqtt_broker: '10.10.10.21'
+mqtt_broker_port: 8883
+mqtt_user: '136worple'
+mqtt_pwd: '011020MQTT'
+mqtt_client_id: 'flights2mqtt'
+
+# HTTP
+request_port: 47474
+
+# Feed topics
+device_topic: 'flighttrack'
+fr24feed_subtopic: 'flightradar24'
+adbs_exchange_subtopic: 'adbs_exchange'
+plane_finder_subtopic: 'plane_finder'
+piaware_subtopic: 'piaware'
+dump1090_subtopic: 'dump1090'
+
+# User location
+use_lat_lon_from_config: False # If False, replace by values from receiver dump file
+user_lat: 51.462649
+user_lon: -0.328869
+
+
+# Tracking
+##nearest_aircraft: True
+##nearest_aircraft_in_interest_zone: True
+
+# Watch heading
+##watch_heading: 270 # Only consider aircraft with this heading; Useful, for example, to watch a take off or landing path
+##heading_range: 360 # Degrees plus or minus the watched_heading which still fall into the conisderation range 
+
+# Watch zone
+lat_south: 51.45538
+lat_north:  51.48787
+lon_west: -0.37257
+lon_east: -0.28753
+max_alt: 3000
+min_alt: 0
+
+# Distance
+radius: 10 # distance in unit below from user position 
+distance_unit: mi # mi for miles or km for kilometers
+
+# Source
+dump_url: 'http://localhost:30053/ajax/aircraft'
+tracker_dump_structure: './config/planefinder_dump_structure.json'
+tracked_parent: 'aircraft' # Name of the parent key of tracked flights in the dump, e.g., 'aircraft'
+# Key names for referenced keys in the dump file
+icao_id: 'False' # Example val: 'AA37CE'
+ #'False' if the ICAO ID is itself the key name as with Planefinder, otherwise the name, e.g. 'hex', as with tar1090
+callsign: 'callsign' # Example val: 'AAL38'
+flightno: 'flightno' # Example val: 'AA38'
+route: 'route' # Example val: 'MIA-LHR'
+ # Key name or 'False' as with tar1090
+type: 'type' # Example val: 'B772'
+latitude: 'lat' # Example val: '51.47807'
+longitude: 'lon' # Example val: '-0.185242'
+altitude: 'altitude' # Example val: '3425'
+heading: 'heading' # Example val: '271'
+speed: 'speed' # Example val: '177'
+reg: 'reg' # Example val: 'N758AN'
+
+# Test
+dump_file: './test_data/planefinder_test.json'

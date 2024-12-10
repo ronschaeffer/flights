@@ -1,0 +1,48 @@
+{
+	"user": {
+		"user_lat": "",
+		"user_lon": "",
+		"user_time": ""
+	},
+	"aircraft": {
+		"icao_id": {
+			"callsign": "",
+			"is_mlat": "",
+			"altitude": "",
+			"heading": "",
+			"vert_rate": "",
+			"speed": "",
+			"lat": "",
+			"lon": "",
+			"polar_distance": "",
+			"polar_bearing": "",
+			"squawk": "",
+			"reg": "",
+			"flightno": "",
+			"route": "",
+			"type": "",
+			"category": "",
+			"is_on_ground": "",
+			"last_seen_time": "",
+			"age": "",
+			"pos_update_time": "",
+			"selected_altitude": "",
+			"barometer": "",
+			"bds40_seen_time": "",
+			"roll_angle": "",
+			"track_angle": "",
+			"ground_speed": "",
+			"true_air_speed": "",
+			"bds50_seen_time": "",
+			"magnetic_heading": "",
+			"indicated_air_speed": "",
+			"mach": "",
+			"bds60_seen_time": "",
+			"target_heading": "",
+			"bds62_seen_time": "",
+			"oat": "",
+			"wind_speed": "",
+			"wind_direction": ""
+		}
+	}
+}
