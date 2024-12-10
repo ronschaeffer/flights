@@ -12,12 +12,9 @@ MQTT_CLIENT_ID: 'flights2mqtt'
 FASTAPI_PORT: 47474
 
 # Feed topics
-device_topic: 'flighttrack'
-fr24feed_subtopic: 'flightradar24'
-adbs_exchange_subtopic: 'adbs_exchange'
-plane_finder_subtopic: 'plane_finder'
-piaware_subtopic: 'piaware'
-dump1090_subtopic: 'dump1090'
+# Additional configuration
+MQTT_TOPIC_VISIBLE: "flights/visible"
+MQTT_TOPIC_CLOSEST_AIRCRAFT: "flights/closest_aircraft"
 
 # User location
 use_lat_lon_from_config: False # If False, replace by values from receiver dump file
@@ -40,15 +37,23 @@ LON_EAST: -0.28753
 max_alt: 3000
 min_alt: 0
 
-# Distance
+# Alitude & Distance
 RADIUS: 10 # distance in unit below from user position 
 DISTANCE_UNIT: mi # mi for miles or km for kilometers
+ALTITUDE_UNIT: ft
 
 # Source
 DUMP_URL: 'http://localhost:30053/ajax/aircraft'
-EXAMPLE_DUMP_FILE_PATH: './config/planefinder_dump_structure.json'
-tracked_parent: 'aircraft' # Name of the parent key of tracked flights in the dump, e.g., 'aircraft'
+CONFIG_FILE_PATH: "../config/config.yaml"
+EXAMPLE_DUMP_FILE_PATH: "../config/planefinder_dump_structure.json"
+VISIBLE_JSON_FILE_PATH: "../output/visible.json"
+CLOSEST_AIRCRAFT_JSON_FILE_PATH: "../output/closest_aircraft.json"
+ALL_AIRCRAFT_JSON_FILE_PATH: "../output/all_aircraft.json"
+FLIGHTS_WITHIN_DEFINED_ZONE_JSON_FILE_PATH: "../output/flights_within_defined_zone.json"
+FLIGHTS_WITHIN_DEFINED_RADIUS_JSON_FILE_PATH: "../output/flights_within_defined_radius.json"
+
 # Key names for referenced keys in the dump file
+tracked_parent: 'aircraft' # Name of the parent key of tracked flights in the dump, e.g., 'aircraft'
 icao_id: 'False' # Example val: 'AA37CE'
  #'False' if the ICAO ID is itself the key name as with Planefinder, otherwise the name, e.g. 'hex', as with tar1090
 callsign: 'callsign' # Example val: 'AAL38'
@@ -62,6 +67,3 @@ altitude: 'altitude' # Example val: '3425'
 heading: 'heading' # Example val: '271'
 speed: 'speed' # Example val: '177'
 reg: 'reg' # Example val: 'N758AN'
-
-# Test
-dump_file: './test_data/planefinder_test.json'
