@@ -1,0 +1,9 @@
+requests
+paho-mqtt
+PyYAML
+haversine
+shapely
+tabulate
+flydenity
+fastapi
+uvicorn
