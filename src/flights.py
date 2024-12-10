@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 # Set content type correctly in fastapi for image files
 # add image files to flights dictionary with correct url
 
@@ -20,33 +22,6 @@ from flydenity import Parser
 # Local application/library-specific imports
 from flights_server_module import start_server
 
-# Configuration Variables
-MQTT_TOPIC_VISIBLE = "flights/visible"
-MQTT_TOPIC_CLOSEST_AIRCRAFT = "flights/closest_aircraft"
-DUMP_URL = "your_dump_url_here"
-EXAMPLE_DUMP = "your_example_dump_structure_here"
-USER_LAT = 0.0  # Your latitude
-USER_LON = 0.0  # Your longitude
-DISTANCE_UNIT = "km"  # Your distance unit
-LAT_SOUTH = 0.0  # Your southern latitude boundary
-LON_WEST = 0.0  # Your western longitude boundary
-LAT_NORTH = 0.0  # Your northern latitude boundary
-LON_EAST = 0.0  # Your eastern longitude boundary
-RADIUS = 100.0  # Your radius
-CHECK_INTERVAL = 60  # Your interval in seconds
-MQTT_CLIENT_ID = "your_mqtt_client_id"
-MQTT_USER = "your_mqtt_user"
-MQTT_PWD = "your_mqtt_pwd"
-MQTT_BROKER = "your_mqtt_broker"
-MQTT_BROKER_PORT = 1883
-FASTAPI_PORT = 47474  # Port number as a variable
-CONFIG_FILE_PATH = "./config/config.yaml"
-EXAMPLE_DUMP_FILE_PATH = "./config/planefinder_dump_structure.json"
-VISIBLE_JSON_FILE_PATH = "./output/visible.json"
-CLOSEST_AIRCRAFT_JSON_FILE_PATH = "./output/closest_aircraft.json"
-ALL_AIRCRAFT_JSON_FILE_PATH = "./output/all_aircraft.json"
-FLIGHTS_WITHIN_DEFINED_ZONE_JSON_FILE_PATH = "./output/flights_within_defined_zone.json"
-FLIGHTS_WITHIN_DEFINED_RADIUS_JSON_FILE_PATH = "./output/flights_within_defined_radius.json"
 
 # Get the latest receiver dump data
 def get_receiver_data(dump_url, example_dump):
