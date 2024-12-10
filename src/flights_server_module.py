@@ -1,7 +1,12 @@
-from fastapi import FastAPI, Response
+# Standard library imports
 import subprocess
 import os
 import json
+
+# Third-party imports
+from fastapi import FastAPI, Response
+
+# Local application/library-specific imports
 
 app = FastAPI()
 
@@ -16,19 +21,19 @@ def get_file_content(file_path, media_type):
 @app.get("/output/{file_name}")
 async def read_json_file(file_name: str):
     file_name = file_name.replace(".json", "")
-    file_path = f"./output/{file_name}.json"
+    file_path = f"../output/{file_name}.json"
     return get_file_content(file_path, "application/json")
 
 @app.get("/logos/{file_name}")
 async def read_logo_file(file_name: str):
     file_name = file_name.rsplit(".", 1)[0].upper() + ".png"
-    file_path = f"./data/logos/42/{file_name}"
+    file_path = f"../assets/logos/{file_name}"
     return get_file_content(file_path, "image/png")
 
 @app.get("/flags/{file_name}")
 async def read_flag_file(file_name: str):
     file_name = file_name.rsplit(".", 1)[0].lower() + ".png"
-    file_path = f"./data/flags/42/{file_name}"
+    file_path = f"../assets/flags/{file_name}"
     return get_file_content(file_path, "image/png")
 
 def kill_process_on_port(port):
