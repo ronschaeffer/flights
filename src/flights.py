@@ -1,6 +1,9 @@
 # Set content type correctly in fastapi for image files
 # add image files to flights dictionary with correct url
 
+# Set content type correctly in fastapi for image files
+# add image files to flights dictionary with correct url
+
 import time
 from datetime import datetime
 import requests
@@ -33,6 +36,14 @@ MQTT_PWD = "your_mqtt_pwd"
 MQTT_BROKER = "your_mqtt_broker"
 MQTT_BROKER_PORT = 1883
 FASTAPI_PORT = 47474  # Port number as a variable
+CONFIG_FILE_PATH = "./config/config.yaml"
+EXAMPLE_DUMP_FILE_PATH = "./config/planefinder_dump_structure.json"
+VISIBLE_JSON_FILE_PATH = "./output/visible.json"
+CLOSEST_AIRCRAFT_JSON_FILE_PATH = "./output/closest_aircraft.json"
+ALL_AIRCRAFT_JSON_FILE_PATH = "./output/all_aircraft.json"
+FLIGHTS_WITHIN_DEFINED_ZONE_JSON_FILE_PATH = "./output/flights_within_defined_zone.json"
+FLIGHTS_WITHIN_DEFINED_RADIUS_JSON_FILE_PATH = "./output/flights_within_defined_radius.json"
+FASTAPI_SCRIPT = "flights_server.py"
 
 # Get the latest receiver dump data
 def get_receiver_data(dump_url, example_dump):
@@ -59,7 +70,7 @@ def get_receiver_visible(flights):
 def publish_receiver_visible(client, visible, previous_visible_aircraft):
     if visible != previous_visible_aircraft:
         print_receiver_visible(visible)
-        write_to_file('./output/visible.json', visible)
+        write_to_file(VISIBLE_JSON_FILE_PATH, visible)
         client.publish(TOPIC_VISIBLE, json.dumps(visible), qos=1, retain=True)
         return visible
     return previous_visible_aircraft
@@ -119,7 +130,7 @@ def publish_closest_aircraft(client, flights, previous_closest_aircraft):
 
         if data_to_publish != previous_closest_aircraft:
             print_closest_aircraft(data_to_publish)
-            write_to_file('./output/closest_aircraft.json', data_to_publish)
+            write_to_file(CLOSEST_AIRCRAFT_JSON_FILE_PATH, data_to_publish)
             client.publish(TOPIC_CLOSEST_AIRCRAFT, json.dumps(data_to_publish), qos=1, retain=True)
             return data_to_publish
 
@@ -132,17 +143,17 @@ def print_closest_aircraft(closest_aircraft):
     print(tabulate(table, headers=headers, tablefmt="grid"))
 
 def publish_flights(flights):
-    write_to_file('./output/all_aircraft.json', flights)
+    write_to_file(ALL_AIRCRAFT_JSON_FILE_PATH, flights)
 
 def write_filtered_flights_to_file(flights, filename, condition_key, condition_value):
     filtered_flights = {icao_id: flight for icao_id, flight in flights.items() if flight[condition_key] == condition_value}
     write_to_file(filename, filtered_flights)
 
 def save_flights_within_defined_zone(flights):
-    write_filtered_flights_to_file(flights, './output/flights_within_defined_zone.json', 'within_defined_zone', True)
+    write_filtered_flights_to_file(flights, FLIGHTS_WITHIN_DEFINED_ZONE_JSON_FILE_PATH, 'within_defined_zone', True)
 
 def save_flights_within_defined_radius(flights):
-    write_filtered_flights_to_file(flights, './output/flights_within_defined_radius.json', 'within_defined_radius', True)
+    write_filtered_flights_to_file(flights, FLIGHTS_WITHIN_DEFINED_RADIUS_JSON_FILE_PATH, 'within_defined_radius', True)
 
 def pretty_print_flights(flights):
     print(json.dumps(flights, indent=4))
@@ -301,12 +312,12 @@ def create_flights_rich(flights, airlines_json, airports_json, aircraft_json, re
 
 # Main program
 if __name__ == "__main__":
-    with open('./config/config.yaml', 'r') as f:
+    with open(CONFIG_FILE_PATH, 'r') as f:
         config = yaml.safe_load(f)
     for key, value in config.items():
         globals()[key] = value
 
-    with open(tracker_dump_structure, 'r') as f:
+    with open(EXAMPLE_DUMP_FILE_PATH, 'r') as f:
         example_dump = json.load(f)
 
     client = mqtt.Client(client_id=MQTT_CLIENT_ID)
@@ -315,8 +326,7 @@ if __name__ == "__main__":
     client.connect(MQTT_BROKER, MQTT_BROKER_PORT)
     client.loop_start()
 
-    fastapi_script = "flights_server.py"
-    process = subprocess.Popen(["python", fastapi_script, "--port", str(FASTAPI_PORT)])
+    process = subprocess.Popen(["python", FASTAPI_SCRIPT, "--port", str(FASTAPI_PORT)])
 
     reg_parser = Parser()
     previous_closest_aircraft = None
