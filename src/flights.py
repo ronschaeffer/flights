@@ -17,7 +17,7 @@ from tabulate import tabulate
 from flydenity import Parser
 
 # Local application/library-specific imports
-from flights_server_module import start_server
+from flights_server import start_server
 
 # Configure logging
 logging.basicConfig(filename='flights.log', level=logging.INFO, 
