@@ -1,6 +1,8 @@
 # Set content type correctly in fastapi for image files
 # add image files to flights dictionary with correct url
 
+from flights_server_module import start_server
+
 import time
 from datetime import datetime
 import requests
@@ -12,11 +14,10 @@ import shapely.geometry
 from tabulate import tabulate
 import subprocess
 from flydenity import Parser
-from flights_server_module import start_server  # Import the new module
 
 # Configuration Variables
-TOPIC_VISIBLE = "flights/visible"
-TOPIC_CLOSEST_AIRCRAFT = "flights/closest_aircraft"
+MQTT_TOPIC_VISIBLE = "flights/visible"
+MQTT_TOPIC_CLOSEST_AIRCRAFT = "flights/closest_aircraft"
 DUMP_URL = "your_dump_url_here"
 EXAMPLE_DUMP = "your_example_dump_structure_here"
 USER_LAT = 0.0  # Your latitude
@@ -68,7 +69,7 @@ def publish_receiver_visible(client, visible, previous_visible_aircraft):
     if visible != previous_visible_aircraft:
         print_receiver_visible(visible)
         write_to_file(VISIBLE_JSON_FILE_PATH, visible)
-        client.publish(TOPIC_VISIBLE, json.dumps(visible), qos=1, retain=True)
+        client.publish(MQTT_TOPIC_VISIBLE, json.dumps(visible), qos=1, retain=True)
         return visible
     return previous_visible_aircraft
 
@@ -128,7 +129,7 @@ def publish_closest_aircraft(client, flights, previous_closest_aircraft):
         if data_to_publish != previous_closest_aircraft:
             print_closest_aircraft(data_to_publish)
             write_to_file(CLOSEST_AIRCRAFT_JSON_FILE_PATH, data_to_publish)
-            client.publish(TOPIC_CLOSEST_AIRCRAFT, json.dumps(data_to_publish), qos=1, retain=True)
+            client.publish(MQTT_TOPIC_CLOSEST_AIRCRAFT, json.dumps(data_to_publish), qos=1, retain=True)
             return data_to_publish
 
     print("No change in closest aircraft data." if closest_aircraft else "No aircraft visible.")
