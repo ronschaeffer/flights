@@ -6,13 +6,12 @@ MQTT_BROKER: '10.10.10.21'
 MQTT_BROKER_PORT: 8883
 MQTT_USER: '136worple'
 MQTT_PWD: '011020MQTT'
-MQTT_CLIENT_ID: 'flights2mqtt'
+MQTT_CLIENT_ID: 'flights_client'
 
 # HTTP
 FASTAPI_PORT: 47474
 
 # Feed topics
-# Additional configuration
 MQTT_TOPIC_VISIBLE: "flights/visible"
 MQTT_TOPIC_CLOSEST_AIRCRAFT: "flights/closest_aircraft"
 
@@ -37,13 +36,13 @@ LON_EAST: -0.28753
 max_alt: 3000
 min_alt: 0
 
-# Alitude & Distance
+# Altitude & Distance
 RADIUS: 10 # distance in unit below from user position 
 DISTANCE_UNIT: mi # mi for miles or km for kilometers
 ALTITUDE_UNIT: ft
 
 # Source
-DUMP_URL: 'http://localhost:30053/ajax/aircraft'
+DUMP_URL: 'http://10.10.30.139:30053/ajax/aircraft'
 CONFIG_FILE_PATH: "../config/config.yaml"
 EXAMPLE_DUMP_FILE_PATH: "../config/planefinder_dump_structure.json"
 VISIBLE_JSON_FILE_PATH: "../output/visible.json"
@@ -55,11 +54,9 @@ FLIGHTS_WITHIN_DEFINED_RADIUS_JSON_FILE_PATH: "../output/flights_within_defined_
 # Key names for referenced keys in the dump file
 tracked_parent: 'aircraft' # Name of the parent key of tracked flights in the dump, e.g., 'aircraft'
 icao_id: 'False' # Example val: 'AA37CE'
- #'False' if the ICAO ID is itself the key name as with Planefinder, otherwise the name, e.g. 'hex', as with tar1090
 callsign: 'callsign' # Example val: 'AAL38'
 flightno: 'flightno' # Example val: 'AA38'
 route: 'route' # Example val: 'MIA-LHR'
- # Key name or 'False' as with tar1090
 type: 'type' # Example val: 'B772'
 latitude: 'lat' # Example val: '51.47807'
 longitude: 'lon' # Example val: '-0.185242'
