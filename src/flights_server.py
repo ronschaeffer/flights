@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 from fastapi import FastAPI, Response
 import subprocess
 import os
