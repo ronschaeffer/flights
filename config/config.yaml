@@ -12,8 +12,8 @@ MQTT_CLIENT_ID: 'flights_client'
 FASTAPI_PORT: 47474
 
 # Feed topics
-MQTT_TOPIC_VISIBLE: "flights/visible"
-MQTT_TOPIC_CLOSEST_AIRCRAFT: "flights/closest_aircraft"
+MQTT_TOPIC_VISIBLE: "dev/flights/visible"
+MQTT_TOPIC_CLOSEST_AIRCRAFT: "dev/flights/closest_aircraft"
 
 # User location
 use_lat_lon_from_config: False # If False, replace by values from receiver dump file
