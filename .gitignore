@@ -47,6 +47,7 @@ coverage.xml
 *.py,cover
 .hypothesis/
 .pytest_cache/
+/tests
 
 # Translations
 *.mo
@@ -101,9 +102,13 @@ pyvenv.cfg
 # IDEs
 .idea/
 .vscode/
+*.vscode-workspace
 *.sublime-project
 *.sublime-workspace
 *.komodoproject
 
 # Project
 output/
+logs/
+temp/
+.gitignore
