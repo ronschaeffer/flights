@@ -14,29 +14,26 @@ import paho.mqtt.client as mqtt
 import yaml
 import haversine
 import shapely.geometry
+import pickle
 from tabulate import tabulate
 from flydenity import Parser
 
 # Local application/library-specific imports
 from flights_server import start_server
 
-# Load configuration
-config_path = os.path.join(os.path.dirname(__file__), '../config/config.yaml')
-with open(config_path, 'r') as config_file:
-    config = yaml.safe_load(config_file)
-for key, value in config.items():
-    globals()[key] = value
+def load_configuration(config_path):
+    with open(config_path, 'r') as config_file:
+        config = yaml.safe_load(config_file)
+    for key, value in config.items():
+        globals()[key] = value
 
-# Configure logging
-log_directory = os.path.join(os.path.dirname(__file__), '../logs')
-os.makedirs(log_directory, exist_ok=True)
-log_file_path = os.path.join(log_directory, 'flights.log')
+def setup_logging(log_directory, log_file_path, log_level):
+    os.makedirs(log_directory, exist_ok=True)
+    logging.basicConfig(filename=log_file_path, level=getattr(logging, log_level.upper(), 'INFO'),
+                        format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+    logger = logging.getLogger(__name__)
+    return logger
 
-logging.basicConfig(filename=log_file_path, level=getattr(logging, LOG_LEVEL.upper(), 'INFO'),
-                    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-logger = logging.getLogger(__name__)
-
-logger.info("Starting flights.py script")
 def get_receiver_data(dump_url, reference_dump):
     logger.info("Fetching receiver data from URL: %s", dump_url)
     try:
@@ -44,13 +41,20 @@ def get_receiver_data(dump_url, reference_dump):
         response.raise_for_status()
         receiver = response.json()
         logger.info("Successfully fetched receiver data")
+        return receiver
     except requests.exceptions.RequestException as e:
         logger.error("Error fetching receiver data: %s", e)
         return {}
 
-    flights = {icao_id: {**{"icao_id": icao_id}, **flight_data} for icao_id, flight_data in receiver.get("aircraft", {}).items()}
-    for flight in flights.values():
-        flight.update({key: flight.get(key, "") for key in reference_dump.get("aircraft", {}).get("icao_id", {})})
+def process_flights(receiver, reference_dump):
+    flights = {
+        icao_id: {
+            **{"icao_id": icao_id},
+            **flight_data,
+            **{key: flight_data.get(key, "") for key in reference_dump.get("aircraft", {}).get("icao_id", {})}
+        }
+        for icao_id, flight_data in receiver.get("aircraft", {}).items()
+    }
     return flights
 
 def get_receiver_visible(flights):
@@ -78,6 +82,8 @@ def print_receiver_visible(visible):
     table = [[key, value] for key, value in visible.items()]
     print(tabulate(table, headers=["Key", "Value"]))
     print("\n")
+
+#######
 
 def write_to_file(filename, data):
     logger.info("Writing data to file: %s", filename)
@@ -406,12 +412,14 @@ def create_flights_rich(flights, airlines_json, airports_json, aircraft_json, re
 
 # Main program
 if __name__ == "__main__":
-    logger.info("Loading configuration")
     config_path = os.path.join(os.path.dirname(__file__), '../config/config.yaml')
-    with open(config_path, 'r') as config_file:
-        config = yaml.safe_load(config_file)
-    for key, value in config.items():
-        globals()[key] = value
+    load_configuration(config_path)
+
+    log_directory = os.path.join(os.path.dirname(__file__), '../logs')
+    log_file_path = os.path.join(log_directory, 'flights.log')
+    logger = setup_logging(log_directory, log_file_path, LOG_LEVEL)
+
+    logger.info("Starting flights.py script")
 
     with open(REFERENCE_DUMP_FILE_PATH, 'r') as reference_dump_file:
         reference_dump = json.load(reference_dump_file)
@@ -453,9 +461,10 @@ if __name__ == "__main__":
     previous_closest_aircraft = {}
 
     while True:
-        flights = get_receiver_data(DUMP_URL, reference_dump)
-        if not flights:
+        receiver = get_receiver_data(DUMP_URL, reference_dump)
+        if not receiver:
             continue
+        flights = process_flights(receiver, reference_dump)
         flights_rich = create_flights_rich(flights, airlines_json, airports_json, aircraft_json, reg_parser, (USER_LAT, USER_LON), RADIUS, defined_zone)
         visible = get_receiver_visible(flights)
         previous_visible_aircraft = publish_receiver_visible(mqtt_client, visible, previous_visible_aircraft)
@@ -464,6 +473,7 @@ if __name__ == "__main__":
         save_flights_within_defined_radius(FLIGHTS_WITHIN_DEFINED_RADIUS_JSON_FILE_PATH, flights_rich, (USER_LAT, USER_LON), RADIUS)
         previous_closest_aircraft = publish_closest_aircraft(mqtt_client, closest_aircraft, previous_closest_aircraft)
         publish_flights(mqtt_client, flights_rich)
+        
         time.sleep(CHECK_INTERVAL)
 
 #flights = get_receiver_data(DUMP_URL, reference_dump)
