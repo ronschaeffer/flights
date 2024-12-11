@@ -1,0 +1,12 @@
+{
+	"folders": [
+		{
+			"path": ".."
+		},
+		{
+			"name": "SFTP - [local] flighttrack - /home/pi",
+			"uri": "sftp://[local] flighttrack/home/pi"
+		}
+	],
+	"settings": {}
+}

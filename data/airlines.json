@@ -1,0 +1,6346 @@
+[
+    {
+        "iata_code": "3Z",
+        "name": "Smartwings Poland",
+        "icao_code": "TVP",
+        "airline_callsign": "JET TRAVEL",
+        "country": "Poland",
+        "country_code": "PL"
+    },
+    {
+        "iata_code": "LH",
+        "name": "Lufthansa Cargo",
+        "icao_code": "GEC",
+        "airline_callsign": "LUFTHANSA CARGO",
+        "country": "Germany",
+        "country_code": "DE"
+    },
+    {
+        "iata_code": "EA",
+        "name": "Emerald Airlines",
+        "icao_code": "EAI",
+        "airline_callsign": "GEMSTONE",
+        "country": "Ireland",
+        "country_code": "IE"
+    },
+    {
+        "iata_code": "QX",
+        "name": "Horizon Air",
+        "icao_code": "QXE",
+        "airline_callsign": "HORIZON AIR",
+        "country": "United States",
+        "country_code": "US"
+    },
+    {
+        "iata_code": "5W",
+        "name": "Wizz Air",
+        "icao_code": "WAZ",
+        "airline_callsign": "WIZZ SKY",
+        "country": "United Arab Emirates",
+        "country_code": "AE"
+    },
+    {
+        "iata_code": "",
+        "name": "Excel Aviation",
+        "icao_code": "BRO",
+        "airline_callsign": "BROADSWORD",
+        "country": "United Kingdom",
+        "country_code": "GB"
+    },
+    {
+        "iata_code": "C5",
+        "name": "CommutAir",
+        "icao_code": "UCA",
+        "airline_callsign": "COMMUTAIR",
+        "country": "United States",
+        "country_code": "US"
+    },
+    {
+        "iata_code": "MP",
+        "name": "Martinair Holland",
+        "icao_code": "MPH",
+        "airline_callsign": "MARTINAIR",
+        "country": "Netherlands",
+        "country_code": "NL"
+    },
+    {
+        "iata_code": "5Y",
+        "name": "Atlas Air",
+        "icao_code": "GTI",
+        "airline_callsign": "GIANT",
+        "country": "United States",
+        "country_code": "US"
+    },
+    {
+        "iata_code": "DY",
+        "name": "Norwegian",
+        "icao_code": "NOZ",
+        "airline_callsign": "NORDIC",
+        "country": "Norway",
+        "country_code": "NO"
+    },
+    {
+        "iata_code": "KH",
+        "name": "Aloha Air Cargo",
+        "icao_code": "AAH",
+        "airline_callsign": "ALOHA",
+        "country": "United States",
+        "country_code": "US"
+    },
+    {
+        "iata_code": "D0",
+        "name": "DHL Air",
+        "icao_code": "DHK",
+        "airline_callsign": "WORLD EXPRESS",
+        "country": "United Kingdom",
+        "country_code": "GB"
+    },
+    {
+        "iata_code": "1I",
+        "name": "Netjets",
+        "icao_code": "EJA",
+        "airline_callsign": "EXECJET",
+        "country": "United States",
+        "country_code": "US"
+    },
+    {
+        "iata_code": "FS",
+        "name": "flyr",
+        "icao_code": "FOX",
+        "airline_callsign": "GREENSTAR",
+        "country": "Norway",
+        "country_code": "NO"
+    },
+    {
+        "iata_code": "OH",
+        "name": "Jetstream International",
+        "icao_code": "JIA",
+        "airline_callsign": "BLUE STREAK",
+        "country": "United States",
+        "country_code": "US"
+    },
+    {
+        "iata_code": "N0",
+        "name": "Norse Atlantic Airways",
+        "icao_code": "NBT",
+        "airline_callsign": "LONGSHIP",
+        "country": "Norway",
+        "country_code": "NO"
+    },
+    {
+        "iata_code": "6D",
+        "name": "Smartwings Slovakia",
+        "icao_code": "TVQ",
+        "airline_callsign": "SLOVAKTRAVEL",
+        "country": "Slovakia",
+        "country_code": "SK"
+    },
+    {
+        "iata_code": "MX",
+        "name": "Breeze Airways",
+        "icao_code": "MXY",
+        "airline_callsign": "MOXY",
+        "country": "United States",
+        "country_code": "US"
+    },
+    {
+        "iata_code": "9E",
+        "name": "Endeavor Air",
+        "icao_code": "EDV",
+        "airline_callsign": "ENDEAVOR",
+        "country": "United States",
+        "country_code": "US"
+    },
+    {
+        "iata_code": "UH",
+        "name": "Bristow Helicopters",
+        "icao_code": "BHL",
+        "airline_callsign": "BRISTOW",
+        "country": "United Kingdom",
+        "country_code": "GB"
+    },
+    {
+        "iata_code": "LF",
+        "name": "Contour",
+        "icao_code": "VTE",
+        "airline_callsign": "VOLUNTEER",
+        "country": "United States",
+        "country_code": "US"
+    },
+    {
+        "iata_code": "",
+        "name": "BAe Systems",
+        "icao_code": "BAE",
+        "airline_callsign": "FELIX",
+        "country": "United Kingdom",
+        "country_code": "GB"
+    },
+    {
+        "iata_code": "FX",
+        "name": "FedEx Express",
+        "icao_code": "FDX",
+        "airline_callsign": "FEDEX",
+        "country": "United States",
+        "country_code": "US"
+    },
+    {
+        "iata_code": "ZW",
+        "name": "Air Wisconsin",
+        "icao_code": "AWI",
+        "airline_callsign": "WISCONSIN",
+        "country": "United States",
+        "country_code": "US"
+    },
+    {
+        "iata_code": "",
+        "name": "West Atlantic UK",
+        "icao_code": "NPT",
+        "airline_callsign": "NEPTUNE",
+        "country": "United Kingdom",
+        "country_code": "GB"
+    },
+    {
+        "iata_code": "PO",
+        "name": "Polar Air Cargo",
+        "icao_code": "PAC",
+        "airline_callsign": "POLAR",
+        "country": "United States",
+        "country_code": "US"
+    },
+    {
+        "iata_code": "FH",
+        "name": "Freebird Airlines",
+        "icao_code": "FHY",
+        "airline_callsign": "FREEBIRD AIR\t",
+        "country": "Turkey",
+        "country_code": "TR"
+    },
+    {
+        "iata_code": "YV",
+        "name": "Mesa Airlines",
+        "icao_code": "ASH",
+        "airline_callsign": "AIR SHUTTLE",
+        "country": "United States",
+        "country_code": "US"
+    },
+    {
+        "iata_code": "MQ",
+        "name": "Envoy",
+        "icao_code": "ENY",
+        "airline_callsign": "ENVOY",
+        "country": "United States",
+        "country_code": "US"
+    },
+    {
+        "iata_code": "XP",
+        "name": "Avelo Air",
+        "icao_code": "VXP",
+        "airline_callsign": "AVELO",
+        "country": "United States",
+        "country_code": "US"
+    },
+    {
+        "iata_code": "8C",
+        "name": "Air Transport International",
+        "icao_code": "ATN",
+        "airline_callsign": "AIR TRANSPORT",
+        "country": "United States",
+        "country_code": "US"
+    },
+    {
+        "iata_code": "S9",
+        "name": "FlyBig",
+        "icao_code": "FLG",
+        "airline_callsign": "KRISH",
+        "country": "India",
+        "country_code": "IN"
+    },
+    {
+        "iata_code": "MQ",
+        "name": "American Eagle",
+        "icao_code": "EGF",
+        "airline_callsign": "EAGLE FLIGHT",
+        "country": "United States",
+        "country_code": "US"
+    },
+    {
+        "iata_code": "PQ",
+        "name": "SkyUp Airlines",
+        "icao_code": "SQP",
+        "airline_callsign": "SKYUP",
+        "country": "Ukraine",
+        "country_code": "UA"
+    },
+    {
+        "iata_code": "ZT",
+        "name": "Titan Airways",
+        "icao_code": "AWC",
+        "airline_callsign": "ZAP",
+        "country": "United Kingdom",
+        "country_code": "GB"
+    },
+    {
+        "iata_code": "6I",
+        "name": "Air Alsie",
+        "icao_code": "MMD",
+        "airline_callsign": "MERMAID",
+        "country": "Denmark",
+        "country_code": "DK"
+    },
+    {
+        "iata_code": "",
+        "name": "Boeing",
+        "icao_code": "BOE",
+        "airline_callsign": "BOEING",
+        "country": "United States",
+        "country_code": "US"
+    },
+    {
+        "iata_code": "PT",
+        "name": "Piedmont Airlines",
+        "icao_code": "PDT",
+        "airline_callsign": "PIEDMONT",
+        "country": "United States",
+        "country_code": "US"
+    },
+    {
+        "iata_code": "9L",
+        "name": "AirTanker",
+        "icao_code": "TOW",
+        "airline_callsign": "TOWLINE",
+        "country": "United Kingdon",
+        "country_code": "GB"
+    },
+    {
+        "iata_code": "GB",
+        "name": "ABX Air",
+        "icao_code": "ABX",
+        "airline_callsign": "ABEX",
+        "country": "United States",
+        "country_code": "US"
+    },
+    {
+        "iata_code": "YX",
+        "name": "Republic Airline",
+        "icao_code": "RPA",
+        "airline_callsign": "BRICKYARD",
+        "country": "United States",
+        "country_code": "US"
+    },
+    {
+        "iata_code": "OO",
+        "name": "SkyWest",
+        "icao_code": "SKW",
+        "airline_callsign": "SKYWEST",
+        "country": "United States",
+        "country_code": "US"
+    },
+    {
+        "iata_code": "W4",
+        "name": "Wizz Air Malta",
+        "icao_code": "WMT",
+        "airline_callsign": "WIZZAIRMALTA",
+        "country": "Malta",
+        "country_code": "MT"
+    },
+    {
+        "iata_code": "AZ",
+        "name": "ITA Airways",
+        "icao_code": "ITY",
+        "airline_callsign": "ITARROW",
+        "country": "Italy",
+        "country_code": "IT"
+    },
+    {
+        "iata_code": "ZF",
+        "name": "Azur Air",
+        "icao_code": "AZV",
+        "airline_callsign": "AZUR AIR",
+        "country": "Russian Federation",
+        "country_code": "RU"
+    },
+    {
+        "iata_code": "",
+        "name": "Asia Service",
+        "icao_code": "ASQ",
+        "airline_callsign": "ASIA SERVICE",
+        "country": "Kazakhstan",
+        "country_code": "KZ"
+    },
+    {
+        "iata_code": "AG",
+        "name": "ASL Airlines Ireland",
+        "icao_code": "ABR",
+        "airline_callsign": "CONTRACT",
+        "country": "Ireland",
+        "country_code": "IE"
+    },
+    {
+        "iata_code": "M3",
+        "name": "LATAM Cargo Brasil",
+        "icao_code": "LTG",
+        "airline_callsign": "TAMCARGO",
+        "country": "Brazil",
+        "country_code": "BR"
+    },
+    {
+        "iata_code": "ZB",
+        "name": "Air Albania",
+        "icao_code": "ABN",
+        "airline_callsign": "AIR ALBANIA",
+        "country": "Albania",
+        "country_code": "AL"
+    },
+    {
+        "iata_code": "",
+        "name": "All Charter",
+        "icao_code": "BLA",
+        "airline_callsign": "ALL CHARTER",
+        "country": "United Kingdon",
+        "country_code": "GB"
+    },
+    {
+        "iata_code": "2D",
+        "name": "Eastern Airlines",
+        "icao_code": "EAL",
+        "airline_callsign": "EASTERN",
+        "country": "United States",
+        "country_code": "US"
+    },
+    {
+        "iata_code": "CV",
+        "name": "Cargolux",
+        "icao_code": "CLX",
+        "airline_callsign": "CARGOLUX",
+        "country": "Luxemburg",
+        "country_code": "LU"
+    },
+    {
+        "iata_code": "G7",
+        "name": "GoJet",
+        "icao_code": "GJS",
+        "airline_callsign": "LINDBERGH",
+        "country": "United States",
+        "country_code": "US"
+    },
+    {
+        "iata_code": "TP",
+        "name": "TAP Portugal",
+        "icao_code": "TAP",
+        "airline_callsign": "AIR PORTUGAL",
+        "country": "Portugal",
+        "country_code": "PT"
+    },
+    {
+        "iata_code": "0V",
+        "name": "VASCO",
+        "icao_code": "VFC",
+        "airline_callsign": "VASCO AIR",
+        "country": "Vietnam",
+        "country_code": "VN"
+    },
+    {
+        "iata_code": "2G",
+        "name": "Angara Airlines",
+        "icao_code": "AGU",
+        "airline_callsign": "SARMA",
+        "country": "Russian Federation",
+        "country_code": "RU"
+    },
+    {
+        "iata_code": "2I",
+        "name": "Star Peru",
+        "icao_code": "SRU",
+        "airline_callsign": "STAR-UP",
+        "country": "Peru",
+        "country_code": "PE"
+    },
+    {
+        "iata_code": "2J",
+        "name": "Air Burkina",
+        "icao_code": "VBW",
+        "airline_callsign": "BURKINA",
+        "country": "Burkina Faso",
+        "country_code": "BF"
+    },
+    {
+        "iata_code": "2K",
+        "name": "Avianca",
+        "icao_code": "GLG",
+        "airline_callsign": "AEROGAL",
+        "country": "Ecuador",
+        "country_code": "EC"
+    },
+    {
+        "iata_code": "2M",
+        "name": "Maya Island Air",
+        "icao_code": "MYD",
+        "airline_callsign": "MYLAND",
+        "country": "Belize",
+        "country_code": "BZ"
+    },
+    {
+        "iata_code": "2B",
+        "name": "Albawings",
+        "icao_code": "AWT",
+        "airline_callsign": "AIR WEST",
+        "country": "Canada",
+        "country_code": "CA"
+    },
+    {
+        "iata_code": "0B",
+        "name": "Blue Air",
+        "icao_code": "BMS",
+        "airline_callsign": "BLUE MESSENGER",
+        "country": "Romania",
+        "country_code": "RO"
+    },
+    {
+        "iata_code": "2L",
+        "name": "Helvetic Airways",
+        "icao_code": "OAW",
+        "airline_callsign": "HELVETIC",
+        "country": "Switzerland",
+        "country_code": "CH"
+    },
+    {
+        "iata_code": "2U",
+        "name": "Sun d'Or Airlines",
+        "icao_code": "ERO",
+        "airline_callsign": "AEROECOM",
+        "country": "Venezuela",
+        "country_code": "VE"
+    },
+    {
+        "iata_code": "2Z",
+        "name": "Passaredo Linhas A\u00e9reas",
+        "icao_code": "PTB",
+        "airline_callsign": "PASSAREDO",
+        "country": "Brazil",
+        "country_code": "BR"
+    },
+    {
+        "iata_code": "3B",
+        "name": "Binter Cabo Verde",
+        "icao_code": "NTB",
+        "airline_callsign": "SERVINORTE",
+        "country": "Mexico",
+        "country_code": "MX"
+    },
+    {
+        "iata_code": "3C",
+        "name": "Air Chathams",
+        "icao_code": "CVA",
+        "airline_callsign": "CHATHAM",
+        "country": "New Zealand",
+        "country_code": "NZ"
+    },
+    {
+        "iata_code": "3E",
+        "name": "Air Choice One",
+        "icao_code": "WBR",
+        "airline_callsign": "WEBER",
+        "country": "United States",
+        "country_code": "US"
+    },
+    {
+        "iata_code": "3H",
+        "name": "Air Inuit",
+        "icao_code": "AIE",
+        "airline_callsign": "AIR INUIT",
+        "country": "Canada",
+        "country_code": "CA"
+    },
+    {
+        "iata_code": "3J",
+        "name": "Jubba Airways",
+        "icao_code": "JBW",
+        "airline_callsign": "AIRJUB",
+        "country": "Kenya",
+        "country_code": "KE"
+    },
+    {
+        "iata_code": "3M",
+        "name": "Silver Airways",
+        "icao_code": "SIL",
+        "airline_callsign": "SERVICIOS INTEGRALES",
+        "country": "Mexico",
+        "country_code": "MX"
+    },
+    {
+        "iata_code": "3N",
+        "name": "Airline Urga",
+        "icao_code": "URG",
+        "airline_callsign": "URGA",
+        "country": "Ukraine",
+        "country_code": "UA"
+    },
+    {
+        "iata_code": "3P",
+        "name": "Air Philip",
+        "icao_code": "APV",
+        "airline_callsign": "AIR PLAN",
+        "country": "Democratic Republic of the Congo",
+        "country_code": "CD"
+    },
+    {
+        "iata_code": "3R",
+        "name": "Avior Regional",
+        "icao_code": "RGR",
+        "airline_callsign": "AVIOR REGIONAL",
+        "country": "Venezuela",
+        "country_code": "VE"
+    },
+    {
+        "iata_code": "3S",
+        "name": "Air Antilles",
+        "icao_code": "GUY",
+        "airline_callsign": "GREEN BIRD",
+        "country": "French Guiana",
+        "country_code": "GF"
+    },
+    {
+        "iata_code": "3T",
+        "name": "Tarco Aviation",
+        "icao_code": "TRQ",
+        "airline_callsign": "",
+        "country": "Netherlands",
+        "country_code": "NL"
+    },
+    {
+        "iata_code": "3U",
+        "name": "Sichuan Airlines",
+        "icao_code": "CSC",
+        "airline_callsign": "SI CHUAN",
+        "country": "China",
+        "country_code": "CN"
+    },
+    {
+        "iata_code": "3W",
+        "name": "Malawi Airlines",
+        "icao_code": "MWI",
+        "airline_callsign": "MALAWIAN",
+        "country": "Malawi",
+        "country_code": "MW"
+    },
+    {
+        "iata_code": "4B",
+        "name": "Boutique Air",
+        "icao_code": "BTQ",
+        "airline_callsign": "BOUTIQUE",
+        "country": "United States",
+        "country_code": "US"
+    },
+    {
+        "iata_code": "4G",
+        "name": "Gazpromavia",
+        "icao_code": "GZP",
+        "airline_callsign": "GAZPROMAVIA",
+        "country": "Russian Federation",
+        "country_code": "RU"
+    },
+    {
+        "iata_code": "4K",
+        "name": "Kenn Borek Air",
+        "icao_code": "KBA",
+        "airline_callsign": "BOREK AIR",
+        "country": "Canada",
+        "country_code": "CA"
+    },
+    {
+        "iata_code": "4N",
+        "name": "Airnorth",
+        "icao_code": "ANT",
+        "airline_callsign": "AIR NORTH",
+        "country": "Canada",
+        "country_code": "CA"
+    },
+    {
+        "iata_code": "4R",
+        "name": "Star East Airlines",
+        "icao_code": "SEK",
+        "airline_callsign": "",
+        "country": "Romania",
+        "country_code": "RO"
+    },
+    {
+        "iata_code": "4W",
+        "name": "Warbelows Air",
+        "icao_code": "WAV",
+        "airline_callsign": "WARBELOW",
+        "country": "United States",
+        "country_code": "US"
+    },
+    {
+        "iata_code": "4Z",
+        "name": "Airlink",
+        "icao_code": "LNK",
+        "airline_callsign": "LINK",
+        "country": "South Africa",
+        "country_code": "ZA"
+    },
+    {
+        "iata_code": "5B",
+        "name": "Bassaka Air",
+        "icao_code": "BSX",
+        "airline_callsign": "",
+        "country": "Cambodia",
+        "country_code": "KH"
+    },
+    {
+        "iata_code": "5D",
+        "name": "Aeromexico Connect",
+        "icao_code": "SLI",
+        "airline_callsign": "COSTERA",
+        "country": "Mexico",
+        "country_code": "MX"
+    },
+    {
+        "iata_code": "5F",
+        "name": "FlyOne",
+        "icao_code": "FIA",
+        "airline_callsign": "Fly One",
+        "country": "Moldova",
+        "country_code": "MD"
+    },
+    {
+        "iata_code": "5M",
+        "name": "FlyMontserrat",
+        "icao_code": "MNT",
+        "airline_callsign": "MONTSERRAT",
+        "country": "Montserrat",
+        "country_code": "MS"
+    },
+    {
+        "iata_code": "5N",
+        "name": "SmartAvia",
+        "icao_code": "AUL",
+        "airline_callsign": "ARCHANGELSK AIR",
+        "country": "Russian Federation",
+        "country_code": "RU"
+    },
+    {
+        "iata_code": "5O",
+        "name": "ASL Airlines France",
+        "icao_code": "FPO",
+        "airline_callsign": "FRENCH POST",
+        "country": "France",
+        "country_code": "FR"
+    },
+    {
+        "iata_code": "5R",
+        "name": "Rutaca Airlines",
+        "icao_code": "RUC",
+        "airline_callsign": "RUTACA",
+        "country": "Venezuela",
+        "country_code": "VE"
+    },
+    {
+        "iata_code": "5T",
+        "name": "Canadian North",
+        "icao_code": "MPE",
+        "airline_callsign": "EMPRESS",
+        "country": "Canada",
+        "country_code": "CA"
+    },
+    {
+        "iata_code": "5U",
+        "name": "TAG Airlines",
+        "icao_code": "TGU",
+        "airline_callsign": "CHAPIN",
+        "country": "Guatemala",
+        "country_code": "GT"
+    },
+    {
+        "iata_code": "5Z",
+        "name": "CemAir",
+        "icao_code": "KEM",
+        "airline_callsign": "CEMAIR",
+        "country": "South Africa",
+        "country_code": "ZA"
+    },
+    {
+        "iata_code": "6B",
+        "name": "TUI fly Nordi\u0441",
+        "icao_code": "BLX",
+        "airline_callsign": "BLUESCAN",
+        "country": "Sweden",
+        "country_code": "SE"
+    },
+    {
+        "iata_code": "6H",
+        "name": "Israir Airlines",
+        "icao_code": "ISR",
+        "airline_callsign": "ISRAIR",
+        "country": "Israel",
+        "country_code": "IL"
+    },
+    {
+        "iata_code": "6J",
+        "name": "Solaseed Air",
+        "icao_code": "SNJ",
+        "airline_callsign": "NEWSKY",
+        "country": "Japan",
+        "country_code": "JP"
+    },
+    {
+        "iata_code": "6L",
+        "name": "Aklak Air",
+        "icao_code": "AKK",
+        "airline_callsign": "AKLAK",
+        "country": "Canada",
+        "country_code": "CA"
+    },
+    {
+        "iata_code": "6N",
+        "name": "Niger Airlines",
+        "icao_code": "NIN",
+        "airline_callsign": "NIGER AIRLINES",
+        "country": "Niger",
+        "country_code": "NE"
+    },
+    {
+        "iata_code": "6O",
+        "name": "Orbest",
+        "icao_code": "OBS",
+        "airline_callsign": "",
+        "country": "Portugal",
+        "country_code": "PT"
+    },
+    {
+        "iata_code": "6Q",
+        "name": "Cham Wings Airlines",
+        "icao_code": "SAW",
+        "airline_callsign": "SHAMWING",
+        "country": "Syrian Arab Republic",
+        "country_code": "SY"
+    },
+    {
+        "iata_code": "6R",
+        "name": "ALROSA",
+        "icao_code": "DRU",
+        "airline_callsign": "MIRNY",
+        "country": "Russian Federation",
+        "country_code": "RU"
+    },
+    {
+        "iata_code": "6S",
+        "name": "SaudiGulf",
+        "icao_code": "SGQ",
+        "airline_callsign": "SAUDIGULF",
+        "country": "Suadi Arabia",
+        "country_code": "SA"
+    },
+    {
+        "iata_code": "6Y",
+        "name": "SmartLynx Airlines Estonia",
+        "icao_code": "MYX",
+        "airline_callsign": "TALLINN CAT",
+        "country": "Estonia",
+        "country_code": "EE"
+    },
+    {
+        "iata_code": "7D",
+        "name": "Madagasikara Airways",
+        "icao_code": "AYS",
+        "airline_callsign": "",
+        "country": "Libya",
+        "country_code": "LY"
+    },
+    {
+        "iata_code": "7E",
+        "name": "Sylt Air",
+        "icao_code": "AWU",
+        "airline_callsign": "SYLT-AIR",
+        "country": "Germany",
+        "country_code": "DE"
+    },
+    {
+        "iata_code": "7F",
+        "name": "First Air",
+        "icao_code": "FAB",
+        "airline_callsign": "FIRST AIR",
+        "country": "Canada",
+        "country_code": "CA"
+    },
+    {
+        "iata_code": "7M",
+        "name": "MAYAir",
+        "icao_code": "MYI",
+        "airline_callsign": "MAYAIR",
+        "country": "Mexico",
+        "country_code": "MX"
+    },
+    {
+        "iata_code": "7P",
+        "name": "Air Panama",
+        "icao_code": "PST",
+        "airline_callsign": "TURISMO REGIONAL",
+        "country": "Panama",
+        "country_code": "PA"
+    },
+    {
+        "iata_code": "7Q",
+        "name": "Elite Airways",
+        "icao_code": "MNU",
+        "airline_callsign": "MAINER",
+        "country": "United States",
+        "country_code": "US"
+    },
+    {
+        "iata_code": "7R",
+        "name": "RusLine",
+        "icao_code": "RLU",
+        "airline_callsign": "RUSLINE AIR",
+        "country": "Russian Federation",
+        "country_code": "RU"
+    },
+    {
+        "iata_code": "7V",
+        "name": "Federal Airlines",
+        "icao_code": "FDR",
+        "airline_callsign": "FEDAIR",
+        "country": "South Africa",
+        "country_code": "ZA"
+    },
+    {
+        "iata_code": "7W",
+        "name": "Windrose Airlines",
+        "icao_code": "WRC",
+        "airline_callsign": "",
+        "country": "Ukraine",
+        "country_code": "UA"
+    },
+    {
+        "iata_code": "7Y",
+        "name": "Mann Yadanarpon Airlines",
+        "icao_code": "MYP",
+        "airline_callsign": "MANN ROYAL",
+        "country": "Myanmar",
+        "country_code": "MM"
+    },
+    {
+        "iata_code": "8B",
+        "name": "TransNusa",
+        "icao_code": "TNU",
+        "airline_callsign": "",
+        "country": "Indonesia",
+        "country_code": "ID"
+    },
+    {
+        "iata_code": "8E",
+        "name": "Bering Air",
+        "icao_code": "BRG",
+        "airline_callsign": "BERING AIR",
+        "country": "United States",
+        "country_code": "US"
+    },
+    {
+        "iata_code": "8F",
+        "name": "STP Airways",
+        "icao_code": "STP",
+        "airline_callsign": "",
+        "country": "Sao Tome and Principe",
+        "country_code": "ST"
+    },
+    {
+        "iata_code": "8G",
+        "name": "Fly Mid Africa",
+        "icao_code": "MFG",
+        "airline_callsign": "MID AFRICA",
+        "country": "Gambia",
+        "country_code": "GM"
+    },
+    {
+        "iata_code": "8H",
+        "name": "BHAir",
+        "icao_code": "BGH",
+        "airline_callsign": "BALKAN HOLIDAYS",
+        "country": "Bulgaria",
+        "country_code": "BG"
+    },
+    {
+        "iata_code": "8J",
+        "name": "EcoJet",
+        "icao_code": "ECO",
+        "airline_callsign": "ECOJET",
+        "country": "Bolivia",
+        "country_code": "BO"
+    },
+    {
+        "iata_code": "8M",
+        "name": "Myanmar Airways International",
+        "icao_code": "MMA",
+        "airline_callsign": "MYANMAR",
+        "country": "Myanmar",
+        "country_code": "MM"
+    },
+    {
+        "iata_code": "8N",
+        "name": "Regional Air",
+        "icao_code": "REG",
+        "airline_callsign": "REGIONAL SERVICES",
+        "country": "Tanzania",
+        "country_code": "TZ"
+    },
+    {
+        "iata_code": "8P",
+        "name": "Pacific Coastal Airlines",
+        "icao_code": "PCO",
+        "airline_callsign": "PASCO",
+        "country": "Canada",
+        "country_code": "CA"
+    },
+    {
+        "iata_code": "8T",
+        "name": "Air Tindi",
+        "icao_code": "TID",
+        "airline_callsign": "",
+        "country": "Canada",
+        "country_code": "CA"
+    },
+    {
+        "iata_code": "8U",
+        "name": "Afriqiyah Airways",
+        "icao_code": "AAW",
+        "airline_callsign": "AFRIQIYAH",
+        "country": "Libya",
+        "country_code": "LY"
+    },
+    {
+        "iata_code": "ZD",
+        "name": "EWA Air",
+        "icao_code": "EWR",
+        "airline_callsign": "MAYOTTE AIR",
+        "country": "France",
+        "country_code": "FR"
+    },
+    {
+        "iata_code": "4C",
+        "name": "LATAM Colombia",
+        "icao_code": "ARE",
+        "airline_callsign": "AIRES",
+        "country": "Colombia",
+        "country_code": "CO"
+    },
+    {
+        "iata_code": "2P",
+        "name": "PAL Express",
+        "icao_code": "GAP",
+        "airline_callsign": "ORIENT PACIFIC",
+        "country": "Philippines",
+        "country_code": "PH"
+    },
+    {
+        "iata_code": "3K",
+        "name": "Jetstar Asia",
+        "icao_code": "JSA",
+        "airline_callsign": "",
+        "country": "Singapore",
+        "country_code": "SG"
+    },
+    {
+        "iata_code": "3O",
+        "name": "Air Arabia Maroc",
+        "icao_code": "MAC",
+        "airline_callsign": "ARABIA MAROC",
+        "country": "Morocco",
+        "country_code": "MA"
+    },
+    {
+        "iata_code": "5H",
+        "name": "Fly540",
+        "icao_code": "FFV",
+        "airline_callsign": "",
+        "country": "Kenya",
+        "country_code": "KE"
+    },
+    {
+        "iata_code": "6E",
+        "name": "IndiGo",
+        "icao_code": "IGO",
+        "airline_callsign": "IFLY",
+        "country": "India",
+        "country_code": "IN"
+    },
+    {
+        "iata_code": "7C",
+        "name": "Jeju Air",
+        "icao_code": "JJA",
+        "airline_callsign": "",
+        "country": "South Korea",
+        "country_code": "KR"
+    },
+    {
+        "iata_code": "8L",
+        "name": "Lucky Air",
+        "icao_code": "LKE",
+        "airline_callsign": "LUCKY AIR",
+        "country": "China",
+        "country_code": "CN"
+    },
+    {
+        "iata_code": "7G",
+        "name": "StarFlyer",
+        "icao_code": "SFJ",
+        "airline_callsign": "STARFLYER",
+        "country": "Japan",
+        "country_code": "JP"
+    },
+    {
+        "iata_code": "2T",
+        "name": "TruJet",
+        "icao_code": "TRJ",
+        "airline_callsign": "HIGH TIDE",
+        "country": "United Kingdom",
+        "country_code": "GB"
+    },
+    {
+        "iata_code": "4U",
+        "name": "Eurowings",
+        "icao_code": "GWI",
+        "airline_callsign": "GERMAN WINGS",
+        "country": "Germany",
+        "country_code": "DE"
+    },
+    {
+        "iata_code": "8Q",
+        "name": "Onur Air",
+        "icao_code": "OHY",
+        "airline_callsign": "ONUR AIR",
+        "country": "Turkey",
+        "country_code": "TR"
+    },
+    {
+        "iata_code": "4O",
+        "name": "Interjet",
+        "icao_code": "AIJ",
+        "airline_callsign": "ABC Aerolineas",
+        "country": "Mexico",
+        "country_code": "MX"
+    },
+    {
+        "iata_code": "8V",
+        "name": "Wright Air Service",
+        "icao_code": "WRT",
+        "airline_callsign": "",
+        "country": "United States",
+        "country_code": "US"
+    },
+    {
+        "iata_code": "8W",
+        "name": "Fly All Ways",
+        "icao_code": "EDR",
+        "airline_callsign": "BIRDVIEW",
+        "country": "Suriname",
+        "country_code": "SR"
+    },
+    {
+        "iata_code": "8Y",
+        "name": "Pan Pacific Airlines",
+        "icao_code": "AAV",
+        "airline_callsign": "ASTRO-PHIL",
+        "country": "United States",
+        "country_code": "US"
+    },
+    {
+        "iata_code": "8Z",
+        "name": "Congo Airways",
+        "icao_code": "CGA",
+        "airline_callsign": "CONGRESSIONAL",
+        "country": "United States",
+        "country_code": "US"
+    },
+    {
+        "iata_code": "9H",
+        "name": "Air Changan",
+        "icao_code": "CGN",
+        "airline_callsign": "CHANGAN",
+        "country": "China",
+        "country_code": "CN"
+    },
+    {
+        "iata_code": "9I",
+        "name": "Alliance Air",
+        "icao_code": "LLR",
+        "airline_callsign": "ALLIED",
+        "country": "India",
+        "country_code": "IN"
+    },
+    {
+        "iata_code": "9J",
+        "name": "Dana Air",
+        "icao_code": "DAN",
+        "airline_callsign": "",
+        "country": "United Kingdom",
+        "country_code": "GB"
+    },
+    {
+        "iata_code": "9K",
+        "name": "Cape Air",
+        "icao_code": "KAP",
+        "airline_callsign": "CAIR",
+        "country": "United States",
+        "country_code": "US"
+    },
+    {
+        "iata_code": "9M",
+        "name": "Central Mountain Air",
+        "icao_code": "GLR",
+        "airline_callsign": "GLACIER",
+        "country": "Canada",
+        "country_code": "CA"
+    },
+    {
+        "iata_code": "9N",
+        "name": "Tropic Air",
+        "icao_code": "TOS",
+        "airline_callsign": "TROPISER",
+        "country": "Belize",
+        "country_code": "BZ"
+    },
+    {
+        "iata_code": "9Q",
+        "name": "Caicos Express Airways",
+        "icao_code": "CXE",
+        "airline_callsign": "CAICOS",
+        "country": "Turks and Caicos Islands",
+        "country_code": "TC"
+    },
+    {
+        "iata_code": "9R",
+        "name": "SATENA",
+        "icao_code": "NSE",
+        "airline_callsign": "SATENA",
+        "country": "Colombia",
+        "country_code": "CO"
+    },
+    {
+        "iata_code": "9U",
+        "name": "Air Moldova",
+        "icao_code": "MLD",
+        "airline_callsign": "AIR MOLDOVA",
+        "country": "Moldova",
+        "country_code": "MD"
+    },
+    {
+        "iata_code": "9V",
+        "name": "Avior Airlines",
+        "icao_code": "ROI",
+        "airline_callsign": "AVIOR",
+        "country": "Venezuela",
+        "country_code": "VE"
+    },
+    {
+        "iata_code": "9W",
+        "name": "Jet Airways",
+        "icao_code": "JAI",
+        "airline_callsign": "",
+        "country": "India",
+        "country_code": "IN"
+    },
+    {
+        "iata_code": "9X",
+        "name": "Southern Airways Express",
+        "icao_code": "FDY",
+        "airline_callsign": "FRIENDLY",
+        "country": "United States",
+        "country_code": "US"
+    },
+    {
+        "iata_code": "9Y",
+        "name": "National Airways Ethiopia",
+        "icao_code": "NAE",
+        "airline_callsign": "NATIONS EXPRESS",
+        "country": "United States",
+        "country_code": "US"
+    },
+    {
+        "iata_code": "A2",
+        "name": "Astra Airlines",
+        "icao_code": "AZI",
+        "airline_callsign": "ASTRA",
+        "country": "Greece",
+        "country_code": "GR"
+    },
+    {
+        "iata_code": "A4",
+        "name": "Azimuth",
+        "icao_code": "AZO",
+        "airline_callsign": "AZIMUTH-DON",
+        "country": "Russian Federation",
+        "country_code": "RU"
+    },
+    {
+        "iata_code": "A5",
+        "name": "HOP!",
+        "icao_code": "HOP",
+        "airline_callsign": "AIR HOP",
+        "country": "France",
+        "country_code": "FR"
+    },
+    {
+        "iata_code": "A6",
+        "name": "Air Travel",
+        "icao_code": "HTU",
+        "airline_callsign": "HONGLAND",
+        "country": "China",
+        "country_code": "CN"
+    },
+    {
+        "iata_code": "A8",
+        "name": "AeroLink",
+        "icao_code": "XAU",
+        "airline_callsign": "PEARL",
+        "country": "Uganda",
+        "country_code": "UG"
+    },
+    {
+        "iata_code": "A9",
+        "name": "Georgian Airways",
+        "icao_code": "TGZ",
+        "airline_callsign": "TAMAZI",
+        "country": "Georgia",
+        "country_code": "GE"
+    },
+    {
+        "iata_code": "AE",
+        "name": "Mandarin Airlines",
+        "icao_code": "MDA",
+        "airline_callsign": "MANDARIN",
+        "country": "Taiwan",
+        "country_code": "TW"
+    },
+    {
+        "iata_code": "AG",
+        "name": "Aruba Airlines",
+        "icao_code": "ARU",
+        "airline_callsign": "ARUBA",
+        "country": "Aruba",
+        "country_code": "AW"
+    },
+    {
+        "iata_code": "AH",
+        "name": "Air Algerie",
+        "icao_code": "DAH",
+        "airline_callsign": "AIR ALGERIE",
+        "country": "Algeria",
+        "country_code": "DZ"
+    },
+    {
+        "iata_code": "AJ",
+        "name": "Aztec Airways",
+        "icao_code": "AZY",
+        "airline_callsign": "AZTEC WORLD",
+        "country": "United States",
+        "country_code": "US"
+    },
+    {
+        "iata_code": "AO",
+        "name": "Air Juan",
+        "icao_code": null,
+        "airline_callsign": "AIR JUAN",
+        "country": "Philippines",
+        "country_code": "PH"
+    },
+    {
+        "iata_code": "AP",
+        "name": "AlbaStar",
+        "icao_code": "LAV",
+        "airline_callsign": "ALBASTAR",
+        "country": "Spain",
+        "country_code": "ES"
+    },
+    {
+        "iata_code": "AS",
+        "name": "Alaska Airlines",
+        "icao_code": "ASA",
+        "airline_callsign": "ALASKA",
+        "country": "United States",
+        "country_code": "US"
+    },
+    {
+        "iata_code": "AT",
+        "name": "Royal Air Maroc",
+        "icao_code": "RAM",
+        "airline_callsign": "ROYALAIR MAROC",
+        "country": "Morocco",
+        "country_code": "MA"
+    },
+    {
+        "iata_code": "AU",
+        "name": "Austral",
+        "icao_code": "AUT",
+        "airline_callsign": "AUSTRAL",
+        "country": "Argentina",
+        "country_code": "AR"
+    },
+    {
+        "iata_code": "AW",
+        "name": "Africa World Airlines",
+        "icao_code": "AFW",
+        "airline_callsign": "BLACKSTAR",
+        "country": "Ghana",
+        "country_code": "GH"
+    },
+    {
+        "iata_code": "AW",
+        "name": "Venezolana",
+        "icao_code": "VNE",
+        "airline_callsign": "VENEZOLANA",
+        "country": "Venezuela",
+        "country_code": "VE"
+    },
+    {
+        "iata_code": "B0",
+        "name": "La Compagnie",
+        "icao_code": "DJT",
+        "airline_callsign": "DREAMJET",
+        "country": "France",
+        "country_code": "FR"
+    },
+    {
+        "iata_code": "B2",
+        "name": "Belavia",
+        "icao_code": "BRU",
+        "airline_callsign": "BELARUS AVIA",
+        "country": "Belarus",
+        "country_code": "BY"
+    },
+    {
+        "iata_code": "B3",
+        "name": "Bhutan Airlines",
+        "icao_code": "BTN",
+        "airline_callsign": "BHUTAN AIR",
+        "country": "Bhutan",
+        "country_code": "BT"
+    },
+    {
+        "iata_code": "B4",
+        "name": "ZanAir",
+        "icao_code": "TAN",
+        "airline_callsign": "ZANAIR",
+        "country": "Tanzania",
+        "country_code": "TZ"
+    },
+    {
+        "iata_code": "B5",
+        "name": "EastAfrican",
+        "icao_code": "EXZ",
+        "airline_callsign": "TWIGA",
+        "country": "Kenya",
+        "country_code": "KE"
+    },
+    {
+        "iata_code": "B7",
+        "name": "Uni Air",
+        "icao_code": "UIA",
+        "airline_callsign": "GLORY",
+        "country": "Taiwan",
+        "country_code": "TW"
+    },
+    {
+        "iata_code": "B8",
+        "name": "Eritrean Airlines",
+        "icao_code": "ERT",
+        "airline_callsign": "ERITREAN",
+        "country": "Eritrea",
+        "country_code": "ER"
+    },
+    {
+        "iata_code": "B9",
+        "name": "Iran Air Tours",
+        "icao_code": "IRB",
+        "airline_callsign": "",
+        "country": "Iran",
+        "country_code": "IR"
+    },
+    {
+        "iata_code": "BB",
+        "name": "Seaborne Airlines",
+        "icao_code": "SBS",
+        "airline_callsign": "SEABORNE",
+        "country": "United States",
+        "country_code": "US"
+    },
+    {
+        "iata_code": "BD",
+        "name": "Cambodia Bayon Airlines",
+        "icao_code": "BYC",
+        "airline_callsign": "Bayon Air",
+        "country": "Cambodia",
+        "country_code": "KH"
+    },
+    {
+        "iata_code": "BF",
+        "name": "French Bee",
+        "icao_code": "FBU",
+        "airline_callsign": "FRENCH BEE",
+        "country": "France",
+        "country_code": "FR"
+    },
+    {
+        "iata_code": "BG",
+        "name": "Biman Bangladesh Airlines",
+        "icao_code": "BBC",
+        "airline_callsign": "BANGLADESH",
+        "country": "Bangladesh",
+        "country_code": "BD"
+    },
+    {
+        "iata_code": "BI",
+        "name": "Royal Brunei Airlines",
+        "icao_code": "RBA",
+        "airline_callsign": "BRUNEI",
+        "country": "Brunei Darussalam",
+        "country_code": "BN"
+    },
+    {
+        "iata_code": "BJ",
+        "name": "Nouvelair",
+        "icao_code": "LBT",
+        "airline_callsign": "NOUVELAIR",
+        "country": "Tunisia",
+        "country_code": "TN"
+    },
+    {
+        "iata_code": "BK",
+        "name": "Okay Airways",
+        "icao_code": "OKA",
+        "airline_callsign": "OKAYJET",
+        "country": "China",
+        "country_code": "CN"
+    },
+    {
+        "iata_code": "BP",
+        "name": "Air Botswana",
+        "icao_code": "BOT",
+        "airline_callsign": "BOTSWANA",
+        "country": "Botswana",
+        "country_code": "BW"
+    },
+    {
+        "iata_code": "BS",
+        "name": "US-Bangla Airlines",
+        "icao_code": "UBG",
+        "airline_callsign": "BANGLA STAR",
+        "country": "Bangladesh",
+        "country_code": "BD"
+    },
+    {
+        "iata_code": "BT",
+        "name": "airBaltic",
+        "icao_code": "BTI",
+        "airline_callsign": "AIRBALTIC",
+        "country": "Latvia",
+        "country_code": "LV"
+    },
+    {
+        "iata_code": "BU",
+        "name": "flyCAA",
+        "icao_code": "FPY",
+        "airline_callsign": "AFRICOMPANY",
+        "country": "Democratic Republic of the Congo",
+        "country_code": "CD"
+    },
+    {
+        "iata_code": "BW",
+        "name": "Caribbean Airlines",
+        "icao_code": "BWA",
+        "airline_callsign": "CARIBBEAN AIRLINES",
+        "country": "Trinidad and Tobago",
+        "country_code": "TT"
+    },
+    {
+        "iata_code": "BY",
+        "name": "TUI Airways",
+        "icao_code": "TOM",
+        "airline_callsign": "TOMJET",
+        "country": "United Kingdom",
+        "country_code": "GB"
+    },
+    {
+        "iata_code": "BZ",
+        "name": "Blue Bird Airways",
+        "icao_code": "BBG",
+        "airline_callsign": "",
+        "country": "Greece",
+        "country_code": "GR"
+    },
+    {
+        "iata_code": "C2",
+        "name": "CEIBA Intercontinental",
+        "icao_code": "CEL",
+        "airline_callsign": "",
+        "country": "Equatorial Guinea",
+        "country_code": "GQ"
+    },
+    {
+        "iata_code": "A3",
+        "name": "Aegean Airlines",
+        "icao_code": "AEE",
+        "airline_callsign": "AEGEAN",
+        "country": "Greece",
+        "country_code": "GR"
+    },
+    {
+        "iata_code": "AC",
+        "name": "Air Canada",
+        "icao_code": "ACA",
+        "airline_callsign": "AIR CANADA",
+        "country": "Canada",
+        "country_code": "CA"
+    },
+    {
+        "iata_code": "AI",
+        "name": "Air India",
+        "icao_code": "AIC",
+        "airline_callsign": "AIRINDIA",
+        "country": "India",
+        "country_code": "IN"
+    },
+    {
+        "iata_code": "AV",
+        "name": "Avianca",
+        "icao_code": "AVA",
+        "airline_callsign": "AVIANCA",
+        "country": "Colombia",
+        "country_code": "CO"
+    },
+    {
+        "iata_code": "BA",
+        "name": "British Airways",
+        "icao_code": "BAW",
+        "airline_callsign": "SPEEDBIRD",
+        "country": "United Kingdom",
+        "country_code": "GB"
+    },
+    {
+        "iata_code": "BA",
+        "name": "British Airways",
+        "icao_code": "SHT",
+        "airline_callsign": "SHUTTLE",
+        "country": "United Kingdom",
+        "country_code": "GB"
+    },
+    {
+        "iata_code": "AA",
+        "name": "American Airlines",
+        "icao_code": "AAL",
+        "airline_callsign": "AMERICAN",
+        "country": "United States",
+        "country_code": "US"
+    },
+    {
+        "iata_code": "AY",
+        "name": "Finnair",
+        "icao_code": "FIN",
+        "airline_callsign": "FINNAIR",
+        "country": "Finland",
+        "country_code": "FI"
+    },
+    {
+        "iata_code": "AM",
+        "name": "Aeromexico",
+        "icao_code": "AMX",
+        "airline_callsign": "AEROMEXICO",
+        "country": "Mexico",
+        "country_code": "MX"
+    },
+    {
+        "iata_code": "AZ",
+        "name": "Alitalia",
+        "icao_code": "AZA",
+        "airline_callsign": "ALITALIA",
+        "country": "Italy",
+        "country_code": "IT"
+    },
+    {
+        "iata_code": "AR",
+        "name": "Aerolineas Argentinas",
+        "icao_code": "ARG",
+        "airline_callsign": "ARGENTINA",
+        "country": "Argentina",
+        "country_code": "AR"
+    },
+    {
+        "iata_code": "AF",
+        "name": "Air France",
+        "icao_code": "AFR",
+        "airline_callsign": "AIRFRANS",
+        "country": "France",
+        "country_code": "FR"
+    },
+    {
+        "iata_code": "BL",
+        "name": "Jetstar Pacific",
+        "icao_code": "PIC",
+        "airline_callsign": "PACIFIC AIRLINES",
+        "country": "Vietnam",
+        "country_code": "VN"
+    },
+    {
+        "iata_code": "AQ",
+        "name": "9 Air",
+        "icao_code": "JYH",
+        "airline_callsign": "TRANS JADE",
+        "country": "China",
+        "country_code": "CN"
+    },
+    {
+        "iata_code": "AK",
+        "name": "AirAsia",
+        "icao_code": "AXM",
+        "airline_callsign": "RED CAP",
+        "country": "Malaysia",
+        "country_code": "MY"
+    },
+    {
+        "iata_code": "BX",
+        "name": "Air Busan",
+        "icao_code": "ABL",
+        "airline_callsign": "AIRCOACH",
+        "country": "Canada",
+        "country_code": "CA"
+    },
+    {
+        "iata_code": "ZE",
+        "name": "Eastar Jet",
+        "icao_code": "ESR",
+        "airline_callsign": "EASTAR",
+        "country": "South Korea",
+        "country_code": "KR"
+    },
+    {
+        "iata_code": "BC",
+        "name": "Skymark Airlines",
+        "icao_code": "SKY",
+        "airline_callsign": "SKYMARK",
+        "country": "Japan",
+        "country_code": "JP"
+    },
+    {
+        "iata_code": "9C",
+        "name": "Spring Airlines",
+        "icao_code": "CQH",
+        "airline_callsign": "AIR SPRING",
+        "country": "China",
+        "country_code": "CN"
+    },
+    {
+        "iata_code": "BV",
+        "name": "Blue Panorama Airlines",
+        "icao_code": "BPA",
+        "airline_callsign": "BLUE PANOROMA",
+        "country": "Italy",
+        "country_code": "IT"
+    },
+    {
+        "iata_code": "BE",
+        "name": "Flybe",
+        "icao_code": "BEE",
+        "airline_callsign": "JERSEY",
+        "country": "United Kingdom",
+        "country_code": "GB"
+    },
+    {
+        "iata_code": "AD",
+        "name": "Azul",
+        "icao_code": "AZU",
+        "airline_callsign": "Azul",
+        "country": "Brazil",
+        "country_code": "BR"
+    },
+    {
+        "iata_code": "A7",
+        "name": "Aereo Calafia",
+        "icao_code": "CFV",
+        "airline_callsign": "CALAFIA",
+        "country": "Mexico",
+        "country_code": "MX"
+    },
+    {
+        "iata_code": "B6",
+        "name": "jetBlue",
+        "icao_code": "JBU",
+        "airline_callsign": "JETBLUE",
+        "country": "United States",
+        "country_code": "US"
+    },
+    {
+        "iata_code": "C3",
+        "name": "Trade Air",
+        "icao_code": "TDR",
+        "airline_callsign": "TRADEAIR",
+        "country": "Croatia",
+        "country_code": "HR"
+    },
+    {
+        "iata_code": "ZF",
+        "name": "AZUR Air",
+        "icao_code": "KTK",
+        "airline_callsign": "KATEKAVIA",
+        "country": "Russian Federation",
+        "country_code": "RU"
+    },
+    {
+        "iata_code": "C7",
+        "name": "Cinnamon Air",
+        "icao_code": "CIN",
+        "airline_callsign": "CINNAMON",
+        "country": "Sri Lanka",
+        "country_code": "LK"
+    },
+    {
+        "iata_code": "C8",
+        "name": "Cronos Airlines",
+        "icao_code": "CRA",
+        "airline_callsign": "CORAL",
+        "country": "Colombia",
+        "country_code": "CO"
+    },
+    {
+        "iata_code": "CA",
+        "name": "Air China",
+        "icao_code": "CCA",
+        "airline_callsign": "AIR CHINA",
+        "country": "China",
+        "country_code": "CN"
+    },
+    {
+        "iata_code": "CC",
+        "name": "CM Airlines",
+        "icao_code": "OMT",
+        "airline_callsign": "CMAIR",
+        "country": "Honduras",
+        "country_code": "HN"
+    },
+    {
+        "iata_code": "CD",
+        "name": "Corendon Dutch Airlines",
+        "icao_code": "CND",
+        "airline_callsign": "DUTCH CORENDON",
+        "country": "Netherlands",
+        "country_code": "NL"
+    },
+    {
+        "iata_code": "CE",
+        "name": "Chalair Aviation",
+        "icao_code": "CLG",
+        "airline_callsign": "CHALLAIR",
+        "country": "France",
+        "country_code": "FR"
+    },
+    {
+        "iata_code": "CG",
+        "name": "PNG Air",
+        "icao_code": "TOK",
+        "airline_callsign": "BALUS",
+        "country": "Papua New Guinea",
+        "country_code": "PG"
+    },
+    {
+        "iata_code": "CL",
+        "name": "Lufthansa CityLine",
+        "icao_code": "CLH",
+        "airline_callsign": "HANSALINE",
+        "country": "Germany",
+        "country_code": "DE"
+    },
+    {
+        "iata_code": "CN",
+        "name": "Grand China Air",
+        "icao_code": "GDC",
+        "airline_callsign": "",
+        "country": "China",
+        "country_code": "CN"
+    },
+    {
+        "iata_code": "CQ",
+        "name": "Coastal Aviation",
+        "icao_code": "CSV",
+        "airline_callsign": "COASTAL TRAVEL",
+        "country": "Tanzania",
+        "country_code": "TZ"
+    },
+    {
+        "iata_code": "CT",
+        "name": "Alitalia CityLiner",
+        "icao_code": "CYL",
+        "airline_callsign": "CITYLINER",
+        "country": "Italy",
+        "country_code": "IT"
+    },
+    {
+        "iata_code": "CU",
+        "name": "Cubana",
+        "icao_code": "CUB",
+        "airline_callsign": "CUBANA",
+        "country": "Cuba",
+        "country_code": "CU"
+    },
+    {
+        "iata_code": "CM",
+        "name": "Copa Airlines",
+        "icao_code": "CMP",
+        "airline_callsign": "COPA",
+        "country": "Panama",
+        "country_code": "PA"
+    },
+    {
+        "iata_code": "CI",
+        "name": "China Airlines",
+        "icao_code": "CAL",
+        "airline_callsign": "DYNASTY",
+        "country": "Taiwan",
+        "country_code": "TW"
+    },
+    {
+        "iata_code": "CY",
+        "name": "Cyprus Airways",
+        "icao_code": "CYP",
+        "airline_callsign": "CYPRUS",
+        "country": "Cyprus",
+        "country_code": "CY"
+    },
+    {
+        "iata_code": "CZ",
+        "name": "China Southern Airlines",
+        "icao_code": "CSN",
+        "airline_callsign": "CHINA SOUTHERN",
+        "country": "China",
+        "country_code": "CN"
+    },
+    {
+        "iata_code": "D2",
+        "name": "Severstal Air Company",
+        "icao_code": "SSF",
+        "airline_callsign": "SEVERSTAL",
+        "country": "Russian Federation",
+        "country_code": "RU"
+    },
+    {
+        "iata_code": "D3",
+        "name": "Daallo Airlines",
+        "icao_code": "DAO",
+        "airline_callsign": "DALO AIRLINES",
+        "country": "Djibouti",
+        "country_code": "DJ"
+    },
+    {
+        "iata_code": "D8",
+        "name": "Norwegian Air International",
+        "icao_code": "IBK",
+        "airline_callsign": "NORTRANS",
+        "country": "Norway",
+        "country_code": "NO"
+    },
+    {
+        "iata_code": "DC",
+        "name": "BRA",
+        "icao_code": "BRX",
+        "airline_callsign": "BUFF EXPRESS",
+        "country": "United States",
+        "country_code": "US"
+    },
+    {
+        "iata_code": "DH",
+        "name": "Norwegian",
+        "icao_code": "NAN",
+        "airline_callsign": "NORSHIP",
+        "country": "Norway",
+        "country_code": "NO"
+    },
+    {
+        "iata_code": "DI",
+        "name": "Norwegian",
+        "icao_code": "NRS",
+        "airline_callsign": "NORTH SLOPE",
+        "country": "United States",
+        "country_code": "US"
+    },
+    {
+        "iata_code": "DK",
+        "name": "Thomas Cook Scandinavia",
+        "icao_code": "VKG",
+        "airline_callsign": "",
+        "country": "Denmark",
+        "country_code": "DK"
+    },
+    {
+        "iata_code": "DN",
+        "name": "Norwegian Air Argentina",
+        "icao_code": "NAA",
+        "airline_callsign": "NORUEGA",
+        "country": "Argentina",
+        "country_code": "AR"
+    },
+    {
+        "iata_code": "DT",
+        "name": "TAAG Angola",
+        "icao_code": "DTA",
+        "airline_callsign": "DTA",
+        "country": "Angola",
+        "country_code": "AO"
+    },
+    {
+        "iata_code": "DV",
+        "name": "SCAT Airlines",
+        "icao_code": "VSV",
+        "airline_callsign": "VLASTA",
+        "country": "Kazakhstan",
+        "country_code": "KZ"
+    },
+    {
+        "iata_code": "DX",
+        "name": "Danish Air Transport",
+        "icao_code": "DTR",
+        "airline_callsign": "DANISH",
+        "country": "Denmark",
+        "country_code": "DK"
+    },
+    {
+        "iata_code": "DZ",
+        "name": "Donghai Airlines",
+        "icao_code": "EPA",
+        "airline_callsign": "",
+        "country": "China",
+        "country_code": "CN"
+    },
+    {
+        "iata_code": "E3",
+        "name": "New Gen Airways",
+        "icao_code": "VGO",
+        "airline_callsign": "VIRGO",
+        "country": "Thailand",
+        "country_code": "TH"
+    },
+    {
+        "iata_code": "E4",
+        "name": "Enter Air",
+        "icao_code": "ENT",
+        "airline_callsign": "ENTER",
+        "country": "Poland",
+        "country_code": "PL"
+    },
+    {
+        "iata_code": "ES",
+        "name": "Estelar Latinoamerica",
+        "icao_code": "ETR",
+        "airline_callsign": "ESTEL",
+        "country": "Venezuela",
+        "country_code": "VE"
+    },
+    {
+        "iata_code": "E7",
+        "name": "Equaflight",
+        "icao_code": "EKA",
+        "airline_callsign": "EQUAFLIGHT",
+        "country": "Republic of the Congo",
+        "country_code": "CG"
+    },
+    {
+        "iata_code": "E9",
+        "name": "Evelop!",
+        "icao_code": "EVE",
+        "airline_callsign": "SUNBEAM",
+        "country": "Germany",
+        "country_code": "DE"
+    },
+    {
+        "iata_code": "EB",
+        "name": "Wamos Air",
+        "icao_code": "PLM",
+        "airline_callsign": "PULLMANTUR",
+        "country": "Spain",
+        "country_code": "ES"
+    },
+    {
+        "iata_code": "EC",
+        "name": "easyJet",
+        "icao_code": "EJU",
+        "airline_callsign": "ALPINE",
+        "country": "Austria",
+        "country_code": "AT"
+    },
+    {
+        "iata_code": "EH",
+        "name": "ANA Wings",
+        "icao_code": "AKX",
+        "airline_callsign": "ALFA WING",
+        "country": "Japan",
+        "country_code": "JP"
+    },
+    {
+        "iata_code": "EI",
+        "name": "Aer Lingus",
+        "icao_code": "EIN",
+        "airline_callsign": "SHAMROCK",
+        "country": "Ireland",
+        "country_code": "IE"
+    },
+    {
+        "iata_code": "EK",
+        "name": "Emirates",
+        "icao_code": "UAE",
+        "airline_callsign": "EMIRATES",
+        "country": "United Arab Emirates",
+        "country_code": "AE"
+    },
+    {
+        "iata_code": "EL",
+        "name": "Ellinair",
+        "icao_code": "ELB",
+        "airline_callsign": "ELLINAIR HELLAS",
+        "country": "Greece",
+        "country_code": "GR"
+    },
+    {
+        "iata_code": "EN",
+        "name": "AirDolomiti",
+        "icao_code": "DLA",
+        "airline_callsign": "DOLOMITI",
+        "country": "Italy",
+        "country_code": "IT"
+    },
+    {
+        "iata_code": "EO",
+        "name": "Pegas Fly",
+        "icao_code": "KAR",
+        "airline_callsign": "IKAR",
+        "country": "Russian Federation",
+        "country_code": "RU"
+    },
+    {
+        "iata_code": "EP",
+        "name": "Iran Aseman Airlines",
+        "icao_code": "IRC",
+        "airline_callsign": "ASEMAN",
+        "country": "Iran",
+        "country_code": "IR"
+    },
+    {
+        "iata_code": "EQ",
+        "name": "TAME",
+        "icao_code": "TAE",
+        "airline_callsign": "TAME",
+        "country": "Ecuador",
+        "country_code": "EC"
+    },
+    {
+        "iata_code": "ER",
+        "name": "Serene Air",
+        "icao_code": "SEP",
+        "airline_callsign": "SERENE",
+        "country": "Pakistan",
+        "country_code": "PK"
+    },
+    {
+        "iata_code": "EY",
+        "name": "Etihad Airways",
+        "icao_code": "ETD",
+        "airline_callsign": "ETIHAD",
+        "country": "United Arab Emirates",
+        "country_code": "AE"
+    },
+    {
+        "iata_code": "F2",
+        "name": "Safarilink Aviation",
+        "icao_code": "XLK",
+        "airline_callsign": "SAFARILINK",
+        "country": "Kenya",
+        "country_code": "KE"
+    },
+    {
+        "iata_code": "F3",
+        "name": "flyadeal",
+        "icao_code": "FAD",
+        "airline_callsign": "AIR FRONTIER",
+        "country": "Canada",
+        "country_code": "CA"
+    },
+    {
+        "iata_code": "F4",
+        "name": "Air Flamenco",
+        "icao_code": "WAF",
+        "airline_callsign": "FLAMENCO",
+        "country": "United States",
+        "country_code": "US"
+    },
+    {
+        "iata_code": "F7",
+        "name": "iFly",
+        "icao_code": "RSY",
+        "airline_callsign": "",
+        "country": "Russian Federation",
+        "country_code": "RU"
+    },
+    {
+        "iata_code": "FB",
+        "name": "Bulgaria Air",
+        "icao_code": "LZB",
+        "airline_callsign": "FLYING BULGARIA",
+        "country": "Bulgaria",
+        "country_code": "BG"
+    },
+    {
+        "iata_code": "VH",
+        "name": "Vivaair",
+        "icao_code": "VVC",
+        "airline_callsign": "Viva Air Colombia",
+        "country": "Colombia",
+        "country_code": "CO"
+    },
+    {
+        "iata_code": "FE",
+        "name": "FAT Far Eastern Air Transport",
+        "icao_code": "FEA",
+        "airline_callsign": "Far Eastern",
+        "country": "Taiwan",
+        "country_code": "TW"
+    },
+    {
+        "iata_code": "FG",
+        "name": "Ariana Afghan Airlines",
+        "icao_code": "AFG",
+        "airline_callsign": "ARIANA",
+        "country": "Afghanistan",
+        "country_code": "AF"
+    },
+    {
+        "iata_code": "FI",
+        "name": "Icelandair",
+        "icao_code": "ICE",
+        "airline_callsign": "ICEAIR",
+        "country": "Iceland",
+        "country_code": "IS"
+    },
+    {
+        "iata_code": "FM",
+        "name": "Shanghai Airlines",
+        "icao_code": "CSH",
+        "airline_callsign": "SHANGHAI AIR",
+        "country": "China",
+        "country_code": "CN"
+    },
+    {
+        "iata_code": "FN",
+        "name": "Fastjet Tanzania",
+        "icao_code": "FTZ",
+        "airline_callsign": "GREY BIRD",
+        "country": "Tanzania",
+        "country_code": "TZ"
+    },
+    {
+        "iata_code": "FO",
+        "name": "Flybondi",
+        "icao_code": "FBD",
+        "airline_callsign": "BONDI",
+        "country": "Argentina",
+        "country_code": "AR"
+    },
+    {
+        "iata_code": "FP",
+        "name": "FlyPelican",
+        "icao_code": "FRE",
+        "airline_callsign": "PELICAN",
+        "country": "Australia",
+        "country_code": "AU"
+    },
+    {
+        "iata_code": "FT",
+        "name": "FlyEgypt",
+        "icao_code": "FEG",
+        "airline_callsign": "SKY EGYPT",
+        "country": "Egypt",
+        "country_code": "EG"
+    },
+    {
+        "iata_code": "FU",
+        "name": "Fuzhou Airlines",
+        "icao_code": "FZA",
+        "airline_callsign": "",
+        "country": "China",
+        "country_code": "CN"
+    },
+    {
+        "iata_code": "FV",
+        "name": "Rossiya Airlines",
+        "icao_code": "SDM",
+        "airline_callsign": "RUSSIA",
+        "country": "Russian Federation",
+        "country_code": "RU"
+    },
+    {
+        "iata_code": "FW",
+        "name": "Ibex Airlines",
+        "icao_code": "IBX",
+        "airline_callsign": "IBEX",
+        "country": "Japan",
+        "country_code": "JP"
+    },
+    {
+        "iata_code": "FY",
+        "name": "Firefly",
+        "icao_code": "FFM",
+        "airline_callsign": "FIREFLY",
+        "country": "Malaysia",
+        "country_code": "MY"
+    },
+    {
+        "iata_code": "G5",
+        "name": "China Express Airlines",
+        "icao_code": "HXA",
+        "airline_callsign": "CHINA EXPRESS",
+        "country": "China",
+        "country_code": "CN"
+    },
+    {
+        "iata_code": "CX",
+        "name": "Cathay Pacific",
+        "icao_code": "CPA",
+        "airline_callsign": "CATHAY",
+        "country": "Hong Kong",
+        "country_code": "HK"
+    },
+    {
+        "iata_code": "EZ",
+        "name": "SUN-AIR",
+        "icao_code": "SUS",
+        "airline_callsign": "SUNSCAN",
+        "country": "Denmark",
+        "country_code": "DK"
+    },
+    {
+        "iata_code": "FJ",
+        "name": "Fiji Airways",
+        "icao_code": "FJI",
+        "airline_callsign": "PACIFIC",
+        "country": "Fiji",
+        "country_code": "FJ"
+    },
+    {
+        "iata_code": "DL",
+        "name": "Delta",
+        "icao_code": "DAL",
+        "airline_callsign": "DELTA",
+        "country": "United States",
+        "country_code": "US"
+    },
+    {
+        "iata_code": "EU",
+        "name": "Chengdu Airlines",
+        "icao_code": "UEA",
+        "airline_callsign": "UNITED EAGLE",
+        "country": "China",
+        "country_code": "CN"
+    },
+    {
+        "iata_code": "DR",
+        "name": "Ruili Airlines",
+        "icao_code": "RLH",
+        "airline_callsign": "SENDI",
+        "country": "China",
+        "country_code": "CN"
+    },
+    {
+        "iata_code": "E5",
+        "name": "Air Arabia Egypt",
+        "icao_code": "RBG",
+        "airline_callsign": "ARABIA EGYPT",
+        "country": "Egypt",
+        "country_code": "EG"
+    },
+    {
+        "iata_code": "FN",
+        "name": "Fastjet Zimbabwe",
+        "icao_code": "FJW",
+        "airline_callsign": "ZIMBIRD",
+        "country": "Zimbabwe",
+        "country_code": "ZW"
+    },
+    {
+        "iata_code": "FA",
+        "name": "FlySafair",
+        "icao_code": "SFR",
+        "airline_callsign": "CARGO",
+        "country": "South Africa",
+        "country_code": "ZA"
+    },
+    {
+        "iata_code": "D7",
+        "name": "AirAsia X",
+        "icao_code": "XAX",
+        "airline_callsign": "XANADU",
+        "country": "Malaysia",
+        "country_code": "MY"
+    },
+    {
+        "iata_code": "DD",
+        "name": "Nok Air",
+        "icao_code": "NOK",
+        "airline_callsign": "NOK AIR",
+        "country": "Thailand",
+        "country_code": "TH"
+    },
+    {
+        "iata_code": "FD",
+        "name": "Thai AirAsia",
+        "icao_code": "AIQ",
+        "airline_callsign": "THAI ASIA",
+        "country": "Thailand",
+        "country_code": "TH"
+    },
+    {
+        "iata_code": "DJ",
+        "name": "AirAsia Japan",
+        "icao_code": "WAJ",
+        "airline_callsign": "WING ASIA",
+        "country": "Japan",
+        "country_code": "JP"
+    },
+    {
+        "iata_code": "DE",
+        "name": "Condor",
+        "icao_code": "CFG",
+        "airline_callsign": "CONDOR",
+        "country": "Germany",
+        "country_code": "DE"
+    },
+    {
+        "iata_code": "DS",
+        "name": "easyJet",
+        "icao_code": "EZS",
+        "airline_callsign": "TOPSWISS",
+        "country": "Switzerland",
+        "country_code": "CH"
+    },
+    {
+        "iata_code": "EW",
+        "name": "Eurowings",
+        "icao_code": "EWG",
+        "airline_callsign": "EUROWINGS",
+        "country": "Germany",
+        "country_code": "DE"
+    },
+    {
+        "iata_code": "E2",
+        "name": "Eurowings",
+        "icao_code": "EWE",
+        "airline_callsign": "",
+        "country": "Austria",
+        "country_code": "AT"
+    },
+    {
+        "iata_code": "DY",
+        "name": "Norwegian",
+        "icao_code": "NAX",
+        "airline_callsign": "NOR SHUTTLE",
+        "country": "Norway",
+        "country_code": "NO"
+    },
+    {
+        "iata_code": "DP",
+        "name": "Pobeda",
+        "icao_code": "PBD",
+        "airline_callsign": "",
+        "country": "Russian Federation",
+        "country_code": "RU"
+    },
+    {
+        "iata_code": "FR",
+        "name": "Ryanair",
+        "icao_code": "RYR",
+        "airline_callsign": "RYANAIR",
+        "country": "Ireland",
+        "country_code": "IE"
+    },
+    {
+        "iata_code": "G3",
+        "name": "GOL Linhas A\u00e9reas",
+        "icao_code": "GLO",
+        "airline_callsign": "GOL TRANSPORTE",
+        "country": "Brazil",
+        "country_code": "BR"
+    },
+    {
+        "iata_code": "FZ",
+        "name": "Flydubai",
+        "icao_code": "FDB",
+        "airline_callsign": "SKYDUBAI",
+        "country": "United Arab Emirates",
+        "country_code": "AE"
+    },
+    {
+        "iata_code": "G4",
+        "name": "Allegiant Air",
+        "icao_code": "AAY",
+        "airline_callsign": "ALLEGIANT",
+        "country": "United States",
+        "country_code": "US"
+    },
+    {
+        "iata_code": "F8",
+        "name": "Flair Airlines",
+        "icao_code": "FLE",
+        "airline_callsign": "FLAIR",
+        "country": "Canada",
+        "country_code": "CA"
+    },
+    {
+        "iata_code": "F9",
+        "name": "Frontier Airlines",
+        "icao_code": "FFT",
+        "airline_callsign": "FRONTIER FLIGHT",
+        "country": "United States",
+        "country_code": "US"
+    },
+    {
+        "iata_code": "G6",
+        "name": "Gowair Vacation Airlines",
+        "icao_code": "GWR",
+        "airline_callsign": "LEMON",
+        "country": "Spain",
+        "country_code": "ES"
+    },
+    {
+        "iata_code": "GF",
+        "name": "Gulf Air",
+        "icao_code": "GFA",
+        "airline_callsign": "GULF AIR",
+        "country": "Bahrain",
+        "country_code": "BH"
+    },
+    {
+        "iata_code": "GJ",
+        "name": "Loong Air",
+        "icao_code": "CDC",
+        "airline_callsign": "HUALONG",
+        "country": "China",
+        "country_code": "CN"
+    },
+    {
+        "iata_code": "GL",
+        "name": "Air Greenland",
+        "icao_code": "GRL",
+        "airline_callsign": "GREENLAND",
+        "country": "Denmark",
+        "country_code": "DK"
+    },
+    {
+        "iata_code": "GM",
+        "name": "Germania Flug",
+        "icao_code": "GSW",
+        "airline_callsign": "",
+        "country": "Greece",
+        "country_code": "GR"
+    },
+    {
+        "iata_code": "GP",
+        "name": "APG Airlines",
+        "icao_code": "RIV",
+        "airline_callsign": "RIVERA",
+        "country": "France",
+        "country_code": "FR"
+    },
+    {
+        "iata_code": "GQ",
+        "name": "Sky Express Greece",
+        "icao_code": "SEH",
+        "airline_callsign": "AIR CRETE",
+        "country": "Greece",
+        "country_code": "GR"
+    },
+    {
+        "iata_code": "GR",
+        "name": "Aurigny",
+        "icao_code": "AUR",
+        "airline_callsign": "AYLINE",
+        "country": "United Kingdom",
+        "country_code": "GB"
+    },
+    {
+        "iata_code": "GS",
+        "name": "Tianjin Airlines",
+        "icao_code": "GCR",
+        "airline_callsign": "BO HAI",
+        "country": "China",
+        "country_code": "CN"
+    },
+    {
+        "iata_code": "GT",
+        "name": "Air Guilin",
+        "icao_code": "CGH",
+        "airline_callsign": "GUIZHOU",
+        "country": "China",
+        "country_code": "CN"
+    },
+    {
+        "iata_code": "GU",
+        "name": "Avianca Guatemala",
+        "icao_code": "GUG",
+        "airline_callsign": "AVIATECA",
+        "country": "Guatemala",
+        "country_code": "GT"
+    },
+    {
+        "iata_code": "GV",
+        "name": "Grant Aviation",
+        "icao_code": "GUN",
+        "airline_callsign": "HOOT",
+        "country": "United States",
+        "country_code": "US"
+    },
+    {
+        "iata_code": "GX",
+        "name": "GX Airlines",
+        "icao_code": "CBG",
+        "airline_callsign": "",
+        "country": "China",
+        "country_code": "CN"
+    },
+    {
+        "iata_code": "GY",
+        "name": "Colorful Guizhou Airlines",
+        "icao_code": "CGZ",
+        "airline_callsign": "COLORFUL",
+        "country": "China",
+        "country_code": "CN"
+    },
+    {
+        "iata_code": "GZ",
+        "name": "Air Rarotonga",
+        "icao_code": "RAR",
+        "airline_callsign": "AIR RAROTONGA",
+        "country": "Cook Islands",
+        "country_code": "CK"
+    },
+    {
+        "iata_code": "H5",
+        "name": "Thomas Cook Airlines Balearics",
+        "icao_code": "CTB",
+        "airline_callsign": "SUNNYHEART",
+        "country": "Spain",
+        "country_code": "ES"
+    },
+    {
+        "iata_code": "H6",
+        "name": "Bulgarian Air Charter",
+        "icao_code": "BUC",
+        "airline_callsign": "BULGARIAN CHARTER",
+        "country": "Bulgaria",
+        "country_code": "BG"
+    },
+    {
+        "iata_code": "7H",
+        "name": "Ravn Alaska",
+        "icao_code": "RVF",
+        "airline_callsign": "RAVEN FLIGHT",
+        "country": "United States",
+        "country_code": "US"
+    },
+    {
+        "iata_code": "IS",
+        "name": "Eagle Air",
+        "icao_code": "FEI",
+        "airline_callsign": "ARCTIC EAGLE",
+        "country": "Iceland",
+        "country_code": "IS"
+    },
+    {
+        "iata_code": "HA",
+        "name": "Hawaiian Airlines",
+        "icao_code": "HAL",
+        "airline_callsign": "HAWAIIAN",
+        "country": "United States",
+        "country_code": "US"
+    },
+    {
+        "iata_code": "HB",
+        "name": "Asia Atlantic Airlines",
+        "icao_code": "AAQ",
+        "airline_callsign": "COPTERLINE",
+        "country": "Finland",
+        "country_code": "FI"
+    },
+    {
+        "iata_code": "HC",
+        "name": "Air Senegal",
+        "icao_code": "SZN",
+        "airline_callsign": "AIR SENEGAL",
+        "country": "Senegal",
+        "country_code": "SN"
+    },
+    {
+        "iata_code": "HF",
+        "name": "Air Cote D'Ivoire",
+        "icao_code": "VRE",
+        "airline_callsign": "COTE DIVORIE",
+        "country": "Ivory Coast",
+        "country_code": "CI"
+    },
+    {
+        "iata_code": "HH",
+        "name": "Taban Airlines",
+        "icao_code": "TBN",
+        "airline_callsign": "TEEBAH",
+        "country": "Sierra Leone",
+        "country_code": "SL"
+    },
+    {
+        "iata_code": "HO",
+        "name": "Juneyao Airlines",
+        "icao_code": "DKH",
+        "airline_callsign": "",
+        "country": "China",
+        "country_code": "CN"
+    },
+    {
+        "iata_code": "HU",
+        "name": "Hainan Airlines",
+        "icao_code": "CHH",
+        "airline_callsign": "HAINAN",
+        "country": "China",
+        "country_code": "CN"
+    },
+    {
+        "iata_code": "HW",
+        "name": "North-Wright Airways",
+        "icao_code": "NWL",
+        "airline_callsign": "NORTHWRIGHT",
+        "country": "Canada",
+        "country_code": "CA"
+    },
+    {
+        "iata_code": "HX",
+        "name": "Hong Kong Airlines",
+        "icao_code": "CRK",
+        "airline_callsign": "BAUHINIA",
+        "country": "Hong Kong",
+        "country_code": "HK"
+    },
+    {
+        "iata_code": "HY",
+        "name": "Uzbekistan Airways",
+        "icao_code": "UZB",
+        "airline_callsign": "UZBEK",
+        "country": "Uzbekistan",
+        "country_code": "UZ"
+    },
+    {
+        "iata_code": "HZ",
+        "name": "Aurora",
+        "icao_code": "SHU",
+        "airline_callsign": "SATAIR",
+        "country": "Russian Federation",
+        "country_code": "RU"
+    },
+    {
+        "iata_code": "I3",
+        "name": "ATA Airlines",
+        "icao_code": "TBZ",
+        "airline_callsign": "",
+        "country": "Brazil",
+        "country_code": "BR"
+    },
+    {
+        "iata_code": "I4",
+        "name": "Island Air Express",
+        "icao_code": "EXP",
+        "airline_callsign": "EXPRESS AIR",
+        "country": "Canada",
+        "country_code": "CA"
+    },
+    {
+        "iata_code": "I8",
+        "name": "Izhavia",
+        "icao_code": "IZA",
+        "airline_callsign": "IZHAVIA",
+        "country": "Russian Federation",
+        "country_code": "RU"
+    },
+    {
+        "iata_code": "IA",
+        "name": "Iraqi Airways",
+        "icao_code": "IAW",
+        "airline_callsign": "IRAQI",
+        "country": "Iraq",
+        "country_code": "IQ"
+    },
+    {
+        "iata_code": "ID",
+        "name": "Batik Air",
+        "icao_code": "BTK",
+        "airline_callsign": "BATIK",
+        "country": "Indonesia",
+        "country_code": "ID"
+    },
+    {
+        "iata_code": "IE",
+        "name": "Solomon Airlines",
+        "icao_code": "SOL",
+        "airline_callsign": "SOLOMON",
+        "country": "Solomon Islands",
+        "country_code": "SB"
+    },
+    {
+        "iata_code": "IF",
+        "name": "Fly Baghdad",
+        "icao_code": "FBA",
+        "airline_callsign": "FAB AIR",
+        "country": "Kyrgyzstan",
+        "country_code": "KG"
+    },
+    {
+        "iata_code": "IK",
+        "name": "Air Kiribati",
+        "icao_code": "AKL",
+        "airline_callsign": "",
+        "country": "Kiribati",
+        "country_code": "KI"
+    },
+    {
+        "iata_code": "IL",
+        "name": "Trigana Air Service",
+        "icao_code": "TGN",
+        "airline_callsign": "TRIGANA",
+        "country": "Indonesia",
+        "country_code": "ID"
+    },
+    {
+        "iata_code": "IN",
+        "name": "NAM Air",
+        "icao_code": "LKN",
+        "airline_callsign": "Lankair",
+        "country": "Sri Lanka",
+        "country_code": "LK"
+    },
+    {
+        "iata_code": "IO",
+        "name": "IrAero",
+        "icao_code": "IAE",
+        "airline_callsign": "",
+        "country": "Russian Federation",
+        "country_code": "RU"
+    },
+    {
+        "iata_code": "IQ",
+        "name": "Qazaq Air",
+        "icao_code": "QAZ",
+        "airline_callsign": "SAMRUK",
+        "country": "Kazakhstan",
+        "country_code": "KZ"
+    },
+    {
+        "iata_code": "IR",
+        "name": "Iran Air",
+        "icao_code": "IRA",
+        "airline_callsign": "IRANAIR",
+        "country": "Iran",
+        "country_code": "IR"
+    },
+    {
+        "iata_code": "IS",
+        "name": "Sepehran Airlines",
+        "icao_code": "SHI",
+        "airline_callsign": "",
+        "country": "South Korea",
+        "country_code": "KR"
+    },
+    {
+        "iata_code": "IV",
+        "name": "Caspian Airlines",
+        "icao_code": "CPN",
+        "airline_callsign": "CASPIAN",
+        "country": "Iran",
+        "country_code": "IR"
+    },
+    {
+        "iata_code": "IY",
+        "name": "Yemenia",
+        "icao_code": "IYE",
+        "airline_callsign": "YEMENI",
+        "country": "Yemen",
+        "country_code": "YE"
+    },
+    {
+        "iata_code": "IZ",
+        "name": "Arkia",
+        "icao_code": "AIZ",
+        "airline_callsign": "ARKIA",
+        "country": "Israel",
+        "country_code": "IL"
+    },
+    {
+        "iata_code": "J2",
+        "name": "Azerbaijan Airlines",
+        "icao_code": "AHY",
+        "airline_callsign": "AZAL",
+        "country": "Azerbaijan",
+        "country_code": "AZ"
+    },
+    {
+        "iata_code": "J3",
+        "name": "Northwestern Air",
+        "icao_code": "PLR",
+        "airline_callsign": "POLARIS",
+        "country": "Canada",
+        "country_code": "CA"
+    },
+    {
+        "iata_code": "J4",
+        "name": "Badr Airlines",
+        "icao_code": "BDR",
+        "airline_callsign": "BADR AIR",
+        "country": "Sudan",
+        "country_code": "SD"
+    },
+    {
+        "iata_code": "J4",
+        "name": "Buffalo Airways",
+        "icao_code": "BFL",
+        "airline_callsign": "BUFFALO",
+        "country": "Canada",
+        "country_code": "CA"
+    },
+    {
+        "iata_code": "J8",
+        "name": "Berjaya Air",
+        "icao_code": "BVT",
+        "airline_callsign": "BERJAYA",
+        "country": "Malaysia",
+        "country_code": "MY"
+    },
+    {
+        "iata_code": "JA",
+        "name": "JetSmart",
+        "icao_code": "JAT",
+        "airline_callsign": "",
+        "country": "Serbia",
+        "country_code": "RS"
+    },
+    {
+        "iata_code": "JB",
+        "name": "Helijet",
+        "icao_code": "JBA",
+        "airline_callsign": "HELIJET",
+        "country": "Canada",
+        "country_code": "CA"
+    },
+    {
+        "iata_code": "JD",
+        "name": "Beijing Capital Airlines",
+        "icao_code": "CBJ",
+        "airline_callsign": "CAPITAL JET",
+        "country": "China",
+        "country_code": "CN"
+    },
+    {
+        "iata_code": "IB",
+        "name": "Iberia",
+        "icao_code": "IBE",
+        "airline_callsign": "IBERIA",
+        "country": "Spain",
+        "country_code": "ES"
+    },
+    {
+        "iata_code": "I2",
+        "name": "Iberia Express",
+        "icao_code": "IBS",
+        "airline_callsign": "IBEREXPRESS",
+        "country": "Spain",
+        "country_code": "ES"
+    },
+    {
+        "iata_code": "JC",
+        "name": "Japan Air Commuter",
+        "icao_code": "JAC",
+        "airline_callsign": "",
+        "country": "Japan",
+        "country_code": "JP"
+    },
+    {
+        "iata_code": "HM",
+        "name": "Air Seychelles",
+        "icao_code": "SEY",
+        "airline_callsign": "SEYCHELLES",
+        "country": "Seychelles",
+        "country_code": "SC"
+    },
+    {
+        "iata_code": "I7",
+        "name": "Int'Air Iles",
+        "icao_code": "IIA",
+        "airline_callsign": "",
+        "country": "Vietnam",
+        "country_code": "VN"
+    },
+    {
+        "iata_code": "H3",
+        "name": "Harbour Air Seaplanes",
+        "icao_code": "HES",
+        "airline_callsign": "HOLIDAY EUROPE",
+        "country": "Bulgaria",
+        "country_code": "BG"
+    },
+    {
+        "iata_code": "I5",
+        "name": "AirAsia India",
+        "icao_code": "IAD",
+        "airline_callsign": "ARIYA",
+        "country": "India",
+        "country_code": "IN"
+    },
+    {
+        "iata_code": "HD",
+        "name": "Air Do",
+        "icao_code": "ADO",
+        "airline_callsign": "AIR DO",
+        "country": "Japan",
+        "country_code": "JP"
+    },
+    {
+        "iata_code": "IX",
+        "name": "Air India Express",
+        "icao_code": "AXB",
+        "airline_callsign": "EXPRESS INDIA",
+        "country": "India",
+        "country_code": "IN"
+    },
+    {
+        "iata_code": "G8",
+        "name": "GoAir",
+        "icao_code": "GOW",
+        "airline_callsign": "GOAIR",
+        "country": "India",
+        "country_code": "IN"
+    },
+    {
+        "iata_code": "GK",
+        "name": "Jetstar Japan",
+        "icao_code": "JJP",
+        "airline_callsign": "",
+        "country": "Japan",
+        "country_code": "JP"
+    },
+    {
+        "iata_code": "IJ",
+        "name": "Spring Airlines Japan",
+        "icao_code": "SJO",
+        "airline_callsign": "JEY SPRING",
+        "country": "Japan",
+        "country_code": "JP"
+    },
+    {
+        "iata_code": "IT",
+        "name": "Tigerair Taiwan",
+        "icao_code": "TTW",
+        "airline_callsign": "SMART CAT",
+        "country": "Taiwan",
+        "country_code": "TW"
+    },
+    {
+        "iata_code": "IW",
+        "name": "Wings Air",
+        "icao_code": "WON",
+        "airline_callsign": "WINGS ABADI",
+        "country": "Indonesia",
+        "country_code": "ID"
+    },
+    {
+        "iata_code": "IG",
+        "name": "Air Italy",
+        "icao_code": "ISS",
+        "airline_callsign": "MERIDIANA",
+        "country": "Italy",
+        "country_code": "IT"
+    },
+    {
+        "iata_code": "H9",
+        "name": "Himalaya Airlines",
+        "icao_code": "HIM",
+        "airline_callsign": "HIMALAYA",
+        "country": "Nepal",
+        "country_code": "NP"
+    },
+    {
+        "iata_code": "HV",
+        "name": "Transavia",
+        "icao_code": "TRA",
+        "airline_callsign": "TRANSAVIA",
+        "country": "Netherlands",
+        "country_code": "NL"
+    },
+    {
+        "iata_code": "H2",
+        "name": "Sky Airline",
+        "icao_code": "SKU",
+        "airline_callsign": "AEROSKY",
+        "country": "Chile",
+        "country_code": "CL"
+    },
+    {
+        "iata_code": "G9",
+        "name": "Air Arabia",
+        "icao_code": "ABY",
+        "airline_callsign": "ARABIA",
+        "country": "United Arab Emirates",
+        "country_code": "AE"
+    },
+    {
+        "iata_code": "J9",
+        "name": "Jazeera Airways",
+        "icao_code": "JZR",
+        "airline_callsign": "",
+        "country": "Kuwait",
+        "country_code": "KW"
+    },
+    {
+        "iata_code": "JF",
+        "name": "Jet Asia Airways",
+        "icao_code": "JAA",
+        "airline_callsign": "",
+        "country": "Japan",
+        "country_code": "JP"
+    },
+    {
+        "iata_code": "JH",
+        "name": "Fuji Dream Airlines",
+        "icao_code": "FDA",
+        "airline_callsign": "AIR SANKORE",
+        "country": "Mali",
+        "country_code": "ML"
+    },
+    {
+        "iata_code": "JI",
+        "name": "Meraj Airlines",
+        "icao_code": "MRJ",
+        "airline_callsign": "MERAJ",
+        "country": "Iran",
+        "country_code": "IR"
+    },
+    {
+        "iata_code": "JR",
+        "name": "Joy Air",
+        "icao_code": "JOY",
+        "airline_callsign": "",
+        "country": "China",
+        "country_code": "CN"
+    },
+    {
+        "iata_code": "JS",
+        "name": "Air Koryo",
+        "icao_code": "KOR",
+        "airline_callsign": "AIR KORYO",
+        "country": "North Korea",
+        "country_code": "KP"
+    },
+    {
+        "iata_code": "JU",
+        "name": "Air Serbia",
+        "icao_code": "ASL",
+        "airline_callsign": "AIR SERBIA",
+        "country": "Serbia",
+        "country_code": "RS"
+    },
+    {
+        "iata_code": "JV",
+        "name": "Bearskin Airlines",
+        "icao_code": "BLS",
+        "airline_callsign": "BEARSKIN",
+        "country": "Canada",
+        "country_code": "CA"
+    },
+    {
+        "iata_code": "JY",
+        "name": "InterCaribbean Airways",
+        "icao_code": "IWY",
+        "airline_callsign": "ISLANDWAYS",
+        "country": "Turks and Caicos Islands",
+        "country_code": "TC"
+    },
+    {
+        "iata_code": "JZ",
+        "name": "Jubba Airways",
+        "icao_code": "JUB",
+        "airline_callsign": "",
+        "country": "Kenya",
+        "country_code": "KE"
+    },
+    {
+        "iata_code": "K3",
+        "name": "Taquan Air",
+        "icao_code": "TQN",
+        "airline_callsign": "TAQUAN",
+        "country": "United States",
+        "country_code": "US"
+    },
+    {
+        "iata_code": "K6",
+        "name": "Cambodia Angkor Air",
+        "icao_code": "KHV",
+        "airline_callsign": "AIR ANGKOR",
+        "country": "Cambodia",
+        "country_code": "KH"
+    },
+    {
+        "iata_code": "K7",
+        "name": "Air KBZ",
+        "icao_code": "KBZ",
+        "airline_callsign": "",
+        "country": "Myanmar",
+        "country_code": "MM"
+    },
+    {
+        "iata_code": "KB",
+        "name": "Drukair",
+        "icao_code": "DRK",
+        "airline_callsign": "ROYAL BHUTAN",
+        "country": "Bhutan",
+        "country_code": "BT"
+    },
+    {
+        "iata_code": "KC",
+        "name": "Air Astana",
+        "icao_code": "KZR",
+        "airline_callsign": "ASTANALINE",
+        "country": "Kazakhstan",
+        "country_code": "KZ"
+    },
+    {
+        "iata_code": "KF",
+        "name": "Air Belgium",
+        "icao_code": "ABB",
+        "airline_callsign": "AFRICAN BUSINESS",
+        "country": "Democratic Republic of the Congo",
+        "country_code": "CD"
+    },
+    {
+        "iata_code": "KI",
+        "name": "KrasAvia",
+        "icao_code": "SSJ",
+        "airline_callsign": "SIBERIAN SKY",
+        "country": "Russian Federation",
+        "country_code": "RU"
+    },
+    {
+        "iata_code": "KM",
+        "name": "Air Malta",
+        "icao_code": "AMC",
+        "airline_callsign": "AIR MALTA",
+        "country": "Malta",
+        "country_code": "MT"
+    },
+    {
+        "iata_code": "KN",
+        "name": "China United Airlines",
+        "icao_code": "CUA",
+        "airline_callsign": "LIANHANG",
+        "country": "China",
+        "country_code": "CN"
+    },
+    {
+        "iata_code": "KO",
+        "name": "Komiaviatrans",
+        "icao_code": "KMA",
+        "airline_callsign": "KOMI AVIA",
+        "country": "Russian Federation",
+        "country_code": "RU"
+    },
+    {
+        "iata_code": "KP",
+        "name": "ASKY Airlines",
+        "icao_code": "SKK",
+        "airline_callsign": "SKYLINK",
+        "country": "Canada",
+        "country_code": "CA"
+    },
+    {
+        "iata_code": "KR",
+        "name": "Cambodia Airways",
+        "icao_code": "KME",
+        "airline_callsign": "GIANT IBIS",
+        "country": "Cambodia",
+        "country_code": "KH"
+    },
+    {
+        "iata_code": "KS",
+        "name": "Penair",
+        "icao_code": "PEN",
+        "airline_callsign": "PENINSULA",
+        "country": "United States",
+        "country_code": "US"
+    },
+    {
+        "iata_code": "KU",
+        "name": "Kuwait Airways",
+        "icao_code": "KAC",
+        "airline_callsign": "KUWAITI",
+        "country": "Kuwait",
+        "country_code": "KW"
+    },
+    {
+        "iata_code": "KW",
+        "name": "Korea Express Air",
+        "icao_code": "KEA",
+        "airline_callsign": "",
+        "country": "South Korea",
+        "country_code": "KR"
+    },
+    {
+        "iata_code": "KX",
+        "name": "Cayman Airways",
+        "icao_code": "CAY",
+        "airline_callsign": "CAYMAN",
+        "country": "Cayman Islands",
+        "country_code": "KY"
+    },
+    {
+        "iata_code": "KY",
+        "name": "Kunming Airlines",
+        "icao_code": "KNA",
+        "airline_callsign": "KNIGHTAIR",
+        "country": "Canada",
+        "country_code": "CA"
+    },
+    {
+        "iata_code": "L6",
+        "name": "Mauritania Airlines International",
+        "icao_code": "MAI",
+        "airline_callsign": "MAX AVIA",
+        "country": "Kyrgyzstan",
+        "country_code": "KG"
+    },
+    {
+        "iata_code": "LG",
+        "name": "Luxair",
+        "icao_code": "LGL",
+        "airline_callsign": "LUXAIR",
+        "country": "Luxembourg",
+        "country_code": "LU"
+    },
+    {
+        "iata_code": "LI",
+        "name": "Liat",
+        "icao_code": "LIA",
+        "airline_callsign": "LIAT",
+        "country": "Antigua and Barbuda",
+        "country_code": "AG"
+    },
+    {
+        "iata_code": "LK",
+        "name": "Lao Skyway",
+        "icao_code": "LLL",
+        "airline_callsign": "LAVIE",
+        "country": "Lao People's Democratic Republic",
+        "country_code": "LA"
+    },
+    {
+        "iata_code": "LL",
+        "name": "Miami Air International",
+        "icao_code": "BSK",
+        "airline_callsign": "BISCAYNE",
+        "country": "United States",
+        "country_code": "US"
+    },
+    {
+        "iata_code": "LM",
+        "name": "Loganair",
+        "icao_code": "LOG",
+        "airline_callsign": "LOGAN",
+        "country": "United Kingdom",
+        "country_code": "GB"
+    },
+    {
+        "iata_code": "LN",
+        "name": "Libyan Airlines",
+        "icao_code": "LAA",
+        "airline_callsign": "LIBAIR",
+        "country": "Libya",
+        "country_code": "LY"
+    },
+    {
+        "iata_code": "LR",
+        "name": "Avianca Costa Rica",
+        "icao_code": "LRC",
+        "airline_callsign": "LACSA",
+        "country": "Costa Rica",
+        "country_code": "CR"
+    },
+    {
+        "iata_code": "LT",
+        "name": "LongJiang Airlines",
+        "icao_code": "SNG",
+        "airline_callsign": "SNOW EAGLE",
+        "country": "China",
+        "country_code": "CN"
+    },
+    {
+        "iata_code": "LV",
+        "name": "Level",
+        "icao_code": "BOS",
+        "airline_callsign": "MISTRAL",
+        "country": "United Kingdom",
+        "country_code": "GB"
+    },
+    {
+        "iata_code": "LY",
+        "name": "EL AL",
+        "icao_code": "ELY",
+        "airline_callsign": "ELAL",
+        "country": "Israel",
+        "country_code": "IL"
+    },
+    {
+        "iata_code": "M0",
+        "name": "Aero Mongolia",
+        "icao_code": "MNG",
+        "airline_callsign": "AERO MONGOLIA",
+        "country": "Mongolia",
+        "country_code": "MN"
+    },
+    {
+        "iata_code": "M5",
+        "name": "Kenmore Air",
+        "icao_code": "KEN",
+        "airline_callsign": "KENMORE",
+        "country": "United States",
+        "country_code": "US"
+    },
+    {
+        "iata_code": "M8",
+        "name": "SkyJet Airlines",
+        "icao_code": "MSJ",
+        "airline_callsign": "MAGNUM AIR",
+        "country": "Philippines",
+        "country_code": "PH"
+    },
+    {
+        "iata_code": "M9",
+        "name": "Motor Sich Airlines",
+        "icao_code": "MSI",
+        "airline_callsign": "MOTOR SICH",
+        "country": "Ukraine",
+        "country_code": "UA"
+    },
+    {
+        "iata_code": "MI",
+        "name": "SilkAir",
+        "icao_code": "SLK",
+        "airline_callsign": "SILKAIR",
+        "country": "Singapore",
+        "country_code": "SG"
+    },
+    {
+        "iata_code": "MO",
+        "name": "Calm Air",
+        "icao_code": "CAV",
+        "airline_callsign": "CALM AIR",
+        "country": "Canada",
+        "country_code": "CA"
+    },
+    {
+        "iata_code": "MR",
+        "name": "Hunnu Air",
+        "icao_code": "MML",
+        "airline_callsign": "TRANS MONGOLIA",
+        "country": "Mongolia",
+        "country_code": "MN"
+    },
+    {
+        "iata_code": "MS",
+        "name": "Egyptair",
+        "icao_code": "MSR",
+        "airline_callsign": "EGYPTAIR",
+        "country": "Egypt",
+        "country_code": "EG"
+    },
+    {
+        "iata_code": "MT",
+        "name": "Thomas Cook Airlines",
+        "icao_code": "TCX",
+        "airline_callsign": "THOMAS COOK",
+        "country": "United Kingdom",
+        "country_code": "GB"
+    },
+    {
+        "iata_code": "MV",
+        "name": "Air Mediterranean",
+        "icao_code": "MAR",
+        "airline_callsign": "MARCH",
+        "country": "United Kingdom",
+        "country_code": "GB"
+    },
+    {
+        "iata_code": "MW",
+        "name": "Mokulele Airlines",
+        "icao_code": "MHO",
+        "airline_callsign": "MAHALO",
+        "country": "United States",
+        "country_code": "US"
+    },
+    {
+        "iata_code": "MY",
+        "name": "MASwings",
+        "icao_code": "MWG",
+        "airline_callsign": "MASWINGS",
+        "country": "Malaysia",
+        "country_code": "MY"
+    },
+    {
+        "iata_code": "MZ",
+        "name": "Amakusa Airlines",
+        "icao_code": "AHX",
+        "airline_callsign": "AMAKUSA AIR",
+        "country": "Japan",
+        "country_code": "JP"
+    },
+    {
+        "iata_code": "N4",
+        "name": "Nordwind Airlines",
+        "icao_code": "NWS",
+        "airline_callsign": "NORDLAND",
+        "country": "Russian Federation",
+        "country_code": "RU"
+    },
+    {
+        "iata_code": "N5",
+        "name": "Nolinor Aviation",
+        "icao_code": "NRL",
+        "airline_callsign": "NOLINOR",
+        "country": "Canada",
+        "country_code": "CA"
+    },
+    {
+        "iata_code": "N9",
+        "name": "Novair",
+        "icao_code": "NVR",
+        "airline_callsign": "NAVIGATOR",
+        "country": "Sweden",
+        "country_code": "SE"
+    },
+    {
+        "iata_code": "NA",
+        "name": "Nesma Airlines",
+        "icao_code": "NSS",
+        "airline_callsign": "NORTHSTAR",
+        "country": "United States",
+        "country_code": "US"
+    },
+    {
+        "iata_code": "NC",
+        "name": "Cobham Aviation Services Australia",
+        "icao_code": "JTE",
+        "airline_callsign": "JETEX",
+        "country": "Australia",
+        "country_code": "AU"
+    },
+    {
+        "iata_code": "NE",
+        "name": "Nesma Airlines",
+        "icao_code": "NMA",
+        "airline_callsign": "",
+        "country": "Egypt",
+        "country_code": "EG"
+    },
+    {
+        "iata_code": "NF",
+        "name": "Air Vanuatu",
+        "icao_code": "AVN",
+        "airline_callsign": "AIR VAN",
+        "country": "Vanuatu",
+        "country_code": "VU"
+    },
+    {
+        "iata_code": "NG",
+        "name": "Al Naser Wings",
+        "icao_code": "NAD",
+        "airline_callsign": "SEULAWAH",
+        "country": "Indonesia",
+        "country_code": "ID"
+    },
+    {
+        "iata_code": "NG",
+        "name": "aero",
+        "icao_code": "NIG",
+        "airline_callsign": "AEROLINE",
+        "country": "Nigeria",
+        "country_code": "NG"
+    },
+    {
+        "iata_code": "NI",
+        "name": "TAP Air Portugal",
+        "icao_code": "PGA",
+        "airline_callsign": "PORTUGALIA",
+        "country": "Portugal",
+        "country_code": "PT"
+    },
+    {
+        "iata_code": "NJ",
+        "name": "Niger Airways",
+        "icao_code": "NWA",
+        "airline_callsign": "NORTHWEST",
+        "country": "United States",
+        "country_code": "US"
+    },
+    {
+        "iata_code": "NO",
+        "name": "Neos",
+        "icao_code": "NOS",
+        "airline_callsign": "MOONFLOWER",
+        "country": "Italy",
+        "country_code": "IT"
+    },
+    {
+        "iata_code": "NP",
+        "name": "Nile Air",
+        "icao_code": "NIA",
+        "airline_callsign": "",
+        "country": "Egypt",
+        "country_code": "EG"
+    },
+    {
+        "iata_code": "LX",
+        "name": "SWISS",
+        "icao_code": "SWR",
+        "airline_callsign": "SWISS",
+        "country": "Switzerland",
+        "country_code": "CH"
+    },
+    {
+        "iata_code": "LH",
+        "name": "Lufthansa",
+        "icao_code": "DLH",
+        "airline_callsign": "LUFTHANSA",
+        "country": "Germany",
+        "country_code": "DE"
+    },
+    {
+        "iata_code": "LO",
+        "name": "LOT Polish",
+        "icao_code": "LOT",
+        "airline_callsign": "POLLOT",
+        "country": "Poland",
+        "country_code": "PL"
+    },
+    {
+        "iata_code": "MS",
+        "name": "EgyptAir Express",
+        "icao_code": "MSE",
+        "airline_callsign": "",
+        "country": "Egypt",
+        "country_code": "EG"
+    },
+    {
+        "iata_code": "JJ",
+        "name": "LATAM Brasil",
+        "icao_code": "TAM",
+        "airline_callsign": "TAM",
+        "country": "Brazil",
+        "country_code": "BR"
+    },
+    {
+        "iata_code": "JE",
+        "name": "Mango",
+        "icao_code": "MNO",
+        "airline_callsign": "TULCA",
+        "country": "South Africa",
+        "country_code": "ZA"
+    },
+    {
+        "iata_code": "JL",
+        "name": "Japan Airlines",
+        "icao_code": "JAL",
+        "airline_callsign": "",
+        "country": "Japan",
+        "country_code": "JP"
+    },
+    {
+        "iata_code": "KA",
+        "name": "Cathay Dragon",
+        "icao_code": "HDA",
+        "airline_callsign": "DRAGON",
+        "country": "Hong Kong",
+        "country_code": "HK"
+    },
+    {
+        "iata_code": "LA",
+        "name": "LATAM Chile",
+        "icao_code": "LAN",
+        "airline_callsign": "LAN CHILE",
+        "country": "Chile",
+        "country_code": "CL"
+    },
+    {
+        "iata_code": "MH",
+        "name": "Malaysia Airlines",
+        "icao_code": "MAS",
+        "airline_callsign": "MALAYSIAN",
+        "country": "Malaysia",
+        "country_code": "MY"
+    },
+    {
+        "iata_code": "LU",
+        "name": "LATAM Express",
+        "icao_code": "LXP",
+        "airline_callsign": "LANEX",
+        "country": "Chile",
+        "country_code": "CL"
+    },
+    {
+        "iata_code": "LP",
+        "name": "LATAM Peru",
+        "icao_code": "LPE",
+        "airline_callsign": "LANPERU",
+        "country": "Peru",
+        "country_code": "PE"
+    },
+    {
+        "iata_code": "N7",
+        "name": "NORRA",
+        "icao_code": "FCM",
+        "airline_callsign": "",
+        "country": "Finland",
+        "country_code": "FI"
+    },
+    {
+        "iata_code": "KL",
+        "name": "KLM",
+        "icao_code": "KLM",
+        "airline_callsign": "KLM",
+        "country": "Netherlands",
+        "country_code": "NL"
+    },
+    {
+        "iata_code": "KQ",
+        "name": "Kenya Airways",
+        "icao_code": "KQA",
+        "airline_callsign": "KENYA",
+        "country": "Kenya",
+        "country_code": "KE"
+    },
+    {
+        "iata_code": "ME",
+        "name": "Middle East Airlines",
+        "icao_code": "MEA",
+        "airline_callsign": "CEDAR JET",
+        "country": "Lebanon",
+        "country_code": "LB"
+    },
+    {
+        "iata_code": "MF",
+        "name": "Xiamen Airlines",
+        "icao_code": "CXA",
+        "airline_callsign": "XIAMEN AIR",
+        "country": "China",
+        "country_code": "CN"
+    },
+    {
+        "iata_code": "MU",
+        "name": "China Eastern",
+        "icao_code": "CES",
+        "airline_callsign": "CHINA EASTERN",
+        "country": "China",
+        "country_code": "CN"
+    },
+    {
+        "iata_code": "MD",
+        "name": "Air Madagascar",
+        "icao_code": "MDG",
+        "airline_callsign": "AIR MADAGASCAR",
+        "country": "Madagascar",
+        "country_code": "MG"
+    },
+    {
+        "iata_code": "MK",
+        "name": "Air Mauritius",
+        "icao_code": "MAU",
+        "airline_callsign": "AIRMAURITIUS",
+        "country": "Mauritius",
+        "country_code": "MU"
+    },
+    {
+        "iata_code": "MN",
+        "name": "Kulula",
+        "icao_code": "CAW",
+        "airline_callsign": "COMMERCIAL",
+        "country": "South Africa",
+        "country_code": "ZA"
+    },
+    {
+        "iata_code": "JQ",
+        "name": "Jetstar",
+        "icao_code": "JST",
+        "airline_callsign": "",
+        "country": "Australia",
+        "country_code": "AU"
+    },
+    {
+        "iata_code": "LJ",
+        "name": "Jin Air",
+        "icao_code": "JNA",
+        "airline_callsign": "JIN AIR",
+        "country": "South Korea",
+        "country_code": "KR"
+    },
+    {
+        "iata_code": "JT",
+        "name": "Lion Air",
+        "icao_code": "LNI",
+        "airline_callsign": "LION INTER",
+        "country": "Indonesia",
+        "country_code": "ID"
+    },
+    {
+        "iata_code": "MJ",
+        "name": "Myway Airlines",
+        "icao_code": "MYW",
+        "airline_callsign": "MYSKY",
+        "country": "Georgia",
+        "country_code": "GE"
+    },
+    {
+        "iata_code": "MM",
+        "name": "Peach",
+        "icao_code": "APJ",
+        "airline_callsign": "AIR PEACH",
+        "country": "Japan",
+        "country_code": "JP"
+    },
+    {
+        "iata_code": "LQ",
+        "name": "Lanmei Airlines",
+        "icao_code": "MKR",
+        "airline_callsign": "AIR LANME",
+        "country": "China",
+        "country_code": "CN"
+    },
+    {
+        "iata_code": "JW",
+        "name": "Vanilla Air",
+        "icao_code": "VNL",
+        "airline_callsign": "VANILLA",
+        "country": "Japan",
+        "country_code": "JP"
+    },
+    {
+        "iata_code": "KK",
+        "name": "Atlasglobal",
+        "icao_code": "KKK",
+        "airline_callsign": "ATLASJET",
+        "country": "Turkey",
+        "country_code": "TR"
+    },
+    {
+        "iata_code": "LS",
+        "name": "Jet2.com",
+        "icao_code": "EXS",
+        "airline_callsign": "Channex",
+        "country": "United Kingdom",
+        "country_code": "GB"
+    },
+    {
+        "iata_code": "NK",
+        "name": "Spirit Airlines",
+        "icao_code": "NKS",
+        "airline_callsign": "SPIRIT WINGS",
+        "country": "United States",
+        "country_code": "US"
+    },
+    {
+        "iata_code": "NQ",
+        "name": "Air Japan",
+        "icao_code": "AJX",
+        "airline_callsign": "AIR JAPAN",
+        "country": "Japan",
+        "country_code": "JP"
+    },
+    {
+        "iata_code": "NS",
+        "name": "Hebei Airlines",
+        "icao_code": "HBH",
+        "airline_callsign": "",
+        "country": "China",
+        "country_code": "CN"
+    },
+    {
+        "iata_code": "NT",
+        "name": "Binter Canarias",
+        "icao_code": "IBB",
+        "airline_callsign": "BINTER",
+        "country": "Spain",
+        "country_code": "ES"
+    },
+    {
+        "iata_code": "NV",
+        "name": "Karun Airlines",
+        "icao_code": "IRG",
+        "airline_callsign": "NAFT",
+        "country": "Iran",
+        "country_code": "IR"
+    },
+    {
+        "iata_code": "NX",
+        "name": "Air Macau",
+        "icao_code": "AMU",
+        "airline_callsign": "AIR MACAO",
+        "country": "Macao",
+        "country_code": "MO"
+    },
+    {
+        "iata_code": "NY",
+        "name": "Air Iceland Connect",
+        "icao_code": "FXI",
+        "airline_callsign": "FAXI",
+        "country": "Iceland",
+        "country_code": "IS"
+    },
+    {
+        "iata_code": "O6",
+        "name": "Avianca Brazil",
+        "icao_code": "ONE",
+        "airline_callsign": "OCEAN AIR",
+        "country": "Brazil",
+        "country_code": "BR"
+    },
+    {
+        "iata_code": "O7",
+        "name": "Orenburzhye",
+        "icao_code": "ORG",
+        "airline_callsign": "",
+        "country": "Russian Federation",
+        "country_code": "RU"
+    },
+    {
+        "iata_code": "O9",
+        "name": "NOVA Airways",
+        "icao_code": "NOV",
+        "airline_callsign": "NOVANILE",
+        "country": "Sudan",
+        "country_code": "SD"
+    },
+    {
+        "iata_code": "OA",
+        "name": "Olympic Air",
+        "icao_code": "OAL",
+        "airline_callsign": "OLYMPIC",
+        "country": "Greece",
+        "country_code": "GR"
+    },
+    {
+        "iata_code": "OB",
+        "name": "BOA Boliviana de Aviaci\u00f3n",
+        "icao_code": "BOV",
+        "airline_callsign": "BOLIVIANA",
+        "country": "Bolivia",
+        "country_code": "BO"
+    },
+    {
+        "iata_code": "OC",
+        "name": "Oriental Air Bridge",
+        "icao_code": "ORC",
+        "airline_callsign": "",
+        "country": "Australia",
+        "country_code": "AU"
+    },
+    {
+        "iata_code": "OE",
+        "name": "Cairo Aviation",
+        "icao_code": "CCE",
+        "airline_callsign": "",
+        "country": "Egypt",
+        "country_code": "EG"
+    },
+    {
+        "iata_code": "OE",
+        "name": "Laudamotion",
+        "icao_code": "LDM",
+        "airline_callsign": "LAUDA MOTION",
+        "country": "Austria",
+        "country_code": "AT"
+    },
+    {
+        "iata_code": "OF",
+        "name": "Overland Airways",
+        "icao_code": "OLA",
+        "airline_callsign": "OVERLAND",
+        "country": "Nigeria",
+        "country_code": "NG"
+    },
+    {
+        "iata_code": "OG",
+        "name": "Originair",
+        "icao_code": "OGN",
+        "airline_callsign": "ORIGIN",
+        "country": "New Zealand",
+        "country_code": "NZ"
+    },
+    {
+        "iata_code": "OI",
+        "name": "Hinterland Aviation",
+        "icao_code": "HND",
+        "airline_callsign": "HINTERLAND",
+        "country": "Australia",
+        "country_code": "AU"
+    },
+    {
+        "iata_code": "OL",
+        "name": "Samoa Airways",
+        "icao_code": "PAO",
+        "airline_callsign": "POLYNESIAN",
+        "country": "Samoa",
+        "country_code": "WS"
+    },
+    {
+        "iata_code": "OM",
+        "name": "MIAT Mongolian Airlines",
+        "icao_code": "MGL",
+        "airline_callsign": "MONGOL AIR",
+        "country": "Mongolia",
+        "country_code": "MN"
+    },
+    {
+        "iata_code": "ON",
+        "name": "Nauru Airlines",
+        "icao_code": "RON",
+        "airline_callsign": "OUR AIRLINE",
+        "country": "Nauru",
+        "country_code": "NR"
+    },
+    {
+        "iata_code": "OP",
+        "name": "PassionAir",
+        "icao_code": "DIG",
+        "airline_callsign": "DAC AIR",
+        "country": "Ghana",
+        "country_code": "GH"
+    },
+    {
+        "iata_code": "OQ",
+        "name": "Chongqing Airlines",
+        "icao_code": "CQN",
+        "airline_callsign": "CHONG QING",
+        "country": "China",
+        "country_code": "CN"
+    },
+    {
+        "iata_code": "OR",
+        "name": "TUIfly Netherlands",
+        "icao_code": "TFL",
+        "airline_callsign": "ORANGE",
+        "country": "Netherlands",
+        "country_code": "NL"
+    },
+    {
+        "iata_code": "OW",
+        "name": "Skyward Express",
+        "icao_code": "SEW",
+        "airline_callsign": "SKYWARD EXPRESS",
+        "country": "Kenya",
+        "country_code": "KE"
+    },
+    {
+        "iata_code": "OY",
+        "name": "Andes Lineas Aereas",
+        "icao_code": "ANS",
+        "airline_callsign": "AEROANDES",
+        "country": "Argentina",
+        "country_code": "AR"
+    },
+    {
+        "iata_code": "P0",
+        "name": "Proflight Zambia",
+        "icao_code": "PFZ",
+        "airline_callsign": "PROFLIGHT-ZAMBIA",
+        "country": "Zambia",
+        "country_code": "ZM"
+    },
+    {
+        "iata_code": "P2",
+        "name": "AirKenya",
+        "icao_code": "XAK",
+        "airline_callsign": "SUNEXPRESS",
+        "country": "Kenya",
+        "country_code": "KE"
+    },
+    {
+        "iata_code": "P5",
+        "name": "Wingo",
+        "icao_code": "RPB",
+        "airline_callsign": "AEROREPUBLICA",
+        "country": "Colombia",
+        "country_code": "CO"
+    },
+    {
+        "iata_code": "P6",
+        "name": "Pascan Aviation",
+        "icao_code": "PSC",
+        "airline_callsign": "PASCAN",
+        "country": "Canada",
+        "country_code": "CA"
+    },
+    {
+        "iata_code": "P6",
+        "name": "Privilege Style",
+        "icao_code": "PVG",
+        "airline_callsign": "PRIVILEGE",
+        "country": "Spain",
+        "country_code": "ES"
+    },
+    {
+        "iata_code": "P8",
+        "name": "SprintAir",
+        "icao_code": "SRN",
+        "airline_callsign": "SIRAIR",
+        "country": "Russian Federation",
+        "country_code": "RU"
+    },
+    {
+        "iata_code": "P9",
+        "name": "Peruvian Airlines",
+        "icao_code": "PVN",
+        "airline_callsign": "",
+        "country": "Peru",
+        "country_code": "PE"
+    },
+    {
+        "iata_code": "PB",
+        "name": "PAL Airlines",
+        "icao_code": "PVL",
+        "airline_callsign": "VOLARE",
+        "country": "Italy",
+        "country_code": "IT"
+    },
+    {
+        "iata_code": "PC",
+        "name": "Pegasus Airlines",
+        "icao_code": "PGT",
+        "airline_callsign": "SUNTURK",
+        "country": "Turkey",
+        "country_code": "TR"
+    },
+    {
+        "iata_code": "PD",
+        "name": "Porter Airlines",
+        "icao_code": "POE",
+        "airline_callsign": "PORTER",
+        "country": "Canada",
+        "country_code": "CA"
+    },
+    {
+        "iata_code": "PE",
+        "name": "People's Viennaline",
+        "icao_code": "PEV",
+        "airline_callsign": "PEOPLES",
+        "country": "Austria",
+        "country_code": "AT"
+    },
+    {
+        "iata_code": "PG",
+        "name": "Bangkok Airways",
+        "icao_code": "BKP",
+        "airline_callsign": "BANGKOK AIR",
+        "country": "Thailand",
+        "country_code": "TH"
+    },
+    {
+        "iata_code": "PH",
+        "name": "Phoenix Air",
+        "icao_code": "PHA",
+        "airline_callsign": "GRAY BIRD",
+        "country": "United States",
+        "country_code": "US"
+    },
+    {
+        "iata_code": "PI",
+        "name": "Polar Airlines",
+        "icao_code": "RKA",
+        "airline_callsign": "AIRAFRIC",
+        "country": "Ivory Coast",
+        "country_code": "CI"
+    },
+    {
+        "iata_code": "PJ",
+        "name": "Air Saint Pierre",
+        "icao_code": "SPM",
+        "airline_callsign": "SAINT-PIERRE",
+        "country": "France",
+        "country_code": "FR"
+    },
+    {
+        "iata_code": "PK",
+        "name": "PIA",
+        "icao_code": "PIA",
+        "airline_callsign": "PAKISTAN",
+        "country": "Pakistan",
+        "country_code": "PK"
+    },
+    {
+        "iata_code": "PL",
+        "name": "Southern Air Charter",
+        "icao_code": "SOA",
+        "airline_callsign": "",
+        "country": "Bahamas",
+        "country_code": "BS"
+    },
+    {
+        "iata_code": "PM",
+        "name": "Canaryfly",
+        "icao_code": "CNF",
+        "airline_callsign": "",
+        "country": "Spain",
+        "country_code": "ES"
+    },
+    {
+        "iata_code": "PR",
+        "name": "Philippine Airlines",
+        "icao_code": "PAL",
+        "airline_callsign": "PHILIPPINE",
+        "country": "Philippines",
+        "country_code": "PH"
+    },
+    {
+        "iata_code": "PS",
+        "name": "UIA",
+        "icao_code": "AUI",
+        "airline_callsign": "UKRAINE INTERNATIONAL",
+        "country": "Ukraine",
+        "country_code": "UA"
+    },
+    {
+        "iata_code": "PU",
+        "name": "Plus Ultra Lineas Aereas",
+        "icao_code": "PUE",
+        "airline_callsign": "PUELCHE",
+        "country": "Chile",
+        "country_code": "CL"
+    },
+    {
+        "iata_code": "PV",
+        "name": "St Barth Commuter",
+        "icao_code": "SBU",
+        "airline_callsign": "BLACK FIN",
+        "country": "France",
+        "country_code": "FR"
+    },
+    {
+        "iata_code": "PW",
+        "name": "Precision Air",
+        "icao_code": "PRF",
+        "airline_callsign": "PRECISION AIR",
+        "country": "Tanzania",
+        "country_code": "TZ"
+    },
+    {
+        "iata_code": "PX",
+        "name": "Air Niugini",
+        "icao_code": "ANG",
+        "airline_callsign": "NIUGINI",
+        "country": "Papua New Guinea",
+        "country_code": "PG"
+    },
+    {
+        "iata_code": "PY",
+        "name": "Surinam Airways",
+        "icao_code": "SLM",
+        "airline_callsign": "SURINAM",
+        "country": "Suriname",
+        "country_code": "SR"
+    },
+    {
+        "iata_code": "PZ",
+        "name": "LATAM Paraguay",
+        "icao_code": "LAP",
+        "airline_callsign": "PARAGUAYA",
+        "country": "Paraguay",
+        "country_code": "PY"
+    },
+    {
+        "iata_code": "Q2",
+        "name": "Maldivian",
+        "icao_code": "DQA",
+        "airline_callsign": "",
+        "country": "Maldives",
+        "country_code": "MV"
+    },
+    {
+        "iata_code": "Q3",
+        "name": "Anguilla Air Services",
+        "icao_code": "AXL",
+        "airline_callsign": "",
+        "country": "Netherlands",
+        "country_code": "NL"
+    },
+    {
+        "iata_code": "Q5",
+        "name": "40 Mile Air",
+        "icao_code": "MLA",
+        "airline_callsign": "MILE-AIR",
+        "country": "United States",
+        "country_code": "US"
+    },
+    {
+        "iata_code": "Q7",
+        "name": "SkyBahamas",
+        "icao_code": "SBM",
+        "airline_callsign": "SKY BAHAMAS",
+        "country": "Bahamas",
+        "country_code": "BS"
+    },
+    {
+        "iata_code": "Q8",
+        "name": "Trans Air Congo",
+        "icao_code": "TSG",
+        "airline_callsign": "TRANS-CONGO",
+        "country": "Republic of the Congo",
+        "country_code": "CG"
+    },
+    {
+        "iata_code": "QB",
+        "name": "Qeshm Air",
+        "icao_code": "IRQ",
+        "airline_callsign": "",
+        "country": "Iran",
+        "country_code": "IR"
+    },
+    {
+        "iata_code": "QC",
+        "name": "Camair-co",
+        "icao_code": "CRC",
+        "airline_callsign": "CAMAIRCO",
+        "country": "Cameroon",
+        "country_code": "CM"
+    },
+    {
+        "iata_code": "QD",
+        "name": "JC International Airlines",
+        "icao_code": "JCC",
+        "airline_callsign": "",
+        "country": "Australia",
+        "country_code": "AU"
+    },
+    {
+        "iata_code": "QH",
+        "name": "Bamboo Airways",
+        "icao_code": "BAV",
+        "airline_callsign": "BAY AIR",
+        "country": "Bangladesh",
+        "country_code": "BD"
+    },
+    {
+        "iata_code": "QH",
+        "name": "Air Kyrgyzstan",
+        "icao_code": "LYN",
+        "airline_callsign": "ALTYN AVIA",
+        "country": "Kyrgyzstan",
+        "country_code": "KG"
+    },
+    {
+        "iata_code": "QK",
+        "name": "Air Canada Express",
+        "icao_code": "JZA",
+        "airline_callsign": "JAZZ",
+        "country": "Canada",
+        "country_code": "CA"
+    },
+    {
+        "iata_code": "QL",
+        "name": "LASER Airlines",
+        "icao_code": "LER",
+        "airline_callsign": "LASER",
+        "country": "Venezuela",
+        "country_code": "VE"
+    },
+    {
+        "iata_code": "QN",
+        "name": "Skytrans",
+        "icao_code": "SKP",
+        "airline_callsign": "",
+        "country": "Canada",
+        "country_code": "CA"
+    },
+    {
+        "iata_code": "QQ",
+        "name": "Alliance Airlines",
+        "icao_code": "UTY",
+        "airline_callsign": "UNITY",
+        "country": "Australia",
+        "country_code": "AU"
+    },
+    {
+        "iata_code": "QU",
+        "name": "Azur Air Ukraine",
+        "icao_code": "UTN",
+        "airline_callsign": "UT Ukraine",
+        "country": "Ukraine",
+        "country_code": "UA"
+    },
+    {
+        "iata_code": "QV",
+        "name": "Lao Airlines",
+        "icao_code": "LAO",
+        "airline_callsign": "LAO",
+        "country": "Lao People's Democratic Republic",
+        "country_code": "LA"
+    },
+    {
+        "iata_code": "QW",
+        "name": "Qingdao Airlines",
+        "icao_code": "QDA",
+        "airline_callsign": "SKY LEGEND",
+        "country": "China",
+        "country_code": "CN"
+    },
+    {
+        "iata_code": "R2",
+        "name": "Transair Senegal",
+        "icao_code": "GTS",
+        "airline_callsign": "TRANSGROUP",
+        "country": "Senegal",
+        "country_code": "SN"
+    },
+    {
+        "iata_code": "R3",
+        "name": "Yakutia Airlines",
+        "icao_code": "SYL",
+        "airline_callsign": "AIR YAKUTIA",
+        "country": "Russian Federation",
+        "country_code": "RU"
+    },
+    {
+        "iata_code": "R6",
+        "name": "DOT LT",
+        "icao_code": "DNU",
+        "airline_callsign": "DANU",
+        "country": "Lithuania",
+        "country_code": "LT"
+    },
+    {
+        "iata_code": "RA",
+        "name": "Nepal Airlines",
+        "icao_code": "RNA",
+        "airline_callsign": "ROYAL NEPAL",
+        "country": "Nepal",
+        "country_code": "NP"
+    },
+    {
+        "iata_code": "RB",
+        "name": "SyrianAir",
+        "icao_code": "SYR",
+        "airline_callsign": "SYRIANAIR",
+        "country": "Syrian Arab Republic",
+        "country_code": "SY"
+    },
+    {
+        "iata_code": "RC",
+        "name": "Atlantic Airways",
+        "icao_code": "FLI",
+        "airline_callsign": "FAROELINE",
+        "country": "Faroe Islands",
+        "country_code": "FO"
+    },
+    {
+        "iata_code": "RG",
+        "name": "Rotana Jet",
+        "icao_code": "RJD",
+        "airline_callsign": "",
+        "country": "United Arab Emirates",
+        "country_code": "AE"
+    },
+    {
+        "iata_code": "RL",
+        "name": "Royal Flight",
+        "icao_code": "ABG",
+        "airline_callsign": "ABAKAN-AVIA",
+        "country": "Russian Federation",
+        "country_code": "RU"
+    },
+    {
+        "iata_code": "RM",
+        "name": "Armenia Aircompany",
+        "icao_code": "NGT",
+        "airline_callsign": "NIKA",
+        "country": "Armenia",
+        "country_code": "AM"
+    },
+    {
+        "iata_code": "RQ",
+        "name": "Kam Air",
+        "icao_code": "KMF",
+        "airline_callsign": "KAMGAR",
+        "country": "Afghanistan",
+        "country_code": "AF"
+    },
+    {
+        "iata_code": "RR",
+        "name": "Ryanair Sun",
+        "icao_code": "RYS",
+        "airline_callsign": "MAGIC SUN",
+        "country": "Poland",
+        "country_code": "PL"
+    },
+    {
+        "iata_code": "RT",
+        "name": "UVT Aero",
+        "icao_code": "BUG",
+        "airline_callsign": "",
+        "country": "Russian Federation",
+        "country_code": "RU"
+    },
+    {
+        "iata_code": "RV",
+        "name": "Air Canada Rouge",
+        "icao_code": "ROU",
+        "airline_callsign": "ROUGE",
+        "country": "Canada",
+        "country_code": "CA"
+    },
+    {
+        "iata_code": "RW",
+        "name": "Royal Air Charter",
+        "icao_code": "RYL",
+        "airline_callsign": "ROYAL ARUBAN",
+        "country": "Aruba",
+        "country_code": "AW"
+    },
+    {
+        "iata_code": "RX",
+        "name": "Regent Airways",
+        "icao_code": "RGE",
+        "airline_callsign": "REGENT",
+        "country": "Bangladesh",
+        "country_code": "BD"
+    },
+    {
+        "iata_code": "RZ",
+        "name": "SANSA",
+        "icao_code": "LRS",
+        "airline_callsign": "",
+        "country": "Costa Rica",
+        "country_code": "CR"
+    },
+    {
+        "iata_code": "S0",
+        "name": "Aerolineas Sosa",
+        "icao_code": "NSO",
+        "airline_callsign": "SOSA",
+        "country": "Honduras",
+        "country_code": "HN"
+    },
+    {
+        "iata_code": "S4",
+        "name": "Azores Airlines",
+        "icao_code": "RZO",
+        "airline_callsign": "AIR AZORES",
+        "country": "Portugal",
+        "country_code": "PT"
+    },
+    {
+        "iata_code": "S6",
+        "name": "Sunrise Airways",
+        "icao_code": "KSZ",
+        "airline_callsign": "",
+        "country": "Haiti",
+        "country_code": "HT"
+    },
+    {
+        "iata_code": "OU",
+        "name": "Croatia Airlines",
+        "icao_code": "CTN",
+        "airline_callsign": "CROATIA",
+        "country": "Croatia",
+        "country_code": "HR"
+    },
+    {
+        "iata_code": "OZ",
+        "name": "Asiana Airlines",
+        "icao_code": "AAR",
+        "airline_callsign": "ASIANA",
+        "country": "South Korea",
+        "country_code": "KR"
+    },
+    {
+        "iata_code": "NU",
+        "name": "Japan Transocean Air",
+        "icao_code": "JTA",
+        "airline_callsign": "",
+        "country": "Japan",
+        "country_code": "JP"
+    },
+    {
+        "iata_code": "S7",
+        "name": "S7 Airlines",
+        "icao_code": "SBI",
+        "airline_callsign": "SIBERIAN AIRLINES",
+        "country": "Russian Federation",
+        "country_code": "RU"
+    },
+    {
+        "iata_code": "QF",
+        "name": "Qantas",
+        "icao_code": "QFA",
+        "airline_callsign": "QANTAS",
+        "country": "Australia",
+        "country_code": "AU"
+    },
+    {
+        "iata_code": "QR",
+        "name": "Qatar Airways",
+        "icao_code": "QTR",
+        "airline_callsign": "QATARI",
+        "country": "Qatar",
+        "country_code": "QA"
+    },
+    {
+        "iata_code": "RJ",
+        "name": "Royal Jordanian",
+        "icao_code": "RJA",
+        "airline_callsign": "JORDANIAN",
+        "country": "Jordan",
+        "country_code": "JO"
+    },
+    {
+        "iata_code": "RO",
+        "name": "Tarom",
+        "icao_code": "ROT",
+        "airline_callsign": "TAROM",
+        "country": "Romania",
+        "country_code": "RO"
+    },
+    {
+        "iata_code": "OK",
+        "name": "CSA Czech Airlines",
+        "icao_code": "CSA",
+        "airline_callsign": "CSA",
+        "country": "Czech Republic",
+        "country_code": "CZ"
+    },
+    {
+        "iata_code": "QG",
+        "name": "Citilink",
+        "icao_code": "CTV",
+        "airline_callsign": "ARE AVIACION",
+        "country": "Spain",
+        "country_code": "ES"
+    },
+    {
+        "iata_code": "P4",
+        "name": "Air Peace",
+        "icao_code": "APK",
+        "airline_callsign": "",
+        "country": "New Zealand",
+        "country_code": "NZ"
+    },
+    {
+        "iata_code": "PA",
+        "name": "airblue",
+        "icao_code": "ABQ",
+        "airline_callsign": "PAKBLUE",
+        "country": "Pakistan",
+        "country_code": "PK"
+    },
+    {
+        "iata_code": "RS",
+        "name": "Air Seoul",
+        "icao_code": "ASV",
+        "airline_callsign": "AIR SEOUL",
+        "country": "South Korea",
+        "country_code": "KR"
+    },
+    {
+        "iata_code": "PN",
+        "name": "West Air",
+        "icao_code": "CHB",
+        "airline_callsign": "WEST CHINA",
+        "country": "China",
+        "country_code": "CN"
+    },
+    {
+        "iata_code": "QZ",
+        "name": "Indonesia AirAsia",
+        "icao_code": "AWQ",
+        "airline_callsign": "WAGON AIR",
+        "country": "Indonesia",
+        "country_code": "ID"
+    },
+    {
+        "iata_code": "OD",
+        "name": "Malindo Air",
+        "icao_code": "MXD",
+        "airline_callsign": "MALINDO EXPRESS",
+        "country": "Malaysia",
+        "country_code": "MY"
+    },
+    {
+        "iata_code": "QS",
+        "name": "SmartWings Czechia",
+        "icao_code": "TVS",
+        "airline_callsign": "SKYTRAVEL",
+        "country": "Czech Republic",
+        "country_code": "CZ"
+    },
+    {
+        "iata_code": "Q6",
+        "name": "Volaris Costa Rica",
+        "icao_code": "VOC",
+        "airline_callsign": "ROSTA RICAN",
+        "country": "Costa Rica",
+        "country_code": "CR"
+    },
+    {
+        "iata_code": "R5",
+        "name": "Jordan Aviation",
+        "icao_code": "JAV",
+        "airline_callsign": "",
+        "country": "Jordan",
+        "country_code": "JO"
+    },
+    {
+        "iata_code": "OV",
+        "name": "SalamAir",
+        "icao_code": "OMS",
+        "airline_callsign": "MAZOON",
+        "country": "Oman",
+        "country_code": "OM"
+    },
+    {
+        "iata_code": "S8",
+        "name": "Sounds Air",
+        "icao_code": "SDA",
+        "airline_callsign": "SAINT ANDREWS",
+        "country": "Canada",
+        "country_code": "CA"
+    },
+    {
+        "iata_code": "SB",
+        "name": "Aircalin",
+        "icao_code": "ACI",
+        "airline_callsign": "AIRCALIN",
+        "country": "France",
+        "country_code": "FR"
+    },
+    {
+        "iata_code": "SC",
+        "name": "Shandong Airlines",
+        "icao_code": "CDG",
+        "airline_callsign": "SHANDONG",
+        "country": "China",
+        "country_code": "CN"
+    },
+    {
+        "iata_code": "SD",
+        "name": "Sudan Airways",
+        "icao_code": "SUD",
+        "airline_callsign": "SUDANAIR",
+        "country": "Sudan",
+        "country_code": "SD"
+    },
+    {
+        "iata_code": "SE",
+        "name": "XL Airways France",
+        "icao_code": "XLF",
+        "airline_callsign": "STARWAY",
+        "country": "France",
+        "country_code": "FR"
+    },
+    {
+        "iata_code": "SF",
+        "name": "Tassili Airlines",
+        "icao_code": "DTH",
+        "airline_callsign": "TASSILI AIR",
+        "country": "Algeria",
+        "country_code": "DZ"
+    },
+    {
+        "iata_code": "SH",
+        "name": "Sharp Airlines",
+        "icao_code": "SHA",
+        "airline_callsign": "SHARP",
+        "country": "Australia",
+        "country_code": "AU"
+    },
+    {
+        "iata_code": "SI",
+        "name": "Flybe",
+        "icao_code": "BCI",
+        "airline_callsign": "BLUE ISLAND",
+        "country": "United Kingdom",
+        "country_code": "GB"
+    },
+    {
+        "iata_code": "SJ",
+        "name": "Sriwijaya Air",
+        "icao_code": "SJY",
+        "airline_callsign": "SRIWIJAYA",
+        "country": "Indonesia",
+        "country_code": "ID"
+    },
+    {
+        "iata_code": "SM",
+        "name": "Air Cairo",
+        "icao_code": "MSC",
+        "airline_callsign": "",
+        "country": "Egypt",
+        "country_code": "EG"
+    },
+    {
+        "iata_code": "SP",
+        "name": "SATA Air Acores",
+        "icao_code": "SAT",
+        "airline_callsign": "SATA",
+        "country": "Portugal",
+        "country_code": "PT"
+    },
+    {
+        "iata_code": "SP",
+        "name": "Sky Pasada",
+        "icao_code": "WCC",
+        "airline_callsign": "WEST COAST",
+        "country": "United States",
+        "country_code": "US"
+    },
+    {
+        "iata_code": "SR",
+        "name": "SundAir",
+        "icao_code": "SDR",
+        "airline_callsign": "SWEDESTAR",
+        "country": "Sweden",
+        "country_code": "SE"
+    },
+    {
+        "iata_code": "SS",
+        "name": "Corsair International",
+        "icao_code": "CRL",
+        "airline_callsign": "CORSAIR",
+        "country": "France",
+        "country_code": "FR"
+    },
+    {
+        "iata_code": "SW",
+        "name": "Air Namibia",
+        "icao_code": "NMB",
+        "airline_callsign": "NAMIBIA",
+        "country": "Namibia",
+        "country_code": "NA"
+    },
+    {
+        "iata_code": "SZ",
+        "name": "Somon Air",
+        "icao_code": "SMR",
+        "airline_callsign": "SOMON AIR",
+        "country": "Tajikistan",
+        "country_code": "TJ"
+    },
+    {
+        "iata_code": "T0",
+        "name": "Avianca Peru",
+        "icao_code": "TPU",
+        "airline_callsign": "TRANS PERU",
+        "country": "Peru",
+        "country_code": "PE"
+    },
+    {
+        "iata_code": "T2",
+        "name": "Fly Art",
+        "icao_code": "FLB",
+        "airline_callsign": "",
+        "country": "Germany",
+        "country_code": "DE"
+    },
+    {
+        "iata_code": "T3",
+        "name": "Eastern Airways",
+        "icao_code": "EZE",
+        "airline_callsign": "EASTFLIGHT",
+        "country": "United Kingdom",
+        "country_code": "GB"
+    },
+    {
+        "iata_code": "T5",
+        "name": "Turkmenistan Airlines",
+        "icao_code": "TUA",
+        "airline_callsign": "TURKMENISTAN",
+        "country": "Turkmenistan",
+        "country_code": "TM"
+    },
+    {
+        "iata_code": "T6",
+        "name": "AirSWIFT",
+        "icao_code": "ATX",
+        "airline_callsign": "AIRTAX",
+        "country": "United Kingdom",
+        "country_code": "GB"
+    },
+    {
+        "iata_code": "T7",
+        "name": "Twin Jet",
+        "icao_code": "TJT",
+        "airline_callsign": "TWINJET",
+        "country": "France",
+        "country_code": "FR"
+    },
+    {
+        "iata_code": "TA",
+        "name": "Avianca El Salvador",
+        "icao_code": "TAI",
+        "airline_callsign": "TACA",
+        "country": "El Salvador",
+        "country_code": "SV"
+    },
+    {
+        "iata_code": "TC",
+        "name": "Air Tanzania",
+        "icao_code": "ATC",
+        "airline_callsign": "TANZANIA",
+        "country": "Tanzania",
+        "country_code": "TZ"
+    },
+    {
+        "iata_code": "TE",
+        "name": "SkyTaxi",
+        "icao_code": "IGA",
+        "airline_callsign": "IGUANA",
+        "country": "Poland",
+        "country_code": "PL"
+    },
+    {
+        "iata_code": "TF",
+        "name": "BRA",
+        "icao_code": "SCW",
+        "airline_callsign": "SCANWING",
+        "country": "Sweden",
+        "country_code": "SE"
+    },
+    {
+        "iata_code": "TI",
+        "name": "Tailwind Airlines",
+        "icao_code": "TWI",
+        "airline_callsign": "TAILWIND",
+        "country": "United States",
+        "country_code": "US"
+    },
+    {
+        "iata_code": "TJ",
+        "name": "Tradewind Aviation",
+        "icao_code": "GPD",
+        "airline_callsign": "GOODSPEED",
+        "country": "United States",
+        "country_code": "US"
+    },
+    {
+        "iata_code": "TL",
+        "name": "Airnorth",
+        "icao_code": "ANO",
+        "airline_callsign": "TOPEND",
+        "country": "Australia",
+        "country_code": "AU"
+    },
+    {
+        "iata_code": "TM",
+        "name": "LAM Mozambique Airlines",
+        "icao_code": "LAM",
+        "airline_callsign": "MOZAMBIQUE",
+        "country": "Mozambique",
+        "country_code": "MZ"
+    },
+    {
+        "iata_code": "TN",
+        "name": "Air Tahiti Nui",
+        "icao_code": "THT",
+        "airline_callsign": "TAHITI AIRLINES",
+        "country": "France",
+        "country_code": "FR"
+    },
+    {
+        "iata_code": "TQ",
+        "name": "Tandem Aero",
+        "icao_code": "TDM",
+        "airline_callsign": "TANDEM",
+        "country": "Moldova",
+        "country_code": "MD"
+    },
+    {
+        "iata_code": "TS",
+        "name": "Air Transat",
+        "icao_code": "TSC",
+        "airline_callsign": "AIR TRANSAT",
+        "country": "Canada",
+        "country_code": "CA"
+    },
+    {
+        "iata_code": "TU",
+        "name": "Tunisair",
+        "icao_code": "TAR",
+        "airline_callsign": "TUNAIR",
+        "country": "Tunisia",
+        "country_code": "TN"
+    },
+    {
+        "iata_code": "TV",
+        "name": "Tibet Airlines",
+        "icao_code": "TBA",
+        "airline_callsign": "TIBET",
+        "country": "China",
+        "country_code": "CN"
+    },
+    {
+        "iata_code": "TX",
+        "name": "Air Caraibes",
+        "icao_code": "FWI",
+        "airline_callsign": "FRENCH WEST",
+        "country": "France",
+        "country_code": "FR"
+    },
+    {
+        "iata_code": "TY",
+        "name": "Air Caledonie",
+        "icao_code": "TPC",
+        "airline_callsign": "AIRCAL",
+        "country": "France",
+        "country_code": "FR"
+    },
+    {
+        "iata_code": "U4",
+        "name": "Buddha Air",
+        "icao_code": "BHA",
+        "airline_callsign": "BUDDHA AIR",
+        "country": "Nepal",
+        "country_code": "NP"
+    },
+    {
+        "iata_code": "U5",
+        "name": "Karinou Airlines",
+        "icao_code": "KRN",
+        "airline_callsign": "ANTOL",
+        "country": "Kazakhstan",
+        "country_code": "KZ"
+    },
+    {
+        "iata_code": "U6",
+        "name": "Ural Airlines",
+        "icao_code": "SVR",
+        "airline_callsign": "SVERDLOVSK AIR",
+        "country": "Russian Federation",
+        "country_code": "RU"
+    },
+    {
+        "iata_code": "U8",
+        "name": "Tus Airways",
+        "icao_code": "CYF",
+        "airline_callsign": "COMPANY FLIGHT",
+        "country": "Denmark",
+        "country_code": "DK"
+    },
+    {
+        "iata_code": "UB",
+        "name": "Myanmar National Airlines",
+        "icao_code": "UBA",
+        "airline_callsign": "UNIONAIR",
+        "country": "Myanmar",
+        "country_code": "MM"
+    },
+    {
+        "iata_code": "UE",
+        "name": "Ultimate Air Shuttle",
+        "icao_code": "UJC",
+        "airline_callsign": "ULTIMATE",
+        "country": "United States",
+        "country_code": "US"
+    },
+    {
+        "iata_code": "UG",
+        "name": "Tunisair Express",
+        "icao_code": "TUX",
+        "airline_callsign": "TULPA",
+        "country": "Kazakhstan",
+        "country_code": "KZ"
+    },
+    {
+        "iata_code": "UH",
+        "name": "AtlasGlobal Ukraine",
+        "icao_code": "UJX",
+        "airline_callsign": "ATLAS UKRAINE",
+        "country": "Ukraine",
+        "country_code": "UA"
+    },
+    {
+        "iata_code": "UI",
+        "name": "Auric Air",
+        "icao_code": "AUK",
+        "airline_callsign": "",
+        "country": "United Kingdom",
+        "country_code": "GB"
+    },
+    {
+        "iata_code": "UJ",
+        "name": "ALMasria Universal Airlines",
+        "icao_code": "LMU",
+        "airline_callsign": "ALMASRIA",
+        "country": "Egypt",
+        "country_code": "EG"
+    },
+    {
+        "iata_code": "UK",
+        "name": "Vistara",
+        "icao_code": "VTI",
+        "airline_callsign": "Vistara",
+        "country": "India",
+        "country_code": "IN"
+    },
+    {
+        "iata_code": "SA",
+        "name": "South African Airways",
+        "icao_code": "SAA",
+        "airline_callsign": "SPRINGBOK",
+        "country": "South Africa",
+        "country_code": "ZA"
+    },
+    {
+        "iata_code": "SK",
+        "name": "SAS Scandinavian",
+        "icao_code": "SAS",
+        "airline_callsign": "SCANDINAVIAN",
+        "country": "Sweden",
+        "country_code": "SE"
+    },
+    {
+        "iata_code": "UM",
+        "name": "Air Zimbabwe",
+        "icao_code": "AZW",
+        "airline_callsign": "AIR ZIMBABWE",
+        "country": "Zimbabwe",
+        "country_code": "ZW"
+    },
+    {
+        "iata_code": "UP",
+        "name": "Bahamasair",
+        "icao_code": "BHS",
+        "airline_callsign": "BAHAMAS",
+        "country": "Bahamas",
+        "country_code": "BS"
+    },
+    {
+        "iata_code": "UT",
+        "name": "Utair",
+        "icao_code": "UTA",
+        "airline_callsign": "UTAIR",
+        "country": "Russian Federation",
+        "country_code": "RU"
+    },
+    {
+        "iata_code": "UZ",
+        "name": "Buraq Air",
+        "icao_code": "BRQ",
+        "airline_callsign": "BURAQAIR",
+        "country": "Libya",
+        "country_code": "LY"
+    },
+    {
+        "iata_code": "V0",
+        "name": "Conviasa",
+        "icao_code": "VCV",
+        "airline_callsign": "CONVIASA",
+        "country": "Venezuela",
+        "country_code": "VE"
+    },
+    {
+        "iata_code": "V4",
+        "name": "Vieques Air Link",
+        "icao_code": "VES",
+        "airline_callsign": "VIEQUES",
+        "country": "United States",
+        "country_code": "US"
+    },
+    {
+        "iata_code": "V5",
+        "name": "Aerovias DAP",
+        "icao_code": "DAP",
+        "airline_callsign": "DAP",
+        "country": "Chile",
+        "country_code": "CL"
+    },
+    {
+        "iata_code": "V6",
+        "name": "VI Airlink",
+        "icao_code": "VIL",
+        "airline_callsign": "TURTLE DOVE",
+        "country": "British Virgin Islands",
+        "country_code": "VG"
+    },
+    {
+        "iata_code": "TG",
+        "name": "THAI airways",
+        "icao_code": "THA",
+        "airline_callsign": "THAI",
+        "country": "Thailand",
+        "country_code": "TH"
+    },
+    {
+        "iata_code": "UA",
+        "name": "United Airlines",
+        "icao_code": "UAL",
+        "airline_callsign": "UNITED",
+        "country": "United States",
+        "country_code": "US"
+    },
+    {
+        "iata_code": "SN",
+        "name": "Brussels Airlines",
+        "icao_code": "BEL",
+        "airline_callsign": "BEE-LINE",
+        "country": "Belgium",
+        "country_code": "BE"
+    },
+    {
+        "iata_code": "SQ",
+        "name": "Singapore Airlines",
+        "icao_code": "SIA",
+        "airline_callsign": "SINGAPORE",
+        "country": "Singapore",
+        "country_code": "SG"
+    },
+    {
+        "iata_code": "TK",
+        "name": "Turkish Airlines",
+        "icao_code": "THY",
+        "airline_callsign": "TURKISH",
+        "country": "Turkey",
+        "country_code": "TR"
+    },
+    {
+        "iata_code": "TP",
+        "name": "TAP Air Portugal",
+        "icao_code": "TAP",
+        "airline_callsign": "AIR PORTUGAL",
+        "country": "Portugal",
+        "country_code": "PT"
+    },
+    {
+        "iata_code": "UL",
+        "name": "SriLankan Airlines",
+        "icao_code": "ALK",
+        "airline_callsign": "SRILANKAN",
+        "country": "Sri Lanka",
+        "country_code": "LK"
+    },
+    {
+        "iata_code": "SV",
+        "name": "Saudia",
+        "icao_code": "SVA",
+        "airline_callsign": "SAUDIA",
+        "country": "Saudi Arabia",
+        "country_code": "SA"
+    },
+    {
+        "iata_code": "SU",
+        "name": "Aeroflot",
+        "icao_code": "AFL",
+        "airline_callsign": "AEROFLOT",
+        "country": "Russian Federation",
+        "country_code": "RU"
+    },
+    {
+        "iata_code": "UX",
+        "name": "Air Europa",
+        "icao_code": "AEA",
+        "airline_callsign": "EUROPA",
+        "country": "Spain",
+        "country_code": "ES"
+    },
+    {
+        "iata_code": "UU",
+        "name": "Air Austral",
+        "icao_code": "REU",
+        "airline_callsign": "REUNION",
+        "country": "France",
+        "country_code": "FR"
+    },
+    {
+        "iata_code": "SL",
+        "name": "Thai Lion Air",
+        "icao_code": "TLM",
+        "airline_callsign": "MENTARI",
+        "country": "Thailand",
+        "country_code": "TH"
+    },
+    {
+        "iata_code": "UQ",
+        "name": "Urumqi Air",
+        "icao_code": "CUH",
+        "airline_callsign": "LOULAN",
+        "country": "China",
+        "country_code": "CN"
+    },
+    {
+        "iata_code": "UO",
+        "name": "HK Express",
+        "icao_code": "HKE",
+        "airline_callsign": "HONGKONG SHUTTLE",
+        "country": "Hong Kong",
+        "country_code": "HK"
+    },
+    {
+        "iata_code": "TZ",
+        "name": "Scoot",
+        "icao_code": "SCO",
+        "airline_callsign": "SWEDCOPTER",
+        "country": "Sweden",
+        "country_code": "SE"
+    },
+    {
+        "iata_code": "SG",
+        "name": "SpiceJet",
+        "icao_code": "SEJ",
+        "airline_callsign": "SPICEJET",
+        "country": "India",
+        "country_code": "IN"
+    },
+    {
+        "iata_code": "TT",
+        "name": "Tigerair Australia",
+        "icao_code": "TGG",
+        "airline_callsign": "TIGGOZ",
+        "country": "Australia",
+        "country_code": "AU"
+    },
+    {
+        "iata_code": "TW",
+        "name": "T'way Air",
+        "icao_code": "TWB",
+        "airline_callsign": "TWAYAIR",
+        "country": "South Korea",
+        "country_code": "KR"
+    },
+    {
+        "iata_code": "U2",
+        "name": "easyJet",
+        "icao_code": "EZY",
+        "airline_callsign": "EASY",
+        "country": "United Kingdom",
+        "country_code": "GB"
+    },
+    {
+        "iata_code": "TO",
+        "name": "Transavia France",
+        "icao_code": "TVF",
+        "airline_callsign": "FRANCE SOLEIL",
+        "country": "France",
+        "country_code": "FR"
+    },
+    {
+        "iata_code": "TB",
+        "name": "TUI fly Belgium",
+        "icao_code": "JAF",
+        "airline_callsign": "BEAUTY",
+        "country": "Belgium",
+        "country_code": "BE"
+    },
+    {
+        "iata_code": "V7",
+        "name": "Volotea",
+        "icao_code": "VOE",
+        "airline_callsign": "VOLOTEA",
+        "country": "Spain",
+        "country_code": "ES"
+    },
+    {
+        "iata_code": "SY",
+        "name": "Sun Country Airlines",
+        "icao_code": "SCX",
+        "airline_callsign": "SUN COUNTRY",
+        "country": "United States",
+        "country_code": "US"
+    },
+    {
+        "iata_code": "V8",
+        "name": "Iliamna Air Taxi",
+        "icao_code": "IAR",
+        "airline_callsign": "ILIAMNA AIR",
+        "country": "United States",
+        "country_code": "US"
+    },
+    {
+        "iata_code": "VA",
+        "name": "Virgin Australia",
+        "icao_code": "VOZ",
+        "airline_callsign": "VELOCITY",
+        "country": "Australia",
+        "country_code": "AU"
+    },
+    {
+        "iata_code": "XL",
+        "name": "LATAM Ecuador",
+        "icao_code": "LNE",
+        "airline_callsign": "AEROLANE",
+        "country": "Ecuador",
+        "country_code": "EC"
+    },
+    {
+        "iata_code": "VH",
+        "name": "Aeropostal",
+        "icao_code": "ALV",
+        "airline_callsign": "AEROPOSTAL",
+        "country": "Venezuela",
+        "country_code": "VE"
+    },
+    {
+        "iata_code": "VM",
+        "name": "Max Air",
+        "icao_code": "NGL",
+        "airline_callsign": "MAXAIR NIGERIA",
+        "country": "Nigeria",
+        "country_code": "NG"
+    },
+    {
+        "iata_code": "VP",
+        "name": "Flyme",
+        "icao_code": "VQI",
+        "airline_callsign": "",
+        "country": "Maldives",
+        "country_code": "MV"
+    },
+    {
+        "iata_code": "VQ",
+        "name": "Novoair",
+        "icao_code": "NVQ",
+        "airline_callsign": "NOVO AIR",
+        "country": "Bangladesh",
+        "country_code": "BD"
+    },
+    {
+        "iata_code": "VR",
+        "name": "Cabo Verde Airlines",
+        "icao_code": "TCV",
+        "airline_callsign": "CABOVERDE",
+        "country": "Cape Verde",
+        "country_code": "CV"
+    },
+    {
+        "iata_code": "VS",
+        "name": "Virgin Atlantic",
+        "icao_code": "VIR",
+        "airline_callsign": "VIRGIN",
+        "country": "United Kingdom",
+        "country_code": "GB"
+    },
+    {
+        "iata_code": "VT",
+        "name": "Air Tahiti",
+        "icao_code": "VTA",
+        "airline_callsign": "AIR TAHITI",
+        "country": "French Polynesia",
+        "country_code": "PF"
+    },
+    {
+        "iata_code": "VV",
+        "name": "Viva Air Peru",
+        "icao_code": "VPE",
+        "airline_callsign": "VIVA PERU",
+        "country": "Peru",
+        "country_code": "PE"
+    },
+    {
+        "iata_code": "VW",
+        "name": "Aeromar",
+        "icao_code": "TAO",
+        "airline_callsign": "TRANS-AEROMAR",
+        "country": "Mexico",
+        "country_code": "MX"
+    },
+    {
+        "iata_code": "VZ",
+        "name": "Thai Vietjet Air",
+        "icao_code": "TVJ",
+        "airline_callsign": "THAIVIET JET",
+        "country": "Thailand",
+        "country_code": "TH"
+    },
+    {
+        "iata_code": "W2",
+        "name": "FlexFlight",
+        "icao_code": "FXT",
+        "airline_callsign": "",
+        "country": "Denmark",
+        "country_code": "DK"
+    },
+    {
+        "iata_code": "W3",
+        "name": "Arik Air",
+        "icao_code": "ARA",
+        "airline_callsign": "ARIK AIR",
+        "country": "Nigeria",
+        "country_code": "NG"
+    },
+    {
+        "iata_code": "W5",
+        "name": "Mahan Air",
+        "icao_code": "IRM",
+        "airline_callsign": "MAHAN AIR",
+        "country": "Iran",
+        "country_code": "IR"
+    },
+    {
+        "iata_code": "W7",
+        "name": "Wings of Lebanon",
+        "icao_code": "WLB",
+        "airline_callsign": "WING LEBANON",
+        "country": "Lebanon",
+        "country_code": "LB"
+    },
+    {
+        "iata_code": "W9",
+        "name": "Wizz Air UK",
+        "icao_code": "WUK",
+        "airline_callsign": "WIZZ GO",
+        "country": "United Kingdom",
+        "country_code": "GB"
+    },
+    {
+        "iata_code": "WA",
+        "name": "KLM Cityhopper",
+        "icao_code": "KLC",
+        "airline_callsign": "CITY",
+        "country": "Netherlands",
+        "country_code": "NL"
+    },
+    {
+        "iata_code": "WB",
+        "name": "RwandAir",
+        "icao_code": "RWD",
+        "airline_callsign": "RWANDAIR",
+        "country": "Rwanda",
+        "country_code": "RW"
+    },
+    {
+        "iata_code": "WC",
+        "name": "Avianca Honduras",
+        "icao_code": "ISV",
+        "airline_callsign": "",
+        "country": "Honduras",
+        "country_code": "HN"
+    },
+    {
+        "iata_code": "WE",
+        "name": "THAI Smile",
+        "icao_code": "THD",
+        "airline_callsign": "THAI SMILE",
+        "country": "Thailand",
+        "country_code": "TH"
+    },
+    {
+        "iata_code": "WF",
+        "name": "Wider\u00f8e",
+        "icao_code": "WIF",
+        "airline_callsign": "WIDEROE",
+        "country": "Norway",
+        "country_code": "NO"
+    },
+    {
+        "iata_code": "WI",
+        "name": "White Airways",
+        "icao_code": "WHT",
+        "airline_callsign": "WHITEJET",
+        "country": "Portugal",
+        "country_code": "PT"
+    },
+    {
+        "iata_code": "WK",
+        "name": "Edelweiss Air",
+        "icao_code": "EDW",
+        "airline_callsign": "EDELWEISS",
+        "country": "Switzerland",
+        "country_code": "CH"
+    },
+    {
+        "iata_code": "WM",
+        "name": "Winair",
+        "icao_code": "WIA",
+        "airline_callsign": "WINDWARD",
+        "country": "Netherlands",
+        "country_code": "NL"
+    },
+    {
+        "iata_code": "WQ",
+        "name": "Swift Air",
+        "icao_code": "SWQ",
+        "airline_callsign": "SWIFTFLIGHT",
+        "country": "United States",
+        "country_code": "US"
+    },
+    {
+        "iata_code": "WT",
+        "name": "Wasaya Airways",
+        "icao_code": "WSG",
+        "airline_callsign": "WASAYA",
+        "country": "Canada",
+        "country_code": "CA"
+    },
+    {
+        "iata_code": "WU",
+        "name": "Jetways Airlines",
+        "icao_code": "JWX",
+        "airline_callsign": "JETWAYS",
+        "country": "Kenya",
+        "country_code": "KE"
+    },
+    {
+        "iata_code": "WV",
+        "name": "Westair Aviation",
+        "icao_code": "WAA",
+        "airline_callsign": "WESTAIR WINGS",
+        "country": "Namibia",
+        "country_code": "NA"
+    },
+    {
+        "iata_code": "WY",
+        "name": "Oman Air",
+        "icao_code": "OMA",
+        "airline_callsign": "OMAN AIR",
+        "country": "Oman",
+        "country_code": "OM"
+    },
+    {
+        "iata_code": "WZ",
+        "name": "Red Wings",
+        "icao_code": "RWZ",
+        "airline_callsign": "",
+        "country": "Russian Federation",
+        "country_code": "RU"
+    },
+    {
+        "iata_code": "X5",
+        "name": "Air Europa Express",
+        "icao_code": "OVA",
+        "airline_callsign": "AERONOVA",
+        "country": "Spain",
+        "country_code": "ES"
+    },
+    {
+        "iata_code": "XC",
+        "name": "Corendon Airlines",
+        "icao_code": "CAI",
+        "airline_callsign": "CORENDON",
+        "country": "Turkey",
+        "country_code": "TR"
+    },
+    {
+        "iata_code": "XE",
+        "name": "JetSuiteX",
+        "icao_code": "JSX",
+        "airline_callsign": "BIGSTRIPE",
+        "country": "United States",
+        "country_code": "US"
+    },
+    {
+        "iata_code": "XK",
+        "name": "Air Corsica",
+        "icao_code": "CCM",
+        "airline_callsign": "CORSICA",
+        "country": "France",
+        "country_code": "FR"
+    },
+    {
+        "iata_code": "XN",
+        "name": "XpressAir",
+        "icao_code": "XAR",
+        "airline_callsign": "XPRESS",
+        "country": "Indonesia",
+        "country_code": "ID"
+    },
+    {
+        "iata_code": "XR",
+        "name": "Corendon Airlines Europe",
+        "icao_code": "CXI",
+        "airline_callsign": "SHANXI",
+        "country": "China",
+        "country_code": "CN"
+    },
+    {
+        "iata_code": "XT",
+        "name": "Indonesia AirAsia X",
+        "icao_code": "IDX",
+        "airline_callsign": "",
+        "country": "Indonesia",
+        "country_code": "ID"
+    },
+    {
+        "iata_code": "XU",
+        "name": "African Express Airways",
+        "icao_code": "AXK",
+        "airline_callsign": "EXPRESS JET",
+        "country": "Kenya",
+        "country_code": "KE"
+    },
+    {
+        "iata_code": "Y2",
+        "name": "Air Century",
+        "icao_code": "CEY",
+        "airline_callsign": "",
+        "country": "Dominican Republic",
+        "country_code": "DO"
+    },
+    {
+        "iata_code": "Y6",
+        "name": "AB Aviation",
+        "icao_code": "AYD",
+        "airline_callsign": "",
+        "country": "Mexico",
+        "country_code": "MX"
+    },
+    {
+        "iata_code": "Y7",
+        "name": "NordStar",
+        "icao_code": "TYA",
+        "airline_callsign": "TAIMYR",
+        "country": "Russian Federation",
+        "country_code": "RU"
+    },
+    {
+        "iata_code": "Y8",
+        "name": "Suparna Airlines",
+        "icao_code": "YZR",
+        "airline_callsign": "YANGTZE RIVER",
+        "country": "China",
+        "country_code": "CN"
+    },
+    {
+        "iata_code": "Y9",
+        "name": "Kish Air",
+        "icao_code": "IRK",
+        "airline_callsign": "KISHAIR",
+        "country": "Iran",
+        "country_code": "IR"
+    },
+    {
+        "iata_code": "YC",
+        "name": "Yamal Airlines",
+        "icao_code": "LLM",
+        "airline_callsign": "YAMAL",
+        "country": "Russian Federation",
+        "country_code": "RU"
+    },
+    {
+        "iata_code": "YE",
+        "name": "YANAIR",
+        "icao_code": "ANR",
+        "airline_callsign": "YANAIR",
+        "country": "Ukraine",
+        "country_code": "UA"
+    },
+    {
+        "iata_code": "YH",
+        "name": "Yangon Airways",
+        "icao_code": "AYG",
+        "airline_callsign": "AIR YANGON",
+        "country": "Myanmar",
+        "country_code": "MM"
+    },
+    {
+        "iata_code": "YJ",
+        "name": "Asian Wings Airways",
+        "icao_code": "AWM",
+        "airline_callsign": "",
+        "country": "Myanmar",
+        "country_code": "MM"
+    },
+    {
+        "iata_code": "YK",
+        "name": "Avia Traffic Company",
+        "icao_code": "AVJ",
+        "airline_callsign": "ATOMIC",
+        "country": "Kyrgyzstan",
+        "country_code": "KG"
+    },
+    {
+        "iata_code": "YL",
+        "name": "Libyan Wings",
+        "icao_code": "LWA",
+        "airline_callsign": "LIBYAN WINGS",
+        "country": "Libya",
+        "country_code": "LY"
+    },
+    {
+        "iata_code": "YM",
+        "name": "Montenegro Airlines",
+        "icao_code": "MGX",
+        "airline_callsign": "MONTENEGRO",
+        "country": "Montenegro",
+        "country_code": "ME"
+    },
+    {
+        "iata_code": "YN",
+        "name": "Air Creebec",
+        "icao_code": "CRQ",
+        "airline_callsign": "CREE",
+        "country": "Canada",
+        "country_code": "CA"
+    },
+    {
+        "iata_code": "YO",
+        "name": "Heli Air Monaco",
+        "icao_code": "MCM",
+        "airline_callsign": "HELI AIR",
+        "country": "Monaco",
+        "country_code": "MC"
+    },
+    {
+        "iata_code": "YP",
+        "name": "Perimeter Aviation",
+        "icao_code": "PAG",
+        "airline_callsign": "PERIMETER",
+        "country": "Canada",
+        "country_code": "CA"
+    },
+    {
+        "iata_code": "YQ",
+        "name": "TAR Aerolineas",
+        "icao_code": "LCT",
+        "airline_callsign": "STELLAIR",
+        "country": "Spain",
+        "country_code": "ES"
+    },
+    {
+        "iata_code": "YS",
+        "name": "HOP! Regional",
+        "icao_code": "RAE",
+        "airline_callsign": "REGIONAL EUROPE",
+        "country": "France",
+        "country_code": "FR"
+    },
+    {
+        "iata_code": "YT",
+        "name": "Yeti Airlines",
+        "icao_code": "NYT",
+        "airline_callsign": "YETI AIRLINES",
+        "country": "Nepal",
+        "country_code": "NP"
+    },
+    {
+        "iata_code": "YU",
+        "name": "EuroAtlantic Airways",
+        "icao_code": "MMZ",
+        "airline_callsign": "EUROATLANTIC",
+        "country": "Portugal",
+        "country_code": "PT"
+    },
+    {
+        "iata_code": "Z7",
+        "name": "Amaszonas Uruguay",
+        "icao_code": "AUZ",
+        "airline_callsign": "AUSTRALIAN",
+        "country": "Australia",
+        "country_code": "AU"
+    },
+    {
+        "iata_code": "Z8",
+        "name": "Amaszonas",
+        "icao_code": "AZN",
+        "airline_callsign": "",
+        "country": "Bolivia",
+        "country_code": "BO"
+    },
+    {
+        "iata_code": "Z9",
+        "name": "Bek Air",
+        "icao_code": "BEK",
+        "airline_callsign": "BERKUT",
+        "country": "Kazakhstan",
+        "country_code": "KZ"
+    },
+    {
+        "iata_code": "ZA",
+        "name": "Sky Angkor Airlines",
+        "icao_code": "SWM",
+        "airline_callsign": "",
+        "country": "Cambodia",
+        "country_code": "KH"
+    },
+    {
+        "iata_code": "YW",
+        "name": "Iberia Regional by Air Nostrum",
+        "icao_code": "ANE",
+        "airline_callsign": "AIR NOSTRUM",
+        "country": "Spain",
+        "country_code": "ES"
+    },
+    {
+        "iata_code": "VN",
+        "name": "Vietnam Airlines",
+        "icao_code": "HVN",
+        "airline_callsign": "VIET NAM AIRLINES",
+        "country": "Vietnam",
+        "country_code": "VN"
+    },
+    {
+        "iata_code": "VY",
+        "name": "Vueling",
+        "icao_code": "VLG",
+        "airline_callsign": "VUELING",
+        "country": "Spain",
+        "country_code": "ES"
+    },
+    {
+        "iata_code": "Y5",
+        "name": "Golden Myanmar Airlines",
+        "icao_code": "GMR",
+        "airline_callsign": "GOLDEN MYANMAR",
+        "country": "Myanmar",
+        "country_code": "MM"
+    },
+    {
+        "iata_code": "XW",
+        "name": "NokScoot",
+        "icao_code": "NCT",
+        "airline_callsign": "BIG BIRD",
+        "country": "Thailand",
+        "country_code": "TH"
+    },
+    {
+        "iata_code": "Z2",
+        "name": "Philippines AirAsia",
+        "icao_code": "APG",
+        "airline_callsign": "AIR PEOPLE",
+        "country": "Thailand",
+        "country_code": "TH"
+    },
+    {
+        "iata_code": "XO",
+        "name": "SEAir International",
+        "icao_code": "SGD",
+        "airline_callsign": "AIR BISHKEK",
+        "country": "Kyrgyzstan",
+        "country_code": "KG"
+    },
+    {
+        "iata_code": "XJ",
+        "name": "Thai AirAsia X",
+        "icao_code": "TAX",
+        "airline_callsign": "EXPRESS WING",
+        "country": "Thailand",
+        "country_code": "TH"
+    },
+    {
+        "iata_code": "VZ",
+        "name": "Sevenair",
+        "icao_code": "RVP",
+        "airline_callsign": "AEROVIP",
+        "country": "Portugal",
+        "country_code": "PT"
+    },
+    {
+        "iata_code": "VJ",
+        "name": "Vietjet",
+        "icao_code": "VJC",
+        "airline_callsign": "VIETJET",
+        "country": "Vietnam",
+        "country_code": "VN"
+    },
+    {
+        "iata_code": "XQ",
+        "name": "SunExpress",
+        "icao_code": "SXS",
+        "airline_callsign": "SUNEXPRESS",
+        "country": "Turkey",
+        "country_code": "TR"
+    },
+    {
+        "iata_code": "XG",
+        "name": "SunExpress Deutschland",
+        "icao_code": "SXD",
+        "airline_callsign": "SUNRISE",
+        "country": "Germany",
+        "country_code": "DE"
+    },
+    {
+        "iata_code": "X3",
+        "name": "TUI fly Deutschland",
+        "icao_code": "TUI",
+        "airline_callsign": "",
+        "country": "Tunisia",
+        "country_code": "TN"
+    },
+    {
+        "iata_code": "W6",
+        "name": "Wizz Air",
+        "icao_code": "WZZ",
+        "airline_callsign": "WIZZAIR",
+        "country": "Hungary",
+        "country_code": "HU"
+    },
+    {
+        "iata_code": "VE",
+        "name": "EasyFly",
+        "icao_code": "EFY",
+        "airline_callsign": "",
+        "country": "Colombia",
+        "country_code": "CO"
+    },
+    {
+        "iata_code": "VB",
+        "name": "Viva Aerobus",
+        "icao_code": "VIV",
+        "airline_callsign": "AEROENLACES",
+        "country": "Mexico",
+        "country_code": "MX"
+    },
+    {
+        "iata_code": "Y4",
+        "name": "Volaris",
+        "icao_code": "VOI",
+        "airline_callsign": "VOLARIS",
+        "country": "Mexico",
+        "country_code": "MX"
+    },
+    {
+        "iata_code": "XY",
+        "name": "Flynas",
+        "icao_code": "KNE",
+        "airline_callsign": "",
+        "country": "Saudi Arabia",
+        "country_code": "SA"
+    },
+    {
+        "iata_code": "WN",
+        "name": "Southwest Airlines",
+        "icao_code": "SWA",
+        "airline_callsign": "SOUTHWEST",
+        "country": "United States",
+        "country_code": "US"
+    },
+    {
+        "iata_code": "WG",
+        "name": "Sunwing Airlines",
+        "icao_code": "SWG",
+        "airline_callsign": "SUNWING",
+        "country": "Canada",
+        "country_code": "CA"
+    },
+    {
+        "iata_code": "VC",
+        "name": "ViaAir",
+        "icao_code": "SRY",
+        "airline_callsign": "",
+        "country": "Armenia",
+        "country_code": "AM"
+    },
+    {
+        "iata_code": "WS",
+        "name": "WestJet",
+        "icao_code": "WJA",
+        "airline_callsign": "WESTJET",
+        "country": "Canada",
+        "country_code": "CA"
+    },
+    {
+        "iata_code": "WR",
+        "name": "WestJet Encore",
+        "icao_code": "WEN",
+        "airline_callsign": "ENCORE",
+        "country": "Canada",
+        "country_code": "CA"
+    },
+    {
+        "iata_code": "WO",
+        "name": "Swoop",
+        "icao_code": "WSW",
+        "airline_callsign": "SWOOP",
+        "country": "Canada",
+        "country_code": "CA"
+    },
+    {
+        "iata_code": "ZI",
+        "name": "Aigle Azur",
+        "icao_code": "AAF",
+        "airline_callsign": "AIGLE AZUR",
+        "country": "France",
+        "country_code": "FR"
+    },
+    {
+        "iata_code": "ZL",
+        "name": "Regional Express",
+        "icao_code": "RXA",
+        "airline_callsign": "REX",
+        "country": "Australia",
+        "country_code": "AU"
+    },
+    {
+        "iata_code": "ZP",
+        "name": "Paranair",
+        "icao_code": "AZP",
+        "airline_callsign": "ARIZONA PACIFIC",
+        "country": "United States",
+        "country_code": "US"
+    },
+    {
+        "iata_code": "ZQ",
+        "name": "Azman Air",
+        "icao_code": "AZM",
+        "airline_callsign": "AEROCOZUMEL",
+        "country": "Mexico",
+        "country_code": "MX"
+    },
+    {
+        "iata_code": "ZX",
+        "name": "Air Canada Express",
+        "icao_code": "GGN",
+        "airline_callsign": "GEORGIAN",
+        "country": "Canada",
+        "country_code": "CA"
+    },
+    {
+        "iata_code": "5M",
+        "name": "Hi Fly Malta",
+        "icao_code": "HFM",
+        "airline_callsign": "MOONRAKER",
+        "country": "Malta",
+        "country_code": "MT"
+    },
+    {
+        "iata_code": "BR",
+        "name": "EVA Air",
+        "icao_code": "EVA",
+        "airline_callsign": "EVA",
+        "country": "Taiwan",
+        "country_code": "TW"
+    },
+    {
+        "iata_code": "JP",
+        "name": "Adria Airways",
+        "icao_code": "ADR",
+        "airline_callsign": "",
+        "country": "Slovenia",
+        "country_code": "SI"
+    },
+    {
+        "iata_code": "ET",
+        "name": "Ethiopian Airlines",
+        "icao_code": "ETH",
+        "airline_callsign": "ETHIOPIAN",
+        "country": "Ethiopia",
+        "country_code": "ET"
+    },
+    {
+        "iata_code": "OS",
+        "name": "Austrian Airlines",
+        "icao_code": "AUA",
+        "airline_callsign": "AUSTRIAN",
+        "country": "Austria",
+        "country_code": "AT"
+    },
+    {
+        "iata_code": "NH",
+        "name": "All Nippon Airways",
+        "icao_code": "ANA",
+        "airline_callsign": "ALL NIPPON",
+        "country": "Japan",
+        "country_code": "JP"
+    },
+    {
+        "iata_code": "ZH",
+        "name": "Shenzhen Airlines",
+        "icao_code": "CSZ",
+        "airline_callsign": "SHENZHEN AIR",
+        "country": "China",
+        "country_code": "CN"
+    },
+    {
+        "iata_code": "4M",
+        "name": "LATAM Argentina",
+        "icao_code": "DSM",
+        "airline_callsign": "LAN AR",
+        "country": "Argentina",
+        "country_code": "AR"
+    },
+    {
+        "iata_code": "CJ",
+        "name": "BA CityFlyer",
+        "icao_code": "CFE",
+        "airline_callsign": "FLYER",
+        "country": "United Kingdom",
+        "country_code": "GB"
+    },
+    {
+        "iata_code": "GH",
+        "name": "Globus Airlines",
+        "icao_code": "GLP",
+        "airline_callsign": "GLOBUS",
+        "country": "Russian Federation",
+        "country_code": "RU"
+    },
+    {
+        "iata_code": "XM",
+        "name": "J-Air",
+        "icao_code": "JLJ",
+        "airline_callsign": "J-AIR",
+        "country": "Japan",
+        "country_code": "JP"
+    },
+    {
+        "iata_code": "QE",
+        "name": "Qatar Executive",
+        "icao_code": "QQE",
+        "airline_callsign": "",
+        "country": "Qatar",
+        "country_code": "QA"
+    },
+    {
+        "iata_code": "RY",
+        "name": "Jiangxi Air",
+        "icao_code": "CJX",
+        "airline_callsign": "AIR CRANE",
+        "country": "China",
+        "country_code": "CN"
+    },
+    {
+        "iata_code": "KE",
+        "name": "Korean Air",
+        "icao_code": "KAL",
+        "airline_callsign": "KOREANAIR",
+        "country": "South Korea",
+        "country_code": "KR"
+    },
+    {
+        "iata_code": "GA",
+        "name": "Garuda Indonesia",
+        "icao_code": "GIA",
+        "airline_callsign": "INDONESIA",
+        "country": "Indonesia",
+        "country_code": "ID"
+    },
+    {
+        "iata_code": "JN",
+        "name": "Joon",
+        "icao_code": "JON",
+        "airline_callsign": "",
+        "country": "Ghana",
+        "country_code": "GH"
+    },
+    {
+        "iata_code": "T9",
+        "name": "Turpial Airlines",
+        "icao_code": "VTU",
+        "airline_callsign": "TURPIAL",
+        "country": "Venezuela",
+        "country_code": "VE"
+    },
+    {
+        "iata_code": "ZM",
+        "name": "Air Manas",
+        "icao_code": "MBB",
+        "airline_callsign": "AIR MANAS",
+        "country": "Kyrgyzstan",
+        "country_code": "KG"
+    },
+    {
+        "iata_code": "DG",
+        "name": "Cebgo",
+        "icao_code": "SRQ",
+        "airline_callsign": "SEAIR",
+        "country": "Philippines",
+        "country_code": "PH"
+    },
+    {
+        "iata_code": "5J",
+        "name": "Cebu Pacific",
+        "icao_code": "CEB",
+        "airline_callsign": "CEBU",
+        "country": "Philippines",
+        "country_code": "PH"
+    },
+    {
+        "iata_code": "NZ",
+        "name": "Air New Zealand",
+        "icao_code": "ANZ",
+        "airline_callsign": "NEW ZEALAND",
+        "country": "New Zealand",
+        "country_code": "NZ"
+    },
+    {
+        "iata_code": "TR",
+        "name": "Scoot",
+        "icao_code": "TGW",
+        "airline_callsign": "SCOOTER",
+        "country": "Singapore",
+        "country_code": "SG"
+    },
+    {
+        "iata_code": "5K",
+        "name": "Hi Fly",
+        "icao_code": "HFY",
+        "airline_callsign": "SKY FLYER",
+        "country": "Portugal",
+        "country_code": "PT"
+    },
+    {
+        "iata_code": "HG",
+        "name": "Hibernian Airlines",
+        "icao_code": "HBN",
+        "airline_callsign": "",
+        "country": "Ireland",
+        "country_code": "IE"
+    },
+    {
+        "iata_code": "QY",
+        "name": "European Air Transport",
+        "icao_code": "BCS",
+        "airline_callsign": "EUROTRANS",
+        "country": "Germany",
+        "country_code": "DE"
+    },
+    {
+        "iata_code": "LW",
+        "name": "Lauda Europe",
+        "icao_code": "LDA",
+        "airline_callsign": "BEAUFORT",
+        "country": "Malta",
+        "country_code": "MT"
+    },
+    {
+        "iata_code": "AL",
+        "name": "Malta Air",
+        "icao_code": "MAY",
+        "airline_callsign": "BLUE MED",
+        "country": "Malta",
+        "country_code": "MT"
+    },
+    {
+        "iata_code": "RK",
+        "name": "Ryanair UK",
+        "icao_code": "RUK",
+        "airline_callsign": "BLUEMAX",
+        "country": "United Kingdom",
+        "country_code": "UK"
+    },
+    {
+        "iata_code": "5X",
+        "name": "United Parcel Service",
+        "icao_code": "UPS",
+        "airline_callsign": "UPS",
+        "country": "United States",
+        "country_code": "US"
+    },
+    {
+        "iata_code": "MC",
+        "name": "USTRANSCOMM",
+        "icao_code": "CMB",
+        "airline_callsign": "CAMBER",
+        "country": "United States",
+        "country_code": "US"
+    },
+    {
+        "iata_code": "W8",
+        "name": "Cargojet",
+        "icao_code": "CJT",
+        "airline_callsign": "CARGOJET",
+        "country": "Canada",
+        "country_code": "CA"
+    },
+    {
+        "iata_code": "JX",
+        "name": "Starlux",
+        "icao_code": "SJX",
+        "airline_callsign": "STARWALKER",
+        "country": "Taiwan",
+        "country_code": "TW"
+    }    
+]

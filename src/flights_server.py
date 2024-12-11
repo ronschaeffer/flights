@@ -4,7 +4,7 @@ import os
 import json
 
 # Third-party imports
-from fastapi import FastAPI, Response
+from fastapi import FastAPI, Response, HTTPException
 
 # Local application/library-specific imports
 
@@ -16,24 +16,48 @@ def get_file_content(file_path, media_type):
             content = file.read()
         return Response(content=content, media_type=media_type)
     else:
-        return {"msg": f"File '{file_path}' not found"}
+        raise HTTPException(status_code=404, detail=f"File '{file_path}' not found")
 
 @app.get("/output/{file_name}")
 async def read_json_file(file_name: str):
-    file_name = file_name.replace(".json", "")
-    file_path = f"../output/{file_name}.json"
+    base_directory = os.path.join(os.path.dirname(__file__), "../output")
+    if ".." in file_name or file_name.startswith("/"):
+        raise HTTPException(status_code=400, detail="Invalid file name")
+    file_path = os.path.join(base_directory, f"{file_name}.json")
+    if not os.path.abspath(file_path).startswith(os.path.abspath(base_directory)):
+        raise HTTPException(status_code=400, detail="Invalid file path")
+    return get_file_content(file_path, "application/json")
+
+@app.get("/{file_name}")
+async def read_output_file(file_name: str):
+    base_directory = os.path.join(os.path.dirname(__file__), "../output")
+    if ".." in file_name or file_name.startswith("/"):
+        raise HTTPException(status_code=400, detail="Invalid file name")
+    file_path = os.path.join(base_directory, f"{file_name}.json")
+    if not os.path.abspath(file_path).startswith(os.path.abspath(base_directory)):
+        raise HTTPException(status_code=400, detail="Invalid file path")
     return get_file_content(file_path, "application/json")
 
 @app.get("/logos/{file_name}")
 async def read_logo_file(file_name: str):
+    base_directory = os.path.join(os.path.dirname(__file__), "../assets/images/logos")
+    if ".." in file_name or file_name.startswith("/"):
+        raise HTTPException(status_code=400, detail="Invalid file name")
     file_name = file_name.rsplit(".", 1)[0].upper() + ".png"
-    file_path = f"../assets/logos/{file_name}"
+    file_path = os.path.join(base_directory, file_name)
+    if not os.path.abspath(file_path).startswith(os.path.abspath(base_directory)):
+        raise HTTPException(status_code=400, detail="Invalid file path")
     return get_file_content(file_path, "image/png")
 
 @app.get("/flags/{file_name}")
 async def read_flag_file(file_name: str):
+    base_directory = os.path.join(os.path.dirname(__file__), "../assets/images/flags")
+    if ".." in file_name or file_name.startswith("/"):
+        raise HTTPException(status_code=400, detail="Invalid file name")
     file_name = file_name.rsplit(".", 1)[0].lower() + ".png"
-    file_path = f"../assets/flags/{file_name}"
+    file_path = os.path.join(base_directory, file_name)
+    if not os.path.abspath(file_path).startswith(os.path.abspath(base_directory)):
+        raise HTTPException(status_code=400, detail="Invalid file path")
     return get_file_content(file_path, "image/png")
 
 def kill_process_on_port(port):
@@ -56,7 +80,7 @@ def start_server(request_port):
     kill_process_on_port(request_port)
     subprocess.run([
         "uvicorn",
-        "flights_server_module:app",
+        "flights_server:app",
         "--host", "0.0.0.0",
         "--port", str(request_port)
     ])

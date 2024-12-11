@@ -1,3 +1,7 @@
+# Logging
+LOG_LEVEL: "WARNING"  # DEBUG, INFO, WARNING, ERROR, CRITICAL
+LOG_KEYS: ["altitude", "longitude", "latitude"]  # Keys to log in case of an error
+
 # Check interval
 CHECK_INTERVAL: 15  # Seconds to wait between each check of the aircraft_dump_url
 
@@ -13,7 +17,8 @@ FASTAPI_PORT: 47474
 
 # Feed topics
 MQTT_TOPIC_VISIBLE: "dev/flights/visible"
-MQTT_TOPIC_CLOSEST_AIRCRAFT: "dev/flights/closest_aircraft"
+MQTT_TOPIC_CLOSEST_AIRCRAFT: "dev/flights/closest"
+MQTT_TOPIC_FLIGHTS: "dev/flights/all"
 
 # User location
 use_lat_lon_from_config: False # If False, replace by values from receiver dump file
@@ -44,7 +49,7 @@ ALTITUDE_UNIT: ft
 # Source
 DUMP_URL: 'http://10.10.30.139:30053/ajax/aircraft'
 CONFIG_FILE_PATH: "../config/config.yaml"
-EXAMPLE_DUMP_FILE_PATH: "../config/planefinder_dump_structure.json"
+REFERENCE_DUMP_FILE_PATH: "../config/planefinder_dump_structure.json"
 VISIBLE_JSON_FILE_PATH: "../output/visible.json"
 CLOSEST_AIRCRAFT_JSON_FILE_PATH: "../output/closest_aircraft.json"
 ALL_AIRCRAFT_JSON_FILE_PATH: "../output/all_aircraft.json"
