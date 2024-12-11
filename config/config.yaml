@@ -1,5 +1,5 @@
 # Logging
-LOG_LEVEL: "WARNING"  # DEBUG, INFO, WARNING, ERROR, CRITICAL
+LOG_LEVEL: "ERROR"  # DEBUG, INFO, WARNING, ERROR, CRITICAL
 LOG_KEYS: ["altitude", "longitude", "latitude"]  # Keys to log in case of an error
 
 # Check interval

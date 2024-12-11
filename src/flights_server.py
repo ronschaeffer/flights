@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 # Standard library imports
 import subprocess
 import os
@@ -63,7 +65,7 @@ async def read_flag_file(file_name: str):
 def kill_process_on_port(port):
     """Kill any process using the specified port owned by the current user."""
     try:
-        result = subprocess.check_output(f"netstat -nlp | grep :{port}", shell=True).decode()
+        result = subprocess.check_output(f"netstat -nlp 2>/dev/null | grep :{port}", shell=True).decode()
         for line in result.splitlines():
             parts = line.split()
             pid_info = parts[-1]  # Typically the last part contains PID/Program
@@ -72,12 +74,13 @@ def kill_process_on_port(port):
                 try:
                     os.kill(pid, 9)  # Send SIGKILL to the process
                 except PermissionError:
-                    print(f"Permission denied to kill process {pid}. Skipping...")
+                    print(f"\nHTTP SERVER: Permission denied to kill process port {pid}. Skipping...\n")
     except subprocess.CalledProcessError:
         pass  # If no process is found using the port, do nothing
 
 def start_server(request_port):
     kill_process_on_port(request_port)
+    print(f"\nHTTP SERVER: Attempting to start server on port {request_port}...\n")
     subprocess.run([
         "uvicorn",
         "flights_server:app",

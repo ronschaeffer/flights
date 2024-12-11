@@ -289,14 +289,79 @@ def create_flights_rich(flights, airlines_json, airports_json, aircraft_json, re
         try:
             altitude_str = flight_data.get("altitude", "")
             if altitude_str:
+
                 try:
-                    altitude = int(altitude_str)
-                    # ... (altitude conversion and update flight_rich_data) ...
+                    altitude_value = int(altitude_str)
+                    # Convert altitude to meters if needed
+                    if ALTITUDE_UNIT.lower() in ["m", "meters"]:
+                        altitude_str = str(int(float(altitude_str) * 0.3048)) # Convert feet to meters and back to string
+                    try:
+                        vert_rate = int(float(flight_data.get("vert_rate", 0)))
+                        altitude_trend_symbol = "↗" if vert_rate > 0 else "↘" if vert_rate < 0 else "→"
+                    except (ValueError, TypeError):
+                        vert_rate = ""
+                        altitude_trend_symbol = ""
+                    flight_rich_data.update({
+                        "altitude": f"{altitude_str}{ALTITUDE_UNIT}",
+                        "altitude_value": f"{altitude_str}",  # String
+                        "altitude_unit_of_measurement": ALTITUDE_UNIT,
+                        "altitude_trend_symbol": altitude_trend_symbol,
+                        "altitude_with_trend": f"{altitude_str}{ALTITUDE_UNIT} {altitude_trend_symbol}"
+                    })          
                 except ValueError as e:
                     # Try to sanitize the altitude string before converting to int
                     try:
-                        altitude_str = ''.join(filter(str.isdigit, altitude_str))
-                        altitude = int(altitude_str) if altitude_str else 0
+                        altitude_str = ''.join([c for c in altitude_str if c.isdigit()])
+                        altitude_value = int(altitude_str) if altitude_str else 0
+                        logger.warning("Sanitized altitude for flight: %s, original: %s, sanitized: %s", flight_id, flight_data.get("altitude"), altitude_str)
+                        # Convert altitude to meters if needed
+                        if ALTITUDE_UNIT.lower() in ["m", "meters"]:
+                            altitude_str = str(int(float(altitude_str) * 0.3048)) # Convert feet to meters and back to string
+                        try:
+                            vert_rate = int(float(flight_data.get("vert_rate", 0)))
+                            altitude_trend_symbol = "↗" if vert_rate > 0 else "↘" if vert_rate < 0 else "→"
+                        except (ValueError, TypeError):
+                            vert_rate = ""
+                            altitude_trend_symbol = ""
+                        flight_rich_data.update({
+                            "altitude": f"{altitude_str}{ALTITUDE_UNIT}",
+                            "altitude_value": f"{altitude_str}",  # String
+                            "altitude_unit_of_measurement": ALTITUDE_UNIT,
+                            "altitude_trend_symbol": altitude_trend_symbol,
+                            "altitude_with_trend": f"{altitude_str}{ALTITUDE_UNIT} {altitude_trend_symbol}"
+                        })
+                    except ValueError as e:
+                        logger.error("Error converting altitude to int for flight: %s, altitude: %s, error: %s", flight_id, flight_data.get("altitude"), e)
+
+
+
+
+
+
+
+                try:
+                    altitude_value = int(altitude_str)
+                    # ... (altitude conversion and update flight_rich_data) ...
+                    if ALTITUDE_UNIT.lower() in ["m", "meters"]:
+                        altitude_str = str(int(float(altitude_str) * 0.3048)) # Convert feetto meters and back to string
+                    try:
+                        vert_rate = int(float(flight_data.get("vert_rate", 0)))
+                        altitude_trend_symbol = "↗" if vert_rate > 0 else "↘" if vert_rate < 0 else "→"
+                    except (ValueError, TypeError):
+                        vert_rate = ""
+                        altitude_trend_symbol = ""
+                    flight_rich_data.update({
+                        "altitude": f"{altitude_str}{ALTITUDE_UNIT}",
+                        "altitude_value": f"{altitude_str}",  # String
+                        "altitude_unit_of_measurement": ALTITUDE_UNIT,
+                        "altitude_trend_symbol": altitude_trend_symbol,
+                        "altitude_with_trend": f"{altitude_str}{ALTITUDE_UNIT} {altitude_trend_symbol}"
+                    })          
+                except ValueError as e:
+                    # Try to sanitize the altitude string before converting to int
+                    try:
+                        altitude_str = ''.join([c for c in altitude_str if c.isdigit()])
+                        altitude_value = int(altitude_str) if altitude_str else 0
                         logger.warning("Sanitized altitude for flight: %s, original: %s, sanitized: %s", flight_id, flight_data.get("altitude"), altitude_str)
                         # ... (altitude conversion and update flight_rich_data) ...
                     except ValueError as e:
@@ -365,7 +430,7 @@ if __name__ == "__main__":
 
     def on_connect(client, userdata, flags, reason_code, properties):
         if reason_code == 0:
-            print("Connected successfully")
+            print(f"\nMQTT: Connected to broker as: {MQTT_CLIENT_ID}")
 
     mqtt_client.on_connect = on_connect
     mqtt_client.connect(MQTT_BROKER, MQTT_BROKER_PORT)
