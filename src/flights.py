@@ -14,12 +14,12 @@ import paho.mqtt.client as mqtt
 import yaml
 import haversine
 import shapely.geometry
-import pickle
 from tabulate import tabulate
 from flydenity import Parser
 
 # Local application/library-specific imports
 from flights_server import start_server
+from flight_counts import load_unique_flights_data, save_unique_flights_data, update_unique_flights, count_unique_flights_in_period, get_time_periods, calculate_averages
 
 def load_configuration(config_path):
     with open(config_path, 'r') as config_file:
@@ -57,14 +57,16 @@ def process_flights(receiver, reference_dump):
     }
     return flights
 
-def get_receiver_visible(flights):
+def get_receiver_visible(flights, unique_flights_counts, averages):
     logger.info("Processing visible flights data")
     current_time_utc = int(time.time())
     current_time_readable = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S")
     return {
         "visible_aircraft": len(flights),
         "last_update_utc": current_time_utc,
-        "last_update_readable": current_time_readable
+        "last_update_readable": current_time_readable,
+        "unique_flights": unique_flights_counts,
+        "average_flights": averages
     }
 
 def publish_receiver_visible(mqtt_client, visible, previous_visible_aircraft):
@@ -79,14 +81,20 @@ def publish_receiver_visible(mqtt_client, visible, previous_visible_aircraft):
 def print_receiver_visible(visible):
     logger.info("Printing visible aircraft data")
     print(f"\n\nRECEIVER STATS\n")
-    table = [[key, value] for key, value in visible.items()]
-    print(tabulate(table, headers=["Key", "Value"]))
+    table = []
+    for key, value in visible.items():
+        if key == "unique_flights" or key == "average_flights":
+            formatted_value = "\n".join([f"{sub_key}: {sub_value}" for sub_key, sub_value in value.items()])
+            table.append([key, formatted_value])
+        else:
+            table.append([key, value])
+    headers = ["Key", "Value"]
+    print(tabulate(table, headers=headers, tablefmt="simple"))
     print("\n")
-
-#######
 
 def write_to_file(filename, data):
     logger.info("Writing data to file: %s", filename)
+    os.makedirs(os.path.dirname(filename), exist_ok=True)
     with open(filename, 'w') as json_file:
         json.dump(data, json_file, indent=4)
 
@@ -162,9 +170,13 @@ def save_flights_within_defined_radius(file_path, flights, center, radius):
 
     write_filtered_flights_to_file(file_path, flights, filter_func)
 
-def pretty_print_flights(flights):
-    logger.info("Pretty printing flights data")
-    print(tabulate(flights.values(), headers="keys"))
+def print_enriched_flights(flights_rich):
+    logger.info("Printing all flights data")
+    print(f"\n\nENRICHED FLIGHTS\n")
+    for icao_id, flight_data in flights_rich.items():
+        print(f"ICAO ID: {icao_id}")
+        print(tabulate(flight_data.items(), headers=["Key", "Value"]))
+        print("\n")
 
 def create_flights_rich(flights, airlines_json, airports_json, aircraft_json, reg_parser, user_location, radius, defined_zone):
     """
@@ -460,30 +472,44 @@ if __name__ == "__main__":
     previous_visible_aircraft = {}
     previous_closest_aircraft = {}
 
+    # Ensure the storage directory exists
+    storage_directory = os.path.join(os.path.dirname(__file__), '..', 'storage')
+    os.makedirs(storage_directory, exist_ok=True)
+
+    # Load unique flights data
+    unique_flights_file = os.path.join(storage_directory, 'unique_flights_with_timestamps.pkl')
+    unique_flights_with_timestamps = load_unique_flights_data(unique_flights_file)
+
     while True:
         receiver = get_receiver_data(DUMP_URL, reference_dump)
         if not receiver:
             continue
         flights = process_flights(receiver, reference_dump)
         flights_rich = create_flights_rich(flights, airlines_json, airports_json, aircraft_json, reg_parser, (USER_LAT, USER_LON), RADIUS, defined_zone)
-        visible = get_receiver_visible(flights)
+        
+        # Define time periods
+        time_periods = get_time_periods()
+
+        # Count unique flights in each time period
+        unique_flights_counts = {period: count_unique_flights_in_period(unique_flights_with_timestamps, start_time) for period, start_time in time_periods.items()}
+
+        # Calculate averages
+        averages = calculate_averages(unique_flights_with_timestamps, unique_flights_counts)
+
+        visible = get_receiver_visible(flights, unique_flights_counts, averages)
         previous_visible_aircraft = publish_receiver_visible(mqtt_client, visible, previous_visible_aircraft)
         closest_aircraft = get_closest_aircraft(flights_rich, (USER_LAT, USER_LON))
         save_flights_within_defined_zone(FLIGHTS_WITHIN_DEFINED_ZONE_JSON_FILE_PATH, flights_rich, defined_zone)
         save_flights_within_defined_radius(FLIGHTS_WITHIN_DEFINED_RADIUS_JSON_FILE_PATH, flights_rich, (USER_LAT, USER_LON), RADIUS)
         previous_closest_aircraft = publish_closest_aircraft(mqtt_client, closest_aircraft, previous_closest_aircraft)
         publish_flights(mqtt_client, flights_rich)
-        
-        time.sleep(CHECK_INTERVAL)
 
-#flights = get_receiver_data(DUMP_URL, reference_dump)
-#if flights:
-#    print(flights)
-#    flights_rich = create_flights_rich(flights, airlines_json, airports_json, aircraft_json, reg_parser, (USER_LAT, USER_LON), RADIUS, defined_zone)
-#    visible = get_receiver_visible(flights)
-#    previous_visible_aircraft = publish_receiver_visible(mqtt_client, visible, previous_visible_aircraft)
-#    closest_aircraft = get_closest_aircraft(flights_rich, (USER_LAT, USER_LON))
-#    save_flights_within_defined_zone(FLIGHTS_WITHIN_DEFINED_ZONE_JSON_FILE_PATH, flights_rich, defined_zone)
-#    save_flights_within_defined_radius(FLIGHTS_WITHIN_DEFINED_RADIUS_JSON_FILE_PATH, flights_rich, (USER_LAT, USER_LON), RADIUS)
-#    previous_closest_aircraft = publish_closest_aircraft(mqtt_client, closest_aircraft, previous_closest_aircraft)
-#    publish_flights(mqtt_client, flights_rich)
+        # Update unique flights data
+        current_unique_flights = set(flight["icao_id"] for flight in flights.values())
+        update_unique_flights(unique_flights_with_timestamps, current_unique_flights)
+        save_unique_flights_data(unique_flights_file, unique_flights_with_timestamps)
+
+        # Pretty print enriched flights
+        #print_enriched_flights(flights_rich)
+
+        time.sleep(CHECK_INTERVAL)

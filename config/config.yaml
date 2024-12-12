@@ -20,6 +20,18 @@ MQTT_TOPIC_VISIBLE: "dev/flights/visible"
 MQTT_TOPIC_CLOSEST_AIRCRAFT: "dev/flights/closest"
 MQTT_TOPIC_FLIGHTS: "dev/flights/all"
 
+# Configuration for flight counts
+count_flights: true
+time_periods:
+  - today
+  - yesterday
+  - previous_seven_days
+  - previous_thirty_days
+  - previous_year
+
+
+
+
 # User location
 use_lat_lon_from_config: False # If False, replace by values from receiver dump file
 USER_LAT: 51.462649
