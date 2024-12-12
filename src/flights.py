@@ -480,36 +480,79 @@ if __name__ == "__main__":
     unique_flights_file = os.path.join(storage_directory, 'unique_flights_with_timestamps.pkl')
     unique_flights_with_timestamps = load_unique_flights_data(unique_flights_file)
 
+# Main program loop in flights.py
     while True:
         receiver = get_receiver_data(DUMP_URL, reference_dump)
+        
         if not receiver:
             continue
+            
         flights = process_flights(receiver, reference_dump)
-        flights_rich = create_flights_rich(flights, airlines_json, airports_json, aircraft_json, reg_parser, (USER_LAT, USER_LON), RADIUS, defined_zone)
+        flights_rich = create_flights_rich(
+            flights, 
+            airlines_json, 
+            airports_json, 
+            aircraft_json, 
+            reg_parser, 
+            (USER_LAT, USER_LON), 
+            RADIUS, 
+            defined_zone
+        )
         
-        # Define time periods
+        # Define time periods and calculate counts
         time_periods = get_time_periods()
-
-        # Count unique flights in each time period
-        unique_flights_counts = {period: count_unique_flights_in_period(unique_flights_with_timestamps, start_time) for period, start_time in time_periods.items()}
+        unique_flights_counts = {
+            period: count_unique_flights_in_period(
+                unique_flights_with_timestamps, 
+                start_time
+            ) 
+            for period, start_time in time_periods.items()
+        }
 
         # Calculate averages
-        averages = calculate_averages(unique_flights_with_timestamps, unique_flights_counts)
+        averages = calculate_averages(
+            unique_flights_with_timestamps, 
+            unique_flights_counts
+        )
 
+        # Update and publish visible aircraft data
         visible = get_receiver_visible(flights, unique_flights_counts, averages)
-        previous_visible_aircraft = publish_receiver_visible(mqtt_client, visible, previous_visible_aircraft)
+        previous_visible_aircraft = publish_receiver_visible(
+            mqtt_client, 
+            visible, 
+            previous_visible_aircraft
+        )
+        
+        # Process and publish closest aircraft
         closest_aircraft = get_closest_aircraft(flights_rich, (USER_LAT, USER_LON))
-        save_flights_within_defined_zone(FLIGHTS_WITHIN_DEFINED_ZONE_JSON_FILE_PATH, flights_rich, defined_zone)
-        save_flights_within_defined_radius(FLIGHTS_WITHIN_DEFINED_RADIUS_JSON_FILE_PATH, flights_rich, (USER_LAT, USER_LON), RADIUS)
-        previous_closest_aircraft = publish_closest_aircraft(mqtt_client, closest_aircraft, previous_closest_aircraft)
+        save_flights_within_defined_zone(
+            FLIGHTS_WITHIN_DEFINED_ZONE_JSON_FILE_PATH, 
+            flights_rich, 
+            defined_zone
+        )
+        save_flights_within_defined_radius(
+            FLIGHTS_WITHIN_DEFINED_RADIUS_JSON_FILE_PATH, 
+            flights_rich, 
+            (USER_LAT, USER_LON), 
+            RADIUS
+        )
+        previous_closest_aircraft = publish_closest_aircraft(
+            mqtt_client, 
+            closest_aircraft, 
+            previous_closest_aircraft
+        )
+        
+        # Publish all flights data
         publish_flights(mqtt_client, flights_rich)
 
-        # Update unique flights data
+        # Update unique flights tracking
         current_unique_flights = set(flight["icao_id"] for flight in flights.values())
-        update_unique_flights(unique_flights_with_timestamps, current_unique_flights)
+        update_unique_flights(
+            unique_flights_with_timestamps, 
+            current_unique_flights, 
+            CHECK_INTERVAL
+        )
         save_unique_flights_data(unique_flights_file, unique_flights_with_timestamps)
 
-        # Pretty print enriched flights
-        #print_enriched_flights(flights_rich)
-
+        # Wait for next update
         time.sleep(CHECK_INTERVAL)
