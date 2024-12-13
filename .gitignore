@@ -48,6 +48,7 @@ coverage.xml
 .hypothesis/
 .pytest_cache/
 /tests
+test_output/
 
 # Translations
 *.mo
@@ -112,3 +113,4 @@ logs/
 temp/
 .gitignore
 storage/
+#*.code-workspace

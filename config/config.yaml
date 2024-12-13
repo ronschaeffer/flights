@@ -12,13 +12,15 @@ MQTT_USER: '136worple'
 MQTT_PWD: '011020MQTT'
 MQTT_CLIENT_ID: 'flights_client'
 
-# HTTP
-FASTAPI_PORT: 47474
-
 # Feed topics
 MQTT_TOPIC_VISIBLE: "dev/flights/visible"
 MQTT_TOPIC_CLOSEST_AIRCRAFT: "dev/flights/closest"
 MQTT_TOPIC_FLIGHTS: "dev/flights/all"
+
+# HTTP
+FASTAPI_PORT: 47474
+
+
 
 # Configuration for flight counts
 count_flights: true
