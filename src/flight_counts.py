@@ -2,40 +2,14 @@
 
 import os
 import pickle
-import logging
-from logging.handlers import RotatingFileHandler
 from datetime import datetime, timedelta
 from collections import defaultdict
+import yaml
 
-def setup_logging():
-    """Configure logging with file output"""
-    script_dir = os.path.dirname(os.path.abspath(__file__))
-    project_root = os.path.dirname(script_dir)
-    log_dir = os.path.join(project_root, 'logs')
-    
-    os.makedirs(log_dir, exist_ok=True)
-    log_file = os.path.join(log_dir, 'flight_counts.log')
-    
-    handler = RotatingFileHandler(
-        log_file,
-        maxBytes=1024 * 1024,
-        backupCount=5
-    )
-    
-    formatter = logging.Formatter(
-        '%(asctime)s - %(name)s - %(levelname)s - %(message)s'
-    )
-    handler.setFormatter(formatter)
-    
-    logger = logging.getLogger(__name__)
-    logger.setLevel(logging.INFO)
-    logger.addHandler(handler)
-    
-    logger.info("Logging initialized - writing to %s", log_file)
-    return logger
-
-# Initialize logger
-logger = setup_logging()
+# Load configuration
+config_path = os.path.join(os.path.dirname(__file__), '../config/config.yaml')
+with open(config_path, 'r') as config_file:
+    config = yaml.safe_load(config_file)
 
 def load_unique_flights_data(file_path):
     """Load flight data from pickle file."""
@@ -60,24 +34,11 @@ def update_unique_flights(unique_flights_with_timestamps, current_unique_flights
             if icao_id in unique_flights_with_timestamps:
                 last_seen = unique_flights_with_timestamps[icao_id]
                 time_diff = (current_time - last_seen).total_seconds()
-                
-                if time_diff > k_interval:
-                    gaps_detected += 1
-                    logger.warning("Data gap detected for flight %s: %.1f seconds (> %.1f)",
-                                 icao_id, time_diff, k_interval)
             
             unique_flights_with_timestamps[icao_id] = current_time
             
-        except Exception as e:
-            logger.error("Error processing flight %s: %s", icao_id, str(e))
-    
-    if gaps_detected:
-        logger.info("Update complete: %d gaps detected in %d flights",
-                   gaps_detected, len(current_unique_flights))
-    
-    # Log summary every hour
-    if current_time.minute == 0:
-        log_unique_flights_summary(unique_flights_with_timestamps)
+        except Exception:
+            pass
 
 def count_unique_flights_in_period(unique_flights_with_timestamps, start_time):
     """Count flights since start_time."""
@@ -110,9 +71,6 @@ def calculate_averages(unique_flights_with_timestamps, unique_flights_counts):
         if timestamp < current_time
     }
     
-    logger.info("Processing averages for %d unique dates", len(unique_dates))
-    logger.debug("Unique dates: %s", sorted(list(unique_dates)))
-    
     # Calculate period averages
     period_lengths = {
         'previous_year': 365,
@@ -131,15 +89,10 @@ def calculate_averages(unique_flights_with_timestamps, unique_flights_counts):
         days = len(period_dates) or 1
         days = min(days, max_days)
         averages[period] = round(unique_flights_counts[period] / days)
-        
-        logger.info("%s: Found %d flights over %d days, average: %d",
-                   period, unique_flights_counts[period], days, averages[period])
     
     # Calculate daily average using yesterday's count if only one historical day
     if len(unique_dates) <= 1 and 'yesterday' in unique_flights_counts:
         averages['daily_average'] = unique_flights_counts['yesterday']
-        logger.info("Using yesterday's count (%d) as daily average due to limited history",
-                   unique_flights_counts['yesterday'])
     else:
         total_unique_flights = len({
             icao_id 
@@ -148,8 +101,6 @@ def calculate_averages(unique_flights_with_timestamps, unique_flights_counts):
         })
         total_days = len(unique_dates) or 1
         averages['daily_average'] = round(total_unique_flights / total_days)
-        logger.info("Calculated daily average: %d flights over %d days",
-                   total_unique_flights, total_days)
     
     return averages
 
@@ -166,10 +117,6 @@ def log_unique_flights_summary(unique_flights_with_timestamps):
         date_range = (newest - oldest).days
     else:
         date_range = 0
-        
-    logger.info("Unique Flights Summary:")
-    logger.info("Total entries: %d", total_entries)
-    logger.info("Date range: %d days", date_range)
     
     # Sample of recent entries (last 5)
     recent = sorted(
@@ -177,8 +124,3 @@ def log_unique_flights_summary(unique_flights_with_timestamps):
         key=lambda x: x[1],
         reverse=True
     )[:5]
-    
-    if recent:
-        logger.info("Recent entries:")
-        for icao_id, timestamp in recent:
-            logger.info("  %s: %s", icao_id, timestamp.strftime('%Y-%m-%d %H:%M:%S'))

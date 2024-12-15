@@ -1,85 +1,90 @@
-# Logging
+# Logging configuration
 LOG_LEVEL: "ERROR"  # DEBUG, INFO, WARNING, ERROR, CRITICAL
 LOG_KEYS: ["altitude", "longitude", "latitude"]  # Keys to log in case of an error
 
 # Check interval
 CHECK_INTERVAL: 15  # Seconds to wait between each check of the aircraft_dump_url
 
-# MQTT 
+# MQTT configuration
 MQTT_BROKER: '10.10.10.21'
 MQTT_BROKER_PORT: 8883
 MQTT_USER: '136worple'
 MQTT_PWD: '011020MQTT'
 MQTT_CLIENT_ID: 'flights_client'
 
-# Feed topics
-MQTT_TOPIC_VISIBLE: "dev/flights/visible"
+# MQTT topics
 MQTT_TOPIC_CLOSEST_AIRCRAFT: "dev/flights/closest"
 MQTT_TOPIC_FLIGHTS: "dev/flights/all"
+MQTT_TOPIC_STATISTICS: "flights/statistics"  # Change topic to statistics
 
-# HTTP
+# HTTP server configuration
 FASTAPI_PORT: 47474
 
-
-
 # Configuration for flight counts
-count_flights: true
-time_periods:
+COUNT_FLIGHTS: true
+TIME_PERIODS:
   - today
   - yesterday
   - previous_seven_days
   - previous_thirty_days
   - previous_year
 
-
-
-
 # User location
-use_lat_lon_from_config: False # If False, replace by values from receiver dump file
+USE_LAT_LON_FROM_CONFIG: False  # If False, replace by values from receiver dump file
 USER_LAT: 51.462649
 USER_LON: -0.328869
 
-# Tracking
-##nearest_aircraft: True
-##nearest_aircraft_in_interest_zone: True
-
-# Watch heading
-##watch_heading: 270 # Only consider aircraft with this heading; Useful, for example, to watch a take off or landing path
-##heading_range: 360 # Degrees plus or minus the watched_heading which still fall into the conisderation range 
-
-# Watch zone
+# Watch zone configuration
 LAT_SOUTH: 51.45538
-LAT_NORTH:  51.48787
+LAT_NORTH: 51.48787
 LON_WEST: -0.37257
 LON_EAST: -0.28753
-max_alt: 3000
-min_alt: 0
+MAX_ALT: 3000
+MIN_ALT: 0
 
-# Altitude & Distance
-RADIUS: 10 # distance in unit below from user position 
-DISTANCE_UNIT: mi # mi for miles or km for kilometers
+# Altitude & Distance configuration
+RADIUS: 10  # Distance in unit below from user position
+DISTANCE_UNIT: mi  # mi for miles or km for kilometers
 ALTITUDE_UNIT: ft
+ALTITUDE_TRENDS:
+  LEVEL_THRESHOLD: 250  # ft/min
+  SYMBOLS:
+    UP: "⬈"  # or "\u2B08"
+    DOWN: "⬊"  # or "\u2B0A"
+    LEVEL: "→"  # or "\u2192"
 
-# Source
+# Source URLs
 DUMP_URL: 'http://10.10.30.139:30053/ajax/aircraft'
 CONFIG_FILE_PATH: "../config/config.yaml"
 REFERENCE_DUMP_FILE_PATH: "../config/planefinder_dump_structure.json"
+
+# Output file paths
 VISIBLE_JSON_FILE_PATH: "../output/visible.json"
 CLOSEST_AIRCRAFT_JSON_FILE_PATH: "../output/closest_aircraft.json"
 ALL_AIRCRAFT_JSON_FILE_PATH: "../output/all_aircraft.json"
 FLIGHTS_WITHIN_DEFINED_ZONE_JSON_FILE_PATH: "../output/flights_within_defined_zone.json"
 FLIGHTS_WITHIN_DEFINED_RADIUS_JSON_FILE_PATH: "../output/flights_within_defined_radius.json"
+STATISTICS_JSON_FILE_PATH: "../output/statistics.json"  # Change file path to statistics
 
 # Key names for referenced keys in the dump file
-tracked_parent: 'aircraft' # Name of the parent key of tracked flights in the dump, e.g., 'aircraft'
-icao_id: 'False' # Example val: 'AA37CE'
-callsign: 'callsign' # Example val: 'AAL38'
-flightno: 'flightno' # Example val: 'AA38'
-route: 'route' # Example val: 'MIA-LHR'
-type: 'type' # Example val: 'B772'
-latitude: 'lat' # Example val: '51.47807'
-longitude: 'lon' # Example val: '-0.185242'
-altitude: 'altitude' # Example val: '3425'
-heading: 'heading' # Example val: '271'
-speed: 'speed' # Example val: '177'
-reg: 'reg' # Example val: 'N758AN'
+tracked_parent: 'aircraft'  # Name of the parent key of tracked flights in the dump, e.g., 'aircraft'
+icao_id: 'False'  # Example val: 'AA37CE'
+callsign: 'callsign'  # Example val: 'AAL38'
+flightno: 'flightno'  # Example val: 'AA38'
+route: 'route'  # Example val: 'MIA-LHR'
+type: 'type'  # Example val: 'B772'
+latitude: 'lat'  # Example val: '51.47807'
+longitude: 'lon'  # Example val: '-0.185242'
+altitude: 'altitude'  # Example val: '3425'
+heading: 'heading'  # Example val: '271'
+speed: 'speed'  # Example val: '177'
+reg: 'reg'  # Example val: 'N758AN'
+
+# Unused variables
+# Tracking
+# nearest_aircraft: True
+# nearest_aircraft_in_interest_zone: True
+
+# Watch heading
+# watch_heading: 270  # Only consider aircraft with this heading; Useful, for example, to watch a take off or landing path
+# heading_range: 360  # Degrees plus or minus the watched_heading which still fall into the consideration range

@@ -1,16 +1,17 @@
 #!/usr/bin/env python3
 
-# Standard library imports
 import subprocess
 import os
 import json
-
-# Third-party imports
+import yaml
 from fastapi import FastAPI, Response, HTTPException
 
-# Local application/library-specific imports
-
 app = FastAPI()
+
+# Load configuration
+config_path = os.path.join(os.path.dirname(__file__), '../config/config.yaml')
+with open(config_path, 'r') as config_file:
+    config = yaml.safe_load(config_file)
 
 def get_file_content(file_path, media_type):
     if os.path.exists(file_path):
@@ -68,19 +69,18 @@ def kill_process_on_port(port):
         result = subprocess.check_output(f"netstat -nlp 2>/dev/null | grep :{port}", shell=True).decode()
         for line in result.splitlines():
             parts = line.split()
-            pid_info = parts[-1]  # Typically the last part contains PID/Program
+            pid_info = parts[-1]
             if "/" in pid_info:
-                pid = int(pid_info.split("/")[0])  # Extract PID
+                pid = int(pid_info.split("/")[0])
                 try:
-                    os.kill(pid, 9)  # Send SIGKILL to the process
+                    os.kill(pid, 9)
                 except PermissionError:
-                    print(f"\nHTTP SERVER: Permission denied to kill process port {pid}. Skipping...\n")
+                    pass
     except subprocess.CalledProcessError:
-        pass  # If no process is found using the port, do nothing
+        pass
 
 def start_server(request_port):
     kill_process_on_port(request_port)
-    print(f"\nHTTP SERVER: Attempting to start server on port {request_port}...\n")
     subprocess.run([
         "uvicorn",
         "flights_server:app",

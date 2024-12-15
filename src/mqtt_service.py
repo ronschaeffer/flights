@@ -1,14 +1,11 @@
 # mqtt_service.py
 import paho.mqtt.client as mqtt
 import json
-import logging
-
-logger = logging.getLogger(__name__)
 
 class MQTTService:
     def __init__(self, config):
         """Initialize MQTT service with config parameters"""
-        self.client = mqtt.Client(client_id=config.get('MQTT_CLIENT_ID', 'flight_tracker'))
+        self.client = mqtt.Client(mqtt.CallbackAPIVersion.VERSION2, client_id=config.get('MQTT_CLIENT_ID', 'flight_tracker'))
         self.broker_host = config['MQTT_BROKER']
         self.broker_port = config['MQTT_BROKER_PORT']
         
@@ -18,11 +15,9 @@ class MQTTService:
         
     def connect(self):
         try:
-            logger.info(f"Connecting to MQTT broker at {self.broker_host}:{self.broker_port}")
             self.client.connect(self.broker_host, self.broker_port)
             self.client.loop_start()
-        except Exception as e:
-            logger.error(f"Failed to connect to MQTT broker: {e}")
+        except Exception:
             raise
             
     def disconnect(self):
@@ -34,6 +29,5 @@ class MQTTService:
             if isinstance(payload, dict):
                 payload = json.dumps(payload)
             self.client.publish(topic, payload, qos=qos, retain=retain)
-            logger.debug(f"Published to {topic}")
-        except Exception as e:
-            logger.error(f"Publish failed: {e}")
+        except Exception:
+            pass
