@@ -182,11 +182,67 @@ def write_filtered_flights_to_file(file_path, flights, filter_func):
 # Add src directory to Python path
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 
+def ensure_json_file(filepath: str, default_content: dict) -> None:
+    """Ensure JSON file exists and initialize it if not."""
+    try:
+        os.makedirs(os.path.dirname(filepath), exist_ok=True)
+        if not os.path.exists(filepath):
+            with open(filepath, 'w') as f:
+                json.dump(default_content, f, indent=4)
+    except Exception as e:
+        logging.error(f"Error ensuring JSON file {filepath}: {str(e)}\n{traceback.format_exc()}")
+
+# Define base paths at module level
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+OUTPUT_DIR = os.path.join(BASE_DIR, 'output')
+
+# Define output file paths
+STATISTICS_JSON_FILE_PATH = os.path.join(OUTPUT_DIR, 'statistics.json')
+CLOSEST_AIRCRAFT_JSON_FILE_PATH = os.path.join(OUTPUT_DIR, 'closest_aircraft.json')
+ALL_AIRCRAFT_JSON_FILE_PATH = os.path.join(OUTPUT_DIR, 'all_aircraft.json')
+
+def write_to_file(filename: str, data: dict) -> None:
+    """Write data to JSON file in the output directory."""
+    try:
+        # Ensure the filename is in the OUTPUT_DIR
+        if not os.path.isabs(filename):
+            filename = os.path.join(OUTPUT_DIR, os.path.basename(filename))
+        
+        os.makedirs(OUTPUT_DIR, exist_ok=True)
+        with open(filename, 'w') as f:
+            json.dump(data, f, indent=4)
+    except Exception as e:
+        logging.error(f"Error writing to file {filename}: {str(e)}\n{traceback.format_exc()}")
+
+def ensure_json_file(filepath: str, default_content: dict) -> None:
+    """Ensure JSON file exists and initialize it if not."""
+    try:
+        # Ensure the filepath is in the OUTPUT_DIR
+        if not os.path.isabs(filepath):
+            filepath = os.path.join(OUTPUT_DIR, os.path.basename(filepath))
+        
+        os.makedirs(OUTPUT_DIR, exist_ok=True)
+        if not os.path.exists(filepath):
+            with open(filepath, 'w') as f:
+                json.dump(default_content, f, indent=4)
+    except Exception as e:
+        logging.error(f"Error ensuring JSON file {filepath}: {str(e)}\n{traceback.format_exc()}")
+
 @handle_fatal_error
 def main():
     try:
         # Load initial configuration using absolute path
         load_configuration(os.path.join(BASE_DIR, 'config/config.yaml'))
+
+        # Ensure all output JSON files exist
+        default_empty = {"last_update": datetime.now().isoformat(), "data": {}}
+        ensure_json_file(STATISTICS_JSON_FILE_PATH, default_empty)
+        ensure_json_file(CLOSEST_AIRCRAFT_JSON_FILE_PATH, default_empty)
+        ensure_json_file(ALL_AIRCRAFT_JSON_FILE_PATH, default_empty)
+
+        # Create required directories
+        for directory in ['logs', 'output', 'storage']:
+            os.makedirs(os.path.join(BASE_DIR, directory), exist_ok=True)
 
         # Now use the loaded config values with BASE_DIR
         reference_dump_path = os.path.join(BASE_DIR, config['REFERENCE_DUMP_FILE_PATH'])

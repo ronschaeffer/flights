@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 25.4.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 93.53 80" style="enable-background:new 0 0 93.53 80;" xml:space="preserve">
+<style type="text/css">
+	.st0{clip-path:url(#SVGID_00000152247384229842139000000003613429819716386712_);}
+	.st1{clip-path:url(#SVGID_00000163759176474291268420000004800955602322910629_);}
+	.st2{fill:#B2B2B2;}
+	.st3{fill:#008DB6;}
+	.st4{fill:#94C11F;}
+	.st5{fill:#5588C7;}
+	.st6{fill:#F39200;}
+	.st7{fill:#00AAD2;}
+	.st8{fill:#9F043E;}
+	.st9{fill:#FFD500;}
+	.st10{fill:#00528D;}
+</style>
+<g id="Clip-9">
+</g>
+<g id="Clip-2">
+</g>
+<g id="g2542">
+	<g>
+		<g>
+			<defs>
+				<path id="SVGID_1_" d="M75.35,0c-6.32,0-10.32,2.91-15.18,8.89l0,0L9.66,71.11C2.45,80,0,80,0,80l0,0h71.89L93.53,0H75.35z"/>
+			</defs>
+			<clipPath id="SVGID_00000163795722964629254190000003171175623983480971_">
+				<use xlink:href="#SVGID_1_"  style="overflow:visible;"/>
+			</clipPath>
+			<g id="g2548" style="clip-path:url(#SVGID_00000163795722964629254190000003171175623983480971_);">
+				<g>
+					<g>
+						<defs>
+							<rect id="SVGID_00000005242694719867192480000018037064990205484170_" x="-222.7" width="316.23" height="80"/>
+						</defs>
+						<clipPath id="SVGID_00000178205314746303058460000017151917569834373526_">
+							<use xlink:href="#SVGID_00000005242694719867192480000018037064990205484170_"  style="overflow:visible;"/>
+						</clipPath>
+						<g id="g2554" style="clip-path:url(#SVGID_00000178205314746303058460000017151917569834373526_);">
+							<path id="path2560" class="st2" d="M93.53,80H0v-8.89h93.53V80z"/>
+							<path id="path2562" class="st3" d="M93.53,71.11H0v-8.89h93.53V71.11z"/>
+							<path id="path2564" class="st4" d="M93.53,62.22H0v-8.89h93.53V62.22z"/>
+							<path id="path2566" class="st5" d="M93.53,53.33H0v-8.89h93.53V53.33z"/>
+							<path id="path2568" class="st6" d="M93.53,44.45H0v-8.89h93.53V44.45z"/>
+							<path id="path2570" class="st7" d="M93.53,35.56H0v-8.89h93.53V35.56z"/>
+							<path id="path2572" class="st8" d="M93.53,26.67H0v-8.89h93.53V26.67z"/>
+							<path id="path2574" class="st9" d="M93.53,17.78H0V8.89h93.53V17.78z"/>
+							<path id="path2576" class="st10" d="M93.53,8.89H0V0h93.53V8.89z"/>
+						</g>
+					</g>
+				</g>
+			</g>
+		</g>
+	</g>
+</g>
+</svg>

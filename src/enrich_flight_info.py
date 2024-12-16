@@ -16,6 +16,23 @@ class FlightEnricher:
     def __init__(self, airlines_json: list, aircraft_json: list, reg_parser, config: dict):
         try:
             self.base_dir = BASE_DIR
+            self.output_dir = os.path.join(self.base_dir, 'output')
+            self.missing_file = os.path.join(self.output_dir, 'missing.json')
+            
+            # Ensure output directory exists
+            os.makedirs(self.output_dir, exist_ok=True)
+            
+            # Initialize missing.json if needed
+            if not os.path.exists(self.missing_file):
+                default_content = {
+                    "last_updated": datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S'),
+                    "airlines": {},
+                    "aircraft": {},
+                    "airports": {}
+                }
+                with open(self.missing_file, 'w') as f:
+                    json.dump(default_content, f, indent=4)
+            
             self.lookups = self._create_lookup_dictionaries(airlines_json, aircraft_json)
             self.reg_parser = reg_parser
             self.config = config
@@ -35,6 +52,22 @@ class FlightEnricher:
             'airports': airportsdata.load('IATA')
         }
 
+    def _ensure_output_directory(self) -> None:
+        """Ensure output directory exists and create if not."""
+        output_dir = os.path.join(self.base_dir, 'output')
+        if not os.path.exists(output_dir):
+            os.makedirs(output_dir)
+
+    def _ensure_json_file(self, filename: str, default_content: Dict) -> None:
+        """Ensure JSON file exists and initialize it if not."""
+        filepath = os.path.join(self.output_dir, filename)
+        try:
+            if not os.path.exists(filepath):
+                with open(filepath, 'w') as f:
+                    json.dump(default_content, f, indent=4)
+        except Exception as e:
+            logger.error(f"Error ensuring JSON file {filename}: {str(e)}\n{traceback.format_exc()}")
+
     def _initialize_missing_data_log(self) -> Dict:
         default_log = {
             "last_updated": datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S'),
@@ -44,32 +77,15 @@ class FlightEnricher:
         }
         
         try:
-            missing_file = os.path.join(self.base_dir, 'output/missing.json')
-            os.makedirs(os.path.dirname(missing_file), exist_ok=True)
-            
-            if os.path.exists(missing_file):
-                with open(missing_file, 'r') as f:
-                    loaded_data = json.load(f)
-                    # Ensure all required keys exist
-                    for key in default_log:
-                        if key not in loaded_data:
-                            loaded_data[key] = default_log[key]
-                    return loaded_data
-            
-            # If file doesn't exist or any other issue, return default
-            self._save_missing_data_log_safe(default_log)
-            return default_log
-            
-        except (FileNotFoundError, json.JSONDecodeError, Exception) as e:
+            return json.load(open(self.missing_file, 'r')) if os.path.exists(self.missing_file) else default_log
+        except Exception as e:
             logger.error(f"Error initializing missing data log: {str(e)}\n{traceback.format_exc()}")
             return default_log
 
     def _save_missing_data_log_safe(self, data: Dict) -> None:
-        """Safely save missing data log with error handling."""
+        """Safely save missing data log directly in output directory."""
         try:
-            missing_file = os.path.join(self.base_dir, 'output/missing.json')
-            os.makedirs(os.path.dirname(missing_file), exist_ok=True)
-            with open(missing_file, 'w') as f:
+            with open(self.missing_file, 'w') as f:
                 json.dump(data, f, indent=4)
         except Exception as e:
             logger.error(f"Error saving missing data log: {str(e)}\n{traceback.format_exc()}")
@@ -120,13 +136,12 @@ class FlightEnricher:
 
     def _get_country_flag_emoji(self, country_code: str) -> str:
         """Convert a two-letter country code to an emoji flag."""
-        if not country_code:
+        if not country_code or len(country_code) != 2:
             return ""
         try:
-            # Convert country code to regional indicator symbols
-            # Each letter is converted to a regional indicator symbol (127462-127487)
+            # Convert to regional indicator symbols by adding offset 127397 to ASCII value
             country_code = country_code.upper()
-            return "".join(chr(ord('🇦') + ord(c) - ord('A')) for c in country_code)
+            return ''.join(chr(ord(c) + 127397) for c in country_code)
         except Exception:
             return ""
 
@@ -147,10 +162,11 @@ class FlightEnricher:
             flight_data.get("flightno", "")
         )
         if airline:
-            country_code = airline.get("country", "")
+            country_code = airline.get("country_code", "").upper()  # Ensure we get the correct country code
             flight_rich_data.update({
                 "airline": airline.get("name", ""),
-                "airline_country": country_code,
+                "airline_country": airline.get("country", ""),  # Ensure we get the full country name
+                "airline_country_code": country_code,  # Two-letter country code
                 "airline_country_flag": self._get_country_flag_emoji(country_code),
                 "airline_callsign": airline.get("airline_callsign", ""),
                 "airline_icao": airline.get("icao_code", ""),
