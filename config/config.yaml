@@ -15,7 +15,7 @@ MQTT_CLIENT_ID: 'flights_client'
 # MQTT topics
 MQTT_TOPIC_CLOSEST_AIRCRAFT: "dev/flights/closest"
 MQTT_TOPIC_FLIGHTS: "dev/flights/all"
-MQTT_TOPIC_STATISTICS: "flights/statistics"  # Change topic to statistics
+MQTT_TOPIC_STATISTICS: "dev/flights/statistics"  # Change topic to statistics
 
 # HTTP server configuration
 FASTAPI_PORT: 47474

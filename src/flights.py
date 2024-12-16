@@ -179,6 +179,9 @@ def write_filtered_flights_to_file(file_path, flights, filter_func):
     filtered_flights = {icao_id: flight for icao_id, flight in flights.items() if filter_func(flight)}
     write_to_file(file_path, filtered_flights)
 
+# Add src directory to Python path
+sys.path.append(os.path.dirname(os.path.abspath(__file__)))
+
 @handle_fatal_error
 def main():
     try:
@@ -222,6 +225,7 @@ def main():
             target=start_server, 
             args=(FASTAPI_PORT, config.get('LOG_LEVEL', 'ERROR'))
         )
+        server_thread.daemon = True  # Make thread daemon so it exits when main program exits
         server_thread.start()
 
         reg_parser = Parser()

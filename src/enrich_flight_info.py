@@ -118,13 +118,27 @@ class FlightEnricher:
         for i, (_, flight_id) in enumerate(self.flights_with_location):
             flights_rich[flight_id]["relative_closeness"] = i + 1
 
+    def _get_country_flag_emoji(self, country_code: str) -> str:
+        """Convert a two-letter country code to an emoji flag."""
+        if not country_code:
+            return ""
+        try:
+            # Convert country code to regional indicator symbols
+            # Each letter is converted to a regional indicator symbol (127462-127487)
+            country_code = country_code.upper()
+            return "".join(chr(ord('🇦') + ord(c) - ord('A')) for c in country_code)
+        except Exception:
+            return ""
+
     def _add_registration_info(self, flight_rich_data: Dict, flight_data: Dict) -> None:
         if flight_data.get("reg"):
             parsed_reg = self.reg_parser.parse(flight_data["reg"])
             if parsed_reg:
+                country_code = parsed_reg.get("iso2", "")
                 flight_rich_data.update({
                     "reg_country_name": parsed_reg.get("nation", ""),
-                    "reg_country_code": parsed_reg.get("iso2", "")
+                    "reg_country_code": country_code,
+                    "reg_country_flag": self._get_country_flag_emoji(country_code)
                 })
 
     def _add_airline_info(self, flight_rich_data: Dict, flight_data: Dict) -> None:
@@ -133,9 +147,11 @@ class FlightEnricher:
             flight_data.get("flightno", "")
         )
         if airline:
+            country_code = airline.get("country", "")
             flight_rich_data.update({
                 "airline": airline.get("name", ""),
-                "airline_country": airline.get("country", ""),
+                "airline_country": country_code,
+                "airline_country_flag": self._get_country_flag_emoji(country_code),
                 "airline_callsign": airline.get("airline_callsign", ""),
                 "airline_icao": airline.get("icao_code", ""),
                 "airline_iata": airline.get("iata_code", "")
@@ -201,10 +217,12 @@ class FlightEnricher:
             airport = self.lookups['airports'].get(code, {})
             if not airport:
                 self._update_missing_data_log('airports', code)
+            country_code = airport.get("country", "").upper()
             return {
                 "name": airport.get("name", ""),
                 "city": airport.get("city", ""),
-                "country_code": airport.get("country", "").upper(),
+                "country_code": country_code,
+                "country_flag": self._get_country_flag_emoji(country_code),
                 "airport_code": code
             }
 
@@ -216,10 +234,12 @@ class FlightEnricher:
                 "origin_airport_name": origin_info.get("name", None),
                 "origin_airport_city": origin_info.get("city", None),
                 "origin_airport_country_code": origin_info.get("country_code", None),
+                "origin_airport_country_flag": origin_info.get("country_flag", None),
                 "origin_airport_code": origin_info.get("airport_code", None),
                 "destination_airport_name": destination_info.get("name", None),
                 "destination_airport_city": destination_info.get("city", None),
                 "destination_airport_country_code": destination_info.get("country_code", None),
+                "destination_airport_country_flag": destination_info.get("country_flag", None),
                 "destination_airport_code": destination_info.get("airport_code", None)
             }
             if via:
@@ -228,6 +248,7 @@ class FlightEnricher:
                     "via_airport_name": via_info.get("name", None),
                     "via_airport_city": via_info.get("city", None),
                     "via_airport_country_code": via_info.get("country_code", None),
+                    "via_airport_country_flag": via_info.get("country_flag", None),
                     "via_airport_code": via_info.get("airport_code", None)
                 })
             else:
@@ -235,6 +256,7 @@ class FlightEnricher:
                     "via_airport_name": None,
                     "via_airport_city": None,
                     "via_airport_country_code": None,
+                    "via_airport_country_flag": None,
                     "via_airport_code": None
                 })
             return route_info
@@ -243,14 +265,17 @@ class FlightEnricher:
                 "origin_airport_name": None,
                 "origin_airport_city": None,
                 "origin_airport_country_code": None,
+                "origin_airport_country_flag": None,
                 "origin_airport_code": None,
                 "destination_airport_name": None,
                 "destination_airport_city": None,
                 "destination_airport_country_code": None,
+                "destination_airport_country_flag": None,
                 "destination_airport_code": None,
                 "via_airport_name": None,
                 "via_airport_city": None,
                 "via_airport_country_code": None,
+                "via_airport_country_flag": None,
                 "via_airport_code": None
             }
 
