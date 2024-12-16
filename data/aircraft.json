@@ -1,1318 +1,3318 @@
 [
     {
-      "icao_type_code": "A124",
-      "aircraft_model": "Antonov An-124 Ruslan"
+        "icao_type_code": "A124",
+        "aircraft_model": "Antonov An-124 Ruslan"
     },
     {
-      "icao_type_code": "A140",
-      "aircraft_model": "Antonov An-140"
+        "icao_type_code": "A140",
+        "aircraft_model": "Antonov An-140"
     },
     {
-      "icao_type_code": "A148",
-      "aircraft_model": "Antonov An-148"
+        "icao_type_code": "A148",
+        "aircraft_model": "Antonov An-148"
     },
     {
-      "icao_type_code": "A158",
-      "aircraft_model": "Antonov An-158"
+        "icao_type_code": "A158",
+        "aircraft_model": "Antonov An-158"
     },
     {
-      "icao_type_code": "A19N",
-      "aircraft_model": "Airbus A319neo"
+        "icao_type_code": "A19N",
+        "aircraft_model": "Airbus A319neo"
     },
     {
-      "icao_type_code": "A20N",
-      "aircraft_model": "Airbus A320neo"
+        "icao_type_code": "A20N",
+        "aircraft_model": "Airbus A320neo"
     },
     {
-      "icao_type_code": "A21N",
-      "aircraft_model": "Airbus A321neo"
+        "icao_type_code": "A21N",
+        "aircraft_model": "Airbus A321neo"
     },
     {
-      "icao_type_code": "A225",
-      "aircraft_model": "Antonov An-225 Mriya"
+        "icao_type_code": "A225",
+        "aircraft_model": "Antonov An-225 Mriya"
     },
     {
-      "icao_type_code": "A306",
-      "aircraft_model": "Airbus A300-600"
+        "icao_type_code": "A306",
+        "aircraft_model": "Airbus A300-600"
     },
     {
-      "icao_type_code": "A306",
-      "aircraft_model": "Airbus A300-600 Freighter"
+        "icao_type_code": "A306",
+        "aircraft_model": "Airbus A300-600 Freighter"
     },
     {
-      "icao_type_code": "A30B",
-      "aircraft_model": "Airbus A300B2, A300B4, and A300C4"
+        "icao_type_code": "A30B",
+        "aircraft_model": "Airbus A300B2, A300B4, and A300C4"
     },
     {
-      "icao_type_code": "A310",
-      "aircraft_model": "Airbus A310-200"
+        "icao_type_code": "A310",
+        "aircraft_model": "Airbus A310-200"
     },
     {
-      "icao_type_code": "A310",
-      "aircraft_model": "Airbus A310-300"
+        "icao_type_code": "A310",
+        "aircraft_model": "Airbus A310-300"
     },
     {
-      "icao_type_code": "A318",
-      "aircraft_model": "Airbus A318"
+        "icao_type_code": "A318",
+        "aircraft_model": "Airbus A318"
     },
     {
-      "icao_type_code": "A318",
-      "aircraft_model": "Airbus A318 (sharklets)"
+        "icao_type_code": "A318",
+        "aircraft_model": "Airbus A318 (sharklets)"
     },
     {
-      "icao_type_code": "A319",
-      "aircraft_model": "Airbus A319"
+        "icao_type_code": "A319",
+        "aircraft_model": "Airbus A319"
     },
     {
-      "icao_type_code": "A319",
-      "aircraft_model": "Airbus A319 (sharklets)"
+        "icao_type_code": "A319",
+        "aircraft_model": "Airbus A319 (sharklets)"
     },
     {
-      "icao_type_code": "A320",
-      "aircraft_model": "Airbus A320"
+        "icao_type_code": "A320",
+        "aircraft_model": "Airbus A320"
     },
     {
-      "icao_type_code": "A320",
-      "aircraft_model": "Airbus A320 (sharklets)"
+        "icao_type_code": "A320",
+        "aircraft_model": "Airbus A320 (sharklets)"
     },
     {
-      "icao_type_code": "A321",
-      "aircraft_model": "Airbus A321"
+        "icao_type_code": "A321",
+        "aircraft_model": "Airbus A321"
     },
     {
-      "icao_type_code": "A321",
-      "aircraft_model": "Airbus A321 (sharklets)"
+        "icao_type_code": "A321",
+        "aircraft_model": "Airbus A321 (sharklets)"
     },
     {
-      "icao_type_code": "A332",
-      "aircraft_model": "Airbus A330-200"
+        "icao_type_code": "A332",
+        "aircraft_model": "Airbus A330-200"
     },
     {
-      "icao_type_code": "A333",
-      "aircraft_model": "Airbus A330-300"
+        "icao_type_code": "A333",
+        "aircraft_model": "Airbus A330-300"
     },
     {
-      "icao_type_code": "A332",
-      "aircraft_model": "Airbus A330-200 Freighter"
+        "icao_type_code": "A332",
+        "aircraft_model": "Airbus A330-200 Freighter"
     },
     {
-      "icao_type_code": "A333",
-      "aircraft_model": "Airbus A330-300 Freighter"
+        "icao_type_code": "A333",
+        "aircraft_model": "Airbus A330-300 Freighter"
     },
     {
-      "icao_type_code": "A337",
-      "aircraft_model": "Airbus A330-700 \"BelugaXL\""
+        "icao_type_code": "A337",
+        "aircraft_model": "Airbus A330-700 \"BelugaXL\""
     },
     {
-      "icao_type_code": "A338",
-      "aircraft_model": "Airbus A330-800"
+        "icao_type_code": "A338",
+        "aircraft_model": "Airbus A330-800"
     },
     {
-      "icao_type_code": "A339",
-      "aircraft_model": "Airbus A330-900"
+        "icao_type_code": "A339",
+        "aircraft_model": "Airbus A330-900"
     },
     {
-      "icao_type_code": "A342",
-      "aircraft_model": "Airbus A340-200"
+        "icao_type_code": "A342",
+        "aircraft_model": "Airbus A340-200"
     },
     {
-      "icao_type_code": "A343",
-      "aircraft_model": "Airbus A340-300"
+        "icao_type_code": "A343",
+        "aircraft_model": "Airbus A340-300"
     },
     {
-      "icao_type_code": "A345",
-      "aircraft_model": "Airbus A340-500"
+        "icao_type_code": "A345",
+        "aircraft_model": "Airbus A340-500"
     },
     {
-      "icao_type_code": "A346",
-      "aircraft_model": "Airbus A340-600"
+        "icao_type_code": "A346",
+        "aircraft_model": "Airbus A340-600"
     },
     {
-      "icao_type_code": "A359",
-      "aircraft_model": "Airbus A350-900"
+        "icao_type_code": "A359",
+        "aircraft_model": "Airbus A350-900"
     },
     {
-      "icao_type_code": "A35K",
-      "aircraft_model": "Airbus A350-1000"
+        "icao_type_code": "A35K",
+        "aircraft_model": "Airbus A350-1000"
     },
     {
-      "icao_type_code": "A388",
-      "aircraft_model": "Airbus A380-800"
+        "icao_type_code": "A388",
+        "aircraft_model": "Airbus A380-800"
     },
     {
-      "icao_type_code": "A3ST",
-      "aircraft_model": "Airbus A300-600ST \"Super Transporter\" / \"Beluga\""
+        "icao_type_code": "A3ST",
+        "aircraft_model": "Airbus A300-600ST \"Super Transporter\" / \"Beluga\""
     },
     {
-      "icao_type_code": "A400",
-      "aircraft_model": "Airbus A400M Atlas"
+        "icao_type_code": "A400",
+        "aircraft_model": "Airbus A400M Atlas"
     },
     {
-      "icao_type_code": "A748",
-      "aircraft_model": "Hawker Siddeley HS 748"
+        "icao_type_code": "A748",
+        "aircraft_model": "Hawker Siddeley HS 748"
     },
     {
-      "icao_type_code": "AC68",
-      "aircraft_model": "Gulfstream/Rockwell (Aero) Commander 680"
+        "icao_type_code": "AC68",
+        "aircraft_model": "Gulfstream/Rockwell (Aero) Commander 680"
     },
     {
-      "icao_type_code": "AC90",
-      "aircraft_model": "Gulfstream/Rockwell (Aero) Turbo Commander 690"
+        "icao_type_code": "AC90",
+        "aircraft_model": "Gulfstream/Rockwell (Aero) Turbo Commander 690"
     },
     {
-      "icao_type_code": "AJ27",
-      "aircraft_model": "COMAC ARJ21"
+        "icao_type_code": "AJ27",
+        "aircraft_model": "COMAC ARJ21"
     },
     {
-      "icao_type_code": "AN12",
-      "aircraft_model": "Antonov An-12"
+        "icao_type_code": "AN12",
+        "aircraft_model": "Antonov An-12"
     },
     {
-      "icao_type_code": "AN24",
-      "aircraft_model": "Antonov An-24"
+        "icao_type_code": "AN24",
+        "aircraft_model": "Antonov An-24"
     },
     {
-      "icao_type_code": "AN26",
-      "aircraft_model": "Antonov An-26"
+        "icao_type_code": "AN26",
+        "aircraft_model": "Antonov An-26"
     },
     {
-      "icao_type_code": "AN28",
-      "aircraft_model": "Antonov An-28"
+        "icao_type_code": "AN28",
+        "aircraft_model": "Antonov An-28"
     },
     {
-      "icao_type_code": "AN30",
-      "aircraft_model": "Antonov An-30"
+        "icao_type_code": "AN30",
+        "aircraft_model": "Antonov An-30"
     },
     {
-      "icao_type_code": "AN32",
-      "aircraft_model": "Antonov An-32"
+        "icao_type_code": "AN32",
+        "aircraft_model": "Antonov An-32"
     },
     {
-      "icao_type_code": "AN72",
-      "aircraft_model": "Antonov An-72 / An-74"
+        "icao_type_code": "AN72",
+        "aircraft_model": "Antonov An-72 / An-74"
     },
     {
-      "icao_type_code": "AS32",
-      "aircraft_model": "Eurocopter AS332 Super Puma"
+        "icao_type_code": "AS32",
+        "aircraft_model": "Eurocopter AS332 Super Puma"
     },
     {
-      "icao_type_code": "AS50",
-      "aircraft_model": "Eurocopter AS350 �cureuil / AS550 Fennec"
+        "icao_type_code": "AS50",
+        "aircraft_model": "Eurocopter AS350 \ufffdcureuil / AS550 Fennec"
     },
     {
-      "icao_type_code": "AT43",
-      "aircraft_model": "Aerospatiale/Alenia ATR 42-300 / 320"
+        "icao_type_code": "AT43",
+        "aircraft_model": "Aerospatiale/Alenia ATR 42-300 / 320"
     },
     {
-      "icao_type_code": "AT45",
-      "aircraft_model": "Aerospatiale/Alenia ATR 42-500"
+        "icao_type_code": "AT45",
+        "aircraft_model": "Aerospatiale/Alenia ATR 42-500"
     },
     {
-      "icao_type_code": "AT46",
-      "aircraft_model": "Aerospatiale/Alenia ATR 42-600"
+        "icao_type_code": "AT46",
+        "aircraft_model": "Aerospatiale/Alenia ATR 42-600"
     },
     {
-      "icao_type_code": "AT72",
-      "aircraft_model": "Aerospatiale/Alenia ATR 72-201/-202"
+        "icao_type_code": "AT72",
+        "aircraft_model": "Aerospatiale/Alenia ATR 72-201/-202"
     },
     {
-      "icao_type_code": "AT73",
-      "aircraft_model": "Aerospatiale/Alenia ATR 72-211/-212"
+        "icao_type_code": "AT73",
+        "aircraft_model": "Aerospatiale/Alenia ATR 72-211/-212"
     },
     {
-      "icao_type_code": "AT75",
-      "aircraft_model": "Aerospatiale/Alenia ATR 72-212A (500)"
+        "icao_type_code": "AT75",
+        "aircraft_model": "Aerospatiale/Alenia ATR 72-212A (500)"
     },
     {
-      "icao_type_code": "AT76",
-      "aircraft_model": "Aerospatiale/Alenia ATR 72-212A (600)"
+        "icao_type_code": "AT76",
+        "aircraft_model": "Aerospatiale/Alenia ATR 72-212A (600)"
     },
     {
-      "icao_type_code": "ATP",
-      "aircraft_model": "British Aerospace ATP"
+        "icao_type_code": "ATP",
+        "aircraft_model": "British Aerospace ATP"
     },
     {
-      "icao_type_code": "B06",
-      "aircraft_model": "Bell 206 JetRanger"
+        "icao_type_code": "B06",
+        "aircraft_model": "Bell 206 JetRanger"
     },
     {
-      "icao_type_code": "B06T",
-      "aircraft_model": "Bell 206 TwinRanger"
+        "icao_type_code": "B06T",
+        "aircraft_model": "Bell 206 TwinRanger"
     },
     {
-      "icao_type_code": "B105",
-      "aircraft_model": "Eurocopter (MBB) Bo.105"
+        "icao_type_code": "B105",
+        "aircraft_model": "Eurocopter (MBB) Bo.105"
     },
     {
-      "icao_type_code": "B190",
-      "aircraft_model": "Beechcraft 1900"
+        "icao_type_code": "B190",
+        "aircraft_model": "Beechcraft 1900"
     },
     {
-      "icao_type_code": "B212",
-      "aircraft_model": "Bell 212"
+        "icao_type_code": "B212",
+        "aircraft_model": "Bell 212"
     },
     {
-      "icao_type_code": "B37M",
-      "aircraft_model": "Boeing 737 MAX 7"
+        "icao_type_code": "B37M",
+        "aircraft_model": "Boeing 737 MAX 7"
     },
     {
-      "icao_type_code": "B38M",
-      "aircraft_model": "Boeing 737 MAX 8"
+        "icao_type_code": "B38M",
+        "aircraft_model": "Boeing 737 MAX 8"
     },
     {
-      "icao_type_code": "B39M",
-      "aircraft_model": "Boeing 737 MAX 9"
+        "icao_type_code": "B39M",
+        "aircraft_model": "Boeing 737 MAX 9"
     },
     {
-      "icao_type_code": "B3XM",
-      "aircraft_model": "Boeing 737 MAX 10"
+        "icao_type_code": "B3XM",
+        "aircraft_model": "Boeing 737 MAX 10"
     },
     {
-      "icao_type_code": "B412",
-      "aircraft_model": "Bell 412"
+        "icao_type_code": "B412",
+        "aircraft_model": "Bell 412"
     },
     {
-      "icao_type_code": "B429",
-      "aircraft_model": "Bell 429"
+        "icao_type_code": "B429",
+        "aircraft_model": "Bell 429"
     },
     {
-      "icao_type_code": "B461",
-      "aircraft_model": "BAe 146-100"
+        "icao_type_code": "B461",
+        "aircraft_model": "BAe 146-100"
     },
     {
-      "icao_type_code": "B462",
-      "aircraft_model": "BAe 146-200"
+        "icao_type_code": "B462",
+        "aircraft_model": "BAe 146-200"
     },
     {
-      "icao_type_code": "B463",
-      "aircraft_model": "BAe 146-300"
+        "icao_type_code": "B463",
+        "aircraft_model": "BAe 146-300"
     },
     {
-      "icao_type_code": "B52",
-      "aircraft_model": "Boeing B-52 Stratofortress"
+        "icao_type_code": "B52",
+        "aircraft_model": "Boeing B-52 Stratofortress"
     },
     {
-      "icao_type_code": "B703",
-      "aircraft_model": "Boeing 707"
+        "icao_type_code": "B703",
+        "aircraft_model": "Boeing 707"
     },
     {
-      "icao_type_code": "B712",
-      "aircraft_model": "Boeing 717"
+        "icao_type_code": "B712",
+        "aircraft_model": "Boeing 717"
     },
     {
-      "icao_type_code": "B720",
-      "aircraft_model": "Boeing 720B"
+        "icao_type_code": "B720",
+        "aircraft_model": "Boeing 720B"
     },
     {
-      "icao_type_code": "B721",
-      "aircraft_model": "Boeing 727-100"
+        "icao_type_code": "B721",
+        "aircraft_model": "Boeing 727-100"
     },
     {
-      "icao_type_code": "B722",
-      "aircraft_model": "Boeing 727-200"
+        "icao_type_code": "B722",
+        "aircraft_model": "Boeing 727-200"
     },
     {
-      "icao_type_code": "B732",
-      "aircraft_model": "Boeing 737-200"
+        "icao_type_code": "B732",
+        "aircraft_model": "Boeing 737-200"
     },
     {
-      "icao_type_code": "B732",
-      "aircraft_model": "Boeing 737-200 Freighter"
+        "icao_type_code": "B732",
+        "aircraft_model": "Boeing 737-200 Freighter"
     },
     {
-      "icao_type_code": "B733",
-      "aircraft_model": "Boeing 737-300"
+        "icao_type_code": "B733",
+        "aircraft_model": "Boeing 737-300"
     },
     {
-      "icao_type_code": "B733",
-      "aircraft_model": "Boeing 737-300 Winglets"
+        "icao_type_code": "B733",
+        "aircraft_model": "Boeing 737-300 Winglets"
     },
     {
-      "icao_type_code": "B733",
-      "aircraft_model": "Boeing 737-300 Freighter"
+        "icao_type_code": "B733",
+        "aircraft_model": "Boeing 737-300 Freighter"
     },
     {
-      "icao_type_code": "B734",
-      "aircraft_model": "Boeing 737-400"
+        "icao_type_code": "B734",
+        "aircraft_model": "Boeing 737-400"
     },
     {
-      "icao_type_code": "B734",
-      "aircraft_model": "Boeing 737-400 Freighter"
+        "icao_type_code": "B734",
+        "aircraft_model": "Boeing 737-400 Freighter"
     },
     {
-      "icao_type_code": "B735",
-      "aircraft_model": "Boeing 737-500"
+        "icao_type_code": "B735",
+        "aircraft_model": "Boeing 737-500"
     },
     {
-      "icao_type_code": "B735",
-      "aircraft_model": "Boeing 737-500 Winglets"
+        "icao_type_code": "B735",
+        "aircraft_model": "Boeing 737-500 Winglets"
     },
     {
-      "icao_type_code": "B736",
-      "aircraft_model": "Boeing 737-600"
+        "icao_type_code": "B736",
+        "aircraft_model": "Boeing 737-600"
     },
     {
-      "icao_type_code": "B738",
-      "aircraft_model": "Boeing 737-800"
+        "icao_type_code": "B738",
+        "aircraft_model": "Boeing 737-800"
     },
     {
-      "icao_type_code": "B739",
-      "aircraft_model": "Boeing 737-900 / Boeing 737-900ER"
+        "icao_type_code": "B739",
+        "aircraft_model": "Boeing 737-900 / Boeing 737-900ER"
     },
     {
-      "icao_type_code": "B737",
-      "aircraft_model": "Boeing 737-700 / Boeing 737-700ER"
+        "icao_type_code": "B737",
+        "aircraft_model": "Boeing 737-700 / Boeing 737-700ER"
     },
     {
-      "icao_type_code": "B737",
-      "aircraft_model": "Boeing 737-700 Winglets"
+        "icao_type_code": "B737",
+        "aircraft_model": "Boeing 737-700 Winglets"
     },
     {
-      "icao_type_code": "B738",
-      "aircraft_model": "Boeing 737-800 Winglets"
+        "icao_type_code": "B738",
+        "aircraft_model": "Boeing 737-800 Winglets"
     },
     {
-      "icao_type_code": "B738",
-      "aircraft_model": "Boeing 737-800 Freighter Winglets"
+        "icao_type_code": "B738",
+        "aircraft_model": "Boeing 737-800 Freighter Winglets"
     },
     {
-      "icao_type_code": "B738",
-      "aircraft_model": "Boeing 737-800 Freighter"
+        "icao_type_code": "B738",
+        "aircraft_model": "Boeing 737-800 Freighter"
     },
     {
-      "icao_type_code": "B739",
-      "aircraft_model": "Boeing 737-900 Winglets"
+        "icao_type_code": "B739",
+        "aircraft_model": "Boeing 737-900 Winglets"
     },
     {
-      "icao_type_code": "B741",
-      "aircraft_model": "Boeing 747-100"
+        "icao_type_code": "B741",
+        "aircraft_model": "Boeing 747-100"
     },
     {
-      "icao_type_code": "B741",
-      "aircraft_model": "Boeing 747-100 Freighter"
+        "icao_type_code": "B741",
+        "aircraft_model": "Boeing 747-100 Freighter"
     },
     {
-      "icao_type_code": "B742",
-      "aircraft_model": "Boeing 747-200"
+        "icao_type_code": "B742",
+        "aircraft_model": "Boeing 747-200"
     },
     {
-      "icao_type_code": "B742",
-      "aircraft_model": "Boeing 747-200M"
+        "icao_type_code": "B742",
+        "aircraft_model": "Boeing 747-200M"
     },
     {
-      "icao_type_code": "B742",
-      "aircraft_model": "Boeing 747-200F"
+        "icao_type_code": "B742",
+        "aircraft_model": "Boeing 747-200F"
     },
     {
-      "icao_type_code": "B743",
-      "aircraft_model": "Boeing 747-300"
+        "icao_type_code": "B743",
+        "aircraft_model": "Boeing 747-300"
     },
     {
-      "icao_type_code": "B743",
-      "aircraft_model": "Boeing 747-300M"
+        "icao_type_code": "B743",
+        "aircraft_model": "Boeing 747-300M"
     },
     {
-      "icao_type_code": "B744",
-      "aircraft_model": "Boeing 747-400 / Boeing 747-400ER"
+        "icao_type_code": "B744",
+        "aircraft_model": "Boeing 747-400 / Boeing 747-400ER"
     },
     {
-      "icao_type_code": "B744",
-      "aircraft_model": "Boeing 747-400M"
+        "icao_type_code": "B744",
+        "aircraft_model": "Boeing 747-400M"
     },
     {
-      "icao_type_code": "B744",
-      "aircraft_model": "Boeing 747-400F / Boeing 747-400ERF"
+        "icao_type_code": "B744",
+        "aircraft_model": "Boeing 747-400F / Boeing 747-400ERF"
     },
     {
-      "icao_type_code": "B748",
-      "aircraft_model": "Boeing 747-8I"
+        "icao_type_code": "B748",
+        "aircraft_model": "Boeing 747-8I"
     },
     {
-      "icao_type_code": "B748",
-      "aircraft_model": "Boeing 747-8F"
+        "icao_type_code": "B748",
+        "aircraft_model": "Boeing 747-8F"
     },
     {
-      "icao_type_code": "B74R",
-      "aircraft_model": "Boeing 747SR"
+        "icao_type_code": "B74R",
+        "aircraft_model": "Boeing 747SR"
     },
     {
-      "icao_type_code": "B74R",
-      "aircraft_model": "Boeing 747SR Freighter"
+        "icao_type_code": "B74R",
+        "aircraft_model": "Boeing 747SR Freighter"
     },
     {
-      "icao_type_code": "B74S",
-      "aircraft_model": "Boeing 747SP"
+        "icao_type_code": "B74S",
+        "aircraft_model": "Boeing 747SP"
     },
     {
-      "icao_type_code": "B752",
-      "aircraft_model": "Boeing 757-200"
+        "icao_type_code": "B752",
+        "aircraft_model": "Boeing 757-200"
     },
     {
-      "icao_type_code": "B752",
-      "aircraft_model": "Boeing 757F"
+        "icao_type_code": "B752",
+        "aircraft_model": "Boeing 757F"
     },
     {
-      "icao_type_code": "B753",
-      "aircraft_model": "Boeing 757-300"
+        "icao_type_code": "B753",
+        "aircraft_model": "Boeing 757-300"
     },
     {
-      "icao_type_code": "B762",
-      "aircraft_model": "Boeing 767-200 / Boeing 767-200ER"
+        "icao_type_code": "B762",
+        "aircraft_model": "Boeing 767-200 / Boeing 767-200ER"
     },
     {
-      "icao_type_code": "B762",
-      "aircraft_model": "Boeing 767-200 Freighter / Boeing 767-200ER"
+        "icao_type_code": "B762",
+        "aircraft_model": "Boeing 767-200 Freighter / Boeing 767-200ER"
     },
     {
-      "icao_type_code": "B763",
-      "aircraft_model": "Boeing 767-300"
+        "icao_type_code": "B763",
+        "aircraft_model": "Boeing 767-300"
     },
     {
-      "icao_type_code": "B763",
-      "aircraft_model": "Boeing 767-300 Winglets / Boeing 767-300ER"
+        "icao_type_code": "B763",
+        "aircraft_model": "Boeing 767-300 Winglets / Boeing 767-300ER"
     },
     {
-      "icao_type_code": "B763",
-      "aircraft_model": "Boeing 767-300 Freighter"
+        "icao_type_code": "B763",
+        "aircraft_model": "Boeing 767-300 Freighter"
     },
     {
-      "icao_type_code": "B764",
-      "aircraft_model": "Boeing 767-400ER"
+        "icao_type_code": "B764",
+        "aircraft_model": "Boeing 767-400ER"
     },
     {
-      "icao_type_code": "B772",
-      "aircraft_model": "Boeing 777-200 / Boeing 777-200ER"
+        "icao_type_code": "B772",
+        "aircraft_model": "Boeing 777-200 / Boeing 777-200ER"
     },
     {
-      "icao_type_code": "B773",
-      "aircraft_model": "Boeing 777-300"
+        "icao_type_code": "B773",
+        "aircraft_model": "Boeing 777-300"
     },
     {
-      "icao_type_code": "B778",
-      "aircraft_model": "Boeing 777-8"
+        "icao_type_code": "B778",
+        "aircraft_model": "Boeing 777-8"
     },
     {
-      "icao_type_code": "B779",
-      "aircraft_model": "Boeing 777-9"
+        "icao_type_code": "B779",
+        "aircraft_model": "Boeing 777-9"
     },
     {
-      "icao_type_code": "B77L",
-      "aircraft_model": "Boeing 777-200 Freighter"
+        "icao_type_code": "B77L",
+        "aircraft_model": "Boeing 777-200 Freighter"
     },
     {
-      "icao_type_code": "B77L",
-      "aircraft_model": "Boeing 777-200LR"
+        "icao_type_code": "B77L",
+        "aircraft_model": "Boeing 777-200LR"
     },
     {
-      "icao_type_code": "B77W",
-      "aircraft_model": "Boeing 777-300ER"
+        "icao_type_code": "B77W",
+        "aircraft_model": "Boeing 777-300ER"
     },
     {
-      "icao_type_code": "B788",
-      "aircraft_model": "Boeing 787-8"
+        "icao_type_code": "B788",
+        "aircraft_model": "Boeing 787-8"
     },
     {
-      "icao_type_code": "B789",
-      "aircraft_model": "Boeing 787-9"
+        "icao_type_code": "B789",
+        "aircraft_model": "Boeing 787-9"
     },
     {
-      "icao_type_code": "B78X",
-      "aircraft_model": "Boeing 787-10"
+        "icao_type_code": "B78X",
+        "aircraft_model": "Boeing 787-10"
     },
     {
-      "icao_type_code": "BA11",
-      "aircraft_model": "British Aerospace (BAC) One Eleven"
+        "icao_type_code": "BA11",
+        "aircraft_model": "British Aerospace (BAC) One Eleven"
     },
     {
-      "icao_type_code": "BCS1",
-      "aircraft_model": "Airbus A220-100"
+        "icao_type_code": "BCS1",
+        "aircraft_model": "Airbus A220-100"
     },
     {
-      "icao_type_code": "BCS3",
-      "aircraft_model": "Airbus A220-300"
+        "icao_type_code": "BCS3",
+        "aircraft_model": "Airbus A220-300"
     },
     {
-      "icao_type_code": "BE40",
-      "aircraft_model": "Hawker 400"
+        "icao_type_code": "BE40",
+        "aircraft_model": "Hawker 400"
     },
     {
-      "icao_type_code": "BE55",
-      "aircraft_model": "Beechcraft 55 Baron"
+        "icao_type_code": "BE55",
+        "aircraft_model": "Beechcraft 55 Baron"
     },
     {
-      "icao_type_code": "BE58",
-      "aircraft_model": "Beechcraft 58 Baron"
+        "icao_type_code": "BE58",
+        "aircraft_model": "Beechcraft 58 Baron"
     },
     {
-      "icao_type_code": "BE76",
-      "aircraft_model": "Beechcraft Model 76 Duchess"
+        "icao_type_code": "BE76",
+        "aircraft_model": "Beechcraft Model 76 Duchess"
     },
     {
-      "icao_type_code": "BE99",
-      "aircraft_model": "Beechcraft Model 99"
+        "icao_type_code": "BE99",
+        "aircraft_model": "Beechcraft Model 99"
     },
     {
-      "icao_type_code": "BELF",
-      "aircraft_model": "Shorts SC-5 Belfast"
+        "icao_type_code": "BELF",
+        "aircraft_model": "Shorts SC-5 Belfast"
     },
     {
-      "icao_type_code": "BER2",
-      "aircraft_model": "Beriev Be-200 Altair"
+        "icao_type_code": "BER2",
+        "aircraft_model": "Beriev Be-200 Altair"
     },
     {
-      "icao_type_code": "BLCF",
-      "aircraft_model": "Boeing 747 LCF Dreamlifter"
+        "icao_type_code": "BLCF",
+        "aircraft_model": "Boeing 747 LCF Dreamlifter"
     },
     {
-      "icao_type_code": "BN2P",
-      "aircraft_model": "Pilatus Britten-Norman BN-2A/B Islander"
+        "icao_type_code": "BN2P",
+        "aircraft_model": "Pilatus Britten-Norman BN-2A/B Islander"
     },
     {
-      "icao_type_code": "C130",
-      "aircraft_model": "Lockheed L-182 / 282 / 382 (L-100) Hercules"
+        "icao_type_code": "C130",
+        "aircraft_model": "Lockheed L-182 / 282 / 382 (L-100) Hercules"
     },
     {
-      "icao_type_code": "C208",
-      "aircraft_model": "Cessna 208 Caravan"
+        "icao_type_code": "C208",
+        "aircraft_model": "Cessna 208 Caravan"
     },
     {
-      "icao_type_code": "C212",
-      "aircraft_model": "CASA / IPTN 212 Aviocar"
+        "icao_type_code": "C212",
+        "aircraft_model": "CASA / IPTN 212 Aviocar"
     },
     {
-      "icao_type_code": "C25A",
-      "aircraft_model": "Cessna Citation CJ2"
+        "icao_type_code": "C25A",
+        "aircraft_model": "Cessna Citation CJ2"
     },
     {
-      "icao_type_code": "C25B",
-      "aircraft_model": "Cessna Citation CJ3"
+        "icao_type_code": "C25B",
+        "aircraft_model": "Cessna Citation CJ3"
     },
     {
-      "icao_type_code": "C25C",
-      "aircraft_model": "Cessna Citation CJ4"
+        "icao_type_code": "C25C",
+        "aircraft_model": "Cessna Citation CJ4"
     },
     {
-      "icao_type_code": "C30J",
-      "aircraft_model": "Lockheed Martin C-130J Hercules"
+        "icao_type_code": "C30J",
+        "aircraft_model": "Lockheed Martin C-130J Hercules"
     },
     {
-      "icao_type_code": "C310",
-      "aircraft_model": "Cessna 310"
+        "icao_type_code": "C310",
+        "aircraft_model": "Cessna 310"
     },
     {
-      "icao_type_code": "C46",
-      "aircraft_model": "Curtiss C-46 Commando"
+        "icao_type_code": "C46",
+        "aircraft_model": "Curtiss C-46 Commando"
     },
     {
-      "icao_type_code": "C5M",
-      "aircraft_model": "Lockheed C-5M Super Galaxy"
+        "icao_type_code": "C5M",
+        "aircraft_model": "Lockheed C-5M Super Galaxy"
     },
     {
-      "icao_type_code": "C500",
-      "aircraft_model": "Cessna Citation I"
+        "icao_type_code": "C500",
+        "aircraft_model": "Cessna Citation I"
     },
     {
-      "icao_type_code": "C510",
-      "aircraft_model": "Cessna Citation Mustang"
+        "icao_type_code": "C510",
+        "aircraft_model": "Cessna Citation Mustang"
     },
     {
-      "icao_type_code": "C525",
-      "aircraft_model": "Cessna CitationJet"
+        "icao_type_code": "C525",
+        "aircraft_model": "Cessna CitationJet"
     },
     {
-      "icao_type_code": "C550",
-      "aircraft_model": "Cessna Citation II"
+        "icao_type_code": "C550",
+        "aircraft_model": "Cessna Citation II"
     },
     {
-      "icao_type_code": "C560",
-      "aircraft_model": "Cessna Citation V"
+        "icao_type_code": "C560",
+        "aircraft_model": "Cessna Citation V"
     },
     {
-      "icao_type_code": "C56X",
-      "aircraft_model": "Cessna Citation Excel"
+        "icao_type_code": "C56X",
+        "aircraft_model": "Cessna Citation Excel"
     },
     {
-      "icao_type_code": "C650",
-      "aircraft_model": "Cessna Citation III, VI, VII"
+        "icao_type_code": "C650",
+        "aircraft_model": "Cessna Citation III, VI, VII"
     },
     {
-      "icao_type_code": "C680",
-      "aircraft_model": "Cessna Citation Sovereign"
+        "icao_type_code": "C680",
+        "aircraft_model": "Cessna Citation Sovereign"
     },
     {
-      "icao_type_code": "C700",
-      "aircraft_model": "Cessna Citation Longitude"
+        "icao_type_code": "C700",
+        "aircraft_model": "Cessna Citation Longitude"
     },
     {
-      "icao_type_code": "C750",
-      "aircraft_model": "Cessna Citation X"
+        "icao_type_code": "C750",
+        "aircraft_model": "Cessna Citation X"
     },
     {
-      "icao_type_code": "C919",
-      "aircraft_model": "COMAC C919"
+        "icao_type_code": "C919",
+        "aircraft_model": "COMAC C919"
     },
     {
-      "icao_type_code": "CL2T",
-      "aircraft_model": "Bombardier 415"
+        "icao_type_code": "CL2T",
+        "aircraft_model": "Bombardier 415"
     },
     {
-      "icao_type_code": "CL30",
-      "aircraft_model": "Bombardier BD-100 Challenger 300"
+        "icao_type_code": "CL30",
+        "aircraft_model": "Bombardier BD-100 Challenger 300"
     },
     {
-      "icao_type_code": "CL60",
-      "aircraft_model": "Canadair Challenger 600"
+        "icao_type_code": "CL60",
+        "aircraft_model": "Canadair Challenger 600"
     },
     {
-      "icao_type_code": "CN35",
-      "aircraft_model": "CASA/IPTN CN-235"
+        "icao_type_code": "CN35",
+        "aircraft_model": "CASA/IPTN CN-235"
     },
     {
-      "icao_type_code": "CONI",
-      "aircraft_model": "Lockheed L-1049 Super Constellation"
+        "icao_type_code": "CONI",
+        "aircraft_model": "Lockheed L-1049 Super Constellation"
     },
     {
-      "icao_type_code": "CRJ1",
-      "aircraft_model": "Canadair Regional Jet 100"
+        "icao_type_code": "CRJ1",
+        "aircraft_model": "Canadair Regional Jet 100"
     },
     {
-      "icao_type_code": "CRJ2",
-      "aircraft_model": "Canadair Regional Jet 200"
+        "icao_type_code": "CRJ2",
+        "aircraft_model": "Canadair Regional Jet 200"
     },
     {
-      "icao_type_code": "CRJ7",
-      "aircraft_model": "Canadair Regional Jet 700 | Regional Jet 550"
+        "icao_type_code": "CRJ7",
+        "aircraft_model": "Canadair Regional Jet 700 | Regional Jet 550"
     },
     {
-      "icao_type_code": "CRJ9",
-      "aircraft_model": "Canadair Regional Jet 900"
+        "icao_type_code": "CRJ9",
+        "aircraft_model": "Canadair Regional Jet 900"
     },
     {
-      "icao_type_code": "CRJX",
-      "aircraft_model": "Canadair Regional Jet 1000"
+        "icao_type_code": "CRJX",
+        "aircraft_model": "Canadair Regional Jet 1000"
     },
     {
-      "icao_type_code": "CVLP",
-      "aircraft_model": "Convair CV-240 & -440"
+        "icao_type_code": "CVLP",
+        "aircraft_model": "Convair CV-240 & -440"
     },
     {
-      "icao_type_code": "CVLT",
-      "aircraft_model": "Convair CV-580, Convair CV-600, Convair CV-640"
+        "icao_type_code": "CVLT",
+        "aircraft_model": "Convair CV-580, Convair CV-600, Convair CV-640"
     },
     {
-      "icao_type_code": "D228",
-      "aircraft_model": "Dornier 228"
+        "icao_type_code": "D228",
+        "aircraft_model": "Dornier 228"
     },
     {
-      "icao_type_code": "D328",
-      "aircraft_model": "Fairchild Dornier Do.328"
+        "icao_type_code": "D328",
+        "aircraft_model": "Fairchild Dornier Do.328"
     },
     {
-      "icao_type_code": "DA42",
-      "aircraft_model": "Diamond DA42"
+        "icao_type_code": "DA42",
+        "aircraft_model": "Diamond DA42"
     },
     {
-      "icao_type_code": "DA62",
-      "aircraft_model": "Diamond DA62"
+        "icao_type_code": "DA62",
+        "aircraft_model": "Diamond DA62"
     },
     {
-      "icao_type_code": "DC10",
-      "aircraft_model": "Douglas DC-10-10 / -15 Passenger"
+        "icao_type_code": "DC10",
+        "aircraft_model": "Douglas DC-10-10 / -15 Passenger"
     },
     {
-      "icao_type_code": "DC10",
-      "aircraft_model": "Douglas DC-10-30 / -40 Passenger"
+        "icao_type_code": "DC10",
+        "aircraft_model": "Douglas DC-10-30 / -40 Passenger"
     },
     {
-      "icao_type_code": "DC10",
-      "aircraft_model": "Douglas DC-10-30 Combi"
+        "icao_type_code": "DC10",
+        "aircraft_model": "Douglas DC-10-30 Combi"
     },
     {
-      "icao_type_code": "DC10",
-      "aircraft_model": "Douglas DC-10-10 Freighter"
+        "icao_type_code": "DC10",
+        "aircraft_model": "Douglas DC-10-10 Freighter"
     },
     {
-      "icao_type_code": "DC10",
-      "aircraft_model": "Douglas DC-10-30 / -40 Freighter"
+        "icao_type_code": "DC10",
+        "aircraft_model": "Douglas DC-10-30 / -40 Freighter"
     },
     {
-      "icao_type_code": "DC3",
-      "aircraft_model": "Douglas DC-3"
+        "icao_type_code": "DC3",
+        "aircraft_model": "Douglas DC-3"
     },
     {
-      "icao_type_code": "DC6",
-      "aircraft_model": "Douglas DC-6"
+        "icao_type_code": "DC6",
+        "aircraft_model": "Douglas DC-6"
     },
     {
-      "icao_type_code": "DC85",
-      "aircraft_model": "Douglas DC-8-50"
+        "icao_type_code": "DC85",
+        "aircraft_model": "Douglas DC-8-50"
     },
     {
-      "icao_type_code": "DC86",
-      "aircraft_model": "Douglas DC-8-62"
+        "icao_type_code": "DC86",
+        "aircraft_model": "Douglas DC-8-62"
     },
     {
-      "icao_type_code": "DC87",
-      "aircraft_model": "Douglas DC-8-72"
+        "icao_type_code": "DC87",
+        "aircraft_model": "Douglas DC-8-72"
     },
     {
-      "icao_type_code": "DC91",
-      "aircraft_model": "Douglas DC-9-10"
+        "icao_type_code": "DC91",
+        "aircraft_model": "Douglas DC-9-10"
     },
     {
-      "icao_type_code": "DC92",
-      "aircraft_model": "Douglas DC-9-20"
+        "icao_type_code": "DC92",
+        "aircraft_model": "Douglas DC-9-20"
     },
     {
-      "icao_type_code": "DC93",
-      "aircraft_model": "Douglas DC-9-30"
+        "icao_type_code": "DC93",
+        "aircraft_model": "Douglas DC-9-30"
     },
     {
-      "icao_type_code": "DC94",
-      "aircraft_model": "Douglas DC-9-40"
+        "icao_type_code": "DC94",
+        "aircraft_model": "Douglas DC-9-40"
     },
     {
-      "icao_type_code": "DC95",
-      "aircraft_model": "Douglas DC-9-50"
+        "icao_type_code": "DC95",
+        "aircraft_model": "Douglas DC-9-50"
     },
     {
-      "icao_type_code": "DH2T",
-      "aircraft_model": "De Havilland Canada DHC-2 Turbo-Beaver"
+        "icao_type_code": "DH2T",
+        "aircraft_model": "De Havilland Canada DHC-2 Turbo-Beaver"
     },
     {
-      "icao_type_code": "DH8A",
-      "aircraft_model": "De Havilland Canada DHC-8-100 Dash 8 / 8Q"
+        "icao_type_code": "DH8A",
+        "aircraft_model": "De Havilland Canada DHC-8-100 Dash 8 / 8Q"
     },
     {
-      "icao_type_code": "DH8B",
-      "aircraft_model": "De Havilland Canada DHC-8-200 Dash 8 / 8Q"
+        "icao_type_code": "DH8B",
+        "aircraft_model": "De Havilland Canada DHC-8-200 Dash 8 / 8Q"
     },
     {
-      "icao_type_code": "DH8C",
-      "aircraft_model": "De Havilland Canada DHC-8-300 Dash 8 / 8Q"
+        "icao_type_code": "DH8C",
+        "aircraft_model": "De Havilland Canada DHC-8-300 Dash 8 / 8Q"
     },
     {
-      "icao_type_code": "DH8D",
-      "aircraft_model": "De Havilland Canada DHC-8-400 Dash 8Q"
+        "icao_type_code": "DH8D",
+        "aircraft_model": "De Havilland Canada DHC-8-400 Dash 8Q"
     },
     {
-      "icao_type_code": "DHC4",
-      "aircraft_model": "De Havilland Canada DHC-4 Caribou"
+        "icao_type_code": "DHC4",
+        "aircraft_model": "De Havilland Canada DHC-4 Caribou"
     },
     {
-      "icao_type_code": "DHC5",
-      "aircraft_model": "De Havilland Canada DHC-5 Buffalo"
+        "icao_type_code": "DHC5",
+        "aircraft_model": "De Havilland Canada DHC-5 Buffalo"
     },
     {
-      "icao_type_code": "DHC6",
-      "aircraft_model": "De Havilland Canada DHC-6 Twin Otter"
+        "icao_type_code": "DHC6",
+        "aircraft_model": "De Havilland Canada DHC-6 Twin Otter"
     },
     {
-      "icao_type_code": "DHC7",
-      "aircraft_model": "De Havilland Canada DHC-7 Dash 7"
+        "icao_type_code": "DHC7",
+        "aircraft_model": "De Havilland Canada DHC-7 Dash 7"
     },
     {
-      "icao_type_code": "DOVE",
-      "aircraft_model": "De Havilland DH.104 Dove"
+        "icao_type_code": "DOVE",
+        "aircraft_model": "De Havilland DH.104 Dove"
     },
     {
-      "icao_type_code": "E110",
-      "aircraft_model": "Embraer EMB 110 Bandeirante"
+        "icao_type_code": "E110",
+        "aircraft_model": "Embraer EMB 110 Bandeirante"
     },
     {
-      "icao_type_code": "E120",
-      "aircraft_model": "Embraer EMB 120 Brasilia"
+        "icao_type_code": "E120",
+        "aircraft_model": "Embraer EMB 120 Brasilia"
     },
     {
-      "icao_type_code": "E135",
-      "aircraft_model": "Embraer RJ135"
+        "icao_type_code": "E135",
+        "aircraft_model": "Embraer RJ135"
     },
     {
-      "icao_type_code": "E135",
-      "aircraft_model": "Embraer RJ140"
+        "icao_type_code": "E135",
+        "aircraft_model": "Embraer RJ140"
     },
     {
-      "icao_type_code": "E145",
-      "aircraft_model": "Embraer RJ145"
+        "icao_type_code": "E145",
+        "aircraft_model": "Embraer RJ145"
     },
     {
-      "icao_type_code": "E170",
-      "aircraft_model": "Embraer 170"
+        "icao_type_code": "E170",
+        "aircraft_model": "Embraer 170"
     },
     {
-      "icao_type_code": "E190",
-      "aircraft_model": "Embraer 190 / Lineage 1000"
+        "icao_type_code": "E190",
+        "aircraft_model": "Embraer 190 / Lineage 1000"
     },
     {
-      "icao_type_code": "E195",
-      "aircraft_model": "Embraer 195"
+        "icao_type_code": "E195",
+        "aircraft_model": "Embraer 195"
     },
     {
-      "icao_type_code": "E290",
-      "aircraft_model": "Embraer E190-E2"
+        "icao_type_code": "E290",
+        "aircraft_model": "Embraer E190-E2"
     },
     {
-      "icao_type_code": "E295",
-      "aircraft_model": "Embraer E195-E2"
+        "icao_type_code": "E295",
+        "aircraft_model": "Embraer E195-E2"
     },
     {
-      "icao_type_code": "E35L",
-      "aircraft_model": "Embraer Legacy 600 / Legacy 650"
+        "icao_type_code": "E35L",
+        "aircraft_model": "Embraer Legacy 600 / Legacy 650"
     },
     {
-      "icao_type_code": "E50P",
-      "aircraft_model": "Embraer Phenom 100"
+        "icao_type_code": "E50P",
+        "aircraft_model": "Embraer Phenom 100"
     },
     {
-      "icao_type_code": "E545",
-      "aircraft_model": "Embraer Legacy 450 / Praetor 500"
+        "icao_type_code": "E545",
+        "aircraft_model": "Embraer Legacy 450 / Praetor 500"
     },
     {
-      "icao_type_code": "E550",
-      "aircraft_model": "Embraer Legacy 500 / Praetor 600"
+        "icao_type_code": "E550",
+        "aircraft_model": "Embraer Legacy 500 / Praetor 600"
     },
     {
-      "icao_type_code": "E55P",
-      "aircraft_model": "Embraer Phenom 300"
+        "icao_type_code": "E55P",
+        "aircraft_model": "Embraer Phenom 300"
     },
     {
-      "icao_type_code": "E75L",
-      "aircraft_model": "Embraer 175 (long wing)"
+        "icao_type_code": "E75L",
+        "aircraft_model": "Embraer 175 (long wing)"
     },
     {
-      "icao_type_code": "E75S",
-      "aircraft_model": "Embraer 175 (short wing)"
+        "icao_type_code": "E75S",
+        "aircraft_model": "Embraer 175 (short wing)"
     },
     {
-      "icao_type_code": "EA50",
-      "aircraft_model": "Eclipse 500"
+        "icao_type_code": "EA50",
+        "aircraft_model": "Eclipse 500"
     },
     {
-      "icao_type_code": "EC20",
-      "aircraft_model": "Eurocopter EC120 Colibri / Harbin HC120"
+        "icao_type_code": "EC20",
+        "aircraft_model": "Eurocopter EC120 Colibri / Harbin HC120"
     },
     {
-      "icao_type_code": "EC25",
-      "aircraft_model": "Eurocopter EC225 Super Puma"
+        "icao_type_code": "EC25",
+        "aircraft_model": "Eurocopter EC225 Super Puma"
     },
     {
-      "icao_type_code": "EC30",
-      "aircraft_model": "Eurocopter EC130"
+        "icao_type_code": "EC30",
+        "aircraft_model": "Eurocopter EC130"
     },
     {
-      "icao_type_code": "EC35",
-      "aircraft_model": "Eurocopter EC135 / EC635"
+        "icao_type_code": "EC35",
+        "aircraft_model": "Eurocopter EC135 / EC635"
     },
     {
-      "icao_type_code": "EC45",
-      "aircraft_model": "Eurocopter EC145"
+        "icao_type_code": "EC45",
+        "aircraft_model": "Eurocopter EC145"
     },
     {
-      "icao_type_code": "EC55",
-      "aircraft_model": "Eurocopter EC155"
+        "icao_type_code": "EC55",
+        "aircraft_model": "Eurocopter EC155"
     },
     {
-      "icao_type_code": "EC75",
-      "aircraft_model": "Eurocopter EC175"
+        "icao_type_code": "EC75",
+        "aircraft_model": "Eurocopter EC175"
     },
     {
-      "icao_type_code": "EXPL",
-      "aircraft_model": "MD Helicopters MD900 Explorer"
+        "icao_type_code": "EXPL",
+        "aircraft_model": "MD Helicopters MD900 Explorer"
     },
     {
-      "icao_type_code": "F100",
-      "aircraft_model": "Fokker 100"
+        "icao_type_code": "F100",
+        "aircraft_model": "Fokker 100"
     },
     {
-      "icao_type_code": "F27",
-      "aircraft_model": "Fokker F27 Friendship"
+        "icao_type_code": "F27",
+        "aircraft_model": "Fokker F27 Friendship"
     },
     {
-      "icao_type_code": "F28",
-      "aircraft_model": "Fokker F28 Fellowship"
+        "icao_type_code": "F28",
+        "aircraft_model": "Fokker F28 Fellowship"
     },
     {
-      "icao_type_code": "F2TH",
-      "aircraft_model": "Dassault Falcon 2000"
+        "icao_type_code": "F2TH",
+        "aircraft_model": "Dassault Falcon 2000"
     },
     {
-      "icao_type_code": "F406",
-      "aircraft_model": "Reims-Cessna F406 Caravan II"
+        "icao_type_code": "F406",
+        "aircraft_model": "Reims-Cessna F406 Caravan II"
     },
     {
-      "icao_type_code": "F50",
-      "aircraft_model": "Fokker 50"
+        "icao_type_code": "F50",
+        "aircraft_model": "Fokker 50"
     },
     {
-      "icao_type_code": "F70",
-      "aircraft_model": "Fokker 70"
+        "icao_type_code": "F70",
+        "aircraft_model": "Fokker 70"
     },
     {
-      "icao_type_code": "F900",
-      "aircraft_model": "Dassault Falcon 900"
+        "icao_type_code": "F900",
+        "aircraft_model": "Dassault Falcon 900"
     },
     {
-      "icao_type_code": "FA50",
-      "aircraft_model": "Dassault Falcon 50"
+        "icao_type_code": "FA50",
+        "aircraft_model": "Dassault Falcon 50"
     },
     {
-      "icao_type_code": "FA7X",
-      "aircraft_model": "Dassault Falcon 7X"
+        "icao_type_code": "FA7X",
+        "aircraft_model": "Dassault Falcon 7X"
     },
     {
-      "icao_type_code": "G159",
-      "aircraft_model": "Gulfstream Aerospace G-159 Gulfstream I"
+        "icao_type_code": "G159",
+        "aircraft_model": "Gulfstream Aerospace G-159 Gulfstream I"
     },
     {
-      "icao_type_code": "G21",
-      "aircraft_model": "Grumman G-21 Goose"
+        "icao_type_code": "G21",
+        "aircraft_model": "Grumman G-21 Goose"
     },
     {
-      "icao_type_code": "G280",
-      "aircraft_model": "Gulfstream G280"
+        "icao_type_code": "G280",
+        "aircraft_model": "Gulfstream G280"
     },
     {
-      "icao_type_code": "G73T",
-      "aircraft_model": "Grumman G-73 Turbo Mallard"
+        "icao_type_code": "G73T",
+        "aircraft_model": "Grumman G-73 Turbo Mallard"
     },
     {
-      "icao_type_code": "GL5T",
-      "aircraft_model": "Bombardier BD-700 Global 5000"
+        "icao_type_code": "GL5T",
+        "aircraft_model": "Bombardier BD-700 Global 5000"
     },
     {
-      "icao_type_code": "GLEX",
-      "aircraft_model": "Bombardier Global Express / Raytheon Sentinel"
+        "icao_type_code": "GLEX",
+        "aircraft_model": "Bombardier Global Express / Raytheon Sentinel"
     },
     {
-      "icao_type_code": "GLF4",
-      "aircraft_model": "Gulfstream IV"
+        "icao_type_code": "GLF4",
+        "aircraft_model": "Gulfstream IV"
     },
     {
-      "icao_type_code": "GLF5",
-      "aircraft_model": "Gulfstream V"
+        "icao_type_code": "GLF5",
+        "aircraft_model": "Gulfstream V"
     },
     {
-      "icao_type_code": "GLF6",
-      "aircraft_model": "Gulfstream G650"
+        "icao_type_code": "GLF6",
+        "aircraft_model": "Gulfstream G650"
     },
     {
-      "icao_type_code": "H25B",
-      "aircraft_model": "British Aerospace 125 series / Hawker/Raytheon 700/800/800XP/850/900"
+        "icao_type_code": "H25B",
+        "aircraft_model": "British Aerospace 125 series / Hawker/Raytheon 700/800/800XP/850/900"
     },
     {
-      "icao_type_code": "H25C",
-      "aircraft_model": "British Aerospace 125-1000 series / Hawker/Raytheon 1000"
+        "icao_type_code": "H25C",
+        "aircraft_model": "British Aerospace 125-1000 series / Hawker/Raytheon 1000"
     },
     {
-      "icao_type_code": "HDJT",
-      "aircraft_model": "Honda HA-420"
+        "icao_type_code": "HDJT",
+        "aircraft_model": "Honda HA-420"
     },
     {
-      "icao_type_code": "HERN",
-      "aircraft_model": "De Havilland DH.114 Heron"
+        "icao_type_code": "HERN",
+        "aircraft_model": "De Havilland DH.114 Heron"
     },
     {
-      "icao_type_code": "I114",
-      "aircraft_model": "Ilyushin Il-114"
+        "icao_type_code": "I114",
+        "aircraft_model": "Ilyushin Il-114"
     },
     {
-      "icao_type_code": "IL18",
-      "aircraft_model": "Ilyushin Il-18"
+        "icao_type_code": "IL18",
+        "aircraft_model": "Ilyushin Il-18"
     },
     {
-      "icao_type_code": "IL62",
-      "aircraft_model": "Ilyushin Il-62"
+        "icao_type_code": "IL62",
+        "aircraft_model": "Ilyushin Il-62"
     },
     {
-      "icao_type_code": "IL76",
-      "aircraft_model": "Ilyushin Il-76"
+        "icao_type_code": "IL76",
+        "aircraft_model": "Ilyushin Il-76"
     },
     {
-      "icao_type_code": "IL86",
-      "aircraft_model": "Ilyushin Il-86"
+        "icao_type_code": "IL86",
+        "aircraft_model": "Ilyushin Il-86"
     },
     {
-      "icao_type_code": "IL96",
-      "aircraft_model": "Ilyushin Il-96"
+        "icao_type_code": "IL96",
+        "aircraft_model": "Ilyushin Il-96"
     },
     {
-      "icao_type_code": "J328",
-      "aircraft_model": "Fairchild Dornier 328JET"
+        "icao_type_code": "J328",
+        "aircraft_model": "Fairchild Dornier 328JET"
     },
     {
-      "icao_type_code": "JS31",
-      "aircraft_model": "British Aerospace Jetstream 31"
+        "icao_type_code": "JS31",
+        "aircraft_model": "British Aerospace Jetstream 31"
     },
     {
-      "icao_type_code": "JS32",
-      "aircraft_model": "British Aerospace Jetstream 32"
+        "icao_type_code": "JS32",
+        "aircraft_model": "British Aerospace Jetstream 32"
     },
     {
-      "icao_type_code": "JS41",
-      "aircraft_model": "British Aerospace Jetstream 41"
+        "icao_type_code": "JS41",
+        "aircraft_model": "British Aerospace Jetstream 41"
     },
     {
-      "icao_type_code": "JU52",
-      "aircraft_model": "Junkers Ju 52/3M"
+        "icao_type_code": "JU52",
+        "aircraft_model": "Junkers Ju 52/3M"
     },
     {
-      "icao_type_code": "K35R",
-      "aircraft_model": "Boeing KC-135 Stratotanker"
+        "icao_type_code": "K35R",
+        "aircraft_model": "Boeing KC-135 Stratotanker"
     },
     {
-      "icao_type_code": "L101",
-      "aircraft_model": "Lockheed L-1011 Tristar"
+        "icao_type_code": "L101",
+        "aircraft_model": "Lockheed L-1011 Tristar"
     },
     {
-      "icao_type_code": "L188",
-      "aircraft_model": "Lockheed L-188 Electra"
+        "icao_type_code": "L188",
+        "aircraft_model": "Lockheed L-188 Electra"
     },
     {
-      "icao_type_code": "L410",
-      "aircraft_model": "LET 410"
+        "icao_type_code": "L410",
+        "aircraft_model": "LET 410"
     },
     {
-      "icao_type_code": "LJ35",
-      "aircraft_model": "Learjet 35 / 36 / C-21A"
+        "icao_type_code": "LJ35",
+        "aircraft_model": "Learjet 35 / 36 / C-21A"
     },
     {
-      "icao_type_code": "LJ60",
-      "aircraft_model": "Learjet 60"
+        "icao_type_code": "LJ60",
+        "aircraft_model": "Learjet 60"
     },
     {
-      "icao_type_code": "MD11",
-      "aircraft_model": "McDonnell Douglas MD-11"
+        "icao_type_code": "MD11",
+        "aircraft_model": "McDonnell Douglas MD-11"
     },
     {
-      "icao_type_code": "MD11",
-      "aircraft_model": "McDonnell Douglas MD-11F"
+        "icao_type_code": "MD11",
+        "aircraft_model": "McDonnell Douglas MD-11F"
     },
     {
-      "icao_type_code": "MD11",
-      "aircraft_model": "McDonnell Douglas MD-11C"
+        "icao_type_code": "MD11",
+        "aircraft_model": "McDonnell Douglas MD-11C"
     },
     {
-      "icao_type_code": "MD81",
-      "aircraft_model": "McDonnell Douglas MD-81"
+        "icao_type_code": "MD81",
+        "aircraft_model": "McDonnell Douglas MD-81"
     },
     {
-      "icao_type_code": "MD82",
-      "aircraft_model": "McDonnell Douglas MD-82"
+        "icao_type_code": "MD82",
+        "aircraft_model": "McDonnell Douglas MD-82"
     },
     {
-      "icao_type_code": "MD83",
-      "aircraft_model": "McDonnell Douglas MD-83"
+        "icao_type_code": "MD83",
+        "aircraft_model": "McDonnell Douglas MD-83"
     },
     {
-      "icao_type_code": "MD87",
-      "aircraft_model": "McDonnell Douglas MD-87"
+        "icao_type_code": "MD87",
+        "aircraft_model": "McDonnell Douglas MD-87"
     },
     {
-      "icao_type_code": "MD88",
-      "aircraft_model": "McDonnell Douglas MD-88"
+        "icao_type_code": "MD88",
+        "aircraft_model": "McDonnell Douglas MD-88"
     },
     {
-      "icao_type_code": "MD90",
-      "aircraft_model": "McDonnell Douglas MD-90"
+        "icao_type_code": "MD90",
+        "aircraft_model": "McDonnell Douglas MD-90"
     },
     {
-      "icao_type_code": "MI24",
-      "aircraft_model": "Mil Mi-24 / Mi-25 / Mi-35"
+        "icao_type_code": "MI24",
+        "aircraft_model": "Mil Mi-24 / Mi-25 / Mi-35"
     },
     {
-      "icao_type_code": "MI8",
-      "aircraft_model": "MIL Mi-8 / Mi-17 / Mi-171 / Mil-172"
+        "icao_type_code": "MI8",
+        "aircraft_model": "MIL Mi-8 / Mi-17 / Mi-171 / Mil-172"
     },
     {
-      "icao_type_code": "MU2",
-      "aircraft_model": "Mitsubishi Mu-2"
+        "icao_type_code": "MU2",
+        "aircraft_model": "Mitsubishi Mu-2"
     },
     {
-      "icao_type_code": "N262",
-      "aircraft_model": "Aerospatiale (Nord) 262"
+        "icao_type_code": "N262",
+        "aircraft_model": "Aerospatiale (Nord) 262"
     },
     {
-      "icao_type_code": "NOMA",
-      "aircraft_model": "Government Aircraft Factories N22B / N24A Nomad"
+        "icao_type_code": "NOMA",
+        "aircraft_model": "Government Aircraft Factories N22B / N24A Nomad"
     },
     {
-      "icao_type_code": "P06T",
-      "aircraft_model": "Tecnam P2006T"
+        "icao_type_code": "P06T",
+        "aircraft_model": "Tecnam P2006T"
     },
     {
-      "icao_type_code": "P8",
-      "aircraft_model": "Boeing P-8 Poseidon"
+        "icao_type_code": "P8",
+        "aircraft_model": "Boeing P-8 Poseidon"
     },
     {
-      "icao_type_code": "P180",
-      "aircraft_model": "Piaggio P.180 Avanti"
+        "icao_type_code": "P180",
+        "aircraft_model": "Piaggio P.180 Avanti"
     },
     {
-      "icao_type_code": "P212",
-      "aircraft_model": "Tecnam P2012 Traveller"
+        "icao_type_code": "P212",
+        "aircraft_model": "Tecnam P2012 Traveller"
     },
     {
-      "icao_type_code": "P68",
-      "aircraft_model": "Partenavia P.68"
+        "icao_type_code": "P68",
+        "aircraft_model": "Partenavia P.68"
     },
     {
-      "icao_type_code": "PA31",
-      "aircraft_model": "Piper PA-31 Navajo"
+        "icao_type_code": "PA31",
+        "aircraft_model": "Piper PA-31 Navajo"
     },
     {
-      "icao_type_code": "PA34",
-      "aircraft_model": "Piper PA-34 Seneca"
+        "icao_type_code": "PA34",
+        "aircraft_model": "Piper PA-34 Seneca"
     },
     {
-      "icao_type_code": "PA44",
-      "aircraft_model": "Piper PA-44 Seminole"
+        "icao_type_code": "PA44",
+        "aircraft_model": "Piper PA-44 Seminole"
     },
     {
-      "icao_type_code": "PC12",
-      "aircraft_model": "Pilatus PC-12"
+        "icao_type_code": "PC12",
+        "aircraft_model": "Pilatus PC-12"
     },
     {
-      "icao_type_code": "PC6T",
-      "aircraft_model": "Pilatus PC-6 Turbo Porter"
+        "icao_type_code": "PC6T",
+        "aircraft_model": "Pilatus PC-6 Turbo Porter"
     },
     {
-      "icao_type_code": "PC24",
-      "aircraft_model": "Pilatus PC-24"
+        "icao_type_code": "PC24",
+        "aircraft_model": "Pilatus PC-24"
     },
     {
-      "icao_type_code": "RJ1H",
-      "aircraft_model": "Avro RJ100"
+        "icao_type_code": "RJ1H",
+        "aircraft_model": "Avro RJ100"
     },
     {
-      "icao_type_code": "RJ70",
-      "aircraft_model": "Avro RJ70"
+        "icao_type_code": "RJ70",
+        "aircraft_model": "Avro RJ70"
     },
     {
-      "icao_type_code": "RJ85",
-      "aircraft_model": "Avro RJ85"
+        "icao_type_code": "RJ85",
+        "aircraft_model": "Avro RJ85"
     },
     {
-      "icao_type_code": "S58T",
-      "aircraft_model": "Sikorsky S-58T"
+        "icao_type_code": "S58T",
+        "aircraft_model": "Sikorsky S-58T"
     },
     {
-      "icao_type_code": "S601",
-      "aircraft_model": "Aerospatiale SN.601 Corvette"
+        "icao_type_code": "S601",
+        "aircraft_model": "Aerospatiale SN.601 Corvette"
     },
     {
-      "icao_type_code": "S61",
-      "aircraft_model": "Sikorsky S-61"
+        "icao_type_code": "S61",
+        "aircraft_model": "Sikorsky S-61"
     },
     {
-      "icao_type_code": "S65C",
-      "aircraft_model": "Eurocopter (Aerospatiale) SA365C Dauphin 2"
+        "icao_type_code": "S65C",
+        "aircraft_model": "Eurocopter (Aerospatiale) SA365C Dauphin 2"
     },
     {
-      "icao_type_code": "S76",
-      "aircraft_model": "Sikorsky S-76"
+        "icao_type_code": "S76",
+        "aircraft_model": "Sikorsky S-76"
     },
     {
-      "icao_type_code": "S92",
-      "aircraft_model": "Sikorsky S-92"
+        "icao_type_code": "S92",
+        "aircraft_model": "Sikorsky S-92"
     },
     {
-      "icao_type_code": "SB20",
-      "aircraft_model": "Saab 2000"
+        "icao_type_code": "SB20",
+        "aircraft_model": "Saab 2000"
     },
     {
-      "icao_type_code": "SC7",
-      "aircraft_model": "Shorts SC-7 Skyvan"
+        "icao_type_code": "SC7",
+        "aircraft_model": "Shorts SC-7 Skyvan"
     },
     {
-      "icao_type_code": "SF34",
-      "aircraft_model": "Saab SF340A/B"
+        "icao_type_code": "SF34",
+        "aircraft_model": "Saab SF340A/B"
     },
     {
-      "icao_type_code": "SF50",
-      "aircraft_model": "Cirrus SF50 Vision Jet"
+        "icao_type_code": "SF50",
+        "aircraft_model": "Cirrus SF50 Vision Jet"
     },
     {
-      "icao_type_code": "SH33",
-      "aircraft_model": "Shorts SD.330"
+        "icao_type_code": "SH33",
+        "aircraft_model": "Shorts SD.330"
     },
     {
-      "icao_type_code": "SH36",
-      "aircraft_model": "Shorts SD.360"
+        "icao_type_code": "SH36",
+        "aircraft_model": "Shorts SD.360"
     },
     {
-      "icao_type_code": "SU95",
-      "aircraft_model": "Sukhoi Superjet 100-95"
+        "icao_type_code": "SU95",
+        "aircraft_model": "Sukhoi Superjet 100-95"
     },
     {
-      "icao_type_code": "SW4",
-      "aircraft_model": "Fairchild Swearingen Metroliner"
+        "icao_type_code": "SW4",
+        "aircraft_model": "Fairchild Swearingen Metroliner"
     },
     {
-      "icao_type_code": "T134",
-      "aircraft_model": "Tupolev Tu-134"
+        "icao_type_code": "T134",
+        "aircraft_model": "Tupolev Tu-134"
     },
     {
-      "icao_type_code": "T154",
-      "aircraft_model": "Tupolev Tu-154"
+        "icao_type_code": "T154",
+        "aircraft_model": "Tupolev Tu-154"
     },
     {
-      "icao_type_code": "T204",
-      "aircraft_model": "Tupolev Tu-204 / Tu-214"
+        "icao_type_code": "T204",
+        "aircraft_model": "Tupolev Tu-204 / Tu-214"
     },
     {
-      "icao_type_code": "TBM7",
-      "aircraft_model": "Daher TBM 700"
+        "icao_type_code": "TBM7",
+        "aircraft_model": "Daher TBM 700"
     },
     {
-      "icao_type_code": "TBM8",
-      "aircraft_model": "Daher TBM 850"
+        "icao_type_code": "TBM8",
+        "aircraft_model": "Daher TBM 850"
     },
     {
-      "icao_type_code": "TBM9",
-      "aircraft_model": "Daher TBM 900"
+        "icao_type_code": "TBM9",
+        "aircraft_model": "Daher TBM 900"
     },
     {
-      "icao_type_code": "TBM9",
-      "aircraft_model": "Daher TBM 910"
+        "icao_type_code": "TBM9",
+        "aircraft_model": "Daher TBM 910"
     },
     {
-      "icao_type_code": "TBM9",
-      "aircraft_model": "Daher TBM 930"
+        "icao_type_code": "TBM9",
+        "aircraft_model": "Daher TBM 930"
     },
     {
-      "icao_type_code": "TBM9",
-      "aircraft_model": "Daher TBM 940"
+        "icao_type_code": "TBM9",
+        "aircraft_model": "Daher TBM 940"
     },
     {
-      "icao_type_code": "TBM9",
-      "aircraft_model": "Daher TBM 960"
+        "icao_type_code": "TBM9",
+        "aircraft_model": "Daher TBM 960"
     },
     {
-      "icao_type_code": "TRIS",
-      "aircraft_model": "Pilatus Britten-Norman BN-2A Mk III Trislander"
+        "icao_type_code": "TRIS",
+        "aircraft_model": "Pilatus Britten-Norman BN-2A Mk III Trislander"
     },
     {
-      "icao_type_code": "V22",
-      "aircraft_model": "Bell Boeing V-22 Osprey"
+        "icao_type_code": "V22",
+        "aircraft_model": "Bell Boeing V-22 Osprey"
     },
     {
-      "icao_type_code": "WW24",
-      "aircraft_model": "Israel Aircraft Industries 1124 Westwind"
+        "icao_type_code": "WW24",
+        "aircraft_model": "Israel Aircraft Industries 1124 Westwind"
     },
     {
-      "icao_type_code": "Y12",
-      "aircraft_model": "Harbin Y-12"
+        "icao_type_code": "Y12",
+        "aircraft_model": "Harbin Y-12"
     },
     {
-      "icao_type_code": "YK40",
-      "aircraft_model": "Yakovlev Yak-40"
+        "icao_type_code": "YK40",
+        "aircraft_model": "Yakovlev Yak-40"
     },
     {
-      "icao_type_code": "YK42",
-      "aircraft_model": "Yakovlev Yak-42"
+        "icao_type_code": "YK42",
+        "aircraft_model": "Yakovlev Yak-42"
     },
     {
-      "icao_type_code": "YS11",
-      "aircraft_model": "NAMC YS-11"
+        "icao_type_code": "YS11",
+        "aircraft_model": "NAMC YS-11"
+    },
+    {
+        "icao_type_code": "AT5",
+        "aircraft_model": "Aerospatiale/Alenia ATR 42-500"
+    },
+    {
+        "icao_type_code": "SSC",
+        "aircraft_model": "Aerospatiale/British Aerospace Concorde (discontinued)"
+    },
+    {
+        "icao_type_code": "ND2",
+        "aircraft_model": "Aerospatiale/Nord 262"
+    },
+    {
+        "icao_type_code": "NDC",
+        "aircraft_model": "Aerospatiale SN601 Corvette"
+    },
+    {
+        "icao_type_code": "CRV",
+        "aircraft_model": "Aerospatiale/SUD SE210 Caravelle"
+    },
+    {
+        "icao_type_code": "AGH",
+        "aircraft_model": "AgustaWestland A109"
+    },
+    {
+        "icao_type_code": "AWH",
+        "aircraft_model": "AgustaWestland AW139"
+    },
+    {
+        "icao_type_code": "AW6",
+        "aircraft_model": "AgustaWestland AW169"
+    },
+    {
+        "icao_type_code": "AW8",
+        "aircraft_model": "AgustaWestland AW189"
+    },
+    {
+        "icao_type_code": "32S",
+        "aircraft_model": "Airbus A138/A319/A320/A321"
+    },
+    {
+        "icao_type_code": "31A",
+        "aircraft_model": "Airbus A138 (sharklets)"
+    },
+    {
+        "icao_type_code": "220",
+        "aircraft_model": "Airbus A220"
+    },
+    {
+        "icao_type_code": "221",
+        "aircraft_model": "Airbus A220-100"
+    },
+    {
+        "icao_type_code": "223",
+        "aircraft_model": "Airbus A220-300"
+    },
+    {
+        "icao_type_code": "AB3",
+        "aircraft_model": "Airbus A300"
+    },
+    {
+        "icao_type_code": "ABF",
+        "aircraft_model": "Airbus A300"
+    },
+    {
+        "icao_type_code": "AB6",
+        "aircraft_model": "Airbus A300-600"
+    },
+    {
+        "icao_type_code": "ABY",
+        "aircraft_model": "Airbus A300-600"
+    },
+    {
+        "icao_type_code": "ABB",
+        "aircraft_model": "Airbus A300-600ST Beluga"
+    },
+    {
+        "icao_type_code": "AB4",
+        "aircraft_model": "Airbus A300B2/A300B4"
+    },
+    {
+        "icao_type_code": "ABX",
+        "aircraft_model": "Airbus A300B4/A300C4/A300F4"
+    },
+    {
+        "icao_type_code": "310",
+        "aircraft_model": "Airbus A310"
+    },
+    {
+        "icao_type_code": "31F",
+        "aircraft_model": "Airbus A310"
+    },
+    {
+        "icao_type_code": "312",
+        "aircraft_model": "Airbus A310-200"
+    },
+    {
+        "icao_type_code": "31X",
+        "aircraft_model": "Airbus A310-200"
+    },
+    {
+        "icao_type_code": "313",
+        "aircraft_model": "Airbus A310-300"
+    },
+    {
+        "icao_type_code": "31Y",
+        "aircraft_model": "Airbus A310-300"
+    },
+    {
+        "icao_type_code": "318",
+        "aircraft_model": "Airbus A318"
+    },
+    {
+        "icao_type_code": "319",
+        "aircraft_model": "Airbus A319"
+    },
+    {
+        "icao_type_code": "31N",
+        "aircraft_model": "Airbus A319neo"
+    },
+    {
+        "icao_type_code": "31B",
+        "aircraft_model": "Airbus A319 (sharklets)"
+    },
+    {
+        "icao_type_code": "32F",
+        "aircraft_model": "Airbus A320"
+    },
+    {
+        "icao_type_code": "320",
+        "aircraft_model": "Airbus A320"
+    },
+    {
+        "icao_type_code": "32N",
+        "aircraft_model": "Airbus A320neo"
+    },
+    {
+        "icao_type_code": "32A",
+        "aircraft_model": "Airbus A320 (sharklets)"
+    },
+    {
+        "icao_type_code": "32X",
+        "aircraft_model": "Airbus A321"
+    },
+    {
+        "icao_type_code": "321",
+        "aircraft_model": "Airbus A321"
+    },
+    {
+        "icao_type_code": "32Q",
+        "aircraft_model": "Airbus A321neo"
+    },
+    {
+        "icao_type_code": "32B",
+        "aircraft_model": "Airbus A321 (sharklets)"
+    },
+    {
+        "icao_type_code": "33F",
+        "aircraft_model": "Airbus A330"
+    },
+    {
+        "icao_type_code": "330",
+        "aircraft_model": "Airbus A330"
+    },
+    {
+        "icao_type_code": "33X",
+        "aircraft_model": "Airbus A330-200"
+    },
+    {
+        "icao_type_code": "332",
+        "aircraft_model": "Airbus A330-200"
+    },
+    {
+        "icao_type_code": "33Y",
+        "aircraft_model": "Airbus A330-300"
+    },
+    {
+        "icao_type_code": "333",
+        "aircraft_model": "Airbus A330-300"
+    },
+    {
+        "icao_type_code": "338",
+        "aircraft_model": "Airbus A330-800 Neo"
+    },
+    {
+        "icao_type_code": "339",
+        "aircraft_model": "Airbus A330-900neo"
+    },
+    {
+        "icao_type_code": "340",
+        "aircraft_model": "Airbus A340"
+    },
+    {
+        "icao_type_code": "342",
+        "aircraft_model": "Airbus A340-200"
+    },
+    {
+        "icao_type_code": "343",
+        "aircraft_model": "Airbus A340-300"
+    },
+    {
+        "icao_type_code": "345",
+        "aircraft_model": "Airbus A340-500"
+    },
+    {
+        "icao_type_code": "346",
+        "aircraft_model": "Airbus A340-600"
+    },
+    {
+        "icao_type_code": "350",
+        "aircraft_model": "Airbus A350"
+    },
+    {
+        "icao_type_code": "351",
+        "aircraft_model": "Airbus A350-1000"
+    },
+    {
+        "icao_type_code": "358",
+        "aircraft_model": "Airbus A350-800"
+    },
+    {
+        "icao_type_code": "359",
+        "aircraft_model": "Airbus A350-900"
+    },
+    {
+        "icao_type_code": "380",
+        "aircraft_model": "Airbus A380"
+    },
+    {
+        "icao_type_code": "388",
+        "aircraft_model": "Airbus A380-800"
+    },
+    {
+        "icao_type_code": "38F",
+        "aircraft_model": "Airbus A380-800F"
+    },
+    {
+        "icao_type_code": "L4F",
+        "aircraft_model": "Aircraft Industries (LET) 410"
+    },
+    {
+        "icao_type_code": "L4T",
+        "aircraft_model": "Aircraft Industries (LET) 410"
+    },
+    {
+        "icao_type_code": "ANF",
+        "aircraft_model": "Antonov An-12"
+    },
+    {
+        "icao_type_code": "A4F",
+        "aircraft_model": "Antonov An-124 Ruslan"
+    },
+    {
+        "icao_type_code": "A40",
+        "aircraft_model": "Antonov An-140"
+    },
+    {
+        "icao_type_code": "A81",
+        "aircraft_model": "Antonov AN148-100"
+    },
+    {
+        "icao_type_code": "A58",
+        "aircraft_model": "Antonov An-158"
+    },
+    {
+        "icao_type_code": "A78",
+        "aircraft_model": "Antonov An-178"
+    },
+    {
+        "icao_type_code": "A22",
+        "aircraft_model": "Antonov An-22"
+    },
+    {
+        "icao_type_code": "A5F",
+        "aircraft_model": "Antonov An-225"
+    },
+    {
+        "icao_type_code": "AN4",
+        "aircraft_model": "Antonov An-24"
+    },
+    {
+        "icao_type_code": "A26",
+        "aircraft_model": "Antonov An-26"
+    },
+    {
+        "icao_type_code": "AN6",
+        "aircraft_model": "Antonov An-26/An-30/An-32"
+    },
+    {
+        "icao_type_code": "A28",
+        "aircraft_model": "Antonov An-28/PZL Mielec M-28 Skytruck"
+    },
+    {
+        "icao_type_code": "A30",
+        "aircraft_model": "Antonov An-30"
+    },
+    {
+        "icao_type_code": "A32",
+        "aircraft_model": "Antonov An-32"
+    },
+    {
+        "icao_type_code": "A38",
+        "aircraft_model": "Antonov An-38"
+    },
+    {
+        "icao_type_code": "AN7",
+        "aircraft_model": "Antonov An-72/An-74"
+    },
+    {
+        "icao_type_code": "ATZ",
+        "aircraft_model": "ATR 42"
+    },
+    {
+        "icao_type_code": "AT4",
+        "aircraft_model": "ATR 42-300/320"
+    },
+    {
+        "icao_type_code": "ATR",
+        "aircraft_model": "ATR 42/ATR 72"
+    },
+    {
+        "icao_type_code": "ATF",
+        "aircraft_model": "ATR 72"
+    },
+    {
+        "icao_type_code": "AT7",
+        "aircraft_model": "ATR 72"
+    },
+    {
+        "icao_type_code": "AR1",
+        "aircraft_model": "Avro RJ100"
+    },
+    {
+        "icao_type_code": "AR7",
+        "aircraft_model": "Avro RJ70"
+    },
+    {
+        "icao_type_code": "ARJ",
+        "aircraft_model": "Avro RJ70/RJ85/RJ100"
+    },
+    {
+        "icao_type_code": "AR8",
+        "aircraft_model": "Avro RJ85"
+    },
+    {
+        "icao_type_code": "ARX",
+        "aircraft_model": "Avro RJX"
+    },
+    {
+        "icao_type_code": "AX1",
+        "aircraft_model": "Avro RJX100"
+    },
+    {
+        "icao_type_code": "AX8",
+        "aircraft_model": "Avro RJX85"
+    },
+    {
+        "icao_type_code": "146",
+        "aircraft_model": "BAE Systems 146"
+    },
+    {
+        "icao_type_code": "14F",
+        "aircraft_model": "BAE Systems 146"
+    },
+    {
+        "icao_type_code": "14X",
+        "aircraft_model": "BAE Systems 146-100"
+    },
+    {
+        "icao_type_code": "141",
+        "aircraft_model": "BAE Systems 146-100"
+    },
+    {
+        "icao_type_code": "14Y",
+        "aircraft_model": "BAE Systems 146-200"
+    },
+    {
+        "icao_type_code": "142",
+        "aircraft_model": "BAE Systems 146-200"
+    },
+    {
+        "icao_type_code": "14Z",
+        "aircraft_model": "BAE Systems 146-300"
+    },
+    {
+        "icao_type_code": "143",
+        "aircraft_model": "BAE Systems 146-300"
+    },
+    {
+        "icao_type_code": "APF",
+        "aircraft_model": "BAE Systems ATP"
+    },
+    {
+        "icao_type_code": "B11",
+        "aircraft_model": "BAE Systems (BAC) One-Eleven"
+    },
+    {
+        "icao_type_code": "B12",
+        "aircraft_model": "BAE Systems (BAC) One-Eleven 200"
+    },
+    {
+        "icao_type_code": "B13",
+        "aircraft_model": "BAE Systems (BAC) One-Eleven 300"
+    },
+    {
+        "icao_type_code": "B14",
+        "aircraft_model": "BAE Systems (BAC) One-Eleven 400/475"
+    },
+    {
+        "icao_type_code": "B15",
+        "aircraft_model": "BAE Systems (BAC) One-Eleven 500/RomBac"
+    },
+    {
+        "icao_type_code": "DHD",
+        "aircraft_model": "BAE Systems (De Havilland) 104 Dove"
+    },
+    {
+        "icao_type_code": "DHH",
+        "aircraft_model": "BAE Systems (De Havilland) 114 Heron"
+    },
+    {
+        "icao_type_code": "HS7",
+        "aircraft_model": "BAE Systems (Hawker Siddeley) 748/Andover"
+    },
+    {
+        "icao_type_code": "JST",
+        "aircraft_model": "BAE Systems Jetstream"
+    },
+    {
+        "icao_type_code": "J31",
+        "aircraft_model": "BAE Systems Jetstream 31"
+    },
+    {
+        "icao_type_code": "J32",
+        "aircraft_model": "BAE Systems Jetstream 32"
+    },
+    {
+        "icao_type_code": "J41",
+        "aircraft_model": "BAE Systems Jetstream 41"
+    },
+    {
+        "icao_type_code": "BH2",
+        "aircraft_model": "Bell (Helicopters)"
+    },
+    {
+        "icao_type_code": "D1F",
+        "aircraft_model": "Boeign (Douglas) DC-10"
+    },
+    {
+        "icao_type_code": "703",
+        "aircraft_model": "Boeing 707-320B/320C"
+    },
+    {
+        "icao_type_code": "70F",
+        "aircraft_model": "Boeing 707-320B/320C"
+    },
+    {
+        "icao_type_code": "70M",
+        "aircraft_model": "Boeing 707-320B/320C"
+    },
+    {
+        "icao_type_code": "707",
+        "aircraft_model": "Boeing 707/720"
+    },
+    {
+        "icao_type_code": "717",
+        "aircraft_model": "Boeing 717-200"
+    },
+    {
+        "icao_type_code": "B72",
+        "aircraft_model": "Boeing 720-020B"
+    },
+    {
+        "icao_type_code": "727",
+        "aircraft_model": "Boeing 727"
+    },
+    {
+        "icao_type_code": "72F",
+        "aircraft_model": "Boeing 727"
+    },
+    {
+        "icao_type_code": "72M",
+        "aircraft_model": "Boeing 727"
+    },
+    {
+        "icao_type_code": "721",
+        "aircraft_model": "Boeing 727-100"
+    },
+    {
+        "icao_type_code": "72B",
+        "aircraft_model": "Boeing 727-100"
+    },
+    {
+        "icao_type_code": "72X",
+        "aircraft_model": "Boeing 727-100"
+    },
+    {
+        "icao_type_code": "722",
+        "aircraft_model": "Boeing 727-200"
+    },
+    {
+        "icao_type_code": "72C",
+        "aircraft_model": "Boeing 727-200"
+    },
+    {
+        "icao_type_code": "72S",
+        "aircraft_model": "Boeing 727-200"
+    },
+    {
+        "icao_type_code": "72Y",
+        "aircraft_model": "Boeing 727-200"
+    },
+    {
+        "icao_type_code": "72A",
+        "aircraft_model": "Boeing 727-200 Advanced"
+    },
+    {
+        "icao_type_code": "72W",
+        "aircraft_model": "Boeing 727-200 (winglets)"
+    },
+    {
+        "icao_type_code": "737",
+        "aircraft_model": "Boeing 737"
+    },
+    {
+        "icao_type_code": "73F",
+        "aircraft_model": "Boeing 737"
+    },
+    {
+        "icao_type_code": "73M",
+        "aircraft_model": "Boeing 737"
+    },
+    {
+        "icao_type_code": "731",
+        "aircraft_model": "Boeing 737-100"
+    },
+    {
+        "icao_type_code": "73L",
+        "aircraft_model": "Boeing 737-200"
+    },
+    {
+        "icao_type_code": "732",
+        "aircraft_model": "Boeing 737-200"
+    },
+    {
+        "icao_type_code": "73X",
+        "aircraft_model": "Boeing 737-200"
+    },
+    {
+        "icao_type_code": "73A",
+        "aircraft_model": "Boeing 737-200/200C Advanced"
+    },
+    {
+        "icao_type_code": "733",
+        "aircraft_model": "Boeing 737-300"
+    },
+    {
+        "icao_type_code": "73N",
+        "aircraft_model": "Boeing 737-300"
+    },
+    {
+        "icao_type_code": "73Y",
+        "aircraft_model": "Boeing 737-300"
+    },
+    {
+        "icao_type_code": "73C",
+        "aircraft_model": "Boeing 737-300 (winglets)"
+    },
+    {
+        "icao_type_code": "734",
+        "aircraft_model": "Boeing 737-400"
+    },
+    {
+        "icao_type_code": "73P",
+        "aircraft_model": "Boeing 737-400"
+    },
+    {
+        "icao_type_code": "73Q",
+        "aircraft_model": "Boeing 737-400"
+    },
+    {
+        "icao_type_code": "735",
+        "aircraft_model": "Boeing 737-500"
+    },
+    {
+        "icao_type_code": "73E",
+        "aircraft_model": "Boeing 737-500 (winglets)"
+    },
+    {
+        "icao_type_code": "736",
+        "aircraft_model": "Boeing 737-600"
+    },
+    {
+        "icao_type_code": "73G",
+        "aircraft_model": "Boeing 737-700"
+    },
+    {
+        "icao_type_code": "73S",
+        "aircraft_model": "Boeing 737-700"
+    },
+    {
+        "icao_type_code": "73R",
+        "aircraft_model": "Boeing 737-700/BBJC"
+    },
+    {
+        "icao_type_code": "73W",
+        "aircraft_model": "Boeing 737-700 (winglets)/BBJ1"
+    },
+    {
+        "icao_type_code": "738",
+        "aircraft_model": "Boeing 737-800"
+    },
+    {
+        "icao_type_code": "7S8",
+        "aircraft_model": "Boeing 737-800 (Scimitar Winglets)"
+    },
+    {
+        "icao_type_code": "73K",
+        "aircraft_model": "Boeing 737-800 (winglets)"
+    },
+    {
+        "icao_type_code": "73H",
+        "aircraft_model": "Boeing 737-800 (winglets)/BBJ2"
+    },
+    {
+        "icao_type_code": "739",
+        "aircraft_model": "Boeing 737-900"
+    },
+    {
+        "icao_type_code": "73J",
+        "aircraft_model": "Boeing 737-900 (winglets)/BBJ3"
+    },
+    {
+        "icao_type_code": "7M7",
+        "aircraft_model": "Boeing 737 MAX 7 / BBJ MAX 7"
+    },
+    {
+        "icao_type_code": "7M8",
+        "aircraft_model": "Boeing 737 MAX 8 / BBJ MAX 8/MAX200"
+    },
+    {
+        "icao_type_code": "7M9",
+        "aircraft_model": "Boeing 737 MAX 9 / BBJ MAX 9"
+    },
+    {
+        "icao_type_code": "747",
+        "aircraft_model": "Boeing 747"
+    },
+    {
+        "icao_type_code": "74M",
+        "aircraft_model": "Boeing 747"
+    },
+    {
+        "icao_type_code": "741",
+        "aircraft_model": "Boeing 747-100"
+    },
+    {
+        "icao_type_code": "74T",
+        "aircraft_model": "Boeing 747-100"
+    },
+    {
+        "icao_type_code": "742",
+        "aircraft_model": "Boeing 747-200"
+    },
+    {
+        "icao_type_code": "74C",
+        "aircraft_model": "Boeing 747-200"
+    },
+    {
+        "icao_type_code": "74X",
+        "aircraft_model": "Boeing 747-200"
+    },
+    {
+        "icao_type_code": "743",
+        "aircraft_model": "Boeing 747-300/747-100/200 SUD"
+    },
+    {
+        "icao_type_code": "74D",
+        "aircraft_model": "Boeing 747-300/747-200 SUD"
+    },
+    {
+        "icao_type_code": "74U",
+        "aircraft_model": "Boeing 747-300/747-200 SUD"
+    },
+    {
+        "icao_type_code": "744",
+        "aircraft_model": "Boeing 747-400"
+    },
+    {
+        "icao_type_code": "74E",
+        "aircraft_model": "Boeing 747-400"
+    },
+    {
+        "icao_type_code": "74Y",
+        "aircraft_model": "Boeing 747-400"
+    },
+    {
+        "icao_type_code": "74J",
+        "aircraft_model": "Boeing 747-400 (Domestic)"
+    },
+    {
+        "icao_type_code": "74B",
+        "aircraft_model": "Boeing 747-400 Swingtail"
+    },
+    {
+        "icao_type_code": "74H",
+        "aircraft_model": "Boeing 747-8"
+    },
+    {
+        "icao_type_code": "74N",
+        "aircraft_model": "Boeing 747-8F"
+    },
+    {
+        "icao_type_code": "74F",
+        "aircraft_model": "Boeing 747 Freighter"
+    },
+    {
+        "icao_type_code": "74L",
+        "aircraft_model": "Boeing 747SP"
+    },
+    {
+        "icao_type_code": "74R",
+        "aircraft_model": "Boeing 747SR"
+    },
+    {
+        "icao_type_code": "74V",
+        "aircraft_model": "Boeing 747SR"
+    },
+    {
+        "icao_type_code": "757",
+        "aircraft_model": "Boeing 757"
+    },
+    {
+        "icao_type_code": "75C",
+        "aircraft_model": "Boeing 757-200"
+    },
+    {
+        "icao_type_code": "75F",
+        "aircraft_model": "Boeing 757-200"
+    },
+    {
+        "icao_type_code": "75M",
+        "aircraft_model": "Boeing 757-200"
+    },
+    {
+        "icao_type_code": "752",
+        "aircraft_model": "Boeing 757-200"
+    },
+    {
+        "icao_type_code": "75V",
+        "aircraft_model": "Boeing 757-200 (winglets)"
+    },
+    {
+        "icao_type_code": "75W",
+        "aircraft_model": "Boeing 757-200 (winglets)"
+    },
+    {
+        "icao_type_code": "753",
+        "aircraft_model": "Boeing 757-300"
+    },
+    {
+        "icao_type_code": "75T",
+        "aircraft_model": "Boeing 757-300 (winglets)"
+    },
+    {
+        "icao_type_code": "767",
+        "aircraft_model": "Boeing 767"
+    },
+    {
+        "icao_type_code": "76F",
+        "aircraft_model": "Boeing 767"
+    },
+    {
+        "icao_type_code": "762",
+        "aircraft_model": "Boeing 767-200"
+    },
+    {
+        "icao_type_code": "76X",
+        "aircraft_model": "Boeing 767-200"
+    },
+    {
+        "icao_type_code": "763",
+        "aircraft_model": "Boeing 767-300"
+    },
+    {
+        "icao_type_code": "76Y",
+        "aircraft_model": "Boeing 767-300"
+    },
+    {
+        "icao_type_code": "76V",
+        "aircraft_model": "Boeing 767-300 (winglets)"
+    },
+    {
+        "icao_type_code": "76W",
+        "aircraft_model": "Boeing 767-300 (winglets)"
+    },
+    {
+        "icao_type_code": "764",
+        "aircraft_model": "Boeing 767-400"
+    },
+    {
+        "icao_type_code": "77F",
+        "aircraft_model": "Boeing 777"
+    },
+    {
+        "icao_type_code": "777",
+        "aircraft_model": "Boeing 777"
+    },
+    {
+        "icao_type_code": "772",
+        "aircraft_model": "Boeing 777-200/200ER"
+    },
+    {
+        "icao_type_code": "77X",
+        "aircraft_model": "Boeing 777-200F"
+    },
+    {
+        "icao_type_code": "77L",
+        "aircraft_model": "Boeing 777-200LR"
+    },
+    {
+        "icao_type_code": "773",
+        "aircraft_model": "Boeing 777-300"
+    },
+    {
+        "icao_type_code": "77W",
+        "aircraft_model": "Boeing 777-300ER"
+    },
+    {
+        "icao_type_code": "787",
+        "aircraft_model": "Boeing 787"
+    },
+    {
+        "icao_type_code": "781",
+        "aircraft_model": "Boeing 787-10"
+    },
+    {
+        "icao_type_code": "788",
+        "aircraft_model": "Boeing 787-8"
+    },
+    {
+        "icao_type_code": "789",
+        "aircraft_model": "Boeing 787-9"
+    },
+    {
+        "icao_type_code": "C17",
+        "aircraft_model": "Boeing C17 Globemaster"
+    },
+    {
+        "icao_type_code": "D10",
+        "aircraft_model": "Boeing (Douglas) DC-10"
+    },
+    {
+        "icao_type_code": "D1X",
+        "aircraft_model": "Boeing (Douglas) DC-10-10"
+    },
+    {
+        "icao_type_code": "D11",
+        "aircraft_model": "Boeing (Douglas) DC-10-10/15"
+    },
+    {
+        "icao_type_code": "D1M",
+        "aircraft_model": "Boeing (Douglas) DC-10-30"
+    },
+    {
+        "icao_type_code": "D1C",
+        "aircraft_model": "Boeing (Douglas) DC-10-30/40"
+    },
+    {
+        "icao_type_code": "D1Y",
+        "aircraft_model": "Boeing (Douglas) DC-10-30/40"
+    },
+    {
+        "icao_type_code": "D3F",
+        "aircraft_model": "Boeing (Douglas) DC-3"
+    },
+    {
+        "icao_type_code": "DC4",
+        "aircraft_model": "Boeing (Douglas) DC-4"
+    },
+    {
+        "icao_type_code": "D6F",
+        "aircraft_model": "Boeing (Douglas) DC-6A/DC-6B/DC-6C"
+    },
+    {
+        "icao_type_code": "D8F",
+        "aircraft_model": "Boeing (Douglas) DC-8"
+    },
+    {
+        "icao_type_code": "DC8",
+        "aircraft_model": "Boeing (Douglas) DC-8"
+    },
+    {
+        "icao_type_code": "D8T",
+        "aircraft_model": "Boeing (Douglas) DC-8-50"
+    },
+    {
+        "icao_type_code": "D8X",
+        "aircraft_model": "Boeing (Douglas) DC-8-61/62/63"
+    },
+    {
+        "icao_type_code": "D8L",
+        "aircraft_model": "Boeing (Douglas) DC-8-62"
+    },
+    {
+        "icao_type_code": "D8M",
+        "aircraft_model": "Boeing (Douglas) DC-8-62"
+    },
+    {
+        "icao_type_code": "D8Y",
+        "aircraft_model": "Boeing (Douglas) DC-8-71/72/73"
+    },
+    {
+        "icao_type_code": "D8Q",
+        "aircraft_model": "Boeing (Douglas) DC-8-72"
+    },
+    {
+        "icao_type_code": "D9F",
+        "aircraft_model": "Boeing (Douglas) DC-9"
+    },
+    {
+        "icao_type_code": "DC9",
+        "aircraft_model": "Boeing (Douglas) DC-9"
+    },
+    {
+        "icao_type_code": "D91",
+        "aircraft_model": "Boeing (Douglas) DC-9-10"
+    },
+    {
+        "icao_type_code": "D9X",
+        "aircraft_model": "Boeing (Douglas) DC-9-10"
+    },
+    {
+        "icao_type_code": "D92",
+        "aircraft_model": "Boeing (Douglas) DC-9-20"
+    },
+    {
+        "icao_type_code": "D93",
+        "aircraft_model": "Boeing (Douglas) DC-9-30"
+    },
+    {
+        "icao_type_code": "D9C",
+        "aircraft_model": "Boeing (Douglas) DC-9-30"
+    },
+    {
+        "icao_type_code": "D9D",
+        "aircraft_model": "Boeing (Douglas) DC-9-40"
+    },
+    {
+        "icao_type_code": "D94",
+        "aircraft_model": "Boeing (Douglas) DC-9-40"
+    },
+    {
+        "icao_type_code": "D95",
+        "aircraft_model": "Boeing (Douglas) DC-9-50"
+    },
+    {
+        "icao_type_code": "M11",
+        "aircraft_model": "Boeing (Douglas) MD-11"
+    },
+    {
+        "icao_type_code": "M1F",
+        "aircraft_model": "Boeing (Douglas) MD-11"
+    },
+    {
+        "icao_type_code": "M1M",
+        "aircraft_model": "Boeing (Douglas) MD-11"
+    },
+    {
+        "icao_type_code": "M80",
+        "aircraft_model": "Boeing (Douglas) MD-80"
+    },
+    {
+        "icao_type_code": "M81",
+        "aircraft_model": "Boeing (Douglas) MD-81"
+    },
+    {
+        "icao_type_code": "M2F",
+        "aircraft_model": "Boeing (Douglas) MD82"
+    },
+    {
+        "icao_type_code": "M82",
+        "aircraft_model": "Boeing (Douglas) MD-82"
+    },
+    {
+        "icao_type_code": "M3F",
+        "aircraft_model": "Boeing (Douglas) MD83"
+    },
+    {
+        "icao_type_code": "M83",
+        "aircraft_model": "Boeing (Douglas) MD-83"
+    },
+    {
+        "icao_type_code": "M87",
+        "aircraft_model": "Boeing (Douglas) MD-87"
+    },
+    {
+        "icao_type_code": "M8F",
+        "aircraft_model": "Boeing (Douglas) MD88"
+    },
+    {
+        "icao_type_code": "M88",
+        "aircraft_model": "Boeing (Douglas) MD-88"
+    },
+    {
+        "icao_type_code": "M90",
+        "aircraft_model": "Boeing (Douglas) MD-90"
+    },
+    {
+        "icao_type_code": "D9S",
+        "aircraft_model": "Boeing/McDonnell Douglas DC-9-30/40/50"
+    },
+    {
+        "icao_type_code": "DCF",
+        "aircraft_model": "Boeing/McDonnell Douglas DC-9 Freighter"
+    },
+    {
+        "icao_type_code": "CCX",
+        "aircraft_model": "Bombardier BD-700 Global Express/Global 500"
+    },
+    {
+        "icao_type_code": "CL3",
+        "aircraft_model": "Bombardier Challenger 300"
+    },
+    {
+        "icao_type_code": "CL5",
+        "aircraft_model": "Bombardier Challenger 350"
+    },
+    {
+        "icao_type_code": "CS1",
+        "aircraft_model": "Bombardier CS100"
+    },
+    {
+        "icao_type_code": "CS3",
+        "aircraft_model": "Bombardier CS300"
+    },
+    {
+        "icao_type_code": "CSB",
+        "aircraft_model": "Bombardier C Series"
+    },
+    {
+        "icao_type_code": "CC6",
+        "aircraft_model": "Bombardier Global 6000"
+    },
+    {
+        "icao_type_code": "CC7",
+        "aircraft_model": "Bombardier Global 7000"
+    },
+    {
+        "icao_type_code": "BNI",
+        "aircraft_model": "Britten-Norman BN-2A/BN-2B Islander"
+    },
+    {
+        "icao_type_code": "BNT",
+        "aircraft_model": "Britten-Norman BN-2A Mk.III Trislander"
+    },
+    {
+        "icao_type_code": "BTA",
+        "aircraft_model": "Business Turbo-Prop Aircraft"
+    },
+    {
+        "icao_type_code": "CCJ",
+        "aircraft_model": "Canadair (Bombardier) CL-600/601/604/605 Challenger"
+    },
+    {
+        "icao_type_code": "CRF",
+        "aircraft_model": "Canadair (Bombardier) Regional Jet"
+    },
+    {
+        "icao_type_code": "CRJ",
+        "aircraft_model": "Canadair (Bombardier) Regional Jet"
+    },
+    {
+        "icao_type_code": "CR1",
+        "aircraft_model": "Canadair (Bombardier) Regional Jet 100"
+    },
+    {
+        "icao_type_code": "CRK",
+        "aircraft_model": "Canadair (Bombardier) Regional Jet 1000"
+    },
+    {
+        "icao_type_code": "CR2",
+        "aircraft_model": "Canadair (Bombardier) Regional Jet 200"
+    },
+    {
+        "icao_type_code": "CR5",
+        "aircraft_model": "Canadair (Bombardier) Regional Jet 550"
+    },
+    {
+        "icao_type_code": "CR7",
+        "aircraft_model": "Canadair (Bombardier) Regional Jet 700 and Challenger 870"
+    },
+    {
+        "icao_type_code": "CRA",
+        "aircraft_model": "Canadair (Bombardier) Regional Jet 705"
+    },
+    {
+        "icao_type_code": "CR9",
+        "aircraft_model": "Canadair (Bombardier) Regional Jet 900 and Challenger 890"
+    },
+    {
+        "icao_type_code": "CS9",
+        "aircraft_model": "CASA / IAe C-295"
+    },
+    {
+        "icao_type_code": "CS2",
+        "aircraft_model": "CASA/lAe 212 Aviocar"
+    },
+    {
+        "icao_type_code": "CS5",
+        "aircraft_model": "CASA/lAe CN-235"
+    },
+    {
+        "icao_type_code": "CNF",
+        "aircraft_model": "Cessna 208B"
+    },
+    {
+        "icao_type_code": "CJ1",
+        "aircraft_model": "Cessna 500/501/525 Citation"
+    },
+    {
+        "icao_type_code": "CJM",
+        "aircraft_model": "Cessna 510 Mustang Citation"
+    },
+    {
+        "icao_type_code": "CJ2",
+        "aircraft_model": "Cessna 550/551/552 Citation"
+    },
+    {
+        "icao_type_code": "CJ5",
+        "aircraft_model": "Cessna 560 Citation"
+    },
+    {
+        "icao_type_code": "CJL",
+        "aircraft_model": "Cessna 560 XL/XLS Citation"
+    },
+    {
+        "icao_type_code": "CJ6",
+        "aircraft_model": "Cessna 650 Citation"
+    },
+    {
+        "icao_type_code": "CJ8",
+        "aircraft_model": "Cessna 680 Citation"
+    },
+    {
+        "icao_type_code": "CJ7",
+        "aircraft_model": "Cessna 700 Citation Longitude"
+    },
+    {
+        "icao_type_code": "CJX",
+        "aircraft_model": "Cessna 750 Citation X"
+    },
+    {
+        "icao_type_code": "CN7",
+        "aircraft_model": "Cessna 750 Citation X"
+    },
+    {
+        "icao_type_code": "CNJ",
+        "aircraft_model": "Cessna Citation"
+    },
+    {
+        "icao_type_code": "CJT",
+        "aircraft_model": "Cessna Citation Latitude"
+    },
+    {
+        "icao_type_code": "CJS",
+        "aircraft_model": "Cessna Citation Sovereign+"
+    },
+    {
+        "icao_type_code": "CAN",
+        "aircraft_model": "Cessna (Light aircraft)"
+    },
+    {
+        "icao_type_code": "CNA",
+        "aircraft_model": "Cessna Light Aircraft"
+    },
+    {
+        "icao_type_code": "CN1",
+        "aircraft_model": "Cessna (Light aircraft-single piston engine)"
+    },
+    {
+        "icao_type_code": "CNC",
+        "aircraft_model": "Cessna (Light aircraft-single turboprop engine)"
+    },
+    {
+        "icao_type_code": "CN2",
+        "aircraft_model": "Cessna (Light aircraft-twin piston engines)"
+    },
+    {
+        "icao_type_code": "CNT",
+        "aircraft_model": "Cessna (Light aircraft-twin turboprop engines)"
+    },
+    {
+        "icao_type_code": "C21",
+        "aircraft_model": "Comac ARJ21"
+    },
+    {
+        "icao_type_code": "C27",
+        "aircraft_model": "Comac ARJ21-700"
+    },
+    {
+        "icao_type_code": "CV2",
+        "aircraft_model": "Convair 240"
+    },
+    {
+        "icao_type_code": "CVV",
+        "aircraft_model": "Convair 240"
+    },
+    {
+        "icao_type_code": "CVF",
+        "aircraft_model": "Convair 240/340/440/580/5800/600/640"
+    },
+    {
+        "icao_type_code": "CVR",
+        "aircraft_model": "Convair 240/440/580"
+    },
+    {
+        "icao_type_code": "CVX",
+        "aircraft_model": "Convair 340/440"
+    },
+    {
+        "icao_type_code": "CV4",
+        "aircraft_model": "Convair 440 Metropolitan"
+    },
+    {
+        "icao_type_code": "CV5",
+        "aircraft_model": "Convair 580"
+    },
+    {
+        "icao_type_code": "CVY",
+        "aircraft_model": "Convair 580/5800/600/640"
+    },
+    {
+        "icao_type_code": "CWC",
+        "aircraft_model": "Curtiss C-46 Commando"
+    },
+    {
+        "icao_type_code": "DFL",
+        "aircraft_model": "Dassault Falcon"
+    },
+    {
+        "icao_type_code": "DF1",
+        "aircraft_model": "Dassault Falcon 10/100"
+    },
+    {
+        "icao_type_code": "D20",
+        "aircraft_model": "Dassault Falcon 2000/2000DX"
+    },
+    {
+        "icao_type_code": "D2L",
+        "aircraft_model": "Dassault Falcon 2000EX/EASY/LX"
+    },
+    {
+        "icao_type_code": "DF2",
+        "aircraft_model": "Dassault Falcon 20/200"
+    },
+    {
+        "icao_type_code": "DF5",
+        "aircraft_model": "Dassault Falcon 50/50EX"
+    },
+    {
+        "icao_type_code": "DF7",
+        "aircraft_model": "Dassault Falcon 7X"
+    },
+    {
+        "icao_type_code": "DF8",
+        "aircraft_model": "Dassault Falcon 8X"
+    },
+    {
+        "icao_type_code": "DF9",
+        "aircraft_model": "Dassault Falcon 900/900B/900C/900DX/900EX/EASY"
+    },
+    {
+        "icao_type_code": "D9L",
+        "aircraft_model": "Dassault Falcon 900LX"
+    },
+    {
+        "icao_type_code": "D3X",
+        "aircraft_model": "De Havilland (B/E Aerospace) DHC-8-300 Dash 8 / 8Q"
+    },
+    {
+        "icao_type_code": "DHP",
+        "aircraft_model": "De Havilland (Bombardier) DHC-2 Beaver"
+    },
+    {
+        "icao_type_code": "DHB",
+        "aircraft_model": "De Havilland (Bombardier) DHC-2 Beaver/Turbo Beaver"
+    },
+    {
+        "icao_type_code": "DHR",
+        "aircraft_model": "De Havilland (Bombardier) DHC-2 Turbo Beaver"
+    },
+    {
+        "icao_type_code": "DHS",
+        "aircraft_model": "De Havilland (Bombardier) DHC-3 Otter"
+    },
+    {
+        "icao_type_code": "DH0",
+        "aircraft_model": "De Havilland (Bombardier) DHC-3 Otter/Turbo Otter"
+    },
+    {
+        "icao_type_code": "DHL",
+        "aircraft_model": "De Havilland (Bombardier) DHC-3 Turbo Otter"
+    },
+    {
+        "icao_type_code": "DHC",
+        "aircraft_model": "De Havilland (Bombardier) DHC-4 Caribou"
+    },
+    {
+        "icao_type_code": "DHT",
+        "aircraft_model": "De Havilland (Bombardier) DHC-6 Twin Otter"
+    },
+    {
+        "icao_type_code": "DH7",
+        "aircraft_model": "De Havilland (Bombardier) DHC-7 Dash 7"
+    },
+    {
+        "icao_type_code": "DHF",
+        "aircraft_model": "De Havilland (Bombardier) DHC-8"
+    },
+    {
+        "icao_type_code": "DH1",
+        "aircraft_model": "De Havilland (Bombardier) DHC-8-100 Dash 8/8Q"
+    },
+    {
+        "icao_type_code": "DH2",
+        "aircraft_model": "De Havilland (Bombardier) DHC-8-200 Dash 8/8Q"
+    },
+    {
+        "icao_type_code": "DH3",
+        "aircraft_model": "De Havilland (Bombardier) DHC-8-300 Dash 8/8Q"
+    },
+    {
+        "icao_type_code": "D4X",
+        "aircraft_model": "De Havilland (Bombardier) DHC-8-400 Dash 8Q"
+    },
+    {
+        "icao_type_code": "DH4",
+        "aircraft_model": "De Havilland (Bombardier) DHC-8-400 Dash 8Q"
+    },
+    {
+        "icao_type_code": "DH8",
+        "aircraft_model": "De Havilland (Bombardier) DHC-8 Dash 8"
+    },
+    {
+        "icao_type_code": "D42",
+        "aircraft_model": "Diamond Aircraft DA42 Twin Star"
+    },
+    {
+        "icao_type_code": "D62",
+        "aircraft_model": "Diamond Aircraft DA62"
+    },
+    {
+        "icao_type_code": "EAC",
+        "aircraft_model": "Eclipse"
+    },
+    {
+        "icao_type_code": "EA5",
+        "aircraft_model": "Eclipse 500"
+    },
+    {
+        "icao_type_code": "EMB",
+        "aircraft_model": "Embraer 110 Bandeirante"
+    },
+    {
+        "icao_type_code": "EM2",
+        "aircraft_model": "Embraer 120 Brasilia"
+    },
+    {
+        "icao_type_code": "E70",
+        "aircraft_model": "Embraer 170"
+    },
+    {
+        "icao_type_code": "EMJ",
+        "aircraft_model": "Embraer 170/175/190/195"
+    },
+    {
+        "icao_type_code": "E75",
+        "aircraft_model": "Embraer 175"
+    },
+    {
+        "icao_type_code": "275",
+        "aircraft_model": "Embraer 175 E2"
+    },
+    {
+        "icao_type_code": "E7W",
+        "aircraft_model": "Embraer 175 (Enhanced Winglets)"
+    },
+    {
+        "icao_type_code": "E90",
+        "aircraft_model": "Embraer 190"
+    },
+    {
+        "icao_type_code": "E95",
+        "aircraft_model": "Embraer 195 and Legacy 1000"
+    },
+    {
+        "icao_type_code": "295",
+        "aircraft_model": "Embraer 195 E2"
+    },
+    {
+        "icao_type_code": "EM9",
+        "aircraft_model": "Embraer E190"
+    },
+    {
+        "icao_type_code": "EP1",
+        "aircraft_model": "Embraer EMB-500 Phenom 100"
+    },
+    {
+        "icao_type_code": "EP3",
+        "aircraft_model": "Embraer EMB-505 Phenom 300"
+    },
+    {
+        "icao_type_code": "EML",
+        "aircraft_model": "Embraer Legacy"
+    },
+    {
+        "icao_type_code": "EM4",
+        "aircraft_model": "Embraer Legacy 450"
+    },
+    {
+        "icao_type_code": "EM5",
+        "aircraft_model": "Embraer Legacy 500"
+    },
+    {
+        "icao_type_code": "EPH",
+        "aircraft_model": "Embraer Phenom"
+    },
+    {
+        "icao_type_code": "ER3",
+        "aircraft_model": "Embraer RJ135 and Legacy 600/650"
+    },
+    {
+        "icao_type_code": "ERJ",
+        "aircraft_model": "Embraer RJ135/RJ140/RJ145"
+    },
+    {
+        "icao_type_code": "ERD",
+        "aircraft_model": "Embraer RJ140"
+    },
+    {
+        "icao_type_code": "ER4",
+        "aircraft_model": "Embraer RJ145"
+    },
+    {
+        "icao_type_code": "290",
+        "aircraft_model": "Emraer 190 E2"
+    },
+    {
+        "icao_type_code": "NDE",
+        "aircraft_model": "Eurocopter (Aerospatiale) AS350 Ecureuil/AS355 Ecureuil 2"
+    },
+    {
+        "icao_type_code": "APH",
+        "aircraft_model": "Eurocopter (Aerospatiale) SA330 Puma/AS332 Super Puma"
+    },
+    {
+        "icao_type_code": "NDH",
+        "aircraft_model": "Eurocopter (Aerospatiale) SA365C/SA365N Dauphin 2"
+    },
+    {
+        "icao_type_code": "EC3",
+        "aircraft_model": "Eurocopter EC130"
+    },
+    {
+        "icao_type_code": "EC4",
+        "aircraft_model": "Eurocopter EC145/EC145T2"
+    },
+    {
+        "icao_type_code": "EC5",
+        "aircraft_model": "Eurocopter EC155"
+    },
+    {
+        "icao_type_code": "EC7",
+        "aircraft_model": "Eurocopter EC175"
+    },
+    {
+        "icao_type_code": "MBH",
+        "aircraft_model": "Eurocopter (MBB) BO105"
+    },
+    {
+        "icao_type_code": "D28",
+        "aircraft_model": "Fairchild Dornier 228"
+    },
+    {
+        "icao_type_code": "D38",
+        "aircraft_model": "Fairchild Dornier 328-100"
+    },
+    {
+        "icao_type_code": "FRJ",
+        "aircraft_model": "Fairchild Dornier 328JET"
+    },
+    {
+        "icao_type_code": "FA7",
+        "aircraft_model": "Fairchild Dornier 728JET"
+    },
+    {
+        "icao_type_code": "FK7",
+        "aircraft_model": "Fairchild Industries FH-227"
+    },
+    {
+        "icao_type_code": "SWF",
+        "aircraft_model": "Fairchild (Swearingen) SA226"
+    },
+    {
+        "icao_type_code": "SWM",
+        "aircraft_model": "Fairchild (Swearingen) SA26/SA226/SA227 Merlin/Metro/Expediter"
+    },
+    {
+        "icao_type_code": "100",
+        "aircraft_model": "Fokker 100"
+    },
+    {
+        "icao_type_code": "F5F",
+        "aircraft_model": "Fokker 50"
+    },
+    {
+        "icao_type_code": "F21",
+        "aircraft_model": "Fokker F28 Fellowship 1000"
+    },
+    {
+        "icao_type_code": "F22",
+        "aircraft_model": "Fokker F28 Fellowship 2000"
+    },
+    {
+        "icao_type_code": "F23",
+        "aircraft_model": "Fokker F28 Fellowship 3000"
+    },
+    {
+        "icao_type_code": "F24",
+        "aircraft_model": "Fokker F28 Fellowship 4000"
+    },
+    {
+        "icao_type_code": "GA1",
+        "aircraft_model": "Gippsland Aeronautics GA10"
+    },
+    {
+        "icao_type_code": "GA8",
+        "aircraft_model": "Gippsland Aeronautics GA8 Airvan"
+    },
+    {
+        "icao_type_code": "CD2",
+        "aircraft_model": "Gippsland Aeronautics N22B/N24A Nomad"
+    },
+    {
+        "icao_type_code": "GRG",
+        "aircraft_model": "Grumman G-21 Goose (Amphibian)"
+    },
+    {
+        "icao_type_code": "GRM",
+        "aircraft_model": "Grumman G-73 Turbo Mallard (Amphibian)"
+    },
+    {
+        "icao_type_code": "GRJ",
+        "aircraft_model": "Gulfstream Aerospace"
+    },
+    {
+        "icao_type_code": "GR1",
+        "aircraft_model": "Gulfstream Aerospace G-100/G-150"
+    },
+    {
+        "icao_type_code": "GJ3",
+        "aircraft_model": "Gulfstream Aerospace G-1159A Gulfstream III"
+    },
+    {
+        "icao_type_code": "GJ2",
+        "aircraft_model": "Gulfstream Aerospace G-1159 Gulfstream II"
+    },
+    {
+        "icao_type_code": "G2B",
+        "aircraft_model": "Gulfstream Aerospace G-1159 Gulfstream IIB"
+    },
+    {
+        "icao_type_code": "G2S",
+        "aircraft_model": "Gulfstream Aerospace G-1159 Gulfstream IISP"
+    },
+    {
+        "icao_type_code": "GR2",
+        "aircraft_model": "Gulfstream Aerospace G-200 (Galaxy)"
+    },
+    {
+        "icao_type_code": "GR3",
+        "aircraft_model": "Gulfstream Aerospace G-250"
+    },
+    {
+        "icao_type_code": "GA5",
+        "aircraft_model": "Gulfstream Aerospace G500"
+    },
+    {
+        "icao_type_code": "GA6",
+        "aircraft_model": "Gulfstream Aerospace G600"
+    },
+    {
+        "icao_type_code": "GJ6",
+        "aircraft_model": "Gulfstream Aerospace G650"
+    },
+    {
+        "icao_type_code": "GJ4",
+        "aircraft_model": "Gulfstream Aerospace IV (G300/G350/G400/G450/IVSP)"
+    },
+    {
+        "icao_type_code": "GJ5",
+        "aircraft_model": "Gulfstream Aerospace V (G550)"
+    },
+    {
+        "icao_type_code": "YN2",
+        "aircraft_model": "Harbin Yunshuji Y12"
+    },
+    {
+        "icao_type_code": "H21",
+        "aircraft_model": "Hawker 1000"
+    },
+    {
+        "icao_type_code": "H20",
+        "aircraft_model": "Hawker 200"
+    },
+    {
+        "icao_type_code": "PR1",
+        "aircraft_model": "Hawker 390 Premier 1/1A"
+    },
+    {
+        "icao_type_code": "H24",
+        "aircraft_model": "Hawker 4000"
+    },
+    {
+        "icao_type_code": "BE4",
+        "aircraft_model": "Hawker 400 Beechjet/400A/400XP/400T"
+    },
+    {
+        "icao_type_code": "H25",
+        "aircraft_model": "Hawker 750/800/800XP/800SP"
+    },
+    {
+        "icao_type_code": "H28",
+        "aircraft_model": "Hawker 850XP/900"
+    },
+    {
+        "icao_type_code": "H29",
+        "aircraft_model": "Hawker 900XP"
+    },
+    {
+        "icao_type_code": "HBA",
+        "aircraft_model": "Hawker Beechcraft"
+    },
+    {
+        "icao_type_code": "BEF",
+        "aircraft_model": "Hawker Beechcraft 1900"
+    },
+    {
+        "icao_type_code": "BE1",
+        "aircraft_model": "Hawker Beechcraft 1900 Airline"
+    },
+    {
+        "icao_type_code": "BES",
+        "aircraft_model": "Hawker Beechcraft 1900C Airliner"
+    },
+    {
+        "icao_type_code": "BEH",
+        "aircraft_model": "Hawker Beechcraft 1900D Airliner"
+    },
+    {
+        "icao_type_code": "BE9",
+        "aircraft_model": "Hawker Beechcraft C99 Airliner"
+    },
+    {
+        "icao_type_code": "BEC",
+        "aircraft_model": "Hawker Beechcraft (Light aircraft)"
+    },
+    {
+        "icao_type_code": "BEP",
+        "aircraft_model": "Hawker Beechcraft (Light aircraft-single piston engine)"
+    },
+    {
+        "icao_type_code": "BE2",
+        "aircraft_model": "Hawker Beechcraft (Light aircraft-twin piston engines)"
+    },
+    {
+        "icao_type_code": "BET",
+        "aircraft_model": "Hawker Beechcraft (Light aircraft-twin turboprop engines)"
+    },
+    {
+        "icao_type_code": "HEC",
+        "aircraft_model": "Helio H-250 Courier/H-295/395 Super Courier"
+    },
+    {
+        "icao_type_code": "HHJ",
+        "aircraft_model": "Honda HA-420 HondaJet"
+    },
+    {
+        "icao_type_code": "I4F",
+        "aircraft_model": "Ilyushin II-114T"
+    },
+    {
+        "icao_type_code": "I14",
+        "aircraft_model": "Ilyushin Il-114"
+    },
+    {
+        "icao_type_code": "IL8",
+        "aircraft_model": "Ilyushin Il-18"
+    },
+    {
+        "icao_type_code": "IL6",
+        "aircraft_model": "Ilyushin Il-62"
+    },
+    {
+        "icao_type_code": "IL7",
+        "aircraft_model": "Ilyushin Il-76"
+    },
+    {
+        "icao_type_code": "ILW",
+        "aircraft_model": "Ilyushin Il-86"
+    },
+    {
+        "icao_type_code": "I9F",
+        "aircraft_model": "Ilyushin Il-96"
+    },
+    {
+        "icao_type_code": "IL9",
+        "aircraft_model": "Ilyushin Il-96"
+    },
+    {
+        "icao_type_code": "I93",
+        "aircraft_model": "Ilyushin IL-96-300"
+    },
+    {
+        "icao_type_code": "I9M",
+        "aircraft_model": "Ilyushin IL-96M"
+    },
+    {
+        "icao_type_code": "I9Y",
+        "aircraft_model": "Ilyushin IL-96T"
+    },
+    {
+        "icao_type_code": "219",
+        "aircraft_model": "Indonesia Aerospace (IAe) N219"
+    },
+    {
+        "icao_type_code": "WWP",
+        "aircraft_model": "Israel Aerospace Industries 1124 Westwind"
+    },
+    {
+        "icao_type_code": "JU5",
+        "aircraft_model": "Junkers Ju 52/3m"
+    },
+    {
+        "icao_type_code": "LRJ",
+        "aircraft_model": "Learjet"
+    },
+    {
+        "icao_type_code": "LJ2",
+        "aircraft_model": "Learjet 23/24/25"
+    },
+    {
+        "icao_type_code": "LJ3",
+        "aircraft_model": "Learjet 28/29/31/35/36"
+    },
+    {
+        "icao_type_code": "LJ4",
+        "aircraft_model": "Learjet 40/45"
+    },
+    {
+        "icao_type_code": "LJ6",
+        "aircraft_model": "Learjet 55/60"
+    },
+    {
+        "icao_type_code": "LJ7",
+        "aircraft_model": "Learjet 70/75"
+    },
+    {
+        "icao_type_code": "LJ8",
+        "aircraft_model": "Learjet 85"
+    },
+    {
+        "icao_type_code": "LJA",
+        "aircraft_model": "Light Jet Aircraft"
+    },
+    {
+        "icao_type_code": "L10",
+        "aircraft_model": "Lockheed Martin L-1011 TriStar"
+    },
+    {
+        "icao_type_code": "L1F",
+        "aircraft_model": "Lockheed Martin L-1011 TriStar"
+    },
+    {
+        "icao_type_code": "L11",
+        "aircraft_model": "Lockheed Martin L-1011 TriStar 1/50/100/150/200/250"
+    },
+    {
+        "icao_type_code": "L15",
+        "aircraft_model": "Lockheed Martin L-1011 TriStar 500"
+    },
+    {
+        "icao_type_code": "LOH",
+        "aircraft_model": "Lockheed Martin L-182/L-282/L-382 (L-100)Hercules"
+    },
+    {
+        "icao_type_code": "LOF",
+        "aircraft_model": "Lockheed Martin L-188 Electra"
+    },
+    {
+        "icao_type_code": "LOE",
+        "aircraft_model": "Lockheed Martin L-188 Electra"
+    },
+    {
+        "icao_type_code": "MD9",
+        "aircraft_model": "MD Helicopters Inc MD 900 Explorer"
+    },
+    {
+        "icao_type_code": "MIH",
+        "aircraft_model": "Mil Mi-8/Mi-17/Mi-171/Mi-172"
+    },
+    {
+        "icao_type_code": "YS1",
+        "aircraft_model": "NAMC YS-11"
+    },
+    {
+        "icao_type_code": "P18",
+        "aircraft_model": "Piaggio Aero P180 Avanti II"
+    },
+    {
+        "icao_type_code": "PL2",
+        "aircraft_model": "Pilatus PC-12"
+    },
+    {
+        "icao_type_code": "PL6",
+        "aircraft_model": "Pilatus PC-6 Turbo Porter"
+    },
+    {
+        "icao_type_code": "PAG",
+        "aircraft_model": "Piper (Light aircraft)"
+    },
+    {
+        "icao_type_code": "PA1",
+        "aircraft_model": "Piper (Light aircraft-single piston engine)"
+    },
+    {
+        "icao_type_code": "PA2",
+        "aircraft_model": "Piper (Light aircraft-twin piston engines)"
+    },
+    {
+        "icao_type_code": "PAT",
+        "aircraft_model": "Piper (Light aircraft-twin turboprop engines)"
+    },
+    {
+        "icao_type_code": "S20",
+        "aircraft_model": "Saab 2000"
+    },
+    {
+        "icao_type_code": "SFF",
+        "aircraft_model": "Saab 340"
+    },
+    {
+        "icao_type_code": "SFA",
+        "aircraft_model": "Saab 340"
+    },
+    {
+        "icao_type_code": "SF3",
+        "aircraft_model": "Saab 340"
+    },
+    {
+        "icao_type_code": "SFB",
+        "aircraft_model": "Saab 340B"
+    },
+    {
+        "icao_type_code": "SY8",
+        "aircraft_model": "Shaanxi Y-8"
+    },
+    {
+        "icao_type_code": "SH3",
+        "aircraft_model": "Shorts 330 (SD3-30)"
+    },
+    {
+        "icao_type_code": "SH6",
+        "aircraft_model": "Shorts 360 (SD3-60)"
+    },
+    {
+        "icao_type_code": "SHS",
+        "aircraft_model": "Shorts Skyvan (SC-7)"
+    },
+    {
+        "icao_type_code": "S58",
+        "aircraft_model": "Sikorsky S-58T"
+    },
+    {
+        "icao_type_code": "TBM",
+        "aircraft_model": "SOCATA TBM-700"
+    },
+    {
+        "icao_type_code": "SU1",
+        "aircraft_model": "Sukhoi Superjet 100"
+    },
+    {
+        "icao_type_code": "SU7",
+        "aircraft_model": "Sukhoi Superjet 100-75"
+    },
+    {
+        "icao_type_code": "SU9",
+        "aircraft_model": "Sukhoi Superjet 100-95"
+    },
+    {
+        "icao_type_code": "S9S",
+        "aircraft_model": "Sukhoi Superjet 100-95 (Saberlets)"
+    },
+    {
+        "icao_type_code": "BUS",
+        "aircraft_model": "Surface Equipment-Bus"
+    },
+    {
+        "icao_type_code": "HOV",
+        "aircraft_model": "Surface Equipment-Hovercraft"
+    },
+    {
+        "icao_type_code": "LCH",
+        "aircraft_model": "Surface Equipment-Launch/Boat"
+    },
+    {
+        "icao_type_code": "LMO",
+        "aircraft_model": "Surface Equipment-Limousine"
+    },
+    {
+        "icao_type_code": "RFS",
+        "aircraft_model": "Surface Equipment-Road Feeder Service (Truck)"
+    },
+    {
+        "icao_type_code": "TRN",
+        "aircraft_model": "Surface Equipment-Train"
+    },
+    {
+        "icao_type_code": "TRS",
+        "aircraft_model": "Surface Equipment - Train High Speed Train"
+    },
+    {
+        "icao_type_code": "TPT",
+        "aircraft_model": "Tecnam P2012 Traveler"
+    },
+    {
+        "icao_type_code": "T12",
+        "aircraft_model": "Tecnam P2012 Traveler"
+    },
+    {
+        "icao_type_code": "TU3",
+        "aircraft_model": "Tupolev Tu-134"
+    },
+    {
+        "icao_type_code": "TU5",
+        "aircraft_model": "Tupolev Tu-154"
+    },
+    {
+        "icao_type_code": "T2F",
+        "aircraft_model": "Tupolev Tu-204"
+    },
+    {
+        "icao_type_code": "T20",
+        "aircraft_model": "Tupolev Tu-204/Tu-214"
+    },
+    {
+        "icao_type_code": "T34",
+        "aircraft_model": "Tupolev Tu-334"
+    },
+    {
+        "icao_type_code": "ACT",
+        "aircraft_model": "Twin (Aero) Turbo Commander/Jetprop Commander"
+    },
+    {
+        "icao_type_code": "ACP",
+        "aircraft_model": "Twin Commander Aircraft"
+    },
+    {
+        "icao_type_code": "ACD",
+        "aircraft_model": "Twin Commander Aircraft/Turbo Commander/Jetprop Commander"
+    },
+    {
+        "icao_type_code": "VCV",
+        "aircraft_model": "Vickers Viscount"
+    },
+    {
+        "icao_type_code": "PN6",
+        "aircraft_model": "Vulcanair (Partenavia) P.68"
+    },
+    {
+        "icao_type_code": "MA6",
+        "aircraft_model": "Xian Yunshuji MA-60"
+    },
+    {
+        "icao_type_code": "M6F",
+        "aircraft_model": "Xian Yunshuji MA600"
+    },
+    {
+        "icao_type_code": "YN7",
+        "aircraft_model": "Xian Yunshuji Y7"
+    },
+    {
+        "icao_type_code": "YK4",
+        "aircraft_model": "Yakovlev Yak-40"
+    },
+    {
+        "icao_type_code": "YK2",
+        "aircraft_model": "Yakovlev Yak-42/Yak-142"
     }
-   ]
+]
