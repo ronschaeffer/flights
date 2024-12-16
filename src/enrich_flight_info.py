@@ -21,7 +21,6 @@ class FlightEnricher:
             
             # Ensure output directory exists
             os.makedirs(self.output_dir, exist_ok=True)
-            
             # Initialize missing.json if needed
             if not os.path.exists(self.missing_file):
                 default_content = {

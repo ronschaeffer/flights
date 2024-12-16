@@ -114,3 +114,4 @@ temp/
 .gitignore
 storage/
 *.code-workspace
+airline_logo_scraper/
