@@ -6,16 +6,21 @@ import airportsdata
 from typing import Dict, List, Tuple
 import logging
 import traceback
+import json
 
+# Define base directory
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 logger = logging.getLogger('flight_enricher')
 
 class FlightEnricher:
     def __init__(self, airlines_json: list, aircraft_json: list, reg_parser, config: dict):
         try:
+            self.base_dir = BASE_DIR
             self.lookups = self._create_lookup_dictionaries(airlines_json, aircraft_json)
             self.reg_parser = reg_parser
             self.config = config
             self.flights_with_location: List[Tuple[float, str]] = []
+            self.missing_data_log = self._initialize_missing_data_log()
             if 'LOG_LEVEL' in config:
                 logger.setLevel(getattr(logging, config['LOG_LEVEL'].upper()))
         except Exception as e:
@@ -29,6 +34,45 @@ class FlightEnricher:
             'aircraft': {aircraft["icao_type_code"]: aircraft for aircraft in aircraft_json},
             'airports': airportsdata.load('IATA')
         }
+
+    def _initialize_missing_data_log(self) -> Dict:
+        default_log = {
+            "last_updated": datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S'),
+            "airlines": {},
+            "aircraft": {},
+            "airports": {}
+        }
+        
+        try:
+            missing_file = os.path.join(self.base_dir, 'output/missing.json')
+            os.makedirs(os.path.dirname(missing_file), exist_ok=True)
+            
+            if os.path.exists(missing_file):
+                with open(missing_file, 'r') as f:
+                    loaded_data = json.load(f)
+                    # Ensure all required keys exist
+                    for key in default_log:
+                        if key not in loaded_data:
+                            loaded_data[key] = default_log[key]
+                    return loaded_data
+            
+            # If file doesn't exist or any other issue, return default
+            self._save_missing_data_log_safe(default_log)
+            return default_log
+            
+        except (FileNotFoundError, json.JSONDecodeError, Exception) as e:
+            logger.error(f"Error initializing missing data log: {str(e)}\n{traceback.format_exc()}")
+            return default_log
+
+    def _save_missing_data_log_safe(self, data: Dict) -> None:
+        """Safely save missing data log with error handling."""
+        try:
+            missing_file = os.path.join(self.base_dir, 'output/missing.json')
+            os.makedirs(os.path.dirname(missing_file), exist_ok=True)
+            with open(missing_file, 'w') as f:
+                json.dump(data, f, indent=4)
+        except Exception as e:
+            logger.error(f"Error saving missing data log: {str(e)}\n{traceback.format_exc()}")
 
     def enrich_flights(self, flights: Dict) -> Dict:
         try:
@@ -122,6 +166,8 @@ class FlightEnricher:
 
         if flight_data.get("type") in self.lookups['aircraft']:
             flight_rich_data["aircraft_model"] = self.lookups['aircraft'][flight_data["type"]].get("aircraft_model", "")
+        else:
+            self._update_missing_data_log('aircraft', flight_data.get("type", ""))
 
         for key in (
             "selected_altitude", "barometer", "heading", "magnetic_heading",
@@ -146,11 +192,15 @@ class FlightEnricher:
             airline = self.lookups['airlines_icao'].get(flightno[:3])
         if not airline and flightno:
             airline = self.lookups['airlines_iata'].get(flightno[:2])
+        if not airline and callsign:
+            self._update_missing_data_log('airlines', callsign[:3])
         return airline
 
     def _parse_route(self, route: str) -> Dict:
         def get_airport_info(code: str) -> Dict:
             airport = self.lookups['airports'].get(code, {})
+            if not airport:
+                self._update_missing_data_log('airports', code)
             return {
                 "name": airport.get("name", ""),
                 "city": airport.get("city", ""),
@@ -223,6 +273,19 @@ class FlightEnricher:
             }
         except ValueError:
             return {}
+
+    def _update_missing_data_log(self, category: str, code: str) -> None:
+        """Update missing data log with new missing item."""
+        try:
+            if not self.missing_data_log:
+                self.missing_data_log = self._initialize_missing_data_log()
+            
+            if code and category in self.missing_data_log and code not in self.missing_data_log[category]:
+                self.missing_data_log[category][code] = True
+                self.missing_data_log["last_updated"] = datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S')
+                self._save_missing_data_log_safe(self.missing_data_log)
+        except Exception as e:
+            logger.error(f"Error updating missing data log: {str(e)}\n{traceback.format_exc()}")
 
 def create_flights_rich(flights, airlines_json, aircraft_json, reg_parser, user_location, radius, defined_zone, altitude_unit, distance_unit, altitude_trends):
     config = {

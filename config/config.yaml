@@ -55,16 +55,18 @@ ALTITUDE_TRENDS:
 
 # Source URLs
 DUMP_URL: 'http://10.10.30.139:30053/ajax/aircraft'
-CONFIG_FILE_PATH: "../config/config.yaml"
-REFERENCE_DUMP_FILE_PATH: "../config/planefinder_dump_structure.json"
 
-# Output file paths
-VISIBLE_JSON_FILE_PATH: "../output/visible.json"
-CLOSEST_AIRCRAFT_JSON_FILE_PATH: "../output/closest_aircraft.json"
-ALL_AIRCRAFT_JSON_FILE_PATH: "../output/all_aircraft.json"
-FLIGHTS_WITHIN_DEFINED_ZONE_JSON_FILE_PATH: "../output/flights_within_defined_zone.json"
-FLIGHTS_WITHIN_DEFINED_RADIUS_JSON_FILE_PATH: "../output/flights_within_defined_radius.json"
-STATISTICS_JSON_FILE_PATH: "../output/statistics.json"  # Change file path to statistics
+# File paths relative to project root
+CONFIG_FILE_PATH: "config/config.yaml"
+REFERENCE_DUMP_FILE_PATH: "config/planefinder_dump_structure.json"
+
+# Output file paths relative to project root
+VISIBLE_JSON_FILE_PATH: "output/visible.json"
+CLOSEST_AIRCRAFT_JSON_FILE_PATH: "output/closest_aircraft.json"
+ALL_AIRCRAFT_JSON_FILE_PATH: "output/all_aircraft.json"
+FLIGHTS_WITHIN_DEFINED_ZONE_JSON_FILE_PATH: "output/flights_within_defined_zone.json"
+FLIGHTS_WITHIN_DEFINED_RADIUS_JSON_FILE_PATH: "output/flights_within_defined_radius.json"
+STATISTICS_JSON_FILE_PATH: "output/statistics.json"
 
 # Key names for referenced keys in the dump file
 tracked_parent: 'aircraft'  # Name of the parent key of tracked flights in the dump, e.g., 'aircraft'

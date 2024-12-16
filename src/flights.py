@@ -37,9 +37,20 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 LOG_DIR = os.path.join(BASE_DIR, 'logs')
 os.makedirs(LOG_DIR, exist_ok=True)
 
+# Load configuration
 config_path = os.path.join(BASE_DIR, 'config/config.yaml')
 with open(config_path, 'r') as config_file:
     config = yaml.safe_load(config_file)
+
+def load_configuration(config_path):
+    """Load configuration and set global variables"""
+    with open(config_path, 'r') as config_file:
+        loaded_config = yaml.safe_load(config_file)
+        # Update the global config
+        config.update(loaded_config)
+        # Set global variables
+        for key, value in loaded_config.items():
+            globals()[key] = value
 
 # Configure logging with config log level
 logging.basicConfig(
@@ -171,16 +182,21 @@ def write_filtered_flights_to_file(file_path, flights, filter_func):
 @handle_fatal_error
 def main():
     try:
-        config_path = os.path.join(os.path.dirname(__file__), '../config/config.yaml')
-        load_configuration(config_path)
+        # Load initial configuration using absolute path
+        load_configuration(os.path.join(BASE_DIR, 'config/config.yaml'))
 
-        with open(REFERENCE_DUMP_FILE_PATH, 'r') as reference_dump_file:
+        # Now use the loaded config values with BASE_DIR
+        reference_dump_path = os.path.join(BASE_DIR, config['REFERENCE_DUMP_FILE_PATH'])
+        with open(reference_dump_path, 'r') as reference_dump_file:
             reference_dump = json.load(reference_dump_file)
 
         # Load additional JSON files
-        with open('../data/airlines.json', 'r') as airlines_file:
+        airlines_path = os.path.join(BASE_DIR, 'data/airlines.json')
+        aircraft_path = os.path.join(BASE_DIR, 'data/aircraft.json')
+        
+        with open(airlines_path, 'r') as airlines_file:
             airlines_json = json.load(airlines_file)
-        with open('../data/aircraft.json', 'r') as aircraft_file:
+        with open(aircraft_path, 'r') as aircraft_file:
             aircraft_json = json.load(aircraft_file)
 
         mqtt_service = MQTTService({
@@ -213,7 +229,7 @@ def main():
         previous_closest_aircraft = {}
 
         # Ensure the storage directory exists
-        storage_directory = os.path.join(os.path.dirname(__file__), '..', 'storage')
+        storage_directory = os.path.join(BASE_DIR, 'storage')
         os.makedirs(storage_directory, exist_ok=True)
 
         # Load unique flights data

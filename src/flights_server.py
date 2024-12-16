@@ -8,13 +8,15 @@ import logging
 import traceback
 from fastapi import FastAPI, Response, HTTPException
 
-# Use absolute path for logging
+# Define base directory
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+# Use absolute path for logging
 LOG_DIR = os.path.join(BASE_DIR, 'logs')
 os.makedirs(LOG_DIR, exist_ok=True)
 
 # Load config first to get log level
-config_path = os.path.join(os.path.dirname(__file__), '../config/config.yaml')
+config_path = os.path.join(BASE_DIR, 'config/config.yaml')
 with open(config_path, 'r') as config_file:
     config = yaml.safe_load(config_file)
 
@@ -45,7 +47,7 @@ def get_file_content(file_path, media_type):
 
 @app.get("/output/{file_name}")
 async def read_json_file(file_name: str):
-    base_directory = os.path.join(os.path.dirname(__file__), "../output")
+    base_directory = os.path.join(BASE_DIR, 'output')
     if ".." in file_name or file_name.startswith("/"):
         raise HTTPException(status_code=400, detail="Invalid file name")
     file_path = os.path.join(base_directory, f"{file_name}.json")
@@ -55,7 +57,7 @@ async def read_json_file(file_name: str):
 
 @app.get("/{file_name}")
 async def read_output_file(file_name: str):
-    base_directory = os.path.join(os.path.dirname(__file__), "../output")
+    base_directory = os.path.join(BASE_DIR, 'output')
     if ".." in file_name or file_name.startswith("/"):
         raise HTTPException(status_code=400, detail="Invalid file name")
     file_path = os.path.join(base_directory, f"{file_name}.json")
@@ -65,7 +67,7 @@ async def read_output_file(file_name: str):
 
 @app.get("/logos/{file_name}")
 async def read_logo_file(file_name: str):
-    base_directory = os.path.join(os.path.dirname(__file__), "../assets/images/logos")
+    base_directory = os.path.join(BASE_DIR, 'assets/images/logos')
     if ".." in file_name or file_name.startswith("/"):
         raise HTTPException(status_code=400, detail="Invalid file name")
     file_name = file_name.rsplit(".", 1)[0].upper() + ".png"
@@ -76,7 +78,7 @@ async def read_logo_file(file_name: str):
 
 @app.get("/flags/{file_name}")
 async def read_flag_file(file_name: str):
-    base_directory = os.path.join(os.path.dirname(__file__), "../assets/images/flags")
+    base_directory = os.path.join(BASE_DIR, 'assets/images/flags')
     if ".." in file_name or file_name.startswith("/"):
         raise HTTPException(status_code=400, detail="Invalid file name")
     file_name = file_name.rsplit(".", 1)[0].lower() + ".png"
