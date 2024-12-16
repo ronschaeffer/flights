@@ -4,6 +4,12 @@ PyYAML
 haversine
 shapely
 tabulate
-flydenity
 fastapi
 uvicorn
+
+flydenity
+# Flydenity is a callsign identification library to help match tail numbers or callsigns to origin nations. https://pypi.org/project/flydenity/ https://github.com/Collen-Roller/flydenity
+
+airportsdata
+# Airportsdata is a library to help match ICAO codes to airport names. https://pypi.org/project/airportsdata/ https://github.com/mborsetti/airportsdata
+

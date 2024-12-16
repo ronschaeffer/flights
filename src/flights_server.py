@@ -4,22 +4,44 @@ import subprocess
 import os
 import json
 import yaml
+import logging
+import traceback
 from fastapi import FastAPI, Response, HTTPException
 
-app = FastAPI()
+# Use absolute path for logging
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+LOG_DIR = os.path.join(BASE_DIR, 'logs')
+os.makedirs(LOG_DIR, exist_ok=True)
 
-# Load configuration
+# Load config first to get log level
 config_path = os.path.join(os.path.dirname(__file__), '../config/config.yaml')
 with open(config_path, 'r') as config_file:
     config = yaml.safe_load(config_file)
 
+logger = logging.getLogger('flights_server')
+logger.setLevel(getattr(logging, config.get('LOG_LEVEL', 'ERROR').upper()))
+
+# Configure logging
+logging.basicConfig(
+    filename=os.path.join(LOG_DIR, 'flights.log'),
+    level=logging.ERROR,
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+)
+
+app = FastAPI()
+
 def get_file_content(file_path, media_type):
-    if os.path.exists(file_path):
-        with open(file_path, "rb" if "image" in media_type else "r") as file:
-            content = file.read()
-        return Response(content=content, media_type=media_type)
-    else:
-        raise HTTPException(status_code=404, detail=f"File '{file_path}' not found")
+    try:
+        if os.path.exists(file_path):
+            with open(file_path, "rb" if "image" in media_type else "r") as file:
+                content = file.read()
+            return Response(content=content, media_type=media_type)
+        else:
+            logger.error(f"File not found: {file_path}")
+            raise HTTPException(status_code=404, detail=f"File '{file_path}' not found")
+    except Exception as e:
+        logger.error(f"Error reading file {file_path}: {str(e)}\n{traceback.format_exc()}")
+        raise HTTPException(status_code=500, detail="Internal server error")
 
 @app.get("/output/{file_name}")
 async def read_json_file(file_name: str):
@@ -78,12 +100,20 @@ def kill_process_on_port(port):
                     pass
     except subprocess.CalledProcessError:
         pass
+    except Exception as e:
+        logger.error(f"Error killing process on port {port}: {str(e)}\n{traceback.format_exc()}")
+        raise
 
-def start_server(request_port):
-    kill_process_on_port(request_port)
-    subprocess.run([
-        "uvicorn",
-        "flights_server:app",
-        "--host", "0.0.0.0",
-        "--port", str(request_port)
-    ])
+def start_server(request_port, log_level='ERROR'):
+    logger.setLevel(getattr(logging, log_level.upper()))
+    try:
+        kill_process_on_port(request_port)
+        subprocess.run([
+            "uvicorn",
+            "flights_server:app",
+            "--host", "0.0.0.0",
+            "--port", str(request_port)
+        ])
+    except Exception as e:
+        logger.error(f"Failed to start server on port {request_port}: {str(e)}\n{traceback.format_exc()}")
+        raise

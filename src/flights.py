@@ -6,6 +6,10 @@ from datetime import datetime, timezone
 import json
 import os
 import threading
+import logging
+import sys
+import traceback
+from functools import wraps
 
 # Third-party imports
 import requests
@@ -23,6 +27,43 @@ from flight_counts import (
 )
 from enrich_flight_info import create_flights_rich
 from mqtt_service import MQTTService
+
+def get_log_level(level_str: str) -> int:
+    """Convert string log level from config to logging constant."""
+    return getattr(logging, level_str.upper(), logging.ERROR)
+
+# Create logs directory and load config first
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+LOG_DIR = os.path.join(BASE_DIR, 'logs')
+os.makedirs(LOG_DIR, exist_ok=True)
+
+config_path = os.path.join(BASE_DIR, 'config/config.yaml')
+with open(config_path, 'r') as config_file:
+    config = yaml.safe_load(config_file)
+
+# Configure logging with config log level
+logging.basicConfig(
+    filename=os.path.join(LOG_DIR, 'flights.log'),
+    level=getattr(logging, config.get('LOG_LEVEL', 'ERROR').upper()),
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+)
+
+# Initialize module-specific logging
+from flight_counts import initialize_logging
+initialize_logging(config.get('LOG_LEVEL', 'ERROR'))
+
+def handle_fatal_error(func):
+    @wraps(func)
+    def wrapper(*args, **kwargs):
+        try:
+            return func(*args, **kwargs)
+        except Exception as e:
+            error_msg = f"Fatal error occurred: {str(e)}\n{traceback.format_exc()}"
+            logging.error(error_msg)
+            print(f"\nFATAL ERROR: {str(e)}")
+            print("Check logs for details: ../logs/flights.log")
+            sys.exit(1)
+    return wrapper
 
 def load_configuration(config_path):
     with open(config_path, 'r') as config_file:
@@ -127,6 +168,7 @@ def write_filtered_flights_to_file(file_path, flights, filter_func):
     filtered_flights = {icao_id: flight for icao_id, flight in flights.items() if filter_func(flight)}
     write_to_file(file_path, filtered_flights)
 
+@handle_fatal_error
 def main():
     try:
         config_path = os.path.join(os.path.dirname(__file__), '../config/config.yaml')
@@ -138,8 +180,6 @@ def main():
         # Load additional JSON files
         with open('../data/airlines.json', 'r') as airlines_file:
             airlines_json = json.load(airlines_file)
-        with open('../data/airports.json', 'r') as airports_file:
-            airports_json = json.load(airports_file)
         with open('../data/aircraft.json', 'r') as aircraft_file:
             aircraft_json = json.load(aircraft_file)
 
@@ -148,7 +188,8 @@ def main():
             'MQTT_BROKER': MQTT_BROKER,
             'MQTT_BROKER_PORT': MQTT_BROKER_PORT,
             'MQTT_USER': MQTT_USER,
-            'MQTT_PWD': MQTT_PWD
+            'MQTT_PWD': MQTT_PWD,
+            'LOG_LEVEL': config.get('LOG_LEVEL', 'ERROR')
         })
         mqtt_service.connect()
 
@@ -161,7 +202,10 @@ def main():
         ])
 
         # Start the FastAPI server in a separate thread
-        server_thread = threading.Thread(target=start_server, args=(FASTAPI_PORT,))
+        server_thread = threading.Thread(
+            target=start_server, 
+            args=(FASTAPI_PORT, config.get('LOG_LEVEL', 'ERROR'))
+        )
         server_thread.start()
 
         reg_parser = Parser()
@@ -186,8 +230,7 @@ def main():
             flights = process_flights(receiver, reference_dump)
             flights_rich = create_flights_rich(
                 flights, 
-                airlines_json, 
-                airports_json, 
+                airlines_json,
                 aircraft_json, 
                 reg_parser, 
                 (USER_LAT, USER_LON), 
@@ -250,4 +293,13 @@ def main():
         pass
 
 if __name__ == "__main__":
-    main()
+    try:
+        main()
+    except KeyboardInterrupt:
+        print("\nProgram terminated by user")
+        sys.exit(0)
+    except Exception as e:
+        logging.error(f"Unhandled exception: {str(e)}\n{traceback.format_exc()}")
+        print(f"\nUnhandled exception: {str(e)}")
+        print("Check logs for details: ../logs/flights.log")
+        sys.exit(1)
