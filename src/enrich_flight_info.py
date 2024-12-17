@@ -158,7 +158,8 @@ class FlightEnricher:
     def _add_airline_info(self, flight_rich_data: Dict, flight_data: Dict) -> None:
         airline = self._get_airline_info(
             flight_data.get("callsign", ""),
-            flight_data.get("flightno", "")
+            flight_data.get("flightno", ""),
+            flight_data.get("reg", "")  # Pass registration to the method
         )
         if airline:
             country_code = airline.get("country_code", "").upper()  # Ensure we get the correct country code
@@ -198,7 +199,9 @@ class FlightEnricher:
         if flight_data.get("type") in self.lookups['aircraft']:
             flight_rich_data["aircraft_model"] = self.lookups['aircraft'][flight_data["type"]].get("aircraft_model", "")
         else:
-            self._update_missing_data_log('aircraft', flight_data.get("type", ""))
+            self._update_missing_data_log('aircraft', flight_data.get("type", ""), 
+                                        {"type": flight_data.get("type", ""), 
+                                         "reg": flight_data.get("reg", "")})
 
         for key in (
             "selected_altitude", "barometer", "heading", "magnetic_heading",
@@ -217,14 +220,15 @@ class FlightEnricher:
         except ValueError:
             pass
 
-    def _get_airline_info(self, callsign: str, flightno: str) -> Dict:
+    def _get_airline_info(self, callsign: str, flightno: str, registration: str) -> Dict:
         airline = self.lookups['airlines_icao'].get(callsign[:3]) if callsign else None
         if not airline and flightno:
             airline = self.lookups['airlines_icao'].get(flightno[:3])
         if not airline and flightno:
             airline = self.lookups['airlines_iata'].get(flightno[:2])
         if not airline and callsign:
-            self._update_missing_data_log('airlines', callsign[:3])
+            # Pass registration properly using the parameter
+            self._update_missing_data_log('airlines', callsign[:3], {"callsign": callsign, "reg": registration})
         return airline
 
     def _parse_route(self, route: str) -> Dict:
@@ -314,14 +318,19 @@ class FlightEnricher:
         except ValueError:
             return {}
 
-    def _update_missing_data_log(self, category: str, code: str) -> None:
+    def _update_missing_data_log(self, category: str, code: str, data: Dict = None) -> None:
         """Update missing data log with new missing item."""
         try:
             if not self.missing_data_log:
                 self.missing_data_log = self._initialize_missing_data_log()
             
-            if code and category in self.missing_data_log and code not in self.missing_data_log[category]:
-                self.missing_data_log[category][code] = True
+            if code and category in self.missing_data_log:
+                # For airlines and aircraft, store both identifiers and registration
+                if category in ['airlines', 'aircraft'] and code not in self.missing_data_log[category]:
+                    self.missing_data_log[category][code] = data
+                elif category not in ['airlines', 'aircraft'] and code not in self.missing_data_log[category]:
+                    self.missing_data_log[category][code] = True
+                
                 self.missing_data_log["last_updated"] = datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S')
                 self._save_missing_data_log_safe(self.missing_data_log)
         except Exception as e:
