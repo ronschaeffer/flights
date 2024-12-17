@@ -13,3 +13,8 @@ flydenity
 airportsdata
 # Airportsdata is a library to help match ICAO codes to airport names. https://pypi.org/project/airportsdata/ https://github.com/mborsetti/airportsdata
 
+#Airlne codes
+#https://github.com/ronschaeffer/airline_iata_icao_codes
+#https://github.com/ronschaeffer/planefence-airlinecodes/tree/main
+#Aircrat 
+#https://github.com/ANG13T/skytrack/tree/main/modules
