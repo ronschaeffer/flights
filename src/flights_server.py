@@ -10,6 +10,7 @@ import traceback
 from fastapi import FastAPI, Response, HTTPException, Request
 import glob
 from fastapi.staticfiles import StaticFiles
+from config_manager import config, BASE_DIR  # Added import
 
 # Define base directory once at the top
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -27,25 +28,24 @@ LOG_DIR = os.path.join(BASE_DIR, 'logs')
 os.makedirs(LOG_DIR, exist_ok=True)
 
 # Load configuration
-config_path = os.path.join(BASE_DIR, 'config/config.yaml')
-with open(config_path, 'r') as config_file:
-    config = yaml.safe_load(config_file)
+# config_path = os.path.join(BASE_DIR, 'config/config.yaml')
+# with open(config_path, 'r') as config_file:
+#     config = yaml.safe_load(config_file)  # Removed configuration loading
 
 # Add DEFAULT_IMAGE_FORMAT initialization
 DEFAULT_IMAGE_FORMAT = config.get('IMAGE_FORMAT', 'svg').lower()
 
 logger = logging.getLogger('flights_server')
-logger.setLevel(getattr(logging, 'ERROR'.upper()))
+logger.setLevel(getattr(logging, config.get('LOG_LEVEL', 'ERROR').upper()))  # Updated log level from config
 
 # Configure logging
 logging.basicConfig(
     filename=os.path.join(LOG_DIR, 'flights.log'),
-    level=logging.ERROR,
+    level=getattr(logging, config.get('LOG_LEVEL', 'ERROR').upper()),  # Updated log level from config
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
 )
 
 app = FastAPI()
-
 # Add global port variable near the top after imports
 SERVER_PORT = 8000  # Default value
 
