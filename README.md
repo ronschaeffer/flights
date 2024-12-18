@@ -1,2 +1,2 @@
 # flights
-Provides enhanced ADS-B data via MQTT and HTTP endpoints, suitable for integration with Home Assistant
+Enriches flight data from ADS-B available via MQTT and HTTP API, suitable for integration with Home Assistant
