@@ -16,21 +16,8 @@ class FlightEnricher:
     def __init__(self, airlines_json: list, aircraft_json: list, reg_parser, config: dict):
         try:
             self.base_dir = BASE_DIR
-            self.output_dir = os.path.join(self.base_dir, 'output')
-            self.missing_file = os.path.join(self.output_dir, 'missing.json')
-            
-            # Ensure output directory exists
-            os.makedirs(self.output_dir, exist_ok=True)
-            # Initialize missing.json if needed
-            if not os.path.exists(self.missing_file):
-                default_content = {
-                    "last_updated": datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S'),
-                    "airlines": {},
-                    "aircraft": {},
-                    "airports": {}
-                }
-                with open(self.missing_file, 'w') as f:
-                    json.dump(default_content, f, indent=4)
+            # Use predefined output directory path from main file
+            self.missing_file = os.path.join(BASE_DIR, 'output/missing.json')
             
             self.lookups = self._create_lookup_dictionaries(airlines_json, aircraft_json)
             self.reg_parser = reg_parser
@@ -50,22 +37,6 @@ class FlightEnricher:
             'aircraft': {aircraft["icao_type_code"]: aircraft for aircraft in aircraft_json},
             'airports': airportsdata.load('IATA')
         }
-
-    def _ensure_output_directory(self) -> None:
-        """Ensure output directory exists and create if not."""
-        output_dir = os.path.join(self.base_dir, 'output')
-        if not os.path.exists(output_dir):
-            os.makedirs(output_dir)
-
-    def _ensure_json_file(self, filename: str, default_content: Dict) -> None:
-        """Ensure JSON file exists and initialize it if not."""
-        filepath = os.path.join(self.output_dir, filename)
-        try:
-            if not os.path.exists(filepath):
-                with open(filepath, 'w') as f:
-                    json.dump(default_content, f, indent=4)
-        except Exception as e:
-            logger.error(f"Error ensuring JSON file {filename}: {str(e)}\n{traceback.format_exc()}")
 
     def _initialize_missing_data_log(self) -> Dict:
         default_log = {
@@ -336,7 +307,7 @@ class FlightEnricher:
         except Exception as e:
             logger.error(f"Error updating missing data log: {str(e)}\n{traceback.format_exc()}")
 
-def create_flights_rich(flights, airlines_json, aircraft_json, reg_parser, user_location, radius, defined_zone, altitude_unit, distance_unit, altitude_trends):
+def create_flights_rich(flights, airlines_json, aircraft_json, reg_parser, user_location, radius, defined_zone, altitude_unit, distance_unit, altitude_trends, base_url):
     config = {
         'radius': radius,
         'defined_zone': defined_zone,
@@ -346,4 +317,16 @@ def create_flights_rich(flights, airlines_json, aircraft_json, reg_parser, user_
         'user_location': user_location
     }
     enricher = FlightEnricher(airlines_json, aircraft_json, reg_parser, config)
-    return enricher.enrich_flights(flights)
+    flights_rich = enricher.enrich_flights(flights)
+
+    for icao_id, flight_data in flights_rich.items():
+        # Ensure airline_logo_link is added immediately after airline_icao
+        airline_icao = flight_data.get('airline_icao', '').upper()
+        flight_data_ordered = {}
+        for key, value in flight_data.items():
+            flight_data_ordered[key] = value
+            if key == 'airline_icao':
+                flight_data_ordered['airline_logo_link'] = f"{base_url}/logos/{airline_icao}"
+        flights_rich[icao_id] = flight_data_ordered
+
+    return flights_rich

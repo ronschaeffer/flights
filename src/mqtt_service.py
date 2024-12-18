@@ -28,6 +28,11 @@ class MQTTService:
         self.client = mqtt.Client(mqtt.CallbackAPIVersion.VERSION2, client_id=config.get('MQTT_CLIENT_ID', 'flight_tracker'))
         self.broker_host = config['MQTT_BROKER']
         self.broker_port = config['MQTT_BROKER_PORT']
+        self.topics = [
+            config.get('MQTT_TOPIC_STATISTICS', 'dev/flights/statistics'),
+            config.get('MQTT_TOPIC_CLOSEST_AIRCRAFT', 'dev/flights/closest'),
+            config.get('MQTT_TOPIC_FLIGHTS', 'dev/flights/all')
+        ]
         
         # Set up logging
         self.logger = logging.getLogger('mqtt_service')
@@ -40,7 +45,13 @@ class MQTTService:
     def connect(self):
         try:
             self.client.connect(self.broker_host, self.broker_port)
+            print(f"\n\nConnected to MQTT broker: {self.broker_host}:{self.broker_port}")
+            print(f"MQTT client id: {self.client._client_id.decode()}")
+            print("Topics:")
+            for topic in self.topics:
+                print(f"  {topic}")
             self.client.loop_start()
+            print("\n")
         except Exception as e:
             logging.error(f"MQTT connection failed: {str(e)}\n{traceback.format_exc()}")
             raise

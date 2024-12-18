@@ -19,7 +19,7 @@ import shapely.geometry
 from tabulate import tabulate
 from flydenity import Parser
 
-# Local application/library-specific imports
+# Local application/library-spec`ific imports
 from flights_server import start_server
 from flight_counts import (
     load_unique_flights_data, save_unique_flights_data, update_unique_flights,
@@ -32,9 +32,19 @@ def get_log_level(level_str: str) -> int:
     """Convert string log level from config to logging constant."""
     return getattr(logging, level_str.upper(), logging.ERROR)
 
-# Create logs directory and load config first
+# Constants
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 LOG_DIR = os.path.join(BASE_DIR, 'logs')
+OUTPUT_DIR = os.path.join(BASE_DIR, 'output')
+# Removed unused JSON file path variables
+# STATISTICS_JSON_FILE_PATH = os.path.join(OUTPUT_DIR, 'statistics.json')
+# CLOSEST_AIRCRAFT_JSON_FILE_PATH = os.path.join(OUTPUT_DIR, 'closest_aircraft.json')
+# ALL_AIRCRAFT_JSON_FILE_PATH = os.path.join(OUTPUT_DIR, 'all_aircraft.json')
+
+# Variables
+SERVER_PORT = 8000  # Default value
+
+# Create logs directory and load config first
 os.makedirs(LOG_DIR, exist_ok=True)
 
 # Load configuration
@@ -192,57 +202,65 @@ def ensure_json_file(filepath: str, default_content: dict) -> None:
     except Exception as e:
         logging.error(f"Error ensuring JSON file {filepath}: {str(e)}\n{traceback.format_exc()}")
 
-# Define base paths at module level
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-OUTPUT_DIR = os.path.join(BASE_DIR, 'output')
-
-# Define output file paths
-STATISTICS_JSON_FILE_PATH = os.path.join(OUTPUT_DIR, 'statistics.json')
-CLOSEST_AIRCRAFT_JSON_FILE_PATH = os.path.join(OUTPUT_DIR, 'closest_aircraft.json')
-ALL_AIRCRAFT_JSON_FILE_PATH = os.path.join(OUTPUT_DIR, 'all_aircraft.json')
-
-def write_to_file(filename: str, data: dict) -> None:
-    """Write data to JSON file in the output directory."""
+def get_lan_ip():
+    """Get the machine's LAN IP address."""
+    import socket
     try:
-        # Ensure the filename is in the OUTPUT_DIR
-        if not os.path.isabs(filename):
-            filename = os.path.join(OUTPUT_DIR, os.path.basename(filename))
-        
-        os.makedirs(OUTPUT_DIR, exist_ok=True)
-        with open(filename, 'w') as f:
-            json.dump(data, f, indent=4)
-    except Exception as e:
-        logging.error(f"Error writing to file {filename}: {str(e)}\n{traceback.format_exc()}")
+        # Create a UDP socket
+        s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+        # Connect to an external IP address
+        s.connect(('8.8.8.8', 80))
+        # Get the local IP address
+        ip = s.getsockname()[0]
+        s.close()
+        return ip
+    except Exception:
+        return '127.0.0.1'  # Fallback to localhost
 
-def ensure_json_file(filepath: str, default_content: dict) -> None:
-    """Ensure JSON file exists and initialize it if not."""
-    try:
-        # Ensure the filepath is in the OUTPUT_DIR
-        if not os.path.isabs(filepath):
-            filepath = os.path.join(OUTPUT_DIR, os.path.basename(filepath))
-        
-        os.makedirs(OUTPUT_DIR, exist_ok=True)
-        if not os.path.exists(filepath):
-            with open(filepath, 'w') as f:
-                json.dump(default_content, f, indent=4)
-    except Exception as e:
-        logging.error(f"Error ensuring JSON file {filepath}: {str(e)}\n{traceback.format_exc()}")
+def ensure_output_directory():
+    """Central function to manage output directory creation and initialization"""
+    os.makedirs(OUTPUT_DIR, exist_ok=True)
+    
+    # Initialize all required output files with appropriate templates
+    default_empty = {"last_update": datetime.now().isoformat(), "data": {}}
+    default_stats = {
+        "visible_aircraft": 0,
+        "last_update_utc": int(time.time()),
+        "last_update_readable": datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S"),
+        "unique_flights": {},
+        "average_flights": {}
+    }
+    default_missing = {
+        "last_updated": datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S'),
+        "airlines": {},
+        "aircraft": {},
+        "airports": {}
+    }
+    
+    # Ensure all required files exist with default content
+    ensure_json_file(os.path.join(OUTPUT_DIR, 'statistics.json'), default_stats)  # Use stats template
+    ensure_json_file(os.path.join(OUTPUT_DIR, 'closest_aircraft.json'), default_empty)
+    ensure_json_file(os.path.join(OUTPUT_DIR, 'all_aircraft.json'), default_empty)
+    ensure_json_file(os.path.join(OUTPUT_DIR, 'missing.json'), default_missing)
 
 @handle_fatal_error
 def main():
     try:
+        print("\n\n\n\n✈️  ✈️  ✈️   Flights - Rich flight data for MQTT, HTTP API and Home Assistant\n")
+        
         # Load initial configuration using absolute path
         load_configuration(os.path.join(BASE_DIR, 'config/config.yaml'))
 
-        # Ensure all output JSON files exist
-        default_empty = {"last_update": datetime.now().isoformat(), "data": {}}
-        ensure_json_file(STATISTICS_JSON_FILE_PATH, default_empty)
-        ensure_json_file(CLOSEST_AIRCRAFT_JSON_FILE_PATH, default_empty)
-        ensure_json_file(ALL_AIRCRAFT_JSON_FILE_PATH, default_empty)
-
         # Create required directories
-        for directory in ['logs', 'output', 'storage']:
-            os.makedirs(os.path.join(BASE_DIR, directory), exist_ok=True)
+        ensure_output_directory()  # This is the only place output directory should be created
+        os.makedirs(LOG_DIR, exist_ok=True)
+        os.makedirs(os.path.join(BASE_DIR, 'storage'), exist_ok=True)
+
+        # Remove redundant ensure_json_file calls as they're now handled by ensure_output_directory
+        # default_empty = {"last_update": datetime.now().isoformat(), "data": {}}
+        # ensure_json_file(STATISTICS_JSON_FILE_PATH, default_empty)
+        # ensure_json_file(CLOSEST_AIRCRAFT_JSON_FILE_PATH, default_empty)
+        # ensure_json_file(ALL_AIRCRAFT_JSON_FILE_PATH, default_empty)
 
         # Now use the loaded config values with BASE_DIR
         reference_dump_path = os.path.join(BASE_DIR, config['REFERENCE_DUMP_FILE_PATH'])
@@ -277,13 +295,17 @@ def main():
         ])
 
         # Start the FastAPI server in a separate thread
+        default_image_format = config.get('IMAGE_FORMAT', 'svg').lower()  # Get IMAGE_FORMAT from config
         server_thread = threading.Thread(
             target=start_server, 
-            args=(FASTAPI_PORT, config.get('LOG_LEVEL', 'ERROR'))
+            args=(FASTAPI_PORT, config.get('LOG_LEVEL', 'ERROR'), default_image_format)  # Pass default_image_format
         )
         server_thread.daemon = True  # Make thread daemon so it exits when main program exits
         server_thread.start()
 
+        # Allow some time for the server to start and set the base_url
+        time.sleep(2)  # Adjust as needed
+        
         reg_parser = Parser()
         previous_statistics = {}
         previous_closest_aircraft = {}
@@ -295,6 +317,8 @@ def main():
         # Load unique flights data
         unique_flights_file = os.path.join(storage_directory, 'unique_flights_with_timestamps.pkl')
         unique_flights_with_timestamps = load_unique_flights_data(unique_flights_file)
+
+        base_url = f"http://{get_lan_ip()}:{FASTAPI_PORT}"
 
         # Main program loop
         while True:
@@ -314,7 +338,8 @@ def main():
                 defined_zone,
                 ALTITUDE_UNIT,
                 DISTANCE_UNIT,
-                ALTITUDE_TRENDS
+                ALTITUDE_TRENDS,
+                base_url  # Pass base_url to create_flights_rich
             )
             
             # Define time periods and calculate counts
@@ -331,13 +356,13 @@ def main():
             statistics = get_receiver_visible(flights, unique_flights_counts, averages)
             previous_statistics = publish_and_print(
                 mqtt_service, 
-                MQTT_TOPIC_STATISTICS,  # Change topic to statistics
-                statistics, 
-                previous_statistics,  # Use previous_statistics
-                STATISTICS_JSON_FILE_PATH,  # Change file path to statistics
+                MQTT_TOPIC_STATISTICS,
+                statistics,  # This is already in the correct format
+                previous_statistics,
+                os.path.join(OUTPUT_DIR, 'statistics.json'),  # Fix path - was using closest_aircraft.json
                 print_receiver_visible
             )
-            
+
             # Process and publish closest aircraft
             closest_aircraft = get_closest_aircraft(flights_rich, (USER_LAT, USER_LON))
             previous_closest_aircraft = publish_and_print(
@@ -345,9 +370,9 @@ def main():
                 MQTT_TOPIC_CLOSEST_AIRCRAFT, 
                 closest_aircraft, 
                 previous_closest_aircraft,  # Use previous_closest_aircraft
-                CLOSEST_AIRCRAFT_JSON_FILE_PATH, 
+                os.path.join(BASE_DIR, 'output/closest_aircraft.json'),  # Fixed path
                 print_closest_aircraft
-            )
+            )  # Closing parenthesis
             
             # Publish all flights data without printing
             publish_and_print(
@@ -355,7 +380,7 @@ def main():
                 MQTT_TOPIC_FLIGHTS, 
                 flights_rich, 
                 None, 
-                ALL_AIRCRAFT_JSON_FILE_PATH
+                 os.path.join(BASE_DIR, 'output/all_aircraft.json'),  # Fixed path
             )
 
             # Update unique flights tracking
