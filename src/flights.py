@@ -299,6 +299,7 @@ def main():
         reg_parser = Parser()
         previous_visible = {}
         previous_closest_aircraft = {}
+        previous_flights_rich = {}  # Initialize the variable
 
         # Ensure the storage directory exists
         storage_directory = os.path.join(BASE_DIR, 'storage')
@@ -365,13 +366,9 @@ def main():
             )  # Closing parenthesis
             
             # Publish all flights data without printing
-            publish_and_print(
-                mqtt_service, 
-                MQTT_TOPIC_FLIGHTS, 
-                flights_rich, 
-                None, 
-                os.path.join(BASE_DIR, 'output/all_aircraft.json')  # Fixed path
-            )
+            if flights_rich != previous_flights_rich:
+                write_to_file(os.path.join(BASE_DIR, 'output/all_aircraft.json'), flights_rich)
+                previous_flights_rich = flights_rich
 
             # Update unique flights tracking
             current_unique_flights = set(flight["icao_id"] for flight in flights.values())
