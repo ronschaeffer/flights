@@ -36,10 +36,6 @@ def get_log_level(level_str: str) -> int:
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 LOG_DIR = os.path.join(BASE_DIR, 'logs')
 OUTPUT_DIR = os.path.join(BASE_DIR, 'output')
-# Removed unused JSON file path variables
-# STATISTICS_JSON_FILE_PATH = os.path.join(OUTPUT_DIR, 'statistics.json')
-# CLOSEST_AIRCRAFT_JSON_FILE_PATH = os.path.join(OUTPUT_DIR, 'closest_aircraft.json')
-# ALL_AIRCRAFT_JSON_FILE_PATH = os.path.join(OUTPUT_DIR, 'all_aircraft.json')
 
 # Variables
 SERVER_PORT = 8000  # Default value
@@ -238,7 +234,7 @@ def ensure_output_directory():
     }
     
     # Ensure all required files exist with default content
-    ensure_json_file(os.path.join(OUTPUT_DIR, 'statistics.json'), default_stats)  # Use stats template
+    ensure_json_file(os.path.join(OUTPUT_DIR, 'visible.json'), default_stats)  # Use stats template
     ensure_json_file(os.path.join(OUTPUT_DIR, 'closest_aircraft.json'), default_empty)
     ensure_json_file(os.path.join(OUTPUT_DIR, 'all_aircraft.json'), default_empty)
     ensure_json_file(os.path.join(OUTPUT_DIR, 'missing.json'), default_missing)
@@ -255,12 +251,6 @@ def main():
         ensure_output_directory()  # This is the only place output directory should be created
         os.makedirs(LOG_DIR, exist_ok=True)
         os.makedirs(os.path.join(BASE_DIR, 'storage'), exist_ok=True)
-
-        # Remove redundant ensure_json_file calls as they're now handled by ensure_output_directory
-        # default_empty = {"last_update": datetime.now().isoformat(), "data": {}}
-        # ensure_json_file(STATISTICS_JSON_FILE_PATH, default_empty)
-        # ensure_json_file(CLOSEST_AIRCRAFT_JSON_FILE_PATH, default_empty)
-        # ensure_json_file(ALL_AIRCRAFT_JSON_FILE_PATH, default_empty)
 
         # Now use the loaded config values with BASE_DIR
         reference_dump_path = os.path.join(BASE_DIR, config['REFERENCE_DUMP_FILE_PATH'])
@@ -307,7 +297,7 @@ def main():
         time.sleep(2)  # Adjust as needed
         
         reg_parser = Parser()
-        previous_statistics = {}
+        previous_visible = {}
         previous_closest_aircraft = {}
 
         # Ensure the storage directory exists
@@ -352,14 +342,14 @@ def main():
             # Calculate averages
             averages = calculate_averages(unique_flights_with_timestamps, unique_flights_counts)
 
-            # Update and publish statistics data
-            statistics = get_receiver_visible(flights, unique_flights_counts, averages)
-            previous_statistics = publish_and_print(
+            # Update and publish visible data
+            visible = get_receiver_visible(flights, unique_flights_counts, averages)
+            previous_visible = publish_and_print(
                 mqtt_service, 
-                MQTT_TOPIC_STATISTICS,
-                statistics,  # This is already in the correct format
-                previous_statistics,
-                os.path.join(OUTPUT_DIR, 'statistics.json'),  # Fix path - was using closest_aircraft.json
+                MQTT_TOPIC_VISIBLE,  # Changed from MQTT_TOPIC_STATISTICS to MQTT_TOPIC_VISIBLE
+                visible,  # This is already in the correct format
+                previous_visible,
+                os.path.join(OUTPUT_DIR, 'visible.json'),  # Fix path - was using closest_aircraft.json
                 print_receiver_visible
             )
 
@@ -380,7 +370,7 @@ def main():
                 MQTT_TOPIC_FLIGHTS, 
                 flights_rich, 
                 None, 
-                 os.path.join(BASE_DIR, 'output/all_aircraft.json'),  # Fixed path
+                os.path.join(BASE_DIR, 'output/all_aircraft.json')  # Fixed path
             )
 
             # Update unique flights tracking

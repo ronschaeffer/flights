@@ -29,7 +29,7 @@ class MQTTService:
         self.broker_host = config['MQTT_BROKER']
         self.broker_port = config['MQTT_BROKER_PORT']
         self.topics = [
-            config.get('MQTT_TOPIC_STATISTICS', 'dev/flights/statistics'),
+            config.get('MQTT_TOPIC_VISIBLE', 'dev/flights/visible'),  # Changed from MQTT_TOPIC_STATISTICS to MQTT_TOPIC_VISIBLE
             config.get('MQTT_TOPIC_CLOSEST_AIRCRAFT', 'dev/flights/closest'),
             config.get('MQTT_TOPIC_FLIGHTS', 'dev/flights/all')
         ]

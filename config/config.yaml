@@ -15,7 +15,7 @@ MQTT_CLIENT_ID: 'flights_client'
 # MQTT topics
 MQTT_TOPIC_CLOSEST_AIRCRAFT: "dev/flights/closest"
 MQTT_TOPIC_FLIGHTS: "dev/flights/all"
-MQTT_TOPIC_STATISTICS: "dev/flights/statistics"  # Change topic to statistics
+MQTT_TOPIC_VISIBLE: "dev/flights/visible"  # Changed from MQTT_TOPIC_STATISTICS to MQTT_TOPIC_VISIBLE
 
 # Default image format
 IMAGE_FORMAT: "svg"  # png or svg; If one is not available, the other will be served if available
@@ -69,7 +69,7 @@ CLOSEST_AIRCRAFT_JSON_FILE_PATH: "output/closest_aircraft.json"
 ALL_AIRCRAFT_JSON_FILE_PATH: "output/all_aircraft.json"
 FLIGHTS_WITHIN_DEFINED_ZONE_JSON_FILE_PATH: "output/flights_within_defined_zone.json"
 FLIGHTS_WITHIN_DEFINED_RADIUS_JSON_FILE_PATH: "output/flights_within_defined_radius.json"
-STATISTICS_JSON_FILE_PATH: "output/statistics.json"
+VISIBLE_JSON_FILE_PATH: "output/visible.json"  # Changed from statistics.json to visible.json
 
 # Key names for referenced keys in the dump file
 tracked_parent: 'aircraft'  # Name of the parent key of tracked flights in the dump, e.g., 'aircraft'
