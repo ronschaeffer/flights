@@ -9,6 +9,7 @@ import logging
 import traceback
 from fastapi import FastAPI, Response, HTTPException, Request
 import glob
+from fastapi.staticfiles import StaticFiles
 
 # Define base directory once at the top
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -25,16 +26,13 @@ OUTPUT_DIR = os.path.join(BASE_DIR, 'output')  # Only define the path, don't cre
 LOG_DIR = os.path.join(BASE_DIR, 'logs')
 os.makedirs(LOG_DIR, exist_ok=True)
 
-# Remove configuration loading
-# config_path = os.path.join(BASE_DIR, 'config/config.yaml')
-# with open(config_path, 'r') as config_file:
-#     config = yaml.safe_load(config_file)
-
-# Remove DEFAULT_IMAGE_FORMAT initialization
-# DEFAULT_IMAGE_FORMAT = config.get('IMAGE_FORMAT', 'svg').lower()
+# Load configuration
+config_path = os.path.join(BASE_DIR, 'config/config.yaml')
+with open(config_path, 'r') as config_file:
+    config = yaml.safe_load(config_file)
 
 # Add DEFAULT_IMAGE_FORMAT initialization
-DEFAULT_IMAGE_FORMAT = 'svg'
+DEFAULT_IMAGE_FORMAT = config.get('IMAGE_FORMAT', 'svg').lower()
 
 logger = logging.getLogger('flights_server')
 logger.setLevel(getattr(logging, 'ERROR'.upper()))
@@ -87,7 +85,7 @@ def try_file_with_ext(base_dir, filename, primary_ext=None, fallback_ext=None, n
     name = os.path.splitext(filename)[0]
     
     primary_ext = primary_ext or f'.{DEFAULT_IMAGE_FORMAT}'
-    fallback_ext = fallback_ext or ('.png' if DEFAULT_IMAGE_FORMAT == 'svg' else '.svg')
+    fallback_ext = fallback_ext or ('.svg' if DEFAULT_IMAGE_FORMAT == 'png' else '.png')
     
     # Try primary extension
     primary_path = os.path.join(base_dir, primary_ext.lstrip('.'), name + primary_ext)
@@ -155,17 +153,26 @@ def create_html_list(title: str, items: dict) -> str:
         <head>
             <title>{title}</title>
             <style>
-                body {{ font-family: sans-serif; margin: 20px; position: relative; padding-top: 120px; }} /* Added padding-top */
+                body {{ font-family: sans-serif; margin: 20px; position: relative; padding-top: 60px; }} /* Adjusted padding-top */
                 h1 {{ color: #333; }} /* Removed margin-top */
                 .section {{ margin: 20px 0; }}
                 a {{ color: #0066cc; text-decoration: none; }}
                 a:hover {{ text-decoration: underline; }}
                 /* Banner Styles */
-                .banner {{
+                .banner-container {{
+                    display: flex;
+                    align-items: center;
                     position: absolute;
                     top: 10px;
                     left: 10px;
-                    width: 100px; /* Adjust the size as needed */
+                }}
+                .banner {{
+                    width: 50px; /* Adjust the size as needed */
+                    margin-right: 10px;
+                }}
+                .banner-text {{
+                    font-size: 36px; /* Increased font size */
+                    font-weight: bold;
                 }}
             </style>
         </head>
@@ -173,22 +180,31 @@ def create_html_list(title: str, items: dict) -> str:
     """
     
     # Path to the banner image
-    banner_path = "/logos/_NONE.svg"  # Adjust the path if necessary
+    banner_path = "/assets/.web/flights.svg"  # Corrected path to assets/.web
     
-    # Add banner if _NONE.svg exists and make it a link to the base URL
-    banner_full_path = os.path.join(BASE_DIR, 'assets/images/logos/svg/_NONE.svg')
-    if (os.path.exists(banner_full_path)):
+    # Add banner if flights.svg exists and make it a link to the base URL
+    banner_full_path = os.path.join(BASE_DIR, 'assets/.web/flights.svg')
+    if os.path.exists(banner_full_path):
         base_url = f"http://{get_lan_ip()}:{SERVER_PORT}/"  # Generate dynamic base URL
-        html += f'<a href="{base_url}"><img src="{banner_path}" alt="Banner" class="banner"/></a>\n'
+        html += f'''
+        <div class="banner-container">
+            <a href="{base_url}">
+                <img src="{banner_path}" alt="Banner" class="banner"/>
+            </a>
+            <div class="banner-text">Flights</div>
+        </div>
+        <br><br> <!-- Insert two lines below the banner -->
+        '''
     
     html += f"""
             <h1>{title}</h1>
+            <br> <!-- Add this line to create a blank line -->
     """
     
     for section, links in items.items():
-        if (links):  # Only show sections with content
+        if links:  # Only show sections with content
             html += f'<div class="section"><h2>{section}</h2><ul>'
-            if (isinstance(links, dict)):
+            if isinstance(links, dict):
                 for name, url in links.items():
                     html += f'<li><a href="{url}">{name}</a></li>'
             else:
@@ -222,7 +238,7 @@ async def list_json_files(request: Request):
         accept = request.headers.get("accept", "")
         if "text/html" in accept:
             # Pass the entire data dictionary to include all sections
-            html = create_html_list("Flights Dashboard", data)  # Updated title for clarity
+            html = create_html_list("Main menu", data)  # Updated title for clarity
             return Response(content=html, media_type="text/html")
         return data
     except Exception as e:
@@ -311,6 +327,36 @@ async def list_flags(request: Request):
         logger.error(f"Error listing flags: {str(e)}\n{traceback.format_exc()}")
         raise HTTPException(status_code=500, detail="Error listing files")
 
+@app.get("/favicon.ico")
+async def get_favicon():
+    """Serve the favicon.ico file if it exists."""
+    try:
+        favicon_path = os.path.join(BASE_DIR, 'assets', '.web', 'favicon.ico')  # Changed directory name to .web
+        # Log full debug info
+        logger.error(f"Favicon debug info:")
+        logger.error(f"BASE_DIR: {BASE_DIR}")
+        logger.error(f"Full path: {favicon_path}")
+        logger.error(f"Parent exists: {os.path.exists(os.path.dirname(favicon_path))}")
+        logger.error(f"File exists: {os.path.exists(favicon_path)}")
+        if os.path.exists(favicon_path):
+            logger.error(f"File permissions: {oct(os.stat(favicon_path).st_mode)[-3:]}")
+        
+        if not os.path.exists(favicon_path):
+            logger.error("Favicon file not found")
+            return Response(status_code=404)
+        
+        try:
+            with open(favicon_path, "rb") as f:
+                content = f.read()
+            return Response(content=content, media_type="image/x-icon")
+        except (IOError, OSError) as e:
+            logger.error(f"IO Error reading favicon: {str(e)}")
+            return Response(status_code=500, content="Internal server error")
+            
+    except Exception as e:
+        logger.error(f"Favicon error: {str(e)}\n{traceback.format_exc()}")
+        return Response(status_code=500, content="Internal server error")
+
 @app.get("/{file_name}")
 async def read_output_file(file_name: str):
     """Read and return the specified JSON file."""
@@ -347,12 +393,14 @@ async def read_logo_file(file_name: str):
         file_path = os.path.join(dir_path, name.upper() + ext)
         media_type = "image/svg+xml" if ext == '.svg' else "image/png"
     else:
-        # Try SVG first, then PNG, then _NONE in both formats
+        # Use default image format for primary_ext
+        primary_ext = f'.{DEFAULT_IMAGE_FORMAT}'
+        fallback_ext = '.svg' if DEFAULT_IMAGE_FORMAT == 'png' else '.png'
         file_path, media_type = try_file_with_ext(
             base_directory, 
             name.upper(),
-            primary_ext='.svg',
-            fallback_ext='.png',
+            primary_ext=primary_ext,
+            fallback_ext=fallback_ext,
             none_fallback=True
         )
         if (not file_path):
@@ -390,6 +438,9 @@ async def read_flag_file(file_name: str):
         raise HTTPException(status_code=400, detail="Invalid file path")
     
     return get_file_content(file_path, media_type)
+
+# Mount the .web directory to serve static files
+app.mount("/assets/.web", StaticFiles(directory=os.path.join(BASE_DIR, "assets/.web")), name="web_assets")
 
 def kill_process_on_port(port):
     """Kill any process using the specified port owned by the current user."""

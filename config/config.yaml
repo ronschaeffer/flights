@@ -18,7 +18,7 @@ MQTT_TOPIC_FLIGHTS: "dev/flights/all"
 MQTT_TOPIC_STATISTICS: "dev/flights/statistics"  # Change topic to statistics
 
 # Default image format
-IMAGE_FORMAT: "svg"  # PNG or SVG; If one is not available, the other will be served if available
+IMAGE_FORMAT: "svg"  # png or svg; If one is not available, the other will be served if available
 
 # HTTP server configuration
 FASTAPI_PORT: 47474
