@@ -278,7 +278,13 @@ class FlightEnricher:
                 altitude_value = round(altitude_value * 0.3048)
                 vert_rate = round(vert_rate * 0.3048)
 
-            altitude_trend_symbol = self.config['altitude_trends']["SYMBOLS"]["UP"] if vert_rate > 0 else self.config['altitude_trends']["SYMBOLS"]["DOWN"] if vert_rate < 0 else self.config['altitude_trends']["SYMBOLS"]["LEVEL"]
+            if abs(vert_rate) < 500:
+                altitude_trend_symbol = self.config['altitude_trends']["SYMBOLS"]["LEVEL"]
+            elif vert_rate > 0:
+                altitude_trend_symbol = self.config['altitude_trends']["SYMBOLS"]["UP"]
+            else:
+                altitude_trend_symbol = self.config['altitude_trends']["SYMBOLS"]["DOWN"]
+
             return {
                 "altitude": f"{altitude_value}{self.config['altitude_unit']}",
                 "altitude_value": altitude_value,
