@@ -147,52 +147,63 @@ def get_url_for_file(path: str, filename: str, ext: str = None, port: int = None
         return '/'.join(parts)
 
 def create_html_list(title: str, items: dict) -> str:
-    """Create HTML page with clickable links and an optional banner."""
     html = f"""
     <html>
         <head>
             <title>{title}</title>
             <style>
-                body {{ font-family: sans-serif; margin: 20px; position: relative; padding-top: 60px; }} /* Adjusted padding-top */
-                h1 {{ color: #333; }} /* Removed margin-top */
+                body {{ font-family: sans-serif; margin: 20px; position: relative; }}
+                h1 {{
+                    color: #333;
+                    margin-top: 80px;
+                    margin-bottom: 40px;  /* Added margin-bottom for consistent spacing */
+                }}
                 .section {{ margin: 20px 0; }}
                 a {{ color: #0066cc; text-decoration: none; }}
                 a:hover {{ text-decoration: underline; }}
-                nav {{
-                    margin-bottom: 20px; /* Added vertical space below navigation */
-                }}
-                /* Banner Styles */
+                /* Banner and Navigation Styles */
                 .banner-container {{
                     display: flex;
                     align-items: center;
-                    position: absolute;
-                    top: 10px;
-                    left: 10px;
+                    justify-content: flex-start;  /* Changed from space-between to flex-start */
+                    position: fixed;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    padding: 10px 20px;
+                    background-color: #f8f8f8;
+                    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+                }}
+                .banner-left {{
+                    display: flex;
+                    align-items: center;
+                    margin-right: 40px;  /* Added margin-right to separate from nav */
                 }}
                 .banner {{
-                    width: 50px; /* Adjust the size as needed */
+                    width: 50px;
                     margin-right: 10px;
                 }}
                 .banner-text {{
-                    font-size: 36px; /* Increased font size */
+                    font-size: 24px;
                     font-weight: bold;
                 }}
-                .description, .example {{
+                nav {{
+                    display: flex;
+                    align-items: center;
+                }}
+                nav a {{
                     margin-left: 20px;
-                    font-size: 1.1em; /* Increased font size */
-                    color: #555;
+                    color: #0066cc;
+                    text-decoration: none;
+                    font-weight: bold;
+                }}
+                nav a:hover {{
+                    text-decoration: underline;
                 }}
             </style>
         </head>
         <body>
-            <nav>
-                <a href="/"><b>Home</b></a> |
-                <a href="/flags"><b>Flags</b></a> |
-                <a href="/logos"><b>Logos</b></a> |
-                <a href="/endpoints"><b>Endpoints</b></a> <!-- Added Endpoints link -->
-            </nav>
     """
-    
     # Path to the banner image
     banner_path = "/assets/.web/flights.svg"  # Corrected path to assets/.web
     
@@ -202,17 +213,23 @@ def create_html_list(title: str, items: dict) -> str:
         base_url = f"http://{get_lan_ip()}:{SERVER_PORT}/"  # Generate dynamic base URL
         html += f'''
         <div class="banner-container">
-            <a href="{base_url}">
-                <img src="{banner_path}" alt="Banner" class="banner"/>
-            </a>
-            <div class="banner-text">Flights</div>
+            <div class="banner-left">
+                <a href="{base_url}">
+                    <img src="{banner_path}" alt="Banner" class="banner"/>
+                </a>
+                <div class="banner-text">Flights</div>
+            </div>
+            <nav>
+                <a href="/">Home</a>
+                <a href="/flags">Flags</a>
+                <a href="/logos">Logos</a>
+                <a href="/endpoints">Endpoints</a>
+            </nav>
         </div>
-        <br><br> <!-- Insert two lines below the banner -->
         '''
     
     html += f"""
             <h1>{title}</h1>
-            <br>
     """
 
     # Modified section rendering for logos and flags
@@ -419,7 +436,7 @@ async def list_endpoints(request: Request):
             ]
         },
         "/flags/{file_name}": {
-            "description": "Retrieve a specific country flag. File extension is optional.",
+            "description": "Retrieve a specific country flag based on ISO code. File extension is optional.",
             "examples": [
                   f"GET {base_url}/flags/gb",
                   f"GET {base_url}/flags/gb.svg",
@@ -439,55 +456,75 @@ async def list_endpoints(request: Request):
             <head>
                 <title>API Endpoints</title>
                 <style>
-                    body {{ font-family: sans-serif; margin: 20px; position: relative; padding-top: 60px; }}
-                    h1 {{ color: #333; }}
+                    body {{ font-family: sans-serif; margin: 20px; position: relative; }}
+                    h1 {{ color: #333; margin-top: 80px; margin-bottom: 40px; }}  /* Added vertical space below the title */
                     .endpoint {{ margin-bottom: 20px; }}
                     .key {{ font-weight: bold; color: blue; }}
                     .description {{ display: block; margin-bottom: 10px; }}
                     .example {{ margin-left: 20px; color: #555; display: block; }}
-                    nav {{
-                        margin-bottom: 20px;
-                    }}
-                    /* Banner Styles */
+                    /* Banner and Navigation Styles */
                     .banner-container {{
                         display: flex;
                         align-items: center;
-                        position: absolute;
-                        top: 10px;
-                        left: 10px;
+                        justify-content: flex-start;  /* Keep the banner at the top */
+                        position: fixed;  /* Keep the banner at the top */
+                        top: 0;
+                        left: 0;
+                        width: 100%;
+                        padding: 10px 20px;
+                        background-color: #f8f8f8;
+                        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+                    }}
+                    .banner-left {{
+                        display: flex;
+                        align-items: center;
+                        margin-right: 40px;  /* Added margin-right to separate from nav */
                     }}
                     .banner {{
                         width: 50px;
                         margin-right: 10px;
                     }}
                     .banner-text {{
-                        font-size: 36px;
+                        font-size: 24px;
                         font-weight: bold;
+                    }}
+                    nav {{
+                        display: flex;
+                        align-items: center;
+                    }}
+                    nav a {{
+                        margin-left: 20px;
+                        color: #0066cc;
+                        text-decoration: none;
+                        font-weight: bold;
+                    }}
+                    nav a:hover {{
+                        text-decoration: underline;
                     }}
                 </style>
             </head>
             <body>
-                <nav>
-                    <a href="/"><b>Home</b></a> |
-                    <a href="/flags"><b>Flags</b></a> |
-                    <a href="/logos"><b>Logos</b></a> |
-                    <a href="/endpoints"><b>Endpoints</b></a>
-                </nav>
         """
-
-        # Add banner image if it exists
+        # Add banner image and navigation menu inside the banner-container
         banner_path = "/assets/.web/flights.svg"
         banner_full_path = os.path.join(BASE_DIR, 'assets/.web/flights.svg')
         if os.path.exists(banner_full_path):
             base_url = f"http://{get_lan_ip()}:{SERVER_PORT}/"
             html_content += f'''
             <div class="banner-container">
-                <a href="{base_url}">
-                    <img src="{banner_path}" alt="Banner" class="banner"/>
-                </a>
-                <div class="banner-text">Flights</div>
+                <div class="banner-left">
+                    <a href="{base_url}">
+                        <img src="{banner_path}" alt="Banner" class="banner"/>
+                    </a>
+                    <div class="banner-text">Flights</div>
+                </div>
+                <nav>
+                    <a href="/">Home</a>
+                    <a href="/flags">Flags</a>
+                    <a href="/logos">Logos</a>
+                    <a href="/endpoints">Endpoints</a>
+                </nav>
             </div>
-            <br><br>
             '''
         html_content += "<h1>API Endpoints</h1>"
 
