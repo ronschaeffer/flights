@@ -158,6 +158,9 @@ def create_html_list(title: str, items: dict) -> str:
                 .section {{ margin: 20px 0; }}
                 a {{ color: #0066cc; text-decoration: none; }}
                 a:hover {{ text-decoration: underline; }}
+                nav {{
+                    margin-bottom: 20px; /* Added vertical space below navigation */
+                }}
                 /* Banner Styles */
                 .banner-container {{
                     display: flex;
@@ -174,9 +177,20 @@ def create_html_list(title: str, items: dict) -> str:
                     font-size: 36px; /* Increased font size */
                     font-weight: bold;
                 }}
+                .description, .example {{
+                    margin-left: 20px;
+                    font-size: 1.1em; /* Increased font size */
+                    color: #555;
+                }}
             </style>
         </head>
         <body>
+            <nav>
+                <a href="/"><b>Home</b></a> |
+                <a href="/flags"><b>Flags</b></a> |
+                <a href="/logos"><b>Logos</b></a> |
+                <a href="/endpoints"><b>Endpoints</b></a> <!-- Added Endpoints link -->
+            </nav>
     """
     
     # Path to the banner image
@@ -198,18 +212,32 @@ def create_html_list(title: str, items: dict) -> str:
     
     html += f"""
             <h1>{title}</h1>
-            <br> <!-- Add this line to create a blank line -->
+            <br>
     """
-    
-    for section, links in items.items():
-        if links:  # Only show sections with content
+
+    # Modified section rendering for logos and flags
+    for section, content in items.items():
+        if content:  # Only show sections with content
             html += f'<div class="section"><h2>{section}</h2><ul>'
-            if isinstance(links, dict):
-                for name, url in links.items():
-                    html += f'<li><a href="{url}">{name}</a></li>'
+            
+            # Special handling for SVG and PNG Files sections
+            if section in ["SVG Files", "PNG Files"]:
+                # Sort the keys (filenames) alphabetically
+                sorted_files = sorted(content.keys())
+                for file in sorted_files:
+                    url = content[file]
+                    # Display just the filename without extension
+                    display_name = os.path.splitext(file)[0]
+                    html += f'<li><a href="{url}">{display_name}</a></li>'
             else:
-                for item in links:
-                    html += f'<li><a href="{item}">{item}</a></li>'
+                # Handle other sections (like the main menu) normally
+                if isinstance(content, dict):
+                    for name, url in content.items():
+                        html += f'<li><a href="{url}">{name}</a></li>'
+                else:
+                    for item in content:
+                        html += f'<li><a href="{item}">{item}</a></li>'
+                        
             html += '</ul></div>'
     
     html += "</body></html>"
@@ -237,10 +265,10 @@ async def list_json_files(request: Request):
         # Return HTML for browsers, JSON for API requests
         accept = request.headers.get("accept", "")
         if "text/html" in accept:
-            # Pass the entire data dictionary to include all sections
-            html = create_html_list("Main menu", data)  # Updated title for clarity
+            html = create_html_list("Main menu", data)
             return Response(content=html, media_type="text/html")
-        return data
+        # Format JSON response with indentation
+        return JSONResponse(content=data, media_type="application/json", headers={"Content-Type": "application/json; charset=utf-8"})
     except Exception as e:
         logger.error(f"Error listing JSON files: {str(e)}\n{traceback.format_exc()}")
         raise HTTPException(status_code=500, detail="Error listing files")
@@ -357,6 +385,79 @@ async def get_favicon():
         logger.error(f"Favicon error: {str(e)}\n{traceback.format_exc()}")
         return Response(status_code=500, content="Internal server error")
 
+@app.get("/endpoints")
+async def list_endpoints(request: Request):
+    """List all available API endpoints with examples."""
+    base_url = f"http://{get_lan_ip()}:{SERVER_PORT}"  # Define the actual base URL
+    
+    endpoints = {
+        "/": {
+            "description": "Show main menu.",
+            "example": f"GET {base_url}/"
+        },
+        "/logos": {
+            "description": "List all available airline logos in SVG and PNG formats.",
+            "example": f"GET {base_url}/logos"
+        },
+        "/flags": {
+            "description": "List all available country flags in SVG and PNG formats.",
+            "example": f"GET {base_url}/flags"
+        },
+        "/{file_name}": {
+            "description": "Retrieve a specific output file in JSON format. File extension is optional.",
+            "example": f"GET {base_url}/closest_aircraft\nGET {base_url}/closest_aircraft.json"
+        },
+        "/logos/{file_name}": {
+            "description": "Retrieve a specific airline logo based on ICAO code. File extension is optional.",
+            "example": f"GET {base_url}/logos/BAW\nGET {base_url}/logos/BAW.svg\nGET {base_url}/logos/BAW.png"
+        },
+        "/flags/{file_name}": {
+            "description": "Retrieve a specific country flag. File extension is optional.",
+            "example": f"GET {base_url}/flags/gb\nGET {base_url}/flags/gb.svg\nGET {base_url}/flags/gb.png"
+        },
+        "/endpoints": {
+            "description": "List all available API endpoints with examples.",
+            "example": f"GET {base_url}/endpoints"
+        }
+    }
+    
+    accept = request.headers.get("accept", "")
+    if "text/html" in accept:
+        html_content = """
+        <html>
+            <head>
+                <title>API Endpoints</title>
+                <style>
+                    body { font-family: sans-serif; margin: 20px; }
+                    h1 { color: #333; }
+                    .endpoint { margin-bottom: 20px; }
+                    .description { font-weight: bold; }
+                    .example { margin-left: 20px; color: #555; }
+                </style>
+            </head>
+            <body>
+                <h1>API Endpoints</h1>
+        """
+        for path, info in endpoints.items():
+            html_content += f"""
+                <div class="endpoint">
+                    <div class="description">{path}: {info['description']}</div>
+                    <div class="example">Example: {info['example']}</div>
+                </div>
+            """
+        html_content += """
+            </body>
+        </html>
+        """
+        return Response(content=html_content, media_type="text/html")
+    else:
+        return JSONResponse(content={"available_endpoints": endpoints})
+
+@app.get("/endpoints.json")
+async def get_endpoints_json():
+    """Serve the available API endpoints as a JSON file."""
+    return list_endpoints()  # Reuse the existing list_endpoints function
+
 @app.get("/{file_name}")
 async def read_output_file(file_name: str):
     """Read and return the specified JSON file."""
@@ -373,7 +474,22 @@ async def read_output_file(file_name: str):
     if (not os.path.abspath(file_path).startswith(os.path.abspath(base_directory))):
         raise HTTPException(status_code=400, detail="Invalid file path")
     
-    return get_file_content(file_path, "application/json")
+    if not os.path.exists(file_path):
+        logging.error(f"File not found: {file_path}")
+        raise HTTPException(status_code=404, detail=f"File '{file_path}' not found")
+    
+    try:
+        with open(file_path, 'r') as f:
+            # Load JSON and format it prettily
+            content = json.load(f)
+            formatted_content = json.dumps(content, indent=2, sort_keys=True)
+            return Response(content=formatted_content, media_type="application/json")
+    except json.JSONDecodeError as e:
+        logging.error(f"Invalid JSON in file {file_path}: {e}")
+        raise HTTPException(status_code=500, detail="Invalid JSON content")
+    except Exception as e:
+        logging.error(f"Error reading file {file_path}: {e}\n{traceback.format_exc()}")
+        raise HTTPException(status_code=500, detail="Internal Server Error")
 
 @app.get("/logos/{file_name}")
 async def read_logo_file(file_name: str):
@@ -517,3 +633,51 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+from fastapi.responses import JSONResponse, HTMLResponse  # Import additional response types
+
+# Add custom exception handlers after app initialization
+@app.exception_handler(HTTPException)
+async def http_exception_handler(request: Request, exc: HTTPException):
+    """Handle HTTP exceptions with custom responses."""
+    accept = request.headers.get("accept", "")
+    if "text/html" in accept:
+        # Render a simple HTML error page
+        html_content = f"""
+        <html>
+            <head>
+                <title>Error {exc.status_code}</title>
+            </head>
+            <body>
+                <h1>Error {exc.status_code}</h1>
+                <p>{exc.detail}</p>
+            </body>
+        </html>
+        """
+        return HTMLResponse(content=html_content, status_code=exc.status_code)
+    else:
+        # Return JSON response as default
+        return JSONResponse(content={"detail": exc.detail}, status_code=exc.status_code)
+
+@app.exception_handler(Exception)
+async def generic_exception_handler(request: Request, exc: Exception):
+    """Handle unexpected exceptions with custom responses."""
+    logger.error(f"Unhandled exception: {str(exc)}\n{traceback.format_exc()}")
+    accept = request.headers.get("accept", "")
+    if "text/html" in accept:
+        # Render a simple HTML error page
+        html_content = """
+        <html>
+            <head>
+                <title>Internal Server Error</title>
+            </head>
+            <body>
+                <h1>500 Internal Server Error</h1>
+                <p>An unexpected error occurred. Please try again later.</p>
+            </body>
+        </html>
+        """
+        return HTMLResponse(content=html_content, status_code=500)
+    else:
+        # Return JSON response as default
+        return JSONResponse(content={"detail": "Internal Server Error"}, status_code=500)

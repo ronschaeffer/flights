@@ -69,7 +69,6 @@ CLOSEST_AIRCRAFT_JSON_FILE_PATH: "output/closest_aircraft.json"
 ALL_AIRCRAFT_JSON_FILE_PATH: "output/all_aircraft.json"
 FLIGHTS_WITHIN_DEFINED_ZONE_JSON_FILE_PATH: "output/flights_within_defined_zone.json"
 FLIGHTS_WITHIN_DEFINED_RADIUS_JSON_FILE_PATH: "output/flights_within_defined_radius.json"
-VISIBLE_JSON_FILE_PATH: "output/visible.json"  # Changed from statistics.json to visible.json
 
 # Key names for referenced keys in the dump file
 tracked_parent: 'aircraft'  # Name of the parent key of tracked flights in the dump, e.g., 'aircraft'
