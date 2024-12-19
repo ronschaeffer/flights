@@ -392,7 +392,7 @@ async def list_endpoints(request: Request):
     
     endpoints = {
         "/": {
-            "description": "Show main menu.",
+            "description": "Go to home page.",
             "example": f"GET {base_url}/"
         },
         "/logos": {
@@ -405,44 +405,107 @@ async def list_endpoints(request: Request):
         },
         "/{file_name}": {
             "description": "Retrieve a specific output file in JSON format. File extension is optional.",
-            "example": f"GET {base_url}/closest_aircraft\nGET {base_url}/closest_aircraft.json"
+            "examples": [
+                  f"GET {base_url}/closest_aircraft",
+                  f"GET {base_url}/closest_aircraft.json"
+            ]
         },
         "/logos/{file_name}": {
             "description": "Retrieve a specific airline logo based on ICAO code. File extension is optional.",
-            "example": f"GET {base_url}/logos/BAW\nGET {base_url}/logos/BAW.svg\nGET {base_url}/logos/BAW.png"
+            "examples": [
+                  f"GET {base_url}/logos/BAW",
+                  f"GET {base_url}/logos/BAW.svg",
+                  f"GET {base_url}/logos/BAW.png"
+            ]
         },
         "/flags/{file_name}": {
             "description": "Retrieve a specific country flag. File extension is optional.",
-            "example": f"GET {base_url}/flags/gb\nGET {base_url}/flags/gb.svg\nGET {base_url}/flags/gb.png"
+            "examples": [
+                  f"GET {base_url}/flags/gb",
+                  f"GET {base_url}/flags/gb.svg",
+                  f"GET {base_url}/flags/gb.png"
+            ]
         },
         "/endpoints": {
-            "description": "List all available API endpoints with examples.",
+            "description": "List all available API endpoints with examples. This page.",
             "example": f"GET {base_url}/endpoints"
         }
     }
     
     accept = request.headers.get("accept", "")
     if "text/html" in accept:
-        html_content = """
+        html_content = f"""
         <html>
             <head>
                 <title>API Endpoints</title>
                 <style>
-                    body { font-family: sans-serif; margin: 20px; }
-                    h1 { color: #333; }
-                    .endpoint { margin-bottom: 20px; }
-                    .description { font-weight: bold; }
-                    .example { margin-left: 20px; color: #555; }
+                    body {{ font-family: sans-serif; margin: 20px; position: relative; padding-top: 60px; }}
+                    h1 {{ color: #333; }}
+                    .endpoint {{ margin-bottom: 20px; }}
+                    .key {{ font-weight: bold; color: blue; }}
+                    .description {{ display: block; margin-bottom: 10px; }}
+                    .example {{ margin-left: 20px; color: #555; display: block; }}
+                    nav {{
+                        margin-bottom: 20px;
+                    }}
+                    /* Banner Styles */
+                    .banner-container {{
+                        display: flex;
+                        align-items: center;
+                        position: absolute;
+                        top: 10px;
+                        left: 10px;
+                    }}
+                    .banner {{
+                        width: 50px;
+                        margin-right: 10px;
+                    }}
+                    .banner-text {{
+                        font-size: 36px;
+                        font-weight: bold;
+                    }}
                 </style>
             </head>
             <body>
-                <h1>API Endpoints</h1>
+                <nav>
+                    <a href="/"><b>Home</b></a> |
+                    <a href="/flags"><b>Flags</b></a> |
+                    <a href="/logos"><b>Logos</b></a> |
+                    <a href="/endpoints"><b>Endpoints</b></a>
+                </nav>
         """
+
+        # Add banner image if it exists
+        banner_path = "/assets/.web/flights.svg"
+        banner_full_path = os.path.join(BASE_DIR, 'assets/.web/flights.svg')
+        if os.path.exists(banner_full_path):
+            base_url = f"http://{get_lan_ip()}:{SERVER_PORT}/"
+            html_content += f'''
+            <div class="banner-container">
+                <a href="{base_url}">
+                    <img src="{banner_path}" alt="Banner" class="banner"/>
+                </a>
+                <div class="banner-text">Flights</div>
+            </div>
+            <br><br>
+            '''
+        html_content += "<h1>API Endpoints</h1>"
+
         for path, info in endpoints.items():
             html_content += f"""
                 <div class="endpoint">
-                    <div class="description">{path}: {info['description']}</div>
+                    <span class="key">{path}</span>: <span class="description">{info['description']}</span>
+            """
+            if 'example' in info:
+                html_content += f"""
                     <div class="example">Example: {info['example']}</div>
+                """
+            elif 'examples' in info:
+                for example in info['examples']:
+                    html_content += f"""
+                    <div class="example">Example: {example}</div>
+                    """
+            html_content += """
                 </div>
             """
         html_content += """
