@@ -1,6 +1,5 @@
 # Logging configuration
 LOG_LEVEL: "ERROR"  # DEBUG, INFO, WARNING, ERROR, CRITICAL
-LOG_KEYS: ["altitude", "longitude", "latitude"]  # Keys to log in case of an error
 
 # Check interval
 CHECK_INTERVAL: 15  # Seconds to wait between each check of the aircraft_dump_url
@@ -14,10 +13,9 @@ MQTT_CLIENT_ID: 'flights_client'
 
 # MQTT topics
 MQTT_TOPIC_CLOSEST_AIRCRAFT: "dev/flights/closest"
-MQTT_TOPIC_FLIGHTS: "dev/flights/all"
-MQTT_TOPIC_VISIBLE: "dev/flights/visible"  # Changed from MQTT_TOPIC_STATISTICS to MQTT_TOPIC_VISIBLE
+MQTT_TOPIC_VISIBLE: "dev/flights/visible"
 
-# Default image format
+# Preferred image format
 IMAGE_FORMAT: "svg"  # png or svg; If one is not available, the other will be served if available
 
 # HTTP server configuration
@@ -92,3 +90,53 @@ reg: 'reg'  # Example val: 'N758AN'
 # Watch heading
 # watch_heading: 270  # Only consider aircraft with this heading; Useful, for example, to watch a take off or landing path
 # heading_range: 360  # Degrees plus or minus the watched_heading which still fall into the consideration range
+
+# HA_MQTT_DISCOVERY
+HA_MQTT_DISCOVERY: true
+
+# MQTT configuration variables
+CONFIG_TOPIC: "homeassistant/device/dev_flights/config"
+SW_VERSION: "beta"
+DEVICE_IDENTIFIERS_PREFIX: "flights"  
+CLOSEST_UNIQUE_ID_PREFIX: "closest"
+VISIBLE_UNIQUE_ID_PREFIX: "visible"
+
+# MQTT configuration topic & payload
+HA_MQTT_DISCOVERY_CONFIG: >
+  {
+      "device": {
+          "identifiers": ["${DEVICE_IDENTIFIERS}"],
+          "name": "Flights",
+          "manufacturer": "RS",
+          "model": "Flights",
+          "sw_version": "${SW_VERSION}",
+          "configuration_url": "${CONFIGURATION_URL}"
+      },
+      "origin": {
+          "name": "Flights",
+          "sw": "beta",
+          "support_url": "https://github.com/ronschaeffer/flights"
+      },
+      "components": {
+          "closest_aircraft": {
+              "platform": "sensor",
+              "unit_of_measurement": "${DISTANCE_UNIT}",
+              "name": "${CLOSEST_NAME}",
+              "icon": "mdi:airplane",
+              "state_topic": "${MQTT_TOPIC_CLOSEST_AIRCRAFT}",
+              "value_template": "{% set first_key = value_json.keys() | list | first %}{{ value_json.get(first_key, {}).get('distance_value', 0) | float }}",
+              "json_attributes_template": "{% set first_key = value_json.keys() | list | first %}{{ value_json.get(first_key, {}) | tojson }}",
+              "unique_id": "${CLOSEST_UNIQUE_ID}"
+          },
+          "visible_aircraft": {
+              "platform": "sensor",
+              "unit_of_measurement": "planes",
+              "value_template": "{{ value_json.get('visible_aircraft', 0) }}",
+              "name": "${VISIBLE_NAME}",
+              "icon": "mdi:radar",
+              "state_topic": "${MQTT_TOPIC_VISIBLE}",
+              "json_attributes_template": "{{ value_json | tojson }}",
+              "unique_id": "${VISIBLE_UNIQUE_ID}"
+          }
+      }
+  }
