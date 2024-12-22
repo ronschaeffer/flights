@@ -19,14 +19,15 @@ import shapely.geometry
 from tabulate import tabulate
 from flydenity import Parser
 
-# Local application/library-spec`ific imports
-from flights_server import start_server
+# Local application/library-specific imports
+from flights_server import start_server, get_lan_ip  # Import get_lan_ip from flights_server    
 from flight_counts import (
     load_unique_flights_data, save_unique_flights_data, update_unique_flights,
     count_unique_flights_in_period, get_time_periods, calculate_averages
 )
 from enrich_flight_info import create_flights_rich
 from mqtt_service import MQTTService
+from ha_mqtt_discovery import process_ha_mqtt_discovery, get_discovery_file_path
 
 def get_log_level(level_str: str) -> int:
     """Convert string log level from config to logging constant."""
@@ -198,21 +199,6 @@ def ensure_json_file(filepath: str, default_content: dict) -> None:
     except Exception as e:
         logging.error(f"Error ensuring JSON file {filepath}: {str(e)}\n{traceback.format_exc()}")
 
-def get_lan_ip():
-    """Get the machine's LAN IP address."""
-    import socket
-    try:
-        # Create a UDP socket
-        s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-        # Connect to an external IP address
-        s.connect(('8.8.8.8', 80))
-        # Get the local IP address
-        ip = s.getsockname()[0]
-        s.close()
-        return ip
-    except Exception:
-        return '127.0.0.1'  # Fallback to localhost
-
 def ensure_output_directory():
     """Central function to manage output directory creation and initialization"""
     os.makedirs(OUTPUT_DIR, exist_ok=True)
@@ -239,10 +225,28 @@ def ensure_output_directory():
     ensure_json_file(os.path.join(OUTPUT_DIR, 'all_aircraft.json'), default_empty)
     ensure_json_file(os.path.join(OUTPUT_DIR, 'missing.json'), default_missing)
 
+def handle_ha_mqtt_discovery(config, mqtt_service, base_url):
+    """Handle Home Assistant MQTT Discovery."""
+    if config.get('HA_MQTT_DISCOVERY', False):
+        discovery_file_path = get_discovery_file_path()
+        if os.path.exists(discovery_file_path):
+            print(f"Discovery payload file already exists at: {discovery_file_path}")
+        else:
+            if process_ha_mqtt_discovery(base_url):  # Pass base_url if needed
+                # Load the discovery payload
+                with open(discovery_file_path, 'r') as file:
+                    discovery_payload = json.load(file)
+
+                # Publish the discovery payload to CONFIG_TOPIC
+                config_topic = config.get('CONFIG_TOPIC', 'homeassistant/device/dev_flights/config')
+                mqtt_service.publish(config_topic, discovery_payload, qos=1, retain=True)
+
+                print(f"Published discovery payload to topic: {config_topic}")
+
 @handle_fatal_error
 def main():
     try:
-        print("\n\n\n\n✈️  ✈️  ✈️   Flights - Rich flight data for MQTT, HTTP API and Home Assistant\n")
+        print("\n\n\n\n✈️  ✈️  ✈️   Flights - Rich flight data for MQTT, HTTP API and Home Assistant ✈️  ✈️  ✈️\n")
         
         # Load initial configuration using absolute path
         load_configuration(os.path.join(BASE_DIR, 'config/config.yaml'))
@@ -266,16 +270,6 @@ def main():
         with open(aircraft_path, 'r') as aircraft_file:
             aircraft_json = json.load(aircraft_file)
 
-        mqtt_service = MQTTService({
-            'MQTT_CLIENT_ID': MQTT_CLIENT_ID,
-            'MQTT_BROKER': MQTT_BROKER,
-            'MQTT_BROKER_PORT': MQTT_BROKER_PORT,
-            'MQTT_USER': MQTT_USER,
-            'MQTT_PWD': MQTT_PWD,
-            'LOG_LEVEL': config.get('LOG_LEVEL', 'ERROR')
-        })
-        mqtt_service.connect()
-
         # Define the geographical zone
         defined_zone = shapely.geometry.Polygon([
             (LON_WEST, LAT_SOUTH),
@@ -293,9 +287,27 @@ def main():
         server_thread.daemon = True  # Make thread daemon so it exits when main program exits
         server_thread.start()
 
-        # Allow some time for the server to start and set the base_url
-        time.sleep(2)  # Adjust as needed
-        
+        # Define base_url before using it in the loop
+        base_url = f"http://{get_lan_ip()}:{FASTAPI_PORT}"
+
+        # Wait for the server to start and set the base_url
+        for _ in range(10):  # Try for up to 10 seconds
+            try:
+                response = requests.get(base_url)
+                if response.status_code == 200:
+                    break
+            except requests.ConnectionError:
+                time.sleep(1)
+        else:
+            raise RuntimeError("Server did not start in time")
+
+        # Initialize MQTT service
+        mqtt_service = MQTTService(config)
+        mqtt_service.connect()
+
+        # Handle Home Assistant MQTT Discovery
+        handle_ha_mqtt_discovery(config, mqtt_service, base_url)
+
         reg_parser = Parser()
         previous_visible = {}
         previous_closest_aircraft = {}
@@ -308,8 +320,6 @@ def main():
         # Load unique flights data
         unique_flights_file = os.path.join(storage_directory, 'unique_flights_with_timestamps.pkl')
         unique_flights_with_timestamps = load_unique_flights_data(unique_flights_file)
-
-        base_url = f"http://{get_lan_ip()}:{FASTAPI_PORT}"
 
         # Main program loop
         while True:

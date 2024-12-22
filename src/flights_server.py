@@ -150,11 +150,13 @@ def create_html_list(title: str, items: dict) -> str:
     html = f"""
     <html>
         <head>
-            <title>{title}</title>
+            <title>{title}</title>  <!-- This sets the title of the page -->
             <style>
                 body {{ font-family: sans-serif; margin: 20px; position: relative; }}
                 h1 {{
                     color: #333;
+                    font-size: 24px;  /* Reduced font size */
+                    text-transform: uppercase;  /* Make text all caps */
                     margin-top: 80px;
                     margin-bottom: 40px;  /* Added margin-bottom for consistent spacing */
                 }}
@@ -184,7 +186,7 @@ def create_html_list(title: str, items: dict) -> str:
                     margin-right: 10px;
                 }}
                 .banner-text {{
-                    font-size: 24px;
+                    font-size: 32px;  /* Increased font size */
                     font-weight: bold;
                 }}
                 nav {{
@@ -454,10 +456,16 @@ async def list_endpoints(request: Request):
         html_content = f"""
         <html>
             <head>
-                <title>API Endpoints</title>
+                <title>API Endpoints</title>  <!-- This sets the title of the page -->
                 <style>
                     body {{ font-family: sans-serif; margin: 20px; position: relative; }}
-                    h1 {{ color: #333; margin-top: 80px; margin-bottom: 40px; }}  /* Added vertical space below the title */
+                    h1 {{ 
+                        color: #333; 
+                        font-size: 24px;  /* Reduced font size */
+                        text-transform: uppercase;  /* Make text all caps */
+                        margin-top: 80px; 
+                        margin-bottom: 40px;  /* Added vertical space below the title */
+                    }}
                     .endpoint {{ margin-bottom: 20px; }}
                     .key {{ font-weight: bold; color: blue; }}
                     .description {{ display: block; margin-bottom: 10px; }}
@@ -485,7 +493,7 @@ async def list_endpoints(request: Request):
                         margin-right: 10px;
                     }}
                     .banner-text {{
-                        font-size: 24px;
+                        font-size: 32px;  /* Increased font size */
                         font-weight: bold;
                     }}
                     nav {{
@@ -531,7 +539,7 @@ async def list_endpoints(request: Request):
         for path, info in endpoints.items():
             html_content += f"""
                 <div class="endpoint">
-                    <span class="key">{path}</span>: <span class="description">{info['description']}</span>
+                    <span class="key">{path}</span> <span class="description">{info['description']}</span>
             """
             if 'example' in info:
                 html_content += f"""

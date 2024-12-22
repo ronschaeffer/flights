@@ -100,6 +100,8 @@ SW_VERSION: "beta"
 DEVICE_IDENTIFIERS_PREFIX: "flights"  
 CLOSEST_UNIQUE_ID_PREFIX: "closest"
 VISIBLE_UNIQUE_ID_PREFIX: "visible"
+CLOSEST_NAME: "Closest Aircraft"
+VISIBLE_NAME: "Visible Aircraft"  
 
 # MQTT configuration topic & payload
 HA_MQTT_DISCOVERY_CONFIG: >
@@ -108,7 +110,7 @@ HA_MQTT_DISCOVERY_CONFIG: >
           "identifiers": ["${DEVICE_IDENTIFIERS}"],
           "name": "Flights",
           "manufacturer": "RS",
-          "model": "Flights",
+          "name": "Flights",
           "sw_version": "${SW_VERSION}",
           "configuration_url": "${CONFIGURATION_URL}"
       },
@@ -122,9 +124,10 @@ HA_MQTT_DISCOVERY_CONFIG: >
               "platform": "sensor",
               "unit_of_measurement": "${DISTANCE_UNIT}",
               "name": "${CLOSEST_NAME}",
-              "icon": "mdi:airplane",
+              "icon": "mdi:airplane", 
               "state_topic": "${MQTT_TOPIC_CLOSEST_AIRCRAFT}",
               "value_template": "{% set first_key = value_json.keys() | list | first %}{{ value_json.get(first_key, {}).get('distance_value', 0) | float }}",
+              "json_attributes_topic": "${MQTT_TOPIC_CLOSEST_AIRCRAFT}",
               "json_attributes_template": "{% set first_key = value_json.keys() | list | first %}{{ value_json.get(first_key, {}) | tojson }}",
               "unique_id": "${CLOSEST_UNIQUE_ID}"
           },
@@ -135,6 +138,7 @@ HA_MQTT_DISCOVERY_CONFIG: >
               "name": "${VISIBLE_NAME}",
               "icon": "mdi:radar",
               "state_topic": "${MQTT_TOPIC_VISIBLE}",
+              "json_attributes_topic": "${MQTT_TOPIC_CLOSEST_AIRCRAFT}",
               "json_attributes_template": "{{ value_json | tojson }}",
               "unique_id": "${VISIBLE_UNIQUE_ID}"
           }

@@ -1,13 +1,12 @@
 {
     "device": {
         "identifiers": [
-            "flights_6685adf5"
+            "flights_824d25df"
         ],
         "name": "Flights",
         "manufacturer": "RS",
-        "model": "Flights",
         "sw_version": "beta",
-        "configuration_url": "http://10.10.10.142:47474/"
+        "configuration_url": "http://10.10.10.142:47474"
     },
     "origin": {
         "name": "Flights",
@@ -22,8 +21,9 @@
             "icon": "mdi:airplane",
             "state_topic": "dev/flights/closest",
             "value_template": "{% set first_key = value_json.keys() | list | first %}{{ value_json.get(first_key, {}).get('distance_value', 0) | float }}",
+            "json_attributes_topic": "dev/flights/closest",
             "json_attributes_template": "{% set first_key = value_json.keys() | list | first %}{{ value_json.get(first_key, {}) | tojson }}",
-            "unique_id": "closest_685553af"
+            "unique_id": "closest_443229e4"
         },
         "visible_aircraft": {
             "platform": "sensor",
@@ -32,8 +32,9 @@
             "name": "Visible Aircraft",
             "icon": "mdi:radar",
             "state_topic": "dev/flights/visible",
+            "json_attributes_topic": "dev/flights/closest",
             "json_attributes_template": "{{ value_json | tojson }}",
-            "unique_id": "visible_af053df9"
+            "unique_id": "visible_a962c244"
         }
     }
 }

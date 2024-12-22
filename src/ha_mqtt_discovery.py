@@ -2,23 +2,11 @@ import yaml
 import json
 import os
 import uuid
-import socket
 
 def generate_unique_id(prefix):
     return f"{prefix}_{uuid.uuid4().hex[:8]}"
 
-def get_lan_ip():
-    s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-    try:
-        s.connect(('10.255.255.255', 1))
-        IP = s.getsockname()[0]
-    except Exception:
-        IP = '127.0.0.1'
-    finally:
-        s.close()
-    return IP
-
-def generate_discovery_payload():
+def generate_discovery_payload(base_url):
     config_path = os.path.join(os.path.dirname(__file__), '../config/config.yaml')
     with open(config_path, 'r') as file:
         config = yaml.safe_load(file)
@@ -35,7 +23,7 @@ def generate_discovery_payload():
     config['CLOSEST_NAME'] = config.get('CLOSEST_NAME', 'Closest Aircraft')
     config['VISIBLE_NAME'] = config.get('VISIBLE_NAME', 'Visible Aircraft')
 
-    base_url = f"http://{get_lan_ip()}:{config.get('FASTAPI_PORT', 47474)}/"
+    # Replace CONFIGURATION_URL placeholder with base_url
     config['CONFIGURATION_URL'] = base_url
 
     discovery_config = config.get('HA_MQTT_DISCOVERY_CONFIG', '')
@@ -54,15 +42,8 @@ def save_discovery_payload(payload, filepath):
 def get_discovery_file_path():
     return os.path.join(os.path.dirname(__file__), '../config/ha_mqtt_disc_payload.json')
 
-def discovery_file_exists():
-    return os.path.exists(get_discovery_file_path())
-
-def process_ha_mqtt_discovery():
-    if discovery_file_exists():
-        print(f"Discovery payload file already exists at: {get_discovery_file_path()}")
-        return True
-
-    payload = generate_discovery_payload()
+def process_ha_mqtt_discovery(base_url=None):
+    payload = generate_discovery_payload(base_url)
     if payload:
         save_discovery_payload(payload, get_discovery_file_path())
         print("\nGenerated new discovery payload:")

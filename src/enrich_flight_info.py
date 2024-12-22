@@ -207,12 +207,12 @@ class FlightEnricher:
             airport = self.lookups['airports'].get(code, {})
             if not airport:
                 self._update_missing_data_log('airports', code)
-            country_code = airport.get("country", "").upper()
+            country_code = airport.get("country", None)
             return {
-                "name": airport.get("name", ""),
-                "city": airport.get("city", ""),
+                "name": airport.get("name", None),
+                "city": airport.get("city", None),
                 "country_code": country_code,
-                "country_flag": self._get_country_flag_emoji(country_code),
+                "country_flag": self._get_country_flag_emoji(country_code) if country_code else None,
                 "airport_code": code
             }
 
@@ -220,53 +220,72 @@ class FlightEnricher:
             origin, *via, destination = route.split("-")
             origin_info = get_airport_info(origin)
             destination_info = get_airport_info(destination)
+            
+            origin_city = origin_info.get('city', None)
+            origin_code = origin_info.get('airport_code', None)
+            origin_combined = f"{origin_city} {origin_code}" if origin_city or origin_code else None
+            
+            destination_city = destination_info.get('city', None)
+            destination_code = destination_info.get('airport_code', None)
+            destination_combined = f"{destination_city} {destination_code}" if destination_city or destination_code else None
+            
             route_info = {
+                "origin": origin_combined,
+                "origin_airport_code": origin_code,
                 "origin_airport_name": origin_info.get("name", None),
-                "origin_airport_city": origin_info.get("city", None),
+                "origin_airport_city": origin_city,
                 "origin_airport_country_code": origin_info.get("country_code", None),
                 "origin_airport_country_flag": origin_info.get("country_flag", None),
-                "origin_airport_code": origin_info.get("airport_code", None),
+                "destination": destination_combined,
+                "destination_airport_code": destination_code,
                 "destination_airport_name": destination_info.get("name", None),
-                "destination_airport_city": destination_info.get("city", None),
+                "destination_airport_city": destination_city,
                 "destination_airport_country_code": destination_info.get("country_code", None),
-                "destination_airport_country_flag": destination_info.get("country_flag", None),
-                "destination_airport_code": destination_info.get("airport_code", None)
+                "destination_airport_country_flag": destination_info.get("country_flag", None)
             }
             if via:
                 via_info = get_airport_info(via[0])
+                via_city = via_info.get('city', None)
+                via_code = via_info.get('airport_code', None)
+                via_combined = f"{via_city} {via_code}" if via_city or via_code else None
                 route_info.update({
+                    "via": via_combined,
+                    "via_airport_code": via_code,
                     "via_airport_name": via_info.get("name", None),
-                    "via_airport_city": via_info.get("city", None),
+                    "via_airport_city": via_city,
                     "via_airport_country_code": via_info.get("country_code", None),
-                    "via_airport_country_flag": via_info.get("country_flag", None),
-                    "via_airport_code": via_info.get("airport_code", None)
+                    "via_airport_country_flag": via_info.get("country_flag", None)
                 })
             else:
                 route_info.update({
+                    "via": None,
+                    "via_airport_code": None,
                     "via_airport_name": None,
                     "via_airport_city": None,
                     "via_airport_country_code": None,
-                    "via_airport_country_flag": None,
-                    "via_airport_code": None
+                    "via_airport_country_flag": None
                 })
             return route_info
         except (ValueError, IndexError):
             return {
+                "origin": None,
+                "origin_airport_code": None,
                 "origin_airport_name": None,
                 "origin_airport_city": None,
                 "origin_airport_country_code": None,
                 "origin_airport_country_flag": None,
-                "origin_airport_code": None,
+                "destination": None,
+                "destination_airport_code": None,
                 "destination_airport_name": None,
                 "destination_airport_city": None,
                 "destination_airport_country_code": None,
                 "destination_airport_country_flag": None,
-                "destination_airport_code": None,
+                "via": None,
+                "via_airport_code": None,
                 "via_airport_name": None,
                 "via_airport_city": None,
                 "via_airport_country_code": None,
-                "via_airport_country_flag": None,
-                "via_airport_code": None
+                "via_airport_country_flag": None
             }
 
     def _process_altitude(self, altitude_str: str, vert_rate: float) -> Dict:
