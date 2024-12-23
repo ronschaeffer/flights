@@ -1,0 +1,62 @@
+type: vertical-stack
+cards:
+  - type: heading
+    icon: mdi:airplane
+    heading: Closest Aircraft
+    heading_style: title
+    badges:
+      - type: entity
+        show_state: true
+        show_icon: true
+        entity: sensor.flights_closest_aircraft
+        icon: mdi:crosshairs-gps
+      - type: entity
+        show_state: true
+        show_icon: true
+        state_content: altitude_with_trend
+        entity: sensor.flights_closest_aircraft
+        icon: mdi:altimeter
+    grid_options:
+      columns: full
+      rows: 1
+  - type: custom:mushroom-template-card
+    primary: >
+      {% if states.sensor.flights_closest_aircraft.attributes.airline and
+      states.sensor.flights_closest_aircraft.attributes.flightno %}
+        {{ states.sensor.flights_closest_aircraft.attributes.airline }} - {{ states.sensor.flights_closest_aircraft.attributes.flightno }}
+      {% elif states.sensor.flights_closest_aircraft.attributes.callsign %}
+        {{ states.sensor.flights_closest_aircraft.attributes.callsign }}
+      {% else %}
+        ICAO {{ states.sensor.flights_closest_aircraft.attributes.icao_id }}
+      {% endif %}
+    secondary: >
+      {{ states.sensor.flights_closest_aircraft.attributes.reg }} - {{
+      states.sensor.flights_closest_aircraft.attributes.aircraft_model if
+      states.sensor.flights_closest_aircraft.attributes.aircraft_model else
+      states.sensor.flights_closest_aircraft.attributes.type }}
+
+      {%- if states.sensor.flights_closest_aircraft.attributes.origin and
+      states.sensor.flights_closest_aircraft.attributes.destination %}
+
+      {{ states.sensor.flights_closest_aircraft.attributes.origin }} ✈ {{
+      states.sensor.flights_closest_aircraft.attributes.via + ' ✈ ' if
+      states.sensor.flights_closest_aircraft.attributes.via else '' }}{{
+      states.sensor.flights_closest_aircraft.attributes.destination }}
+
+      {%- endif %}
+    icon: |-
+      {% if not states.sensor.closest_aircraft.attributes.airline_icao %}
+        mdi:airplane
+      {% else %}
+        none
+      {% endif %}
+    layout: horizontal
+    multiline_secondary: true
+    tap_action:
+      action: more-info
+    entity: sensor.flights_closest_aircraft
+    picture: >-
+      {{ '/local/flighttrack/logos/' ~
+      states.sensor.flights_closest_aircraft.attributes.airline_icao | upper ~
+      '.png' if states.sensor.flights_closest_aircraft.attributes.airline_icao
+      else null }}
