@@ -155,8 +155,9 @@ def get_closest_aircraft(flights_rich, user_location):
     return closest_aircraft
 
 def print_closest_aircraft(closest_aircraft):
-    for key, value in closest_aircraft.items():
-        print("\nCLOSEST AIRCRAFT\n" + tabulate(value.items(), headers=["Key", "Value"]) + "\n\n")
+    if closest_aircraft:  # Add this check
+        for key, value in closest_aircraft.items():
+            print("\nCLOSEST AIRCRAFT\n" + tabulate(value.items(), headers=["Key", "Value"]) + "\n\n")
 
 def save_flights_within_defined_zone(file_path, flights, zone):
     write_filtered_flights_to_file(file_path, flights, lambda flight: is_within_zone(flight, zone))
