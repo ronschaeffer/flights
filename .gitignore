@@ -21,6 +21,11 @@ ENV/
 env/
 .env/
 
+# Poetry
+poetry.lock
+.pdm.toml
+__pypackages__/
+
 # IDEs
 .vscode/
 
