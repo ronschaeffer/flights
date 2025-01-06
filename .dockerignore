@@ -1,0 +1,8 @@
+ha_mqtt_disc_payload.json
+output/
+logs/
+temp/
+.gitignore
+storage/
+*.code-workspace
+.venv/
