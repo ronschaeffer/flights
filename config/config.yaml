@@ -19,7 +19,7 @@ MQTT_TOPIC_VISIBLE: "dev/flights/visible"
 IMAGE_FORMAT: "svg"  # png or svg; If one is not available, the other will be served if available
 
 # HTTP server configuration
-FASTAPI_PORT: 47474
+FASTAPI_PORT: 47475
 
 # Configuration for flight counts
 COUNT_FLIGHTS: true

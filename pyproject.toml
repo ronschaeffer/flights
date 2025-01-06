@@ -1,0 +1,27 @@
+[project]
+name = "flights"
+version = "0.1.0"
+description = "Enriches flight data from ADS-B available with MQTT and HTTP API, suitable for integration with Home Assistant"
+authors = [
+    {name = "ronschaeffer",email = "ron@ronschaeffer.com"}
+]
+license = {text = "GNU General Public License v3.0"}
+readme = "README.md"
+requires-python = ">=3.11,<4.0"
+dependencies = [
+    "requests (>=2.32.3,<3.0.0)",
+    "paho-mqtt (>=2.1.0,<3.0.0)",
+    "pyyaml (>=6.0.2,<7.0.0)",
+    "haversine (>=2.9.0,<3.0.0)",
+    "shapely (>=2.0.6,<3.0.0)",
+    "tabulate (>=0.9.0,<0.10.0)",
+    "fastapi (>=0.115.6,<0.116.0)",
+    "uvicorn (>=0.34.0,<0.35.0)",
+    "flydenity (>=0.1.6,<0.2.0)",
+    "airportsdata (>=20241001,<20241002)"
+]
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
