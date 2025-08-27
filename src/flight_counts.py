@@ -44,9 +44,7 @@ def load_unique_flights_data(file_path):
                 return pickle.load(f)
         return {}
     except Exception as e:
-        logger.error(
-            f"Error loading flight data from {file_path}: {str(e)}\n{traceback.format_exc()}"
-        )
+        logger.error(f"Error loading flight data from {file_path}: {str(e)}\n{traceback.format_exc()}")
         return {}
 
 
@@ -56,15 +54,11 @@ def save_unique_flights_data(file_path, data):
         with open(file_path, "wb") as f:
             pickle.dump(data, f)
     except Exception as e:
-        logger.error(
-            f"Error saving flight data to {file_path}: {str(e)}\n{traceback.format_exc()}"
-        )
+        logger.error(f"Error saving flight data to {file_path}: {str(e)}\n{traceback.format_exc()}")
         raise
 
 
-def update_unique_flights(
-    unique_flights_with_timestamps, current_unique_flights, check_interval
-):
+def update_unique_flights(unique_flights_with_timestamps, current_unique_flights, check_interval):
     """Update flight timestamps, using check_interval for gap detection."""
     try:
         check_interval * 1.75
@@ -81,19 +75,13 @@ def update_unique_flights(
             except Exception:
                 pass
     except Exception as e:
-        logger.error(
-            f"Error updating unique flights: {str(e)}\n{traceback.format_exc()}"
-        )
+        logger.error(f"Error updating unique flights: {str(e)}\n{traceback.format_exc()}")
         raise
 
 
 def count_unique_flights_in_period(unique_flights_with_timestamps, start_time):
     """Count flights since start_time."""
-    return sum(
-        1
-        for timestamp in unique_flights_with_timestamps.values()
-        if timestamp >= start_time
-    )
+    return sum(1 for timestamp in unique_flights_with_timestamps.values() if timestamp >= start_time)
 
 
 def get_time_periods():
@@ -103,9 +91,7 @@ def get_time_periods():
         "previous_year": current_time - timedelta(days=365),
         "previous_thirty_days": current_time - timedelta(days=30),
         "previous_seven_days": current_time - timedelta(days=7),
-        "yesterday": (current_time - timedelta(days=1)).replace(
-            hour=0, minute=0, second=0, microsecond=0
-        ),
+        "yesterday": (current_time - timedelta(days=1)).replace(hour=0, minute=0, second=0, microsecond=0),
         "today": current_time.replace(hour=0, minute=0, second=0, microsecond=0),
     }
 
@@ -118,9 +104,7 @@ def calculate_averages(unique_flights_with_timestamps, unique_flights_counts):
 
         # Get dates excluding today
         unique_dates = {
-            timestamp.date()
-            for timestamp in unique_flights_with_timestamps.values()
-            if timestamp < current_time
+            timestamp.date() for timestamp in unique_flights_with_timestamps.values() if timestamp < current_time
         }
 
         # Calculate period averages
@@ -147,11 +131,7 @@ def calculate_averages(unique_flights_with_timestamps, unique_flights_counts):
             averages["daily_average"] = unique_flights_counts["yesterday"]
         else:
             total_unique_flights = len(
-                {
-                    icao_id
-                    for icao_id, timestamp in unique_flights_with_timestamps.items()
-                    if timestamp < current_time
-                }
+                {icao_id for icao_id, timestamp in unique_flights_with_timestamps.items() if timestamp < current_time}
             )
             total_days = len(unique_dates) or 1
             averages["daily_average"] = round(total_unique_flights / total_days)

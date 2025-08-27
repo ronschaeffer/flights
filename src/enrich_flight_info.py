@@ -14,17 +14,13 @@ logger = logging.getLogger("flight_enricher")
 
 
 class FlightEnricher:
-    def __init__(
-        self, airlines_json: list, aircraft_json: list, reg_parser, config: dict
-    ):
+    def __init__(self, airlines_json: list, aircraft_json: list, reg_parser, config: dict):
         try:
             self.base_dir = BASE_DIR
             # Use predefined output directory path from main file
             self.missing_file = os.path.join(BASE_DIR, "output/missing.json")
 
-            self.lookups = self._create_lookup_dictionaries(
-                airlines_json, aircraft_json
-            )
+            self.lookups = self._create_lookup_dictionaries(airlines_json, aircraft_json)
             self.reg_parser = reg_parser
             self.config = config
             self.flights_with_location: list[tuple[float, str]] = []
@@ -32,28 +28,14 @@ class FlightEnricher:
             if "LOG_LEVEL" in config:
                 logger.setLevel(getattr(logging, config["LOG_LEVEL"].upper()))
         except Exception as e:
-            logger.error(
-                f"Failed to initialize FlightEnricher: {str(e)}\n{traceback.format_exc()}"
-            )
+            logger.error(f"Failed to initialize FlightEnricher: {str(e)}\n{traceback.format_exc()}")
             raise
 
-    def _create_lookup_dictionaries(
-        self, airlines_json: list, aircraft_json: list
-    ) -> dict:
+    def _create_lookup_dictionaries(self, airlines_json: list, aircraft_json: list) -> dict:
         return {
-            "airlines_icao": {
-                airline["icao_code"]: airline
-                for airline in airlines_json
-                if airline["icao_code"]
-            },
-            "airlines_iata": {
-                airline["iata_code"]: airline
-                for airline in airlines_json
-                if airline["iata_code"]
-            },
-            "aircraft": {
-                aircraft["icao_type_code"]: aircraft for aircraft in aircraft_json
-            },
+            "airlines_icao": {airline["icao_code"]: airline for airline in airlines_json if airline["icao_code"]},
+            "airlines_iata": {airline["iata_code"]: airline for airline in airlines_json if airline["iata_code"]},
+            "aircraft": {aircraft["icao_type_code"]: aircraft for aircraft in aircraft_json},
             "airports": airportsdata.load("IATA"),
         }
 
@@ -66,15 +48,9 @@ class FlightEnricher:
         }
 
         try:
-            return (
-                json.load(open(self.missing_file))
-                if os.path.exists(self.missing_file)
-                else default_log
-            )
+            return json.load(open(self.missing_file)) if os.path.exists(self.missing_file) else default_log
         except Exception as e:
-            logger.error(
-                f"Error initializing missing data log: {str(e)}\n{traceback.format_exc()}"
-            )
+            logger.error(f"Error initializing missing data log: {str(e)}\n{traceback.format_exc()}")
             return default_log
 
     def _save_missing_data_log_safe(self, data: dict) -> None:
@@ -83,9 +59,7 @@ class FlightEnricher:
             with open(self.missing_file, "w") as f:
                 json.dump(data, f, indent=4)
         except Exception as e:
-            logger.error(
-                f"Error saving missing data log: {str(e)}\n{traceback.format_exc()}"
-            )
+            logger.error(f"Error saving missing data log: {str(e)}\n{traceback.format_exc()}")
 
     def enrich_flights(self, flights: dict) -> dict:
         try:
@@ -99,9 +73,7 @@ class FlightEnricher:
             self._calculate_relative_closeness(flights_rich)
             return flights_rich
         except Exception as e:
-            logger.error(
-                f"Failed to enrich flights: {str(e)}\n{traceback.format_exc()}"
-            )
+            logger.error(f"Failed to enrich flights: {str(e)}\n{traceback.format_exc()}")
             raise
 
     def _enrich_single_flight(self, flight_id: str, flight_data: dict) -> dict:
@@ -173,15 +145,11 @@ class FlightEnricher:
             flight_data.get("reg", ""),  # Pass registration to the method
         )
         if airline:
-            country_code = airline.get(
-                "country_code", ""
-            ).upper()  # Ensure we get the correct country code
+            country_code = airline.get("country_code", "").upper()  # Ensure we get the correct country code
             flight_rich_data.update(
                 {
                     "airline": airline.get("name", ""),
-                    "airline_country": airline.get(
-                        "country", ""
-                    ),  # Ensure we get the full country name
+                    "airline_country": airline.get("country", ""),  # Ensure we get the full country name
                     "airline_country_code": country_code,  # Two-letter country code
                     "airline_country_flag": self._get_country_flag_emoji(country_code),
                     "airline_callsign": airline.get("airline_callsign", ""),
@@ -190,9 +158,7 @@ class FlightEnricher:
                 }
             )
 
-    def _add_location_info(
-        self, flight_rich_data: dict, flight_data: dict, flight_id: str
-    ) -> None:
+    def _add_location_info(self, flight_rich_data: dict, flight_data: dict, flight_id: str) -> None:
         try:
             lat_str, lon_str = flight_data.get("lat"), flight_data.get("lon")
             if lat_str and lon_str:
@@ -206,9 +172,7 @@ class FlightEnricher:
                         "distance_value": f"{distance:.1f}",
                         "distance_unit_of_measurement": self.config["distance_unit"],
                         "within_defined_radius": distance <= self.config["radius"],
-                        "within_defined_zone": self.config["defined_zone"].contains(
-                            shapely.geometry.Point(lon, lat)
-                        ),
+                        "within_defined_zone": self.config["defined_zone"].contains(shapely.geometry.Point(lon, lat)),
                     }
                 )
                 self.flights_with_location.append((distance, flight_id))
@@ -216,15 +180,11 @@ class FlightEnricher:
             pass
 
     def _add_additional_info(self, flight_rich_data: dict, flight_data: dict) -> None:
-        altitude_info = self._process_altitude(
-            flight_data.get("altitude", ""), flight_data.get("vert_rate", 0)
-        )
+        altitude_info = self._process_altitude(flight_data.get("altitude", ""), flight_data.get("vert_rate", 0))
         flight_rich_data.update(altitude_info)
 
         if flight_data.get("type") in self.lookups["aircraft"]:
-            flight_rich_data["aircraft_model"] = self.lookups["aircraft"][
-                flight_data["type"]
-            ].get("aircraft_model", "")
+            flight_rich_data["aircraft_model"] = self.lookups["aircraft"][flight_data["type"]].get("aircraft_model", "")
         else:
             self._update_missing_data_log(
                 "aircraft",
@@ -268,15 +228,13 @@ class FlightEnricher:
 
         try:
             last_seen_time = int(flight_data.get("last_seen_time", 0))
-            flight_rich_data["last_seen_time_readable"] = datetime.fromtimestamp(
-                last_seen_time
-            ).strftime("%Y-%m-%d %H:%M:%S")
+            flight_rich_data["last_seen_time_readable"] = datetime.fromtimestamp(last_seen_time).strftime(
+                "%Y-%m-%d %H:%M:%S"
+            )
         except ValueError:
             pass
 
-    def _get_airline_info(
-        self, callsign: str, flightno: str, registration: str
-    ) -> dict:
+    def _get_airline_info(self, callsign: str, flightno: str, registration: str) -> dict:
         airline = self.lookups["airlines_icao"].get(callsign[:3]) if callsign else None
         if not airline and flightno:
             airline = self.lookups["airlines_icao"].get(flightno[:3])
@@ -284,9 +242,7 @@ class FlightEnricher:
             airline = self.lookups["airlines_iata"].get(flightno[:2])
         if not airline and callsign:
             # Pass registration properly using the parameter
-            self._update_missing_data_log(
-                "airlines", callsign[:3], {"callsign": callsign, "reg": registration}
-            )
+            self._update_missing_data_log("airlines", callsign[:3], {"callsign": callsign, "reg": registration})
         return airline
 
     def _parse_route(self, route: str) -> dict:
@@ -299,9 +255,7 @@ class FlightEnricher:
                 "name": airport.get("name", None),
                 "city": airport.get("city", None),
                 "country_code": country_code,
-                "country_flag": self._get_country_flag_emoji(country_code)
-                if country_code
-                else None,
+                "country_flag": self._get_country_flag_emoji(country_code) if country_code else None,
                 "airport_code": code,
             }
 
@@ -312,16 +266,12 @@ class FlightEnricher:
 
             origin_city = origin_info.get("city", None)
             origin_code = origin_info.get("airport_code", None)
-            origin_combined = (
-                f"{origin_city} {origin_code}" if origin_city or origin_code else None
-            )
+            origin_combined = f"{origin_city} {origin_code}" if origin_city or origin_code else None
 
             destination_city = destination_info.get("city", None)
             destination_code = destination_info.get("airport_code", None)
             destination_combined = (
-                f"{destination_city} {destination_code}"
-                if destination_city or destination_code
-                else None
+                f"{destination_city} {destination_code}" if destination_city or destination_code else None
             )
 
             route_info = {
@@ -335,20 +285,14 @@ class FlightEnricher:
                 "destination_airport_code": destination_code,
                 "destination_airport_name": destination_info.get("name", None),
                 "destination_airport_city": destination_city,
-                "destination_airport_country_code": destination_info.get(
-                    "country_code", None
-                ),
-                "destination_airport_country_flag": destination_info.get(
-                    "country_flag", None
-                ),
+                "destination_airport_country_code": destination_info.get("country_code", None),
+                "destination_airport_country_flag": destination_info.get("country_flag", None),
             }
             if via:
                 via_info = get_airport_info(via[0])
                 via_city = via_info.get("city", None)
                 via_code = via_info.get("airport_code", None)
-                via_combined = (
-                    f"{via_city} {via_code}" if via_city or via_code else None
-                )
+                via_combined = f"{via_city} {via_code}" if via_city or via_code else None
                 route_info.update(
                     {
                         "via": via_combined,
@@ -403,15 +347,11 @@ class FlightEnricher:
                 vert_rate = round(vert_rate * 0.3048)
 
             if abs(vert_rate) < 500:
-                altitude_trend_symbol = self.config["altitude_trends"]["SYMBOLS"][
-                    "LEVEL"
-                ]
+                altitude_trend_symbol = self.config["altitude_trends"]["SYMBOLS"]["LEVEL"]
             elif vert_rate > 0:
                 altitude_trend_symbol = self.config["altitude_trends"]["SYMBOLS"]["UP"]
             else:
-                altitude_trend_symbol = self.config["altitude_trends"]["SYMBOLS"][
-                    "DOWN"
-                ]
+                altitude_trend_symbol = self.config["altitude_trends"]["SYMBOLS"]["DOWN"]
 
             return {
                 "altitude": f"{altitude_value}{self.config['altitude_unit']}",
@@ -423,9 +363,7 @@ class FlightEnricher:
         except ValueError:
             return {}
 
-    def _update_missing_data_log(
-        self, category: str, code: str, data: dict = None
-    ) -> None:
+    def _update_missing_data_log(self, category: str, code: str, data: dict = None) -> None:
         """Update missing data log with new missing item."""
         try:
             if not self.missing_data_log:
@@ -433,25 +371,15 @@ class FlightEnricher:
 
             if code and category in self.missing_data_log:
                 # For airlines and aircraft, store both identifiers and registration
-                if (
-                    category in ["airlines", "aircraft"]
-                    and code not in self.missing_data_log[category]
-                ):
+                if category in ["airlines", "aircraft"] and code not in self.missing_data_log[category]:
                     self.missing_data_log[category][code] = data
-                elif (
-                    category not in ["airlines", "aircraft"]
-                    and code not in self.missing_data_log[category]
-                ):
+                elif category not in ["airlines", "aircraft"] and code not in self.missing_data_log[category]:
                     self.missing_data_log[category][code] = True
 
-                self.missing_data_log["last_updated"] = datetime.utcnow().strftime(
-                    "%Y-%m-%d %H:%M:%S"
-                )
+                self.missing_data_log["last_updated"] = datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S")
                 self._save_missing_data_log_safe(self.missing_data_log)
         except Exception as e:
-            logger.error(
-                f"Error updating missing data log: {str(e)}\n{traceback.format_exc()}"
-            )
+            logger.error(f"Error updating missing data log: {str(e)}\n{traceback.format_exc()}")
 
 
 def create_flights_rich(
@@ -485,9 +413,7 @@ def create_flights_rich(
         for key, value in flight_data.items():
             flight_data_ordered[key] = value
             if key == "airline_icao":
-                flight_data_ordered["airline_logo_link"] = (
-                    f"{base_url}/logos/{airline_icao}"
-                )
+                flight_data_ordered["airline_logo_link"] = f"{base_url}/logos/{airline_icao}"
         flights_rich[icao_id] = flight_data_ordered
 
     return flights_rich

@@ -18,9 +18,7 @@ from fastapi.staticfiles import StaticFiles
 from config_manager import BASE_DIR, config
 
 # Use output directory from main application - don't create it here
-OUTPUT_DIR = os.path.join(
-    BASE_DIR, "output"
-)  # Only define the path, don't create directory
+OUTPUT_DIR = os.path.join(BASE_DIR, "output")  # Only define the path, don't create directory
 
 # Removed unused JSON file path variables
 # STATISTICS_JSON_FILE_PATH = os.path.join(OUTPUT_DIR, 'statistics.json')
@@ -80,15 +78,11 @@ def get_file_content(file_path, media_type):
             logger.error(f"File not found: {file_path}")
             raise HTTPException(status_code=404, detail=f"File '{file_path}' not found")
     except Exception as e:
-        logger.error(
-            f"Error reading file {file_path}: {str(e)}\n{traceback.format_exc()}"
-        )
+        logger.error(f"Error reading file {file_path}: {str(e)}\n{traceback.format_exc()}")
         raise HTTPException(status_code=500, detail="Internal server error") from e
 
 
-def try_file_with_ext(
-    base_dir, filename, primary_ext=None, fallback_ext=None, none_fallback=False
-):
+def try_file_with_ext(base_dir, filename, primary_ext=None, fallback_ext=None, none_fallback=False):
     """Try to find file with primary extension, fallback to secondary if not found."""
     name = os.path.splitext(filename)[0]
 
@@ -101,26 +95,20 @@ def try_file_with_ext(
         return primary_path, "image/svg+xml" if primary_ext == ".svg" else "image/png"
 
     # Fallback to secondary extension
-    fallback_path = os.path.join(
-        base_dir, fallback_ext.lstrip("."), name + fallback_ext
-    )
+    fallback_path = os.path.join(base_dir, fallback_ext.lstrip("."), name + fallback_ext)
     if os.path.exists(fallback_path):
         return fallback_path, "image/svg+xml" if fallback_ext == ".svg" else "image/png"
 
     if none_fallback:
         # Final fallback to _NONE
-        none_primary_path = os.path.join(
-            base_dir, primary_ext.lstrip("."), "_NONE" + primary_ext
-        )
+        none_primary_path = os.path.join(base_dir, primary_ext.lstrip("."), "_NONE" + primary_ext)
         if os.path.exists(none_primary_path):
             return (
                 none_primary_path,
                 "image/svg+xml" if primary_ext == ".svg" else "image/png",
             )
 
-        none_fallback_path = os.path.join(
-            base_dir, fallback_ext.lstrip("."), "_NONE" + fallback_ext
-        )
+        none_fallback_path = os.path.join(base_dir, fallback_ext.lstrip("."), "_NONE" + fallback_ext)
         if os.path.exists(none_fallback_path):
             return (
                 none_fallback_path,
@@ -139,9 +127,7 @@ def get_directory_listing(base_dir, ext=None, strip_ext=False):
     return [os.path.basename(f) for f in files]
 
 
-def get_url_for_file(
-    path: str, filename: str, ext: str | None = None, port: int | None = None
-) -> str:
+def get_url_for_file(path: str, filename: str, ext: str | None = None, port: int | None = None) -> str:
     """Generate full URL for a file."""
     try:
         port = port or SERVER_PORT  # Use provided port or default to SERVER_PORT
@@ -238,7 +224,7 @@ def create_html_list(title: str, items: dict) -> str:
     banner_full_path = os.path.join(BASE_DIR, "assets/.web/flights.svg")
     if os.path.exists(banner_full_path):
         base_url = f"http://{get_lan_ip()}:{SERVER_PORT}/"  # Generate dynamic base URL
-        html += f'''
+        html += f"""
         <div class="banner-container">
             <div class="banner-left">
                 <a href="{base_url}">
@@ -253,7 +239,7 @@ def create_html_list(title: str, items: dict) -> str:
                 <a href="/endpoints">Endpoints</a>
             </nav>
         </div>
-        '''
+        """
 
     html += f"""
             <h1>{title}</h1>
@@ -299,8 +285,7 @@ async def list_json_files(request: Request):
             files = get_directory_listing(base_directory, ext="json", strip_ext=True)
             data = {
                 "Output JSON Files": {
-                    file: get_url_for_file("", file, ext="json", port=SERVER_PORT)
-                    for file in sorted(files)
+                    file: get_url_for_file("", file, ext="json", port=SERVER_PORT) for file in sorted(files)
                 },
                 "Image Files": {
                     "Airline Logos": f"http://{get_lan_ip()}:{SERVER_PORT}/logos/",
@@ -335,31 +320,19 @@ async def list_logos(request: Request):
         svg_dir = os.path.join(base_directory, "svg")
         png_dir = os.path.join(base_directory, "png")
 
-        svg_files = (
-            get_directory_listing(svg_dir, ext="svg", strip_ext=True)
-            if os.path.exists(svg_dir)
-            else []
-        )
-        png_files = (
-            get_directory_listing(png_dir, ext="png", strip_ext=True)
-            if os.path.exists(png_dir)
-            else []
-        )
+        svg_files = get_directory_listing(svg_dir, ext="svg", strip_ext=True) if os.path.exists(svg_dir) else []
+        png_files = get_directory_listing(png_dir, ext="png", strip_ext=True) if os.path.exists(png_dir) else []
 
         airlines = sorted(set(svg_files + png_files))
         data = {
             "airlines": airlines,
             "formats": {
                 "svg": {
-                    file: get_url_for_file(
-                        "logos", file, "svg", port=SERVER_PORT
-                    )  # Pass SERVER_PORT
+                    file: get_url_for_file("logos", file, "svg", port=SERVER_PORT)  # Pass SERVER_PORT
                     for file in sorted(svg_files)
                 },
                 "png": {
-                    file: get_url_for_file(
-                        "logos", file, "png", port=SERVER_PORT
-                    )  # Pass SERVER_PORT
+                    file: get_url_for_file("logos", file, "png", port=SERVER_PORT)  # Pass SERVER_PORT
                     for file in sorted(png_files)
                 },
             },
@@ -392,31 +365,19 @@ async def list_flags(request: Request):
         svg_dir = os.path.join(base_directory, "svg")
         png_dir = os.path.join(base_directory, "png")
 
-        svg_files = (
-            get_directory_listing(svg_dir, ext="svg", strip_ext=True)
-            if os.path.exists(svg_dir)
-            else []
-        )
-        png_files = (
-            get_directory_listing(png_dir, ext="png", strip_ext=True)
-            if os.path.exists(png_dir)
-            else []
-        )
+        svg_files = get_directory_listing(svg_dir, ext="svg", strip_ext=True) if os.path.exists(svg_dir) else []
+        png_files = get_directory_listing(png_dir, ext="png", strip_ext=True) if os.path.exists(png_dir) else []
 
         countries = sorted(set(svg_files + png_files))
         data = {
             "countries": countries,
             "formats": {
                 "svg": {
-                    file: get_url_for_file(
-                        "flags", file, "svg", port=SERVER_PORT
-                    )  # Pass SERVER_PORT
+                    file: get_url_for_file("flags", file, "svg", port=SERVER_PORT)  # Pass SERVER_PORT
                     for file in sorted(svg_files)
                 },
                 "png": {
-                    file: get_url_for_file(
-                        "flags", file, "png", port=SERVER_PORT
-                    )  # Pass SERVER_PORT
+                    file: get_url_for_file("flags", file, "png", port=SERVER_PORT)  # Pass SERVER_PORT
                     for file in sorted(png_files)
                 },
             },
@@ -442,9 +403,7 @@ async def list_flags(request: Request):
 async def get_favicon():
     """Serve the favicon.ico file if it exists."""
     try:
-        favicon_path = os.path.join(
-            BASE_DIR, "assets", ".web", "favicon.ico"
-        )  # Changed directory name to .web
+        favicon_path = os.path.join(BASE_DIR, "assets", ".web", "favicon.ico")  # Changed directory name to .web
         # Log full debug info
         logger.error("Favicon debug info:")
         logger.error(f"BASE_DIR: {BASE_DIR}")
@@ -589,7 +548,7 @@ async def list_endpoints(request: Request):
         banner_full_path = os.path.join(BASE_DIR, "assets/.web/flights.svg")
         if os.path.exists(banner_full_path):
             base_url = f"http://{get_lan_ip()}:{SERVER_PORT}/"
-            html_content += f'''
+            html_content += f"""
             <div class="banner-container">
                 <div class="banner-left">
                     <a href="{base_url}">
@@ -604,7 +563,7 @@ async def list_endpoints(request: Request):
                     <a href="/endpoints">Endpoints</a>
                 </nav>
             </div>
-            '''
+            """
         html_content += "<h1>API Endpoints</h1>"
 
         for path, info in endpoints.items():
@@ -737,9 +696,7 @@ async def read_flag_file(file_name: str):
             fallback_ext=".svg",
         )
         if not file_path:
-            raise HTTPException(
-                status_code=404, detail="Image not found in either PNG or SVG format"
-            )
+            raise HTTPException(status_code=404, detail="Image not found in either PNG or SVG format")
 
     if not os.path.abspath(file_path).startswith(os.path.abspath(base_directory)):
         raise HTTPException(status_code=400, detail="Invalid file path")
@@ -758,9 +715,7 @@ app.mount(
 def kill_process_on_port(port):
     """Kill any process using the specified port owned by the current user."""
     try:
-        result = subprocess.check_output(
-            f"netstat -nlp 2>/dev/null | grep :{port}", shell=True
-        ).decode()
+        result = subprocess.check_output(f"netstat -nlp 2>/dev/null | grep :{port}", shell=True).decode()
         for line in result.splitlines():
             parts = line.split()
             pid_info = parts[-1]
@@ -773,9 +728,7 @@ def kill_process_on_port(port):
     except subprocess.CalledProcessError:
         pass
     except Exception as e:
-        logger.error(
-            f"Error killing process on port {port}: {str(e)}\n{traceback.format_exc()}"
-        )
+        logger.error(f"Error killing process on port {port}: {str(e)}\n{traceback.format_exc()}")
         raise
 
 
@@ -798,9 +751,7 @@ def start_server(request_port, log_level="ERROR", default_image_format="svg"):
     global SERVER_PORT, DEFAULT_IMAGE_FORMAT  # Declare as global
     SERVER_PORT = request_port  # Set the port globally
     DEFAULT_IMAGE_FORMAT = default_image_format  # Set the default image format
-    logger.setLevel(
-        getattr(logging, str(log_level).upper(), logging.ERROR)
-    )  # Update logger level
+    logger.setLevel(getattr(logging, str(log_level).upper(), logging.ERROR))  # Update logger level
     try:
         kill_process_on_port(request_port)
         lan_ip = get_lan_ip()
@@ -810,17 +761,13 @@ def start_server(request_port, log_level="ERROR", default_image_format="svg"):
         print_endpoints()
         uvicorn.run(app, host="0.0.0.0", port=request_port)
     except Exception as e:
-        logger.error(
-            f"Failed to start server on port {request_port}: {str(e)}\n{traceback.format_exc()}"
-        )
+        logger.error(f"Failed to start server on port {request_port}: {str(e)}\n{traceback.format_exc()}")
         raise  # Keep this one
 
 
 def main():
     parser = argparse.ArgumentParser(description="Start the Flights Server")
-    parser.add_argument(
-        "--port", type=int, default=8000, help="Port number to run the server on"
-    )
+    parser.add_argument("--port", type=int, default=8000, help="Port number to run the server on")
     parser.add_argument("--log_level", type=str, default="ERROR", help="Logging level")
     args = parser.parse_args()
 
@@ -876,6 +823,4 @@ async def generic_exception_handler(request: Request, exc: Exception):
         return HTMLResponse(content=html_content, status_code=500)
     else:
         # Return JSON response as default
-        return JSONResponse(
-            content={"detail": "Internal Server Error"}, status_code=500
-        )
+        return JSONResponse(content={"detail": "Internal Server Error"}, status_code=500)

@@ -29,18 +29,12 @@ def _build_variables_map(base_url: str | None) -> dict[str, Any]:
 
 
 def generate_discovery_payload(base_url: str | None) -> dict | None:
-    if not config.get("ha_mqtt_discovery", False) and not config.get(
-        "HA_MQTT_DISCOVERY", False
-    ):
+    if not config.get("ha_mqtt_discovery", False) and not config.get("HA_MQTT_DISCOVERY", False):
         return None
 
     variables = _build_variables_map(base_url)
 
-    template = (
-        config.get("ha_mqtt_discovery_config")
-        or config.get("HA_MQTT_DISCOVERY_CONFIG")
-        or ""
-    )
+    template = config.get("ha_mqtt_discovery_config") or config.get("HA_MQTT_DISCOVERY_CONFIG") or ""
     if not template:
         return None
 

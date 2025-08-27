@@ -41,9 +41,7 @@ def ensure_json_file(filepath: str, default_content: dict) -> None:
             with open(filepath, "w") as f:
                 json.dump(default_content, f, indent=2)
     except Exception as e:
-        logging.error(
-            f"Error ensuring JSON file {filepath}: {e}\n{traceback.format_exc()}"
-        )
+        logging.error(f"Error ensuring JSON file {filepath}: {e}\n{traceback.format_exc()}")
 
 
 def ensure_output_directory() -> None:
@@ -53,9 +51,7 @@ def ensure_output_directory() -> None:
     default_stats = {
         "visible_aircraft": 0,
         "last_update_utc": int(time.time()),
-        "last_update_readable": datetime.now(UTC).strftime(
-            "%Y-%m-%d %H:%M:%S"
-        ),
+        "last_update_readable": datetime.now(UTC).strftime("%Y-%m-%d %H:%M:%S"),
         "unique_flights": {},
         "average_flights": {},
     }
@@ -92,9 +88,7 @@ def get_receiver_data(url: str) -> dict[str, Any] | None:
     return None
 
 
-def process_flights(
-    receiver: dict[str, Any], reference_dump: dict[str, Any]
-) -> dict[str, dict[str, Any]]:
+def process_flights(receiver: dict[str, Any], reference_dump: dict[str, Any]) -> dict[str, dict[str, Any]]:
     # Minimal processing: return aircraft dictionary as-is
     return receiver.get("aircraft", {}) if receiver else {}
 
@@ -108,9 +102,7 @@ def get_receiver_visible(
     return {
         "visible_aircraft": len(flights or {}),
         "last_update_utc": now,
-        "last_update_readable": datetime.fromtimestamp(now, tz=UTC).strftime(
-            "%Y-%m-%d %H:%M:%S"
-        ),
+        "last_update_readable": datetime.fromtimestamp(now, tz=UTC).strftime("%Y-%m-%d %H:%M:%S"),
         "unique_flights": unique_counts,
         "average_flights": averages,
     }
@@ -135,9 +127,7 @@ def publish_and_print(
                     pass
         return data
     except Exception as e:
-        logging.error(
-            f"Publish/print error for topic {topic}: {e}\n{traceback.format_exc()}"
-        )
+        logging.error(f"Publish/print error for topic {topic}: {e}\n{traceback.format_exc()}")
         return previous
 
 
@@ -161,9 +151,7 @@ def get_closest_aircraft(
 
 
 def print_receiver_visible(data: dict[str, Any]) -> None:
-    print(
-        f"Visible aircraft: {data.get('visible_aircraft')} at {data.get('last_update_readable')}"
-    )
+    print(f"Visible aircraft: {data.get('visible_aircraft')} at {data.get('last_update_readable')}")
 
 
 def print_closest_aircraft(data: dict[str, Any]) -> None:
@@ -186,15 +174,11 @@ def handle_ha_mqtt_discovery(cfg, mqtt_service: MQTTService, base_url: str) -> N
         if not os.path.exists(discovery_file_path):
             process_ha_mqtt_discovery(base_url)
         else:
-            print(
-                f"Discovery payload exists: {discovery_file_path} - publishing anyway"
-            )
+            print(f"Discovery payload exists: {discovery_file_path} - publishing anyway")
         try:
             with open(discovery_file_path) as f:
                 discovery_payload = json.load(f)
-            config_topic = cfg.get(
-                "config_topic", "homeassistant/device/dev_flights/config"
-            )
+            config_topic = cfg.get("config_topic", "homeassistant/device/dev_flights/config")
             mqtt_service.publish(config_topic, discovery_payload, qos=1, retain=True)
             print(f"Published discovery payload to topic: {config_topic}")
         except Exception as e:
@@ -210,10 +194,7 @@ def main() -> None:
     os.makedirs(os.path.join(BASE_DIR, "storage"), exist_ok=True)
 
     # Load reference dump
-    reference_dump_rel = (
-        config.get("reference_dump_file_path")
-        or "config/planefinder_dump_structure.json"
-    )
+    reference_dump_rel = config.get("reference_dump_file_path") or "config/planefinder_dump_structure.json"
     reference_dump_path = os.path.join(BASE_DIR, str(reference_dump_rel))
     with open(reference_dump_path) as reference_dump_file:
         reference_dump = json.load(reference_dump_file)
@@ -278,9 +259,7 @@ def main() -> None:
     storage_directory = os.path.join(BASE_DIR, "storage")
     os.makedirs(storage_directory, exist_ok=True)
 
-    unique_flights_file = os.path.join(
-        storage_directory, "unique_flights_with_timestamps.pkl"
-    )
+    unique_flights_file = os.path.join(storage_directory, "unique_flights_with_timestamps.pkl")
     unique_flights_with_timestamps = load_unique_flights_data(unique_flights_file)
 
     # Main program loop
@@ -317,14 +296,10 @@ def main() -> None:
 
         time_periods = get_time_periods()
         unique_flights_counts = {
-            period: count_unique_flights_in_period(
-                unique_flights_with_timestamps, start_time
-            )
+            period: count_unique_flights_in_period(unique_flights_with_timestamps, start_time)
             for period, start_time in time_periods.items()
         }
-        averages = calculate_averages(
-            unique_flights_with_timestamps, unique_flights_counts
-        )
+        averages = calculate_averages(unique_flights_with_timestamps, unique_flights_counts)
 
         visible = get_receiver_visible(flights, unique_flights_counts, averages)
         previous_visible = publish_and_print(
@@ -356,11 +331,7 @@ def main() -> None:
             write_to_file(os.path.join(OUTPUT_DIR, "all_aircraft.json"), flights_rich)
             previous_flights_rich = flights_rich
 
-        current_unique_flights = {
-            flight.get("icao_id")
-            for flight in flights.values()
-            if isinstance(flight, dict)
-        }
+        current_unique_flights = {flight.get("icao_id") for flight in flights.values() if isinstance(flight, dict)}
         update_unique_flights(
             unique_flights_with_timestamps,
             current_unique_flights,

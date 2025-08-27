@@ -15,27 +15,17 @@ class MQTTService:
     def __init__(self, cfg):
         """Initialize MQTT service with config parameters."""
         self.logger = logging.getLogger("mqtt_service")
-        self.logger.setLevel(
-            getattr(logging, (cfg.get("log_level") or "ERROR").upper())
-        )
+        self.logger.setLevel(getattr(logging, (cfg.get("log_level") or "ERROR").upper()))
 
-        client_id = str(
-            cfg.get("mqtt_client_id") or cfg.get("MQTT_CLIENT_ID") or "flight_tracker"
-        )
+        client_id = str(cfg.get("mqtt_client_id") or cfg.get("MQTT_CLIENT_ID") or "flight_tracker")
         # Use default protocol and transport; CallbackAPIVersion not required for basic usage
         self.client = mqtt.Client(client_id=client_id)
 
         self.broker_host = str(cfg.get("mqtt_broker") or cfg.get("MQTT_BROKER"))
-        self.broker_port = int(
-            cfg.get("mqtt_broker_port") or cfg.get("MQTT_BROKER_PORT") or 1883
-        )
+        self.broker_port = int(cfg.get("mqtt_broker_port") or cfg.get("MQTT_BROKER_PORT") or 1883)
 
         self.topics = [
-            str(
-                cfg.get("mqtt_topic_visible")
-                or cfg.get("MQTT_TOPIC_VISIBLE")
-                or "dev/flights/visible"
-            ),
+            str(cfg.get("mqtt_topic_visible") or cfg.get("MQTT_TOPIC_VISIBLE") or "dev/flights/visible"),
             str(
                 cfg.get("mqtt_topic_closest_aircraft")
                 or cfg.get("MQTT_TOPIC_CLOSEST_AIRCRAFT")
