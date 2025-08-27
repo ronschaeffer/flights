@@ -1,22 +1,26 @@
 #!/usr/bin/env python3
 
-import uvicorn
-import subprocess  # Add this line
-import os
-import json
-import yaml
-import logging
-import traceback
-from fastapi import FastAPI, Response, HTTPException, Request
-import glob
-from fastapi.staticfiles import StaticFiles
-from config_manager import config, BASE_DIR  # Added import
+"""FastAPI server to serve output JSON and static assets."""
 
-# Define base directory once at the top
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+import argparse
+import glob
+import json
+import logging
+import os
+import subprocess
+import traceback
+
+import uvicorn
+from fastapi import FastAPI, HTTPException, Request, Response
+from fastapi.responses import HTMLResponse, JSONResponse
+from fastapi.staticfiles import StaticFiles
+
+from config_manager import BASE_DIR, config
 
 # Use output directory from main application - don't create it here
-OUTPUT_DIR = os.path.join(BASE_DIR, 'output')  # Only define the path, don't create directory
+OUTPUT_DIR = os.path.join(
+    BASE_DIR, "output"
+)  # Only define the path, don't create directory
 
 # Removed unused JSON file path variables
 # STATISTICS_JSON_FILE_PATH = os.path.join(OUTPUT_DIR, 'statistics.json')
@@ -24,48 +28,47 @@ OUTPUT_DIR = os.path.join(BASE_DIR, 'output')  # Only define the path, don't cre
 # ALL_AIRCRAFT_JSON_FILE_PATH = os.path.join(OUTPUT_DIR, 'all_aircraft.json')
 
 # Use absolute path for logging
-LOG_DIR = os.path.join(BASE_DIR, 'logs')
+LOG_DIR = os.path.join(BASE_DIR, "logs")
 os.makedirs(LOG_DIR, exist_ok=True)
 
-# Load configuration
-# config_path = os.path.join(BASE_DIR, 'config/config.yaml')
-# with open(config_path, 'r') as config_file:
-#     config = yaml.safe_load(config_file)  # Removed configuration loading
+# Add DEFAULT_IMAGE_FORMAT initialization (safe lower)
+DEFAULT_IMAGE_FORMAT = str(config.get("image_format") or "svg").lower()
 
-# Add DEFAULT_IMAGE_FORMAT initialization
-DEFAULT_IMAGE_FORMAT = config.get('IMAGE_FORMAT', 'svg').lower()
-
-logger = logging.getLogger('flights_server')
-logger.setLevel(getattr(logging, config.get('LOG_LEVEL', 'ERROR').upper()))  # Updated log level from config
+logger = logging.getLogger("flights_server")
+_lvl_name = str(config.get("log_level") or "ERROR").upper()
+logger.setLevel(getattr(logging, _lvl_name, logging.ERROR))
 
 # Configure logging
 logging.basicConfig(
-    filename=os.path.join(LOG_DIR, 'flights.log'),
-    level=getattr(logging, config.get('LOG_LEVEL', 'ERROR').upper()),  # Updated log level from config
-    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+    filename=os.path.join(LOG_DIR, "flights.log"),
+    level=getattr(logging, _lvl_name, logging.ERROR),
+    format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
 )
 
 app = FastAPI()
 # Add global port variable near the top after imports
 SERVER_PORT = 8000  # Default value
 
+
 def get_lan_ip():
     """Get the machine's LAN IP address."""
     import socket
+
     try:
         # Create a UDP socket
         s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
         # Connect to an external IP address
-        s.connect(('8.8.8.8', 80))
+        s.connect(("8.8.8.8", 80))
         # Get the local IP address
         ip = s.getsockname()[0]
         s.close()
         return ip
     except Exception:
-        return '127.0.0.1'  # Fallback to localhost
+        return "127.0.0.1"  # Fallback to localhost
 
-# Add base_url initialization after get_lan_ip is defined
-base_url = f"http://{get_lan_ip()}:{SERVER_PORT}"
+
+# (Base URL is built dynamically per-request where needed)
+
 
 def get_file_content(file_path, media_type):
     try:
@@ -77,74 +80,96 @@ def get_file_content(file_path, media_type):
             logger.error(f"File not found: {file_path}")
             raise HTTPException(status_code=404, detail=f"File '{file_path}' not found")
     except Exception as e:
-        logger.error(f"Error reading file {file_path}: {str(e)}\n{traceback.format_exc()}")
-        raise HTTPException(status_code=500, detail="Internal server error")
+        logger.error(
+            f"Error reading file {file_path}: {str(e)}\n{traceback.format_exc()}"
+        )
+        raise HTTPException(status_code=500, detail="Internal server error") from e
 
-def try_file_with_ext(base_dir, filename, primary_ext=None, fallback_ext=None, none_fallback=False):
+
+def try_file_with_ext(
+    base_dir, filename, primary_ext=None, fallback_ext=None, none_fallback=False
+):
     """Try to find file with primary extension, fallback to secondary if not found."""
     name = os.path.splitext(filename)[0]
-    
-    primary_ext = primary_ext or f'.{DEFAULT_IMAGE_FORMAT}'
-    fallback_ext = fallback_ext or ('.svg' if DEFAULT_IMAGE_FORMAT == 'png' else '.png')
-    
+
+    primary_ext = primary_ext or f".{DEFAULT_IMAGE_FORMAT}"
+    fallback_ext = fallback_ext or (".svg" if DEFAULT_IMAGE_FORMAT == "png" else ".png")
+
     # Try primary extension
-    primary_path = os.path.join(base_dir, primary_ext.lstrip('.'), name + primary_ext)
-    if (os.path.exists(primary_path)):
-        return primary_path, "image/svg+xml" if primary_ext == '.svg' else "image/png"
-    
+    primary_path = os.path.join(base_dir, primary_ext.lstrip("."), name + primary_ext)
+    if os.path.exists(primary_path):
+        return primary_path, "image/svg+xml" if primary_ext == ".svg" else "image/png"
+
     # Fallback to secondary extension
-    fallback_path = os.path.join(base_dir, fallback_ext.lstrip('.'), name + fallback_ext)
-    if (os.path.exists(fallback_path)):
-        return fallback_path, "image/svg+xml" if fallback_ext == '.svg' else "image/png"
-    
-    if (none_fallback):
+    fallback_path = os.path.join(
+        base_dir, fallback_ext.lstrip("."), name + fallback_ext
+    )
+    if os.path.exists(fallback_path):
+        return fallback_path, "image/svg+xml" if fallback_ext == ".svg" else "image/png"
+
+    if none_fallback:
         # Final fallback to _NONE
-        none_primary_path = os.path.join(base_dir, primary_ext.lstrip('.'), "_NONE" + primary_ext)
-        if (os.path.exists(none_primary_path)):
-            return none_primary_path, "image/svg+xml" if primary_ext == '.svg' else "image/png"
-        
-        none_fallback_path = os.path.join(base_dir, fallback_ext.lstrip('.'), "_NONE" + fallback_ext)
-        if (os.path.exists(none_fallback_path)):
-            return none_fallback_path, "image/svg+xml" if fallback_ext == '.svg' else "image/png"
-        
+        none_primary_path = os.path.join(
+            base_dir, primary_ext.lstrip("."), "_NONE" + primary_ext
+        )
+        if os.path.exists(none_primary_path):
+            return (
+                none_primary_path,
+                "image/svg+xml" if primary_ext == ".svg" else "image/png",
+            )
+
+        none_fallback_path = os.path.join(
+            base_dir, fallback_ext.lstrip("."), "_NONE" + fallback_ext
+        )
+        if os.path.exists(none_fallback_path):
+            return (
+                none_fallback_path,
+                "image/svg+xml" if fallback_ext == ".svg" else "image/png",
+            )
+
     return None, None
+
 
 def get_directory_listing(base_dir, ext=None, strip_ext=False):
     """Get list of files in directory with optional extension filtering."""
-    pattern = os.path.join(base_dir, f'*.{ext}' if ext else '*')
+    pattern = os.path.join(base_dir, f"*.{ext}" if ext else "*")
     files = glob.glob(pattern)
-    if (strip_ext):
+    if strip_ext:
         return [os.path.splitext(os.path.basename(f))[0] for f in files]
     return [os.path.basename(f) for f in files]
 
-def get_url_for_file(path: str, filename: str, ext: str = None, port: int = None) -> str:
+
+def get_url_for_file(
+    path: str, filename: str, ext: str | None = None, port: int | None = None
+) -> str:
     """Generate full URL for a file."""
     try:
         port = port or SERVER_PORT  # Use provided port or default to SERVER_PORT
-        host = getattr(app.state, 'host', get_lan_ip())
+        host = getattr(app.state, "host", get_lan_ip())
         base_url = f"http://{host}:{port}"  # Use the correct port
-        
+
         # Clean up path components
-        path = path.strip('/')
+        path = path.strip("/")
         parts = [base_url]
-        if (path):
+        if path:
             parts.append(path)
         parts.append(filename)
-        if (ext):
+        if ext:
             parts[-1] = f"{parts[-1]}.{ext}"
         else:
             parts[-1] = f"{parts[-1]}.{DEFAULT_IMAGE_FORMAT}"  # Use default format
-                
+
         # Join with single slashes
-        return '/'.join(parts).replace(':/', '://')
+        return "/".join(parts).replace(":/", "://")
     except Exception as e:
         logger.error(f"Error generating URL: {str(e)}, falling back to relative path")
-        parts = [part.strip('/') for part in [path, filename] if part]
-        if (ext):
+        parts = [part.strip("/") for part in [path, filename] if part]
+        if ext:
             parts[-1] = f"{parts[-1]}.{ext}"
         else:
             parts[-1] = f"{parts[-1]}.{DEFAULT_IMAGE_FORMAT}"  # Use default format
-        return '/'.join(parts)
+        return "/".join(parts)
+
 
 def create_html_list(title: str, items: dict) -> str:
     html = f"""
@@ -208,9 +233,9 @@ def create_html_list(title: str, items: dict) -> str:
     """
     # Path to the banner image
     banner_path = "/assets/.web/flights.svg"  # Corrected path to assets/.web
-    
+
     # Add banner if flights.svg exists and make it a link to the base URL
-    banner_full_path = os.path.join(BASE_DIR, 'assets/.web/flights.svg')
+    banner_full_path = os.path.join(BASE_DIR, "assets/.web/flights.svg")
     if os.path.exists(banner_full_path):
         base_url = f"http://{get_lan_ip()}:{SERVER_PORT}/"  # Generate dynamic base URL
         html += f'''
@@ -229,7 +254,7 @@ def create_html_list(title: str, items: dict) -> str:
             </nav>
         </div>
         '''
-    
+
     html += f"""
             <h1>{title}</h1>
     """
@@ -238,7 +263,7 @@ def create_html_list(title: str, items: dict) -> str:
     for section, content in items.items():
         if content:  # Only show sections with content
             html += f'<div class="section"><h2>{section}</h2><ul>'
-            
+
             # Special handling for SVG and PNG Files sections
             if section in ["SVG Files", "PNG Files"]:
                 # Sort the keys (filenames) alphabetically
@@ -256,11 +281,12 @@ def create_html_list(title: str, items: dict) -> str:
                 else:
                     for item in content:
                         html += f'<li><a href="{item}">{item}</a></li>'
-                        
-            html += '</ul></div>'
-    
+
+            html += "</ul></div>"
+
     html += "</body></html>"
     return html
+
 
 @app.get("/")
 async def list_json_files(request: Request):
@@ -270,15 +296,16 @@ async def list_json_files(request: Request):
         if not os.path.exists(base_directory):
             data = {"files": {}}
         else:
-            files = get_directory_listing(base_directory, ext='json', strip_ext=True)
+            files = get_directory_listing(base_directory, ext="json", strip_ext=True)
             data = {
                 "Output JSON Files": {
-                    file: get_url_for_file("", file, ext='json', port=SERVER_PORT) for file in sorted(files)
+                    file: get_url_for_file("", file, ext="json", port=SERVER_PORT)
+                    for file in sorted(files)
                 },
                 "Image Files": {
                     "Airline Logos": f"http://{get_lan_ip()}:{SERVER_PORT}/logos/",
-                    "Country Flags": f"http://{get_lan_ip()}:{SERVER_PORT}/flags/"
-                }
+                    "Country Flags": f"http://{get_lan_ip()}:{SERVER_PORT}/flags/",
+                },
             }
 
         # Return HTML for browsers, JSON for API requests
@@ -287,183 +314,227 @@ async def list_json_files(request: Request):
             html = create_html_list("Main menu", data)
             return Response(content=html, media_type="text/html")
         # Format JSON response with indentation
-        return JSONResponse(content=data, media_type="application/json", headers={"Content-Type": "application/json; charset=utf-8"})
+        return JSONResponse(
+            content=data,
+            media_type="application/json",
+            headers={"Content-Type": "application/json; charset=utf-8"},
+        )
     except Exception as e:
         logger.error(f"Error listing JSON files: {str(e)}\n{traceback.format_exc()}")
-        raise HTTPException(status_code=500, detail="Error listing files")
+        raise HTTPException(status_code=500, detail="Error listing files") from e
+
 
 @app.get("/logos")
 async def list_logos(request: Request):
     """List all available airline logos."""
     try:
-        base_directory = os.path.join(BASE_DIR, 'assets/images/logos')
-        if (not os.path.exists(base_directory)):
+        base_directory = os.path.join(BASE_DIR, "assets/images/logos")
+        if not os.path.exists(base_directory):
             return {"airlines": [], "formats": {"svg": {}, "png": {}}}
-            
-        svg_dir = os.path.join(base_directory, 'svg')
-        png_dir = os.path.join(base_directory, 'png')
-        
-        svg_files = get_directory_listing(svg_dir, ext='svg', strip_ext=True) if os.path.exists(svg_dir) else []
-        png_files = get_directory_listing(png_dir, ext='png', strip_ext=True) if os.path.exists(png_dir) else []
-        
+
+        svg_dir = os.path.join(base_directory, "svg")
+        png_dir = os.path.join(base_directory, "png")
+
+        svg_files = (
+            get_directory_listing(svg_dir, ext="svg", strip_ext=True)
+            if os.path.exists(svg_dir)
+            else []
+        )
+        png_files = (
+            get_directory_listing(png_dir, ext="png", strip_ext=True)
+            if os.path.exists(png_dir)
+            else []
+        )
+
         airlines = sorted(set(svg_files + png_files))
         data = {
             "airlines": airlines,
             "formats": {
                 "svg": {
-                    file: get_url_for_file("logos", file, "svg", port=SERVER_PORT)  # Pass SERVER_PORT
+                    file: get_url_for_file(
+                        "logos", file, "svg", port=SERVER_PORT
+                    )  # Pass SERVER_PORT
                     for file in sorted(svg_files)
                 },
                 "png": {
-                    file: get_url_for_file("logos", file, "png", port=SERVER_PORT)  # Pass SERVER_PORT
+                    file: get_url_for_file(
+                        "logos", file, "png", port=SERVER_PORT
+                    )  # Pass SERVER_PORT
                     for file in sorted(png_files)
-                }
-            }
+                },
+            },
         }
-        
+
         accept = request.headers.get("accept", "")
-        if ("text/html" in accept):
-            html = create_html_list("Available Airline Logos", {
-                "SVG Files": data["formats"]["svg"],
-                "PNG Files": data["formats"]["png"]
-            })
+        if "text/html" in accept:
+            html = create_html_list(
+                "Available Airline Logos",
+                {
+                    "SVG Files": data["formats"]["svg"],
+                    "PNG Files": data["formats"]["png"],
+                },
+            )
             return Response(content=html, media_type="text/html")
         return data
     except Exception as e:
         logger.error(f"Error listing logos: {str(e)}\n{traceback.format_exc()}")
-        raise HTTPException(status_code=500, detail="Error listing files")
+        raise HTTPException(status_code=500, detail="Error listing files") from e
+
 
 @app.get("/flags")
 async def list_flags(request: Request):
     """List all available country flags."""
     try:
-        base_directory = os.path.join(BASE_DIR, 'assets/images/flags')
-        if (not os.path.exists(base_directory)):
+        base_directory = os.path.join(BASE_DIR, "assets/images/flags")
+        if not os.path.exists(base_directory):
             return {"countries": [], "formats": {"svg": {}, "png": {}}}
-            
-        svg_dir = os.path.join(base_directory, 'svg')
-        png_dir = os.path.join(base_directory, 'png')
-        
-        svg_files = get_directory_listing(svg_dir, ext='svg', strip_ext=True) if os.path.exists(svg_dir) else []
-        png_files = get_directory_listing(png_dir, ext='png', strip_ext=True) if os.path.exists(png_dir) else []
-        
+
+        svg_dir = os.path.join(base_directory, "svg")
+        png_dir = os.path.join(base_directory, "png")
+
+        svg_files = (
+            get_directory_listing(svg_dir, ext="svg", strip_ext=True)
+            if os.path.exists(svg_dir)
+            else []
+        )
+        png_files = (
+            get_directory_listing(png_dir, ext="png", strip_ext=True)
+            if os.path.exists(png_dir)
+            else []
+        )
+
         countries = sorted(set(svg_files + png_files))
         data = {
             "countries": countries,
             "formats": {
                 "svg": {
-                    file: get_url_for_file("flags", file, "svg", port=SERVER_PORT)  # Pass SERVER_PORT
+                    file: get_url_for_file(
+                        "flags", file, "svg", port=SERVER_PORT
+                    )  # Pass SERVER_PORT
                     for file in sorted(svg_files)
                 },
                 "png": {
-                    file: get_url_for_file("flags", file, "png", port=SERVER_PORT)  # Pass SERVER_PORT
+                    file: get_url_for_file(
+                        "flags", file, "png", port=SERVER_PORT
+                    )  # Pass SERVER_PORT
                     for file in sorted(png_files)
-                }
-            }
+                },
+            },
         }
-        
+
         accept = request.headers.get("accept", "")
-        if ("text/html" in accept):
-            html = create_html_list("Available Country Flags", {
-                "SVG Files": data["formats"]["svg"],
-                "PNG Files": data["formats"]["png"]
-            })
+        if "text/html" in accept:
+            html = create_html_list(
+                "Available Country Flags",
+                {
+                    "SVG Files": data["formats"]["svg"],
+                    "PNG Files": data["formats"]["png"],
+                },
+            )
             return Response(content=html, media_type="text/html")
         return data
     except Exception as e:
         logger.error(f"Error listing flags: {str(e)}\n{traceback.format_exc()}")
-        raise HTTPException(status_code=500, detail="Error listing files")
+        raise HTTPException(status_code=500, detail="Error listing files") from e
+
 
 @app.get("/favicon.ico")
 async def get_favicon():
     """Serve the favicon.ico file if it exists."""
     try:
-        favicon_path = os.path.join(BASE_DIR, 'assets', '.web', 'favicon.ico')  # Changed directory name to .web
+        favicon_path = os.path.join(
+            BASE_DIR, "assets", ".web", "favicon.ico"
+        )  # Changed directory name to .web
         # Log full debug info
-        logger.error(f"Favicon debug info:")
+        logger.error("Favicon debug info:")
         logger.error(f"BASE_DIR: {BASE_DIR}")
         logger.error(f"Full path: {favicon_path}")
         logger.error(f"Parent exists: {os.path.exists(os.path.dirname(favicon_path))}")
         logger.error(f"File exists: {os.path.exists(favicon_path)}")
         if os.path.exists(favicon_path):
             logger.error(f"File permissions: {oct(os.stat(favicon_path).st_mode)[-3:]}")
-        
+
         if not os.path.exists(favicon_path):
             logger.error("Favicon file not found")
             return Response(status_code=404)
-        
+
         try:
             with open(favicon_path, "rb") as f:
                 content = f.read()
             return Response(content=content, media_type="image/x-icon")
-        except (IOError, OSError) as e:
+        except OSError as e:
             logger.error(f"IO Error reading favicon: {str(e)}")
             return Response(status_code=500, content="Internal server error")
-            
+
     except Exception as e:
         logger.error(f"Favicon error: {str(e)}\n{traceback.format_exc()}")
         return Response(status_code=500, content="Internal server error")
+
+
+def _build_endpoints(base_url: str) -> dict:
+    """Build the endpoints dictionary used by HTML and JSON views."""
+    return {
+        "/": {
+            "description": "Go to home page.",
+            "example": f"GET {base_url}/",
+        },
+        "/logos": {
+            "description": "List all available airline logos in SVG and PNG formats.",
+            "example": f"GET {base_url}/logos",
+        },
+        "/flags": {
+            "description": "List all available country flags in SVG and PNG formats.",
+            "example": f"GET {base_url}/flags",
+        },
+        "/{file_name}": {
+            "description": "Retrieve a specific output file in JSON format. File extension is optional.",
+            "examples": [
+                f"GET {base_url}/closest_aircraft",
+                f"GET {base_url}/closest_aircraft.json",
+            ],
+        },
+        "/logos/{file_name}": {
+            "description": "Retrieve a specific airline logo based on ICAO code. File extension is optional.",
+            "examples": [
+                f"GET {base_url}/logos/BAW",
+                f"GET {base_url}/logos/BAW.svg",
+                f"GET {base_url}/logos/BAW.png",
+            ],
+        },
+        "/flags/{file_name}": {
+            "description": "Retrieve a specific country flag based on ISO code. File extension is optional.",
+            "examples": [
+                f"GET {base_url}/flags/gb",
+                f"GET {base_url}/flags/gb.svg",
+                f"GET {base_url}/flags/gb.png",
+            ],
+        },
+        "/endpoints": {
+            "description": "List all available API endpoints with examples. This page.",
+            "example": f"GET {base_url}/endpoints",
+        },
+    }
+
 
 @app.get("/endpoints")
 async def list_endpoints(request: Request):
     """List all available API endpoints with examples."""
     base_url = f"http://{get_lan_ip()}:{SERVER_PORT}"  # Define the actual base URL
-    
-    endpoints = {
-        "/": {
-            "description": "Go to home page.",
-            "example": f"GET {base_url}/"
-        },
-        "/logos": {
-            "description": "List all available airline logos in SVG and PNG formats.",
-            "example": f"GET {base_url}/logos"
-        },
-        "/flags": {
-            "description": "List all available country flags in SVG and PNG formats.",
-            "example": f"GET {base_url}/flags"
-        },
-        "/{file_name}": {
-            "description": "Retrieve a specific output file in JSON format. File extension is optional.",
-            "examples": [
-                  f"GET {base_url}/closest_aircraft",
-                  f"GET {base_url}/closest_aircraft.json"
-            ]
-        },
-        "/logos/{file_name}": {
-            "description": "Retrieve a specific airline logo based on ICAO code. File extension is optional.",
-            "examples": [
-                  f"GET {base_url}/logos/BAW",
-                  f"GET {base_url}/logos/BAW.svg",
-                  f"GET {base_url}/logos/BAW.png"
-            ]
-        },
-        "/flags/{file_name}": {
-            "description": "Retrieve a specific country flag based on ISO code. File extension is optional.",
-            "examples": [
-                  f"GET {base_url}/flags/gb",
-                  f"GET {base_url}/flags/gb.svg",
-                  f"GET {base_url}/flags/gb.png"
-            ]
-        },
-        "/endpoints": {
-            "description": "List all available API endpoints with examples. This page.",
-            "example": f"GET {base_url}/endpoints"
-        }
-    }
-    
+    endpoints = _build_endpoints(base_url)
+
     accept = request.headers.get("accept", "")
     if "text/html" in accept:
-        html_content = f"""
+        html_content = """
         <html>
             <head>
                 <title>API Endpoints</title>  <!-- This sets the title of the page -->
                 <style>
                     body {{ font-family: sans-serif; margin: 20px; position: relative; }}
-                    h1 {{ 
-                        color: #333; 
+                    h1 {{
+                        color: #333;
                         font-size: 24px;  /* Reduced font size */
                         text-transform: uppercase;  /* Make text all caps */
-                        margin-top: 80px; 
+                        margin-top: 80px;
                         margin-bottom: 40px;  /* Added vertical space below the title */
                     }}
                     .endpoint {{ margin-bottom: 20px; }}
@@ -515,7 +586,7 @@ async def list_endpoints(request: Request):
         """
         # Add banner image and navigation menu inside the banner-container
         banner_path = "/assets/.web/flights.svg"
-        banner_full_path = os.path.join(BASE_DIR, 'assets/.web/flights.svg')
+        banner_full_path = os.path.join(BASE_DIR, "assets/.web/flights.svg")
         if os.path.exists(banner_full_path):
             base_url = f"http://{get_lan_ip()}:{SERVER_PORT}/"
             html_content += f'''
@@ -539,14 +610,14 @@ async def list_endpoints(request: Request):
         for path, info in endpoints.items():
             html_content += f"""
                 <div class="endpoint">
-                    <span class="key">{path}</span> <span class="description">{info['description']}</span>
+                    <span class="key">{path}</span> <span class="description">{info["description"]}</span>
             """
-            if 'example' in info:
+            if "example" in info:
                 html_content += f"""
-                    <div class="example">Example: {info['example']}</div>
+                    <div class="example">Example: {info["example"]}</div>
                 """
-            elif 'examples' in info:
-                for example in info['examples']:
+            elif "examples" in info:
+                for example in info["examples"]:
                     html_content += f"""
                     <div class="example">Example: {example}</div>
                     """
@@ -561,119 +632,139 @@ async def list_endpoints(request: Request):
     else:
         return JSONResponse(content={"available_endpoints": endpoints})
 
+
 @app.get("/endpoints.json")
 async def get_endpoints_json():
     """Serve the available API endpoints as a JSON file."""
-    return list_endpoints()  # Reuse the existing list_endpoints function
+    base_url = f"http://{get_lan_ip()}:{SERVER_PORT}"
+    return JSONResponse(content={"available_endpoints": _build_endpoints(base_url)})
+
 
 @app.get("/{file_name}")
 async def read_output_file(file_name: str):
     """Read and return the specified JSON file."""
     base_directory = OUTPUT_DIR
-    if (".." in file_name or file_name.startswith("/")):
+    if ".." in file_name or file_name.startswith("/"):
         raise HTTPException(status_code=400, detail="Invalid file name")
-    
+
     # Modify to not append '.json' if already present
     file_path = os.path.join(
-        base_directory, 
-        f"{file_name}.json" if not file_name.endswith('.json') else file_name
+        base_directory,
+        f"{file_name}.json" if not file_name.endswith(".json") else file_name,
     )
-    
-    if (not os.path.abspath(file_path).startswith(os.path.abspath(base_directory))):
+
+    if not os.path.abspath(file_path).startswith(os.path.abspath(base_directory)):
         raise HTTPException(status_code=400, detail="Invalid file path")
-    
+
     if not os.path.exists(file_path):
         logging.error(f"File not found: {file_path}")
         raise HTTPException(status_code=404, detail=f"File '{file_path}' not found")
-    
+
     try:
-        with open(file_path, 'r') as f:
+        with open(file_path) as f:
             # Load JSON and format it prettily
             content = json.load(f)
             formatted_content = json.dumps(content, indent=2, sort_keys=True)
             return Response(content=formatted_content, media_type="application/json")
     except json.JSONDecodeError as e:
         logging.error(f"Invalid JSON in file {file_path}: {e}")
-        raise HTTPException(status_code=500, detail="Invalid JSON content")
+        raise HTTPException(status_code=500, detail="Invalid JSON content") from e
     except Exception as e:
         logging.error(f"Error reading file {file_path}: {e}\n{traceback.format_exc()}")
-        raise HTTPException(status_code=500, detail="Internal Server Error")
+        raise HTTPException(status_code=500, detail="Internal Server Error") from e
+
 
 @app.get("/logos/{file_name}")
 async def read_logo_file(file_name: str):
     name, ext = os.path.splitext(file_name)
-    ext = ext.lower() if ext else ''
-    
-    if (ext and ext not in ['.png', '.svg']):
+    ext = ext.lower() if ext else ""
+
+    if ext and ext not in [".png", ".svg"]:
         raise HTTPException(status_code=400, detail="Invalid file extension")
-        
-    base_directory = os.path.join(BASE_DIR, 'assets/images/logos')
-    if (".." in file_name or file_name.startswith("/")):
+
+    base_directory = os.path.join(BASE_DIR, "assets/images/logos")
+    if ".." in file_name or file_name.startswith("/"):
         raise HTTPException(status_code=400, detail="Invalid file name")
 
-    if (ext):
+    if ext:
         # Specific extension requested
-        dir_path = os.path.join(base_directory, ext.lstrip('.'))
+        dir_path = os.path.join(base_directory, ext.lstrip("."))
         file_path = os.path.join(dir_path, name.upper() + ext)
-        media_type = "image/svg+xml" if ext == '.svg' else "image/png"
+        media_type = "image/svg+xml" if ext == ".svg" else "image/png"
     else:
         # Use default image format for primary_ext
-        primary_ext = f'.{DEFAULT_IMAGE_FORMAT}'
-        fallback_ext = '.svg' if DEFAULT_IMAGE_FORMAT == 'png' else '.png'
+        primary_ext = f".{DEFAULT_IMAGE_FORMAT}"
+        fallback_ext = ".svg" if DEFAULT_IMAGE_FORMAT == "png" else ".png"
         file_path, media_type = try_file_with_ext(
-            base_directory, 
+            base_directory,
             name.upper(),
             primary_ext=primary_ext,
             fallback_ext=fallback_ext,
-            none_fallback=True
+            none_fallback=True,
         )
-        if (not file_path):
+        if not file_path:
             raise HTTPException(status_code=404, detail="Image not found in any format")
 
-    if (not os.path.abspath(file_path).startswith(os.path.abspath(base_directory))):
+    if not os.path.abspath(file_path).startswith(os.path.abspath(base_directory)):
         raise HTTPException(status_code=400, detail="Invalid file path")
-    
+
     return get_file_content(file_path, media_type)
+
 
 @app.get("/flags/{file_name}")
 async def read_flag_file(file_name: str):
     name, ext = os.path.splitext(file_name)
-    ext = ext.lower() if ext else ''
-    
-    if (ext and ext not in ['.png', '.svg']):
+    ext = ext.lower() if ext else ""
+
+    if ext and ext not in [".png", ".svg"]:
         raise HTTPException(status_code=400, detail="Invalid file extension")
-        
-    base_directory = os.path.join(BASE_DIR, 'assets/images/flags')
-    if (".." in file_name or file_name.startswith("/")):
+
+    base_directory = os.path.join(BASE_DIR, "assets/images/flags")
+    if ".." in file_name or file_name.startswith("/"):
         raise HTTPException(status_code=400, detail="Invalid file name")
 
-    if (ext):
+    if ext:
         # Specific extension requested
-        dir_path = os.path.join(base_directory, ext.lstrip('.'))
+        dir_path = os.path.join(base_directory, ext.lstrip("."))
         file_path = os.path.join(dir_path, name.lower() + ext)
-        media_type = "image/svg+xml" if ext == '.svg' else "image/png"
+        media_type = "image/svg+xml" if ext == ".svg" else "image/png"
     else:
         # Try PNG first, fallback to SVG
-        file_path, media_type = try_file_with_ext(base_directory, name.lower(), primary_ext='.png', fallback_ext='.svg')
-        if (not file_path):
-            raise HTTPException(status_code=404, detail="Image not found in either PNG or SVG format")
+        file_path, media_type = try_file_with_ext(
+            base_directory,
+            name.lower(),
+            primary_ext=".png",
+            fallback_ext=".svg",
+        )
+        if not file_path:
+            raise HTTPException(
+                status_code=404, detail="Image not found in either PNG or SVG format"
+            )
 
-    if (not os.path.abspath(file_path).startswith(os.path.abspath(base_directory))):
+    if not os.path.abspath(file_path).startswith(os.path.abspath(base_directory)):
         raise HTTPException(status_code=400, detail="Invalid file path")
-    
+
     return get_file_content(file_path, media_type)
 
+
 # Mount the .web directory to serve static files
-app.mount("/assets/.web", StaticFiles(directory=os.path.join(BASE_DIR, "assets/.web")), name="web_assets")
+app.mount(
+    "/assets/.web",
+    StaticFiles(directory=os.path.join(BASE_DIR, "assets/.web")),
+    name="web_assets",
+)
+
 
 def kill_process_on_port(port):
     """Kill any process using the specified port owned by the current user."""
     try:
-        result = subprocess.check_output(f"netstat -nlp 2>/dev/null | grep :{port}", shell=True).decode()
+        result = subprocess.check_output(
+            f"netstat -nlp 2>/dev/null | grep :{port}", shell=True
+        ).decode()
         for line in result.splitlines():
             parts = line.split()
             pid_info = parts[-1]
-            if ("/" in pid_info):
+            if "/" in pid_info:
                 pid = int(pid_info.split("/")[0])
                 try:
                     os.kill(pid, 9)
@@ -682,39 +773,34 @@ def kill_process_on_port(port):
     except subprocess.CalledProcessError:
         pass
     except Exception as e:
-        logger.error(f"Error killing process on port {port}: {str(e)}\n{traceback.format_exc()}")
+        logger.error(
+            f"Error killing process on port {port}: {str(e)}\n{traceback.format_exc()}"
+        )
         raise
 
-def get_lan_ip():
-    """Get the machine's LAN IP address."""
-    import socket
-    try:
-        # Create a UDP socket
-        s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-        # Connect to an external IP address
-        s.connect(('8.8.8.8', 80))
-        # Get the local IP address
-        ip = s.getsockname()[0]
-        s.close()
-        return ip
-    except Exception:
-        return '127.0.0.1'  # Fallback to localhost
+
+# (Removed duplicate get_lan_ip definition)
+
 
 def print_endpoints():
     """Print all available API endpoints to the console."""
     print("\nAvailable API endpoints:")
     print("------------------------")
     for route in app.routes:
-        if (hasattr(route, "methods")):
-            methods = ", ".join(route.methods)
-            print(f"{methods:<10} http://{app.state.host}:{app.state.port}{route.path}")
+        methods = ", ".join(getattr(route, "methods", []) or [])
+        path = getattr(route, "path", "")
+        if methods and path:
+            print(f"{methods:<10} http://{app.state.host}:{app.state.port}{path}")
     print()
 
-def start_server(request_port, log_level='ERROR', default_image_format='svg'):
+
+def start_server(request_port, log_level="ERROR", default_image_format="svg"):
     global SERVER_PORT, DEFAULT_IMAGE_FORMAT  # Declare as global
     SERVER_PORT = request_port  # Set the port globally
     DEFAULT_IMAGE_FORMAT = default_image_format  # Set the default image format
-    logger.setLevel(getattr(logging, log_level.upper()))  # Update logger level
+    logger.setLevel(
+        getattr(logging, str(log_level).upper(), logging.ERROR)
+    )  # Update logger level
     try:
         kill_process_on_port(request_port)
         lan_ip = get_lan_ip()
@@ -722,27 +808,28 @@ def start_server(request_port, log_level='ERROR', default_image_format='svg'):
         app.state.port = request_port  # Keep this for compatibility
         app.state.host = lan_ip
         print_endpoints()
-        uvicorn.run(
-            app,
-            host="0.0.0.0",
-            port=request_port
-        )
+        uvicorn.run(app, host="0.0.0.0", port=request_port)
     except Exception as e:
-        logger.error(f"Failed to start server on port {request_port}: {str(e)}\n{traceback.format_exc()}")
+        logger.error(
+            f"Failed to start server on port {request_port}: {str(e)}\n{traceback.format_exc()}"
+        )
         raise  # Keep this one
-    
+
+
 def main():
     parser = argparse.ArgumentParser(description="Start the Flights Server")
-    parser.add_argument('--port', type=int, default=8000, help='Port number to run the server on')
-    parser.add_argument('--log_level', type=str, default='ERROR', help='Logging level')
+    parser.add_argument(
+        "--port", type=int, default=8000, help="Port number to run the server on"
+    )
+    parser.add_argument("--log_level", type=str, default="ERROR", help="Logging level")
     args = parser.parse_args()
-    
+
     start_server(request_port=args.port, log_level=args.log_level)
+
 
 if __name__ == "__main__":
     main()
 
-from fastapi.responses import JSONResponse, HTMLResponse  # Import additional response types
 
 # Add custom exception handlers after app initialization
 @app.exception_handler(HTTPException)
@@ -767,6 +854,7 @@ async def http_exception_handler(request: Request, exc: HTTPException):
         # Return JSON response as default
         return JSONResponse(content={"detail": exc.detail}, status_code=exc.status_code)
 
+
 @app.exception_handler(Exception)
 async def generic_exception_handler(request: Request, exc: Exception):
     """Handle unexpected exceptions with custom responses."""
@@ -788,4 +876,6 @@ async def generic_exception_handler(request: Request, exc: Exception):
         return HTMLResponse(content=html_content, status_code=500)
     else:
         # Return JSON response as default
-        return JSONResponse(content={"detail": "Internal Server Error"}, status_code=500)
+        return JSONResponse(
+            content={"detail": "Internal Server Error"}, status_code=500
+        )

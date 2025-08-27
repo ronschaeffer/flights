@@ -1,69 +1,79 @@
-# mqtt_service.py
-import paho.mqtt.client as mqtt
 import json
 import logging
-import traceback
 import os
-import yaml
+import traceback
 
-# Define base directory
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+import paho.mqtt.client as mqtt
 
-# Use absolute path for logging
-LOG_DIR = os.path.join(BASE_DIR, 'logs')
+from config_manager import BASE_DIR
+
+LOG_DIR = os.path.join(BASE_DIR, "logs")
 os.makedirs(LOG_DIR, exist_ok=True)
 
-# Load config to get log level
-config_path = os.path.join(BASE_DIR, 'config/config.yaml')
-with open(config_path, 'r') as config_file:
-    config = yaml.safe_load(config_file)
-
-# Configure logging with config log level
-logger = logging.getLogger('mqtt_service')
-logger.setLevel(getattr(logging, config.get('LOG_LEVEL', 'ERROR').upper()))
 
 class MQTTService:
-    def __init__(self, config):
-        """Initialize MQTT service with config parameters"""
-        self.client = mqtt.Client(mqtt.CallbackAPIVersion.VERSION2, client_id=config.get('MQTT_CLIENT_ID', 'flight_tracker'))
-        self.broker_host = config['MQTT_BROKER']
-        self.broker_port = config['MQTT_BROKER_PORT']
+    def __init__(self, cfg):
+        """Initialize MQTT service with config parameters."""
+        self.logger = logging.getLogger("mqtt_service")
+        self.logger.setLevel(
+            getattr(logging, (cfg.get("log_level") or "ERROR").upper())
+        )
+
+        client_id = str(
+            cfg.get("mqtt_client_id") or cfg.get("MQTT_CLIENT_ID") or "flight_tracker"
+        )
+        # Use default protocol and transport; CallbackAPIVersion not required for basic usage
+        self.client = mqtt.Client(client_id=client_id)
+
+        self.broker_host = str(cfg.get("mqtt_broker") or cfg.get("MQTT_BROKER"))
+        self.broker_port = int(
+            cfg.get("mqtt_broker_port") or cfg.get("MQTT_BROKER_PORT") or 1883
+        )
+
         self.topics = [
-            config.get('MQTT_TOPIC_VISIBLE', 'dev/flights/visible'),  # Changed from MQTT_TOPIC_STATISTICS to MQTT_TOPIC_VISIBLE
-            config.get('MQTT_TOPIC_CLOSEST_AIRCRAFT', 'dev/flights/closest')
+            str(
+                cfg.get("mqtt_topic_visible")
+                or cfg.get("MQTT_TOPIC_VISIBLE")
+                or "dev/flights/visible"
+            ),
+            str(
+                cfg.get("mqtt_topic_closest_aircraft")
+                or cfg.get("MQTT_TOPIC_CLOSEST_AIRCRAFT")
+                or "dev/flights/closest"
+            ),
         ]
-        
-        # Set up logging
-        self.logger = logging.getLogger('mqtt_service')
-        self.logger.setLevel(getattr(logging, config.get('LOG_LEVEL', 'ERROR').upper()))
-        
-        # Set authentication if provided
-        if 'MQTT_USER' in config and 'MQTT_PWD' in config:
-            self.client.username_pw_set(config['MQTT_USER'], config['MQTT_PWD'])
-        
+
+        username = cfg.get("mqtt_user") or cfg.get("MQTT_USER")
+        password = cfg.get("mqtt_pwd") or cfg.get("MQTT_PWD")
+        if username and password:
+            self.client.username_pw_set(str(username), str(password))
+
     def connect(self):
         try:
             self.client.connect(self.broker_host, self.broker_port)
-            print(f"\n\nConnected to MQTT broker: {self.broker_host}:{self.broker_port}")
-            print(f"MQTT client id: {self.client._client_id.decode()}")
+            print(f"\nConnected to MQTT broker: {self.broker_host}:{self.broker_port}")
+            _cid = self.client._client_id
+            client_id_display = _cid.decode() if isinstance(_cid, bytes) else _cid
+            print(f"MQTT client id: {client_id_display}")
             print("Topics:")
             for topic in self.topics:
                 print(f"  {topic}")
             self.client.loop_start()
-            print("\n")
         except Exception as e:
-            logging.error(f"MQTT connection failed: {str(e)}\n{traceback.format_exc()}")
+            logging.error(f"MQTT connection failed: {e}\n{traceback.format_exc()}")
             raise
-            
+
     def disconnect(self):
-        self.client.loop_stop()
-        self.client.disconnect()
-        
-    def publish(self, topic, payload, qos=1, retain=True):
+        try:
+            self.client.loop_stop()
+        finally:
+            self.client.disconnect()
+
+    def publish(self, topic: str, payload, qos: int = 1, retain: bool = True):
         try:
             if isinstance(payload, dict):
                 payload = json.dumps(payload)
             self.client.publish(topic, payload, qos=qos, retain=retain)
         except Exception as e:
-            logging.error(f"MQTT publish failed - Topic: {topic}, Error: {str(e)}")
+            logging.error(f"MQTT publish failed - Topic: {topic}, Error: {e}")
             raise
