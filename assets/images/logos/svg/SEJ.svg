@@ -3,7 +3,7 @@
 <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 viewBox="0 0 89.01 80" style="enable-background:new 0 0 89.01 80;" xml:space="preserve">
 <style type="text/css">
-	
+
 		.st0{clip-path:url(#SVGID_00000103982461797216355340000016535248191283571134_);fill:url(#XMLID_00000127003248910035374080000006802074328254234546_);}
 </style>
 <g id="XMLID_121_">
@@ -33,12 +33,12 @@
 		<clipPath id="SVGID_00000127043121566291731330000003455117861336454566_">
 			<use xlink:href="#SVGID_1_"  style="overflow:visible;"/>
 		</clipPath>
-		
+
 			<linearGradient id="XMLID_00000039831480284824513730000010059532045975720080_" gradientUnits="userSpaceOnUse" x1="1.982" y1="79.2377" x2="2.696" y2="79.2377" gradientTransform="matrix(-91.844 -37.107 -37.107 91.844 3204.0796 -7148.4336)">
 			<stop  offset="0" style="stop-color:#FFDD00"/>
 			<stop  offset="1" style="stop-color:#F58220"/>
 		</linearGradient>
-		
+
 			<polygon id="XMLID_122_" style="clip-path:url(#SVGID_00000127043121566291731330000003455117861336454566_);fill:url(#XMLID_00000039831480284824513730000010059532045975720080_);" points="
 			117.66,11.03 11.4,-31.94 -29.62,69.54 76.71,112.51 		"/>
 	</g>

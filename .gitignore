@@ -29,6 +29,11 @@ __pypackages__/
 # IDEs
 .vscode/
 
+# Development tools
+.dev-scripts/__pycache__/
+.ruff_cache/
+.pre-commit-cache/
+
 # Project specific
 output/
 logs/

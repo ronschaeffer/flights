@@ -10,10 +10,10 @@ import os
 import subprocess
 import traceback
 
-import uvicorn
 from fastapi import FastAPI, HTTPException, Request, Response
 from fastapi.responses import HTMLResponse, JSONResponse
 from fastapi.staticfiles import StaticFiles
+import uvicorn
 
 from config_manager import BASE_DIR, config
 

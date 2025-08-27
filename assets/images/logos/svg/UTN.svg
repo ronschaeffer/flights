@@ -5,7 +5,7 @@
 <style type="text/css">
 	.st0{fill:#003E69;}
 	.st1{fill:#CF003D;}
-	
+
 		.st2{clip-path:url(#SVGID_00000163765067192179161310000007193149097088847288_);fill:url(#rect29_00000073698954479981503440000014136205942488254880_);}
 </style>
 <g>
@@ -22,13 +22,13 @@
 			<clipPath id="SVGID_00000160903238205790975070000002349673119896852920_">
 				<use xlink:href="#SVGID_1_"  style="overflow:visible;"/>
 			</clipPath>
-			
+
 				<linearGradient id="rect29_00000038371142952745302270000012868139229353433223_" gradientUnits="userSpaceOnUse" x1="178.0989" y1="-62.9015" x2="262.9402" y2="34.2219" gradientTransform="matrix(0.8233 0 0 -0.8233 -40.634 268.7526)">
 				<stop  offset="0" style="stop-color:#AE4904"/>
 				<stop  offset="0.5" style="stop-color:#E99D01"/>
 				<stop  offset="1" style="stop-color:#F5AD00"/>
 			</linearGradient>
-			
+
 				<rect id="rect29" x="94.45" y="225.84" style="clip-path:url(#SVGID_00000160903238205790975070000002349673119896852920_);fill:url(#rect29_00000038371142952745302270000012868139229353433223_);" width="103.7" height="97.11"/>
 		</g>
 	</g>

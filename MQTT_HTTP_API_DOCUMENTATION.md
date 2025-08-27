@@ -14,10 +14,10 @@ This document thoroughly analyzes the MQTT publishing and HTTP API/hosting funct
   - Client ID: configurable (default: 'flight_tracker')
   - MQTT version: uses `mqtt.CallbackAPIVersion.VERSION2`
   - Authentication: username/password (optional)
-  
+
 - **Connection Parameters:**
   - Broker host: required (from config `MQTT_BROKER`)
-  - Broker port: required (from config `MQTT_BROKER_PORT`) 
+  - Broker port: required (from config `MQTT_BROKER_PORT`)
   - User/Password: optional (from config `MQTT_USER`, `MQTT_PWD`)
 
 - **Topic Management:**
@@ -58,9 +58,9 @@ mqtt_service.connect()
 
 # 2. Data publishing through helper function
 previous_data = publish_and_print(
-    mqtt_service, 
+    mqtt_service,
     topic,
-    data, 
+    data,
     previous_data,
     file_path,
     print_func
@@ -153,7 +153,7 @@ previous_data = publish_and_print(
    def get_lan_ip():
        # Creates UDP socket, connects to 8.8.8.8:80
        # Returns local interface IP, fallback: '127.0.0.1'
-   
+
    base_url = f"http://{get_lan_ip()}:{SERVER_PORT}"
    ```
 
@@ -168,7 +168,7 @@ previous_data = publish_and_print(
 
 **1. Root Endpoint (`GET /`)**
 - **Purpose:** Main landing page and API index
-- **Content Negotiation:** 
+- **Content Negotiation:**
   - `Accept: text/html` → HTML page with navigation
   - Default/JSON → JSON response with available endpoints
 - **Data Sources:** Scans `output/` directory for JSON files
@@ -187,7 +187,7 @@ previous_data = publish_and_print(
 
 **2. JSON File Endpoints (`GET /{file_name}`)**
 - **Purpose:** Serve output JSON files with pretty formatting
-- **Path Handling:** 
+- **Path Handling:**
   - Auto-appends `.json` if missing
   - Security validation (no `..` or absolute paths)
   - Path traversal protection
@@ -258,7 +258,7 @@ def get_directory_listing(base_dir, ext=None, strip_ext=False):
 def try_file_with_ext(base_dir, filename, primary_ext, fallback_ext, none_fallback):
     # Multi-format file resolution
     # Primary format attempt
-    # Fallback format attempt  
+    # Fallback format attempt
     # _NONE fallback for missing files
     # Returns path and proper MIME type
 ```

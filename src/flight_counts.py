@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 
+from datetime import datetime, timedelta
 import logging
 import os
 import pickle
 import traceback
-from datetime import datetime, timedelta
 
 import yaml
 

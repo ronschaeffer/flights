@@ -16,7 +16,7 @@
 		<stop  offset="0.7445" style="stop-color:#F7AC1B"/>
 	</radialGradient>
 	<polygon class="st1" points="35,48.4 39.1,29.2 24.1,42.1 6.6,31.8 14,50.3 0,64 19.5,62.1 27.8,80 32.2,60.7 51.9,59.1 	"/>
-	
+
 		<radialGradient id="SVGID_00000071557795450473418920000011272289887957964707_" cx="133.1466" cy="-13.8203" r="142.3024" gradientUnits="userSpaceOnUse">
 		<stop  offset="0" style="stop-color:#67A240"/>
 		<stop  offset="0.7445" style="stop-color:#186331"/>

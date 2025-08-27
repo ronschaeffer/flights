@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 
+from datetime import UTC, datetime
 import json
 import logging
 import os
@@ -7,12 +8,11 @@ import sys
 import threading
 import time
 import traceback
-from datetime import UTC, datetime
 from typing import Any
 
+from flydenity import Parser
 import requests
 import shapely.geometry
-from flydenity import Parser
 
 from config_manager import BASE_DIR, config
 from enrich_flight_info import create_flights_rich

@@ -1,8 +1,8 @@
+from datetime import datetime
 import json
 import logging
 import os
 import traceback
-from datetime import datetime
 
 import airportsdata
 import haversine
