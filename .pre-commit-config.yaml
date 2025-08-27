@@ -7,15 +7,22 @@ repos:
       - id: check-yaml
       - id: check-added-large-files
 
-  - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.12.7
+  - repo: local
     hooks:
-      - id: ruff
-        args: ["--fix"]
+      - id: ruff-check
+        name: ruff-check
+        entry: ruff check --fix
+        language: system
+        types: [python]
+        require_serial: true
       - id: ruff-format
-
-  - repo: https://github.com/codespell-project/codespell
-    rev: v2.2.5
-    hooks:
+        name: ruff-format
+        entry: ruff format
+        language: system
+        types: [python]
+        require_serial: true
       - id: codespell
-        args: ["--write-changes"]
+        name: codespell
+        entry: codespell --write-changes
+        language: system
+        types: [text]
