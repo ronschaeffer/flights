@@ -2,8 +2,8 @@ import os
 
 import yaml
 
-# Define base directory
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+# Define base directory - from package in src/flights, go up two levels to reach project root
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 
 def _normalize(dct: dict) -> dict:

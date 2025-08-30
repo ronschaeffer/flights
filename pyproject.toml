@@ -21,6 +21,9 @@ dependencies = [
     "airportsdata (>=20241001,<20241002)"
 ]
 
+[project.scripts]
+flights = "flights.__main__:main"
+
 
 [build-system]
 requires = ["poetry-core>=2.0.0,<3.0.0"]
