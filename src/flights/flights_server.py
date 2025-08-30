@@ -15,7 +15,7 @@ from fastapi import FastAPI, HTTPException, Request, Response
 from fastapi.responses import HTMLResponse, JSONResponse
 from fastapi.staticfiles import StaticFiles
 
-from config_manager import BASE_DIR, config
+from .config_manager import BASE_DIR, config
 
 # Use output directory from main application - don't create it here
 OUTPUT_DIR = os.path.join(BASE_DIR, "output")  # Only define the path, don't create directory

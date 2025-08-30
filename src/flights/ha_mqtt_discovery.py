@@ -3,7 +3,7 @@ import os
 import uuid
 from typing import Any
 
-from config_manager import BASE_DIR, config
+from .config_manager import BASE_DIR, config
 
 
 def generate_unique_id(prefix: str) -> str:

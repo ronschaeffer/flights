@@ -5,7 +5,7 @@ import traceback
 
 import paho.mqtt.client as mqtt
 
-from config_manager import BASE_DIR
+from .config_manager import BASE_DIR
 
 LOG_DIR = os.path.join(BASE_DIR, "logs")
 os.makedirs(LOG_DIR, exist_ok=True)

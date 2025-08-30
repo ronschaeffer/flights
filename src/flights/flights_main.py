@@ -14,9 +14,9 @@ import requests
 import shapely.geometry
 from flydenity import Parser
 
-from config_manager import BASE_DIR, config
-from enrich_flight_info import create_flights_rich
-from flight_counts import (
+from .config_manager import BASE_DIR, config
+from .enrich_flight_info import create_flights_rich
+from .flight_counts import (
     calculate_averages,
     count_unique_flights_in_period,
     get_time_periods,
@@ -24,9 +24,9 @@ from flight_counts import (
     save_unique_flights_data,
     update_unique_flights,
 )
-from flights_server import get_lan_ip, start_server
-from ha_mqtt_discovery import get_discovery_file_path, process_ha_mqtt_discovery
-from mqtt_service import MQTTService
+from .flights_server import get_lan_ip, start_server
+from .ha_mqtt_discovery import get_discovery_file_path, process_ha_mqtt_discovery
+from .mqtt_service import MQTTService
 
 # Paths
 OUTPUT_DIR = os.path.join(BASE_DIR, "output")
