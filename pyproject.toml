@@ -1,48 +1,118 @@
 [project]
 name = "flights"
-version = "0.1.0"
-description = "Enriches flight data from ADS-B available with MQTT and HTTP API, suitable for integration with Home Assistant"
+version = "0.2.0"
+description = "Enriches flight data from ADS-B with MQTT and HTTP API for Home Assistant"
 authors = [
-    {name = "ronschaeffer",email = "ron@ronschaeffer.com"}
+    { name = "ronschaeffer", email = "ron@ronschaeffer.com" }
 ]
-license = {text = "GNU General Public License v3.0"}
+license = { text = "MIT" }
 readme = "README.md"
-requires-python = ">=3.11,<4.0"
+requires-python = ">=3.11"
 dependencies = [
-    "requests (>=2.32.3,<3.0.0)",
-    "paho-mqtt (>=2.1.0,<3.0.0)",
-    "pyyaml (>=6.0.2,<7.0.0)",
-    "haversine (>=2.9.0,<3.0.0)",
-    "shapely (>=2.0.6,<3.0.0)",
-    "tabulate (>=0.9.0,<0.10.0)",
-    "fastapi (>=0.115.6,<0.116.0)",
-    "uvicorn (>=0.34.0,<0.35.0)",
-    "flydenity (>=0.1.6,<0.2.0)",
-    "airportsdata (>=20241001,<20241002)"
+    "requests>=2.31.0",
+    "paho-mqtt>=2.1.0",
+    "pyyaml>=6.0.1",
+    "python-dotenv>=1.1.1",
+    "ha-mqtt-publisher>=0.3.5",
+    "haversine>=2.9.0",
+    "shapely>=2.0.6",
+    "tabulate>=0.9.0",
+    "fastapi>=0.100.0",
+    "uvicorn[standard]>=0.20.0",
+    "flydenity>=0.1.6",
+    "airportsdata>=20241001",
 ]
 
+[project.scripts]
+flights = "flights.__main__:main"
+
+[tool.poetry]
+packages = [
+    { include = "flights", from = "src" },
+]
+package-mode = true
+
+[tool.poetry.dependencies]
+python = "^3.11"
+requests = "^2.31.0"
+paho-mqtt = "^2.1.0"
+pyyaml = "^6.0.1"
+python-dotenv = "^1.1.1"
+ha-mqtt-publisher = "^0.3.5"
+haversine = "^2.9.0"
+shapely = "^2.0.6"
+tabulate = "^0.9.0"
+fastapi = ">=0.100.0"
+uvicorn = {version = ">=0.20.0", extras = ["standard"]}
+flydenity = "^0.1.6"
+airportsdata = ">=20241001"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.0.0"
+pytest-cov = "^7.0"
+pre-commit = "^4.3.0"
+ruff = "^0.12.0"
+httpx = ">=0.24.0"
 
 [build-system]
-requires = ["poetry-core>=2.0.0,<3.0.0"]
+requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
 
 [tool.ruff]
 target-version = "py311"
-src = ["src"]
-line-length = 120
-extend-exclude = [
-    "assets",
-    "logs",
-    "output",
-    "storage",
-    "dev_tools",
-    "data",
-]
+line-length = 88
+required-version = ">=0.12.0"
+exclude = ["assets/**", "data/**", "output/**", "logs/**", "storage/**"]
 
 [tool.ruff.lint]
-select = ["E", "F", "I", "UP", "B"]
+select = [
+    "A001",
+    "B002", "B005", "B007", "B009", "B014", "B015", "B017", "B018",
+    "B023", "B026", "B032", "B904", "B905",
+    "C4",
+    "E",
+    "F", "F541",
+    "G004",
+    "I",
+    "N804", "N805", "N815",
+    "PT",
+    "RUF",
+    "S102", "S103", "S307",
+    "SIM102", "SIM103", "SIM108",
+    "TRY300",
+    "UP", "UP031", "UP032",
+    "W",
+]
+
+ignore = [
+    "C901",
+    "E501",
+    "S101",
+    "S104",
+    "S105",
+    "S110",
+    "S607",
+    "PT009",
+    "PT011",
+    "PT017",
+    "PT018",
+    "SIM117",
+    "TRY003",
+    "TRY300",
+    "TRY400",
+    "UP007",
+    "UP038",
+]
+
+[tool.ruff.lint.isort]
+force-sort-within-sections = true
+combine-as-imports = true
 
 [tool.ruff.format]
 quote-style = "double"
 indent-style = "space"
-line-ending = "auto"
+line-ending = "lf"
+
+[tool.codespell]
+ignore-words-list = "nd,st,rd,th"
+skip = "*.json,*.pyc,__pycache__,*.git"

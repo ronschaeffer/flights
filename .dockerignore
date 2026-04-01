@@ -1,8 +1,13 @@
-ha_mqtt_disc_payload.json
+.git/
+.gitignore
+.venv/
+.pytest_cache/
+.ruff_cache/
+__pycache__/
+*.pyc
 output/
 logs/
-temp/
-.gitignore
 storage/
+tests/
 *.code-workspace
-.venv/
+.ha_discovery_state.json

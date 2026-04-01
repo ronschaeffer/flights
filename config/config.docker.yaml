@@ -1,0 +1,55 @@
+# Docker defaults - all values overridden by environment variables
+
+app:
+  name: "Flights"
+  unique_id_prefix: "flights"
+  manufacturer: "ronschaeffer"
+  model: "Flights"
+
+mqtt:
+  broker_url: "${MQTT_BROKER_URL}"
+  broker_port: 1883
+  client_id: "flights_client"
+  security: "none"
+  auth:
+    username: "${MQTT_USERNAME}"
+    password: "${MQTT_PASSWORD}"
+  tls:
+    verify: true
+  topics:
+    visible: "flights/visible"
+    closest: "flights/closest"
+    availability: "flights/availability"
+
+home_assistant:
+  enabled: true
+  discovery_prefix: "homeassistant"
+
+web_server:
+  enabled: true
+  host: "0.0.0.0"
+  port: 47475
+  external_url: "${WEB_SERVER_EXTERNAL_URL}"
+  image_format: "svg"
+
+receiver:
+  dump_url: "${DUMP_URL}"
+  check_interval: 15
+
+location:
+  lat: 0.0
+  lon: 0.0
+  radius: 10
+  distance_unit: "mi"
+  altitude_unit: "ft"
+
+zone:
+  lat_south: 0.0
+  lat_north: 0.0
+  lon_west: 0.0
+  lon_east: 0.0
+  max_alt: 3000
+  min_alt: 0
+
+logging:
+  level: "INFO"

@@ -1,8 +1,0 @@
-services:
-  flights:
-    image: ghcr.io/ronschaeffer/flights:latest
-    container_name: flights
-    restart: always
-    ports:
-      - "47474:47474"
-    working_dir: /app/src  # Set the working directory
