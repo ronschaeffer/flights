@@ -176,6 +176,39 @@ def _check_web_server(config: FlightsConfig) -> str:
     return "offline"
 
 
+def _check_receiver(config: FlightsConfig) -> tuple[str, str]:
+    """Check ADS-B receiver health via /ajax/stats.
+
+    Returns (status, detail) where status is 'online' or 'offline'
+    and detail explains the state.
+    """
+    if not config.get("receiver.health_check", True):
+        return "online", ""
+    dump_url = str(config.get("receiver.dump_url", ""))
+    if not dump_url:
+        return "offline", "No receiver URL configured"
+    # Derive stats URL from dump URL (same host, /ajax/stats)
+    base = (
+        dump_url.rsplit("/ajax/", 1)[0]
+        if "/ajax/" in dump_url
+        else dump_url.rstrip("/")
+    )
+    stats_url = f"{base}/ajax/stats"
+    try:
+        resp = requests.get(stats_url, timeout=5)
+        if resp.status_code != 200:
+            return "offline", f"HTTP {resp.status_code} from {stats_url}"
+        data = resp.json()
+        bytes_ps = data.get("receiver_bytes_in_ps", 0)
+        if bytes_ps > 0:
+            return "online", f"Receiving {bytes_ps} bytes/s"
+        return "offline", "Receiver not receiving data (0 bytes/s)"
+    except requests.ConnectionError:
+        return "offline", f"Cannot connect to {stats_url}"
+    except Exception as exc:
+        return "offline", str(exc)
+
+
 def _publish_status(
     publisher,
     config: FlightsConfig,
@@ -184,14 +217,23 @@ def _publish_status(
 ) -> None:
     """Publish a status payload for diagnostic sensors."""
     status_topic = config.get("mqtt.topics.status", "flights/status")
+
+    receiver_status, receiver_detail = _check_receiver(config)
+    web_status = _check_web_server(config)
+
     status = "error" if error else "active"
-    payload = {
+    payload: dict[str, Any] = {
         "status": status,
         "visible_aircraft": visible_count,
         "last_update": datetime.now(UTC).isoformat(),
         "sw_version": __version__,
-        "web_server_status": _check_web_server(config),
     }
+    if config.get("web_server.enabled", True):
+        payload["web_server_status"] = web_status
+    if config.get("receiver.health_check", True):
+        payload["receiver_status"] = receiver_status
+        if receiver_detail:
+            payload["receiver_detail"] = receiver_detail
     if error:
         payload["error"] = error
     try:

@@ -36,6 +36,7 @@ web_server:
 receiver:
   dump_url: "${DUMP_URL}"
   check_interval: 15
+  health_check: true
 
 location:
   lat: 0.0

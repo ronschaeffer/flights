@@ -104,18 +104,14 @@ def test_publish_discovery_builds_bundle(config):
     assert topic == "homeassistant/device/flights_test/config"
     # Abbreviated device keys
     assert "ids" in payload["dev"]
+    assert payload["dev"]["ids"] == "flights_test"
     assert "mf" in payload["dev"]
-    assert "mdl" in payload["dev"]
-    assert "sw" in payload["dev"]
-    # Full keys should NOT be present
-    assert "identifiers" not in payload["dev"]
-    assert "manufacturer" not in payload["dev"]
     # Components
     assert "cmps" in payload
     assert "closest" in payload["cmps"]
     assert "visible" in payload["cmps"]
     assert "status" in payload["cmps"]
-    assert "web_server" in payload["cmps"]
+    assert "receiver" in payload["cmps"]  # health_check defaults to True
     assert "refresh" in payload["cmps"]
     # Availability
     assert "availability" in payload

@@ -1,0 +1,123 @@
+# Persistent notification when Flights data sources go offline.
+#
+# Triggers when:
+# - The ADS-B receiver stops responding or stops receiving data
+# - The Flights web server becomes unreachable
+# - The Flights device itself goes unavailable (MQTT disconnect)
+#
+# Clears the notification automatically when the source recovers.
+#
+# Import: Settings → Automations → Create Automation → ⋮ → Import YAML
+
+alias: "Flights: Data source alert"
+description: >-
+  Creates a persistent notification when the ADS-B receiver or Flights
+  web server goes offline, and dismisses it when they recover.
+mode: queued
+max: 5
+
+trigger:
+  # ADS-B receiver goes offline
+  - id: receiver_offline
+    platform: state
+    entity_id: binary_sensor.mqtt_publisher_receiver
+    to: "off"
+    for:
+      minutes: 2
+  # ADS-B receiver comes back online
+  - id: receiver_online
+    platform: state
+    entity_id: binary_sensor.mqtt_publisher_receiver
+    to: "on"
+  # Web server goes offline
+  - id: web_server_offline
+    platform: state
+    entity_id: binary_sensor.mqtt_publisher_web_server
+    to: "off"
+    for:
+      minutes: 2
+  # Web server comes back online
+  - id: web_server_online
+    platform: state
+    entity_id: binary_sensor.mqtt_publisher_web_server
+    to: "on"
+  # Flights device becomes unavailable (MQTT disconnect / crash)
+  - id: device_unavailable
+    platform: state
+    entity_id: sensor.mqtt_publisher_status
+    to: "unavailable"
+    for:
+      minutes: 2
+  # Flights device becomes available again
+  - id: device_available
+    platform: state
+    entity_id: sensor.mqtt_publisher_status
+    from: "unavailable"
+
+action:
+  - choose:
+      # --- Failures ---
+      - conditions:
+          - condition: trigger
+            id: receiver_offline
+        sequence:
+          - action: persistent_notification.create
+            data:
+              notification_id: flights_receiver_alert
+              title: "Flights: ADS-B Receiver Offline"
+              message: >-
+                The ADS-B receiver (Plane Finder Client) is not responding
+                or has stopped receiving data. Check the device at
+                {{ state_attr('sensor.mqtt_publisher_status', 'receiver_detail')
+                   | default('(no detail available)') }}.
+
+      - conditions:
+          - condition: trigger
+            id: web_server_offline
+        sequence:
+          - action: persistent_notification.create
+            data:
+              notification_id: flights_web_server_alert
+              title: "Flights: Web Server Offline"
+              message: >-
+                The Flights HTTP API server is not responding.
+                Airline logos and flight data API are unavailable.
+                Check the Flights Docker container.
+
+      - conditions:
+          - condition: trigger
+            id: device_unavailable
+        sequence:
+          - action: persistent_notification.create
+            data:
+              notification_id: flights_device_alert
+              title: "Flights: Service Unavailable"
+              message: >-
+                The Flights service has disconnected from MQTT.
+                This usually means the Docker container has stopped
+                or crashed. Check Unraid Docker manager.
+
+      # --- Recoveries ---
+      - conditions:
+          - condition: trigger
+            id: receiver_online
+        sequence:
+          - action: persistent_notification.dismiss
+            data:
+              notification_id: flights_receiver_alert
+
+      - conditions:
+          - condition: trigger
+            id: web_server_online
+        sequence:
+          - action: persistent_notification.dismiss
+            data:
+              notification_id: flights_web_server_alert
+
+      - conditions:
+          - condition: trigger
+            id: device_available
+        sequence:
+          - action: persistent_notification.dismiss
+            data:
+              notification_id: flights_device_alert

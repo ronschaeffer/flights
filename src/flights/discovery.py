@@ -1,8 +1,7 @@
 """Home Assistant MQTT discovery using device-bundle payload.
 
-Uses abbreviated device keys (ids/mf/mdl/sw) as required by HA's
-device-bundle discovery format. Per-entity discovery accepts full keys
-but device bundles require abbreviated keys.
+Publishes a single retained message to homeassistant/device/<id>/config
+containing the device info, origin, all component configs, and availability.
 """
 
 from __future__ import annotations
@@ -101,19 +100,6 @@ def create_entities(config: FlightsConfig, device: Device) -> list[Entity]:
             device_class="timestamp",
             entity_category="diagnostic",
         ),
-        Entity(
-            config.data,
-            device,
-            component="binary_sensor",
-            unique_id="web_server",
-            name="Web Server",
-            state_topic=status_topic,
-            value_template="{{ value_json.web_server_status }}",
-            payload_on="online",
-            payload_off="offline",
-            device_class="connectivity",
-            entity_category="diagnostic",
-        ),
         # --- Control buttons ---
         Entity(
             config.data,
@@ -126,11 +112,47 @@ def create_entities(config: FlightsConfig, device: Device) -> list[Entity]:
         ),
     ]
 
+    # Optional: Web server health sensor
+    if config.get("web_server.enabled", True):
+        entities.append(
+            Entity(
+                config.data,
+                device,
+                component="binary_sensor",
+                unique_id="web_server",
+                name="Web Server",
+                state_topic=status_topic,
+                value_template="{{ value_json.web_server_status }}",
+                payload_on="online",
+                payload_off="offline",
+                device_class="connectivity",
+                entity_category="diagnostic",
+            )
+        )
+
+    # Optional: Receiver health sensor
+    if config.get("receiver.health_check", True):
+        entities.append(
+            Entity(
+                config.data,
+                device,
+                component="binary_sensor",
+                unique_id="receiver",
+                name="ADS-B Receiver",
+                state_topic=status_topic,
+                value_template="{{ value_json.receiver_status }}",
+                payload_on="online",
+                payload_off="offline",
+                device_class="connectivity",
+                entity_category="diagnostic",
+            )
+        )
+
     return entities
 
 
 def publish_discovery(config: FlightsConfig, publisher: Any) -> bool:
-    """Publish device-bundle discovery with abbreviated keys."""
+    """Publish device-bundle discovery."""
     if not config.get("home_assistant.enabled", True):
         logger.info("Home Assistant discovery disabled")
         return False
@@ -141,7 +163,7 @@ def publish_discovery(config: FlightsConfig, publisher: Any) -> bool:
     availability_topic = config.get("mqtt.topics.availability", "flights/availability")
     discovery_prefix = config.get("home_assistant.discovery_prefix", "homeassistant")
 
-    # Abbreviated device keys (required for device-bundle discovery)
+    # Abbreviated device keys (HA requires these in device bundles)
     dev: dict[str, Any] = {
         "ids": prefix,
         "name": device.name,
@@ -152,14 +174,9 @@ def publish_discovery(config: FlightsConfig, publisher: Any) -> bool:
         dev["mdl"] = device.model
     if getattr(device, "sw_version", None):
         dev["sw"] = device.sw_version
-    if getattr(device, "configuration_url", None):
-        dev["cu"] = device.configuration_url
-
-    origin = {
-        "name": prefix,
-        "sw": __version__,
-        "url": "https://github.com/ronschaeffer/flights",
-    }
+    cu = getattr(device, "configuration_url", None)
+    if cu:
+        dev["cu"] = cu
 
     # Build compact component payloads
     cmps: dict[str, dict] = {}
@@ -171,7 +188,11 @@ def publish_discovery(config: FlightsConfig, publisher: Any) -> bool:
 
     payload = {
         "dev": dev,
-        "o": origin,
+        "o": {
+            "name": config.get("app.name", "Flights"),
+            "sw": __version__,
+            "url": "https://github.com/ronschaeffer/flights",
+        },
         "cmps": cmps,
         "availability": [{"topic": availability_topic}],
         "payload_available": "online",
