@@ -22,7 +22,7 @@ def create_device(config: FlightsConfig) -> Device:
     """Create an HA device with stable identifiers."""
     prefix = config.get("app.unique_id_prefix", "flights")
     return Device(
-        config.data,
+        config,
         identifiers=[prefix],
         name=config.get("app.name", "Flights"),
         manufacturer=config.get("app.manufacturer", "ronschaeffer"),
@@ -44,7 +44,7 @@ def create_entities(config: FlightsConfig, device: Device) -> list[Entity]:
     entities: list[Entity] = [
         # --- Primary sensors ---
         Entity(
-            config.data,
+            config,
             device,
             component="sensor",
             unique_id="closest",
@@ -64,7 +64,7 @@ def create_entities(config: FlightsConfig, device: Device) -> list[Entity]:
             ),
         ),
         Entity(
-            config.data,
+            config,
             device,
             component="sensor",
             unique_id="visible",
@@ -78,7 +78,7 @@ def create_entities(config: FlightsConfig, device: Device) -> list[Entity]:
         ),
         # --- Diagnostic sensors ---
         Entity(
-            config.data,
+            config,
             device,
             component="sensor",
             unique_id="status",
@@ -90,7 +90,7 @@ def create_entities(config: FlightsConfig, device: Device) -> list[Entity]:
             entity_category="diagnostic",
         ),
         Entity(
-            config.data,
+            config,
             device,
             component="sensor",
             unique_id="last_update",
@@ -102,13 +102,31 @@ def create_entities(config: FlightsConfig, device: Device) -> list[Entity]:
         ),
         # --- Control buttons ---
         Entity(
-            config.data,
+            config,
             device,
             component="button",
             unique_id="refresh",
             name="Refresh",
             command_topic=f"{cmd_topic_base}/refresh",
             icon="mdi:refresh",
+        ),
+        Entity(
+            config,
+            device,
+            component="button",
+            unique_id="clear_cache",
+            name="Clear Cache",
+            command_topic=f"{cmd_topic_base}/clear_cache",
+            icon="mdi:delete-sweep",
+        ),
+        Entity(
+            config,
+            device,
+            component="button",
+            unique_id="restart",
+            name="Restart",
+            command_topic=f"{cmd_topic_base}/restart",
+            icon="mdi:restart",
         ),
     ]
 

@@ -21,7 +21,8 @@ repos:
     rev: v2.2.6
     hooks:
       - id: codespell
-        args: ["--write-changes"]
+        args: ["--write-changes", "--ignore-words=.codespell-ignore"]
+        exclude: "^(assets|data|output|storage)/"
 
   - repo: local
     hooks:

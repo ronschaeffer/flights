@@ -459,19 +459,32 @@ def cmd_service(config: FlightsConfig) -> None:
     signal.signal(signal.SIGTERM, _shutdown_handler)
     signal.signal(signal.SIGINT, _shutdown_handler)
 
-    # Subscribe to refresh command
+    # Subscribe to commands
     prefix = config.get("app.unique_id_prefix", "flights")
-    refresh_topic = f"{prefix}/cmd/refresh"
+    cmd_topic = f"{prefix}/cmd/#"
+    unique_flights_file = os.path.join(STORAGE_DIR, "unique_flights.json")
 
-    def _on_refresh(_client, _userdata, _msg):
-        logger.info("Refresh command received")
-        refresh_event.set()
+    def _on_command(_client, _userdata, msg):
+        cmd = msg.topic.rsplit("/", 1)[-1].lower()
+        logger.info("Command received: %s", cmd)
+        if cmd == "refresh":
+            refresh_event.set()
+        elif cmd == "clear_cache":
+            try:
+                if os.path.exists(unique_flights_file):
+                    os.remove(unique_flights_file)
+                logger.info("Cache cleared (unique flights data removed)")
+            except Exception:
+                logger.exception("Failed to clear cache")
+        elif cmd == "restart":
+            logger.info("Restart requested, shutting down for container restart")
+            shutdown_event.set()
+            refresh_event.set()
 
-    publisher.subscribe(refresh_topic, qos=1, callback=_on_refresh)
+    publisher.subscribe(cmd_topic, qos=1, callback=_on_command)
     publisher.loop_start()
 
     reg_parser = Parser()
-    unique_flights_file = os.path.join(STORAGE_DIR, "unique_flights.json")
     unique_flights_with_timestamps = load_unique_flights_data(unique_flights_file)
     check_interval = int(config.get("receiver.check_interval", 15))
 

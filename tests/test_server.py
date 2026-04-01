@@ -95,3 +95,21 @@ def test_favicon(client):
     """Favicon returns 200 if file exists, 404 otherwise."""
     response = client.get("/favicon.ico")
     assert response.status_code in (200, 404)
+
+
+def test_dashboard_returns_html(client):
+    """Dashboard endpoint returns a self-contained HTML page."""
+    response = client.get("/dashboard")
+    assert response.status_code == 200
+    assert "text/html" in response.headers["content-type"]
+    body = response.text
+    assert "Nearby Flights" in body
+    assert "all_aircraft.json" in body
+    assert "renderFlights" in body
+
+
+def test_dashboard_in_endpoints(client):
+    """Dashboard appears in the endpoints listing."""
+    response = client.get("/endpoints.json")
+    data = response.json()
+    assert "/dashboard" in data["available_endpoints"]

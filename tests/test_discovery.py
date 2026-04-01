@@ -50,6 +50,10 @@ def test_entity_types(config):
     # Buttons
     assert "refresh" in components
     assert components["refresh"] == "button"
+    assert "clear_cache" in components
+    assert components["clear_cache"] == "button"
+    assert "restart" in components
+    assert components["restart"] == "button"
 
 
 def test_closest_sensor_properties(config):
@@ -62,6 +66,8 @@ def test_closest_sensor_properties(config):
     assert payload["unit_of_measurement"] == "mi"
     assert payload["icon"] == "mdi:airplane"
     assert payload["state_topic"] == "test/flights/closest"
+    # Entity ID prefix should be from config, not the library default
+    assert payload["unique_id"] == "flights_test_closest"
 
 
 def test_visible_sensor_properties(config):
@@ -113,6 +119,8 @@ def test_publish_discovery_builds_bundle(config):
     assert "status" in payload["cmps"]
     assert "receiver" in payload["cmps"]  # health_check defaults to True
     assert "refresh" in payload["cmps"]
+    assert "clear_cache" in payload["cmps"]
+    assert "restart" in payload["cmps"]
     # Availability
     assert "availability" in payload
     assert payload["payload_available"] == "online"
