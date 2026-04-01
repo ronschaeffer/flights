@@ -2,9 +2,9 @@
 FROM python:3.11-slim AS builder
 WORKDIR /build
 
-RUN pip install --no-cache-dir poetry
+RUN pip install --no-cache-dir poetry poetry-plugin-export
 
-COPY pyproject.toml poetry.lock* ./
+COPY pyproject.toml poetry.lock ./
 RUN poetry export -f requirements.txt --without dev -o requirements.txt
 
 COPY . .
