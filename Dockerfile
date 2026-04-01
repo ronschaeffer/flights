@@ -23,7 +23,6 @@ RUN pip install --no-cache-dir /tmp/*.whl && rm /tmp/*.whl
 # Copy runtime assets and data
 COPY config/config.docker.yaml /app/config-defaults/config.yaml
 COPY config/config.yaml.example /app/config-defaults/config.yaml.example
-COPY config/planefinder_dump_structure.json /app/config/planefinder_dump_structure.json
 COPY data/ /app/data/
 COPY assets/ /app/assets/
 COPY docker-entrypoint.sh /app/

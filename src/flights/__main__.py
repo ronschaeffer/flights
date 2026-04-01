@@ -250,7 +250,7 @@ def _publish_status(
 def _load_reference_data():
     """Load airlines, aircraft, and reference dump data."""
     reference_dump_path = os.path.join(
-        BASE_DIR, "config", "planefinder_dump_structure.json"
+        BASE_DIR, "data", "planefinder_dump_structure.json"
     )
     with open(reference_dump_path) as f:
         json.load(f)  # validate it loads
