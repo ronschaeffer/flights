@@ -8,7 +8,13 @@ import yaml
 
 logger = logging.getLogger(__name__)
 
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+# Use FLIGHTS_BASE_DIR env var if set (Docker), otherwise derive from source tree.
+# When pip-installed, __file__ is in site-packages so we fall back to cwd.
+_src_root = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+_has_config = os.path.isdir(os.path.join(_src_root, "config"))
+BASE_DIR = os.environ.get("FLIGHTS_BASE_DIR") or (
+    _src_root if _has_config else os.getcwd()
+)
 
 # Environment variable prefixes checked in order
 _ENV_PREFIXES = ("FLIGHTS_", "")
