@@ -1,9 +1,10 @@
 """Home Assistant MQTT discovery with stable device identifiers."""
 
+import json
 import logging
 
 from ha_mqtt_publisher import Device
-from ha_mqtt_publisher.ha_discovery import Sensor, publish_device_bundle
+from ha_mqtt_publisher.ha_discovery import Sensor
 
 from flights import __version__
 from flights.config import FlightsConfig
@@ -31,6 +32,7 @@ def create_entities(config: FlightsConfig, device: Device) -> tuple[Sensor, Sens
     distance_unit = config.get("location.distance_unit", "mi")
     closest_topic = config.get("mqtt.topics.closest", "flights/closest")
     visible_topic = config.get("mqtt.topics.visible", "flights/visible")
+    availability_topic = config.get("mqtt.topics.availability", "flights/availability")
 
     closest_sensor = Sensor(
         config.data,
@@ -50,6 +52,7 @@ def create_entities(config: FlightsConfig, device: Device) -> tuple[Sensor, Sens
             "{% set first_key = value_json.keys() | list | first %}"
             "{{ value_json.get(first_key, {}) | tojson }}"
         ),
+        availability_topic=availability_topic,
     )
 
     visible_sensor = Sensor(
@@ -63,32 +66,28 @@ def create_entities(config: FlightsConfig, device: Device) -> tuple[Sensor, Sens
         value_template="{{ value_json.get('visible_aircraft', 0) }}",
         json_attributes_topic=visible_topic,
         json_attributes_template="{{ value_json | tojson }}",
+        availability_topic=availability_topic,
     )
 
     return closest_sensor, visible_sensor
 
 
 def publish_discovery(config: FlightsConfig, publisher) -> bool:
-    """Publish HA discovery payload with stable identifiers."""
+    """Publish per-entity HA discovery configs with stable identifiers."""
     if not config.get("home_assistant.enabled", True):
         logger.info("Home Assistant discovery disabled")
         return False
 
     device = create_device(config)
     closest, visible = create_entities(config, device)
-    prefix = config.get("app.unique_id_prefix", "flights")
 
     try:
-        publish_device_bundle(
-            config=config.data,
-            publisher=publisher,
-            device=device,
-            entities=[closest, visible],
-            device_id=prefix,
-            retain=True,
-        )
-        logger.info("Published HA discovery payload")
+        for entity in (closest, visible):
+            topic = entity.get_config_topic()
+            payload = entity.get_config_payload()
+            publisher.publish(topic=topic, payload=json.dumps(payload), retain=True)
+            logger.info("Published discovery to %s", topic)
         return True
     except Exception:
-        logger.exception("Failed to publish HA discovery payload")
+        logger.exception("Failed to publish HA discovery")
         return False
