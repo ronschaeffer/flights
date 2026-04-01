@@ -17,8 +17,8 @@ mqtt:
   auth:
     username: ""
     password: ""
-  tls:
-    verify: true
+  # tls:                       # Uncomment when security is tls
+  #   verify: true
   topics:
     visible: "flights/visible"
     closest: "flights/closest"

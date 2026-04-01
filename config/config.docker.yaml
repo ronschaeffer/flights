@@ -14,8 +14,8 @@ mqtt:
   auth:
     username: "${MQTT_USERNAME}"
     password: "${MQTT_PASSWORD}"
-  tls:
-    verify: true
+  # tls:
+  #   verify: true
   topics:
     visible: "flights/visible"
     closest: "flights/closest"
