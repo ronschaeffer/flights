@@ -1,10 +1,17 @@
-"""Home Assistant MQTT discovery with stable device identifiers."""
+"""Home Assistant MQTT discovery using device-bundle payload.
+
+Uses abbreviated device keys (ids/mf/mdl/sw) as required by HA's
+device-bundle discovery format. Per-entity discovery accepts full keys
+but device bundles require abbreviated keys.
+"""
+
+from __future__ import annotations
 
 import json
 import logging
+from typing import Any
 
-from ha_mqtt_publisher import Device
-from ha_mqtt_publisher.ha_discovery import Sensor
+from ha_mqtt_publisher import Device, Entity
 
 from flights import __version__
 from flights.config import FlightsConfig
@@ -26,67 +33,156 @@ def create_device(config: FlightsConfig) -> Device:
     )
 
 
-def create_entities(config: FlightsConfig, device: Device) -> tuple[Sensor, Sensor]:
-    """Create the HA sensor entities with stable unique IDs."""
+def create_entities(config: FlightsConfig, device: Device) -> list[Entity]:
+    """Create all HA entities for the Flights device."""
     prefix = config.get("app.unique_id_prefix", "flights")
     distance_unit = config.get("location.distance_unit", "mi")
     closest_topic = config.get("mqtt.topics.closest", "flights/closest")
     visible_topic = config.get("mqtt.topics.visible", "flights/visible")
-    availability_topic = config.get("mqtt.topics.availability", "flights/availability")
+    status_topic = config.get("mqtt.topics.status", "flights/status")
+    cmd_topic_base = f"{prefix}/cmd"
 
-    closest_sensor = Sensor(
-        config.data,
-        device,
-        name="Closest Aircraft",
-        unique_id=f"{prefix}_closest",
-        state_topic=closest_topic,
-        unit_of_measurement=distance_unit,
-        icon="mdi:airplane",
-        value_template=(
-            "{% set first_key = value_json.keys() | list | first %}"
-            "{{ value_json.get(first_key, {}).get("
-            "'distance_value', 0) | float }}"
+    entities: list[Entity] = [
+        # --- Primary sensors ---
+        Entity(
+            config.data,
+            device,
+            component="sensor",
+            unique_id="closest",
+            name="Closest Aircraft",
+            state_topic=closest_topic,
+            unit_of_measurement=distance_unit,
+            icon="mdi:airplane",
+            value_template=(
+                "{% set first_key = value_json.keys() | list | first %}"
+                "{{ value_json.get(first_key, {}).get("
+                "'distance_value', 0) | float }}"
+            ),
+            json_attributes_topic=closest_topic,
+            json_attributes_template=(
+                "{% set first_key = value_json.keys() | list | first %}"
+                "{{ value_json.get(first_key, {}) | tojson }}"
+            ),
         ),
-        json_attributes_topic=closest_topic,
-        json_attributes_template=(
-            "{% set first_key = value_json.keys() | list | first %}"
-            "{{ value_json.get(first_key, {}) | tojson }}"
+        Entity(
+            config.data,
+            device,
+            component="sensor",
+            unique_id="visible",
+            name="Visible Aircraft",
+            state_topic=visible_topic,
+            unit_of_measurement="planes",
+            icon="mdi:radar",
+            value_template="{{ value_json.get('visible_aircraft', 0) }}",
+            json_attributes_topic=visible_topic,
+            json_attributes_template="{{ value_json | tojson }}",
         ),
-        availability_topic=availability_topic,
-    )
+        # --- Diagnostic sensors ---
+        Entity(
+            config.data,
+            device,
+            component="sensor",
+            unique_id="status",
+            name="Status",
+            state_topic=status_topic,
+            value_template="{{ value_json.status }}",
+            json_attributes_topic=status_topic,
+            icon="mdi:information",
+            entity_category="diagnostic",
+        ),
+        Entity(
+            config.data,
+            device,
+            component="sensor",
+            unique_id="last_update",
+            name="Last Update",
+            state_topic=status_topic,
+            value_template="{{ value_json.last_update }}",
+            device_class="timestamp",
+            entity_category="diagnostic",
+        ),
+        Entity(
+            config.data,
+            device,
+            component="binary_sensor",
+            unique_id="web_server",
+            name="Web Server",
+            state_topic=status_topic,
+            value_template="{{ value_json.web_server_status }}",
+            payload_on="online",
+            payload_off="offline",
+            device_class="connectivity",
+            entity_category="diagnostic",
+        ),
+        # --- Control buttons ---
+        Entity(
+            config.data,
+            device,
+            component="button",
+            unique_id="refresh",
+            name="Refresh",
+            command_topic=f"{cmd_topic_base}/refresh",
+            icon="mdi:refresh",
+        ),
+    ]
 
-    visible_sensor = Sensor(
-        config.data,
-        device,
-        name="Visible Aircraft",
-        unique_id=f"{prefix}_visible",
-        state_topic=visible_topic,
-        unit_of_measurement="planes",
-        icon="mdi:radar",
-        value_template="{{ value_json.get('visible_aircraft', 0) }}",
-        json_attributes_topic=visible_topic,
-        json_attributes_template="{{ value_json | tojson }}",
-        availability_topic=availability_topic,
-    )
-
-    return closest_sensor, visible_sensor
+    return entities
 
 
-def publish_discovery(config: FlightsConfig, publisher) -> bool:
-    """Publish per-entity HA discovery configs with stable identifiers."""
+def publish_discovery(config: FlightsConfig, publisher: Any) -> bool:
+    """Publish device-bundle discovery with abbreviated keys."""
     if not config.get("home_assistant.enabled", True):
         logger.info("Home Assistant discovery disabled")
         return False
 
     device = create_device(config)
-    closest, visible = create_entities(config, device)
+    entities = create_entities(config, device)
+    prefix = config.get("app.unique_id_prefix", "flights")
+    availability_topic = config.get("mqtt.topics.availability", "flights/availability")
+    discovery_prefix = config.get("home_assistant.discovery_prefix", "homeassistant")
+
+    # Abbreviated device keys (required for device-bundle discovery)
+    dev: dict[str, Any] = {
+        "ids": prefix,
+        "name": device.name,
+    }
+    if getattr(device, "manufacturer", None):
+        dev["mf"] = device.manufacturer
+    if getattr(device, "model", None):
+        dev["mdl"] = device.model
+    if getattr(device, "sw_version", None):
+        dev["sw"] = device.sw_version
+    if getattr(device, "configuration_url", None):
+        dev["cu"] = device.configuration_url
+
+    origin = {
+        "name": prefix,
+        "sw": __version__,
+        "url": "https://github.com/ronschaeffer/flights",
+    }
+
+    # Build compact component payloads
+    cmps: dict[str, dict] = {}
+    for entity in entities:
+        comp = entity.get_config_payload().copy()
+        comp.pop("device", None)
+        comp["p"] = entity.component
+        cmps[entity.unique_id] = comp
+
+    payload = {
+        "dev": dev,
+        "o": origin,
+        "cmps": cmps,
+        "availability": [{"topic": availability_topic}],
+        "payload_available": "online",
+        "payload_not_available": "offline",
+    }
+
+    topic = f"{discovery_prefix}/device/{prefix}/config"
 
     try:
-        for entity in (closest, visible):
-            topic = entity.get_config_topic()
-            payload = entity.get_config_payload()
-            publisher.publish(topic=topic, payload=json.dumps(payload), retain=True)
-            logger.info("Published discovery to %s", topic)
+        publisher.publish(topic=topic, payload=json.dumps(payload), retain=True)
+        logger.info("Published HA discovery bundle to %s", topic)
         return True
     except Exception:
         logger.exception("Failed to publish HA discovery")

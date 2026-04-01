@@ -162,6 +162,44 @@ def _publish_and_save(
     return data
 
 
+def _check_web_server(config: FlightsConfig) -> str:
+    """Check if the web server is reachable. Returns 'online' or 'offline'."""
+    if not config.get("web_server.enabled", True):
+        return "offline"
+    port = int(config.get("web_server.port", 47475))
+    try:
+        resp = requests.get(f"http://127.0.0.1:{port}/health", timeout=2)
+        if resp.status_code == 200:
+            return "online"
+    except Exception:
+        pass
+    return "offline"
+
+
+def _publish_status(
+    publisher,
+    config: FlightsConfig,
+    visible_count: int = 0,
+    error: str = "",
+) -> None:
+    """Publish a status payload for diagnostic sensors."""
+    status_topic = config.get("mqtt.topics.status", "flights/status")
+    status = "error" if error else "active"
+    payload = {
+        "status": status,
+        "visible_aircraft": visible_count,
+        "last_update": datetime.now(UTC).isoformat(),
+        "sw_version": __version__,
+        "web_server_status": _check_web_server(config),
+    }
+    if error:
+        payload["error"] = error
+    try:
+        publisher.publish(status_topic, payload, qos=1, retain=True)
+    except Exception:
+        logger.exception("Failed to publish status")
+
+
 # ---------------------------------------------------------------------------
 # Shared setup
 # ---------------------------------------------------------------------------
@@ -338,6 +376,9 @@ def _run_cycle(
     )
     save_unique_flights_data(unique_flights_file, unique_flights_with_timestamps)
 
+    # Publish status for diagnostic sensors
+    _publish_status(publisher, config, visible_count=len(flights))
+
     print(
         f"Visible: {visible.get('visible_aircraft', 0)}, "
         f"Closest: {next(iter(closest), 'none')}"
@@ -366,13 +407,26 @@ def cmd_service(config: FlightsConfig) -> None:
     publish_discovery(config, publisher)
 
     shutdown_event = threading.Event()
+    refresh_event = threading.Event()
 
     def _shutdown_handler(signum, _frame):
         logger.info("Received signal %s, shutting down...", signum)
         shutdown_event.set()
+        refresh_event.set()  # unblock any wait
 
     signal.signal(signal.SIGTERM, _shutdown_handler)
     signal.signal(signal.SIGINT, _shutdown_handler)
+
+    # Subscribe to refresh command
+    prefix = config.get("app.unique_id_prefix", "flights")
+    refresh_topic = f"{prefix}/cmd/refresh"
+
+    def _on_refresh(_client, _userdata, _msg):
+        logger.info("Refresh command received")
+        refresh_event.set()
+
+    publisher.subscribe(refresh_topic, qos=1, callback=_on_refresh)
+    publisher.loop_start()
 
     reg_parser = Parser()
     unique_flights_file = os.path.join(STORAGE_DIR, "unique_flights.json")
@@ -398,9 +452,12 @@ def cmd_service(config: FlightsConfig) -> None:
                 prev_closest,
                 prev_rich,
             )
-            shutdown_event.wait(check_interval)
+            # Wait for interval or refresh command
+            refresh_event.wait(check_interval)
+            refresh_event.clear()
     finally:
         logger.info("Shutting down...")
+        publisher.loop_stop()
         availability.offline(retain=True)
         publisher.disconnect()
         print("\nFlights stopped.")

@@ -23,6 +23,7 @@ mqtt:
     visible: "flights/visible"
     closest: "flights/closest"
     availability: "flights/availability"
+    status: "flights/status"
 
 home_assistant:
   enabled: true
