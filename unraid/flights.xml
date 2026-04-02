@@ -49,4 +49,5 @@
   <Config Name="Config Directory" Target="/app/config" Default="/mnt/user/appdata/flights/config" Mode="rw" Description="Configuration files (config.yaml)" Type="Path" Display="always" Required="true" Mask="false">/mnt/user/appdata/flights/config</Config>
   <Config Name="Data Directory" Target="/app/data" Default="/mnt/user/appdata/flights/data" Mode="rw" Description="Data storage (airlines, aircraft databases)" Type="Path" Display="always" Required="true" Mask="false">/mnt/user/appdata/flights/data</Config>
   <Config Name="Storage Directory" Target="/app/storage" Default="/mnt/user/appdata/flights/storage" Mode="rw" Description="Persistent storage (flight counts)" Type="Path" Display="always" Required="false" Mask="false">/mnt/user/appdata/flights/storage</Config>
+  <Config Name="Output Directory" Target="/app/output" Default="/mnt/user/appdata/flights/output" Mode="rw" Description="Output files (JSON data, missing codes log)" Type="Path" Display="always" Required="false" Mask="false">/mnt/user/appdata/flights/output</Config>
 </Container>
