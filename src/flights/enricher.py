@@ -197,14 +197,12 @@ class FlightEnricher:
                 "aircraft_model", ""
             )
         elif aircraft_type:
-            self._update_missing_data_log(
-                "aircraft",
-                aircraft_type,
-                {
-                    "type": aircraft_type,
-                    "reg": flight_data.get("reg", ""),
-                },
-            )
+            entry = {
+                "type": aircraft_type,
+                "reg": flight_data.get("reg", ""),
+            }
+            self._add_reg_country(entry, flight_data.get("reg", ""))
+            self._update_missing_data_log("aircraft", aircraft_type, entry)
 
         for key in (
             "selected_altitude",
@@ -257,11 +255,9 @@ class FlightEnricher:
         if not airline and flightno:
             airline = self.lookups["airlines_iata"].get(flightno[:2])
         if not airline and callsign:
-            self._update_missing_data_log(
-                "airlines",
-                callsign[:3],
-                {"callsign": callsign, "reg": registration},
-            )
+            entry = {"callsign": callsign, "reg": registration}
+            self._add_reg_country(entry, registration)
+            self._update_missing_data_log("airlines", callsign[:3], entry)
         return airline
 
     def _parse_route(self, route: str) -> dict:
@@ -392,6 +388,17 @@ class FlightEnricher:
             "altitude_trend_symbol": trend,
             "altitude_with_trend": f"{altitude_value}{unit} {trend}",
         }
+
+    def _add_reg_country(self, entry: dict, registration: str) -> None:
+        """Add country info from aircraft registration to a dict."""
+        if not registration:
+            return
+        parsed = self.reg_parser.parse(registration)
+        if parsed:
+            code = parsed.get("iso2", "")
+            entry["country"] = parsed.get("nation", "")
+            entry["country_code"] = code
+            entry["country_flag"] = self._get_country_flag_emoji(code)
 
     def _update_missing_data_log(
         self, category: str, code: str, data: dict | None = None
