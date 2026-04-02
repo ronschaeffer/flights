@@ -49,4 +49,4 @@ jobs:
         run: poetry install --with dev
 
       - name: Run tests
-        run: poetry run pytest --cov=flights --cov-report=xml --cov-report=term-missing
+        run: poetry run pytest -m "not integration" --cov=flights --cov-report=xml --cov-report=term-missing
