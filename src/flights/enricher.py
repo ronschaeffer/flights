@@ -296,8 +296,6 @@ class FlightEnricher:
         if callsign:
             airline = self.lookups["airlines_icao"].get(callsign[:3])
         if not airline and flightno:
-            airline = self.lookups["airlines_icao"].get(flightno[:3])
-        if not airline and flightno:
             airline = self.lookups["airlines_iata"].get(flightno[:2])
         if not airline and callsign and not has_hex_owner:
             entry = {"callsign": callsign, "reg": registration}
