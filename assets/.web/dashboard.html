@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Flights Dashboard</title>
+<style>
+:root {
+  --bg: #0f1923; --card-bg: #1a2733; --card-hover: #1f3040;
+  --text: #e8edf2; --text-muted: #8899aa; --accent: #4fc3f7;
+  --badge-bg: #263545; --border: #2a3a4a; --green: #66bb6a;
+  --orange: #ffa726;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: var(--bg); color: var(--text); min-height: 100vh;
+}
+.header {
+  background: var(--card-bg); border-bottom: 1px solid var(--border);
+  padding: 16px 24px; display: flex; align-items: center;
+  justify-content: space-between; flex-wrap: wrap; gap: 12px;
+}
+.header-left { display: flex; align-items: center; gap: 12px; }
+.header-left h1 { font-size: 22px; font-weight: 700; }
+.header-left .icon { font-size: 26px; }
+.header-right { display: flex; align-items: center; gap: 16px;
+  font-size: 13px; color: var(--text-muted); }
+.status-dot {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: var(--green); display: inline-block;
+}
+.status-dot.offline { background: #ef5350; }
+.container { max-width: 900px; margin: 0 auto; padding: 20px 16px; }
+.flight-card {
+  background: var(--card-bg); border: 1px solid var(--border);
+  border-radius: 12px; padding: 16px; margin-bottom: 12px;
+  display: flex; align-items: center; gap: 16px;
+  transition: background 0.2s, border-color 0.2s;
+}
+.flight-card:hover {
+  background: var(--card-hover); border-color: var(--accent);
+}
+.card-rank {
+  font-size: 14px; font-weight: 700; color: var(--text-muted);
+  min-width: 24px; text-align: center;
+}
+.card-rank.r1 { color: var(--accent); font-size: 18px; }
+.card-logo {
+  width: 52px; height: 52px; border-radius: 8px;
+  background: var(--badge-bg); display: flex;
+  align-items: center; justify-content: center;
+  overflow: hidden; flex-shrink: 0;
+}
+.card-logo img { width: 100%; height: 100%; object-fit: contain; }
+.card-logo .fallback { font-size: 24px; }
+.card-body { flex: 1; min-width: 0; }
+.card-primary {
+  font-size: 16px; font-weight: 600; margin-bottom: 2px;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.card-secondary { font-size: 13px; color: var(--text-muted); line-height: 1.4; }
+.card-secondary .reg { color: var(--text); font-weight: 500; }
+.card-route { margin-top: 4px; display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+.card-route .flag { width: 18px; height: 13px; border-radius: 2px; vertical-align: middle; }
+.card-route .arrow { color: var(--accent); font-size: 14px; }
+.card-badges { display: flex; flex-direction: column; align-items: flex-end; gap: 6px; flex-shrink: 0; }
+.badge {
+  background: var(--badge-bg); border-radius: 6px;
+  padding: 4px 10px; font-size: 13px; font-weight: 600;
+  white-space: nowrap; display: flex; align-items: center; gap: 5px;
+}
+.badge .label { color: var(--text-muted); font-weight: 400; font-size: 11px; }
+.badge-distance { color: var(--accent); }
+.badge-altitude { color: var(--orange); }
+.empty-state { text-align: center; padding: 60px 20px; color: var(--text-muted); font-size: 16px; }
+.empty-state .big { font-size: 48px; margin-bottom: 16px; }
+@media (max-width: 600px) {
+  .flight-card { padding: 12px; gap: 10px; }
+  .card-logo { width: 40px; height: 40px; }
+  .card-primary { font-size: 14px; }
+  .card-secondary { font-size: 12px; }
+  .badge { font-size: 12px; padding: 3px 8px; }
+  .card-rank { min-width: 18px; font-size: 12px; }
+  .card-rank.r1 { font-size: 14px; }
+}
+</style>
+</head>
+<body>
+<div class="header">
+  <div class="header-left">
+    <span class="icon">&#9992;</span>
+    <h1>Nearby Flights</h1>
+  </div>
+  <div class="header-right">
+    <span><span class="status-dot" id="statusDot"></span>
+      <span id="statusText">Connecting...</span></span>
+    <span id="clock"></span>
+  </div>
+</div>
+<div class="container" id="flights"></div>
+<script>
+// Use relative URLs so it works regardless of how the page is accessed
+const REFRESH_MS = 15000;
+const MAX_FLIGHTS = 5;
+
+function esc(s) {
+  var d = document.createElement('div');
+  d.textContent = s;
+  return d.innerHTML;
+}
+
+function flagUrl(code) {
+  if (!code) return null;
+  return '/flags/' + code.toLowerCase() + '.png';
+}
+
+function flagHtml(code) {
+  var url = flagUrl(code);
+  if (!url) return '';
+  return '<img class="flag" src="' + url + '" alt="' + esc(code) + '" onerror="this.style.display=\'none\'">';
+}
+
+function logoHtml(icao) {
+  if (!icao) return '<span class="fallback">&#9992;</span>';
+  return '<img src="/logos/' + esc(icao) + '" alt="' + esc(icao) + '" onerror="this.parentElement.innerHTML=\'<span class=fallback>&#9992;</span>\'">';
+}
+
+function renderFlights(data) {
+  var el = document.getElementById('flights');
+  var flights = Object.values(data)
+    .filter(function(f) { return f.distance_value != null && f.distance_value !== ''; })
+    .sort(function(a, b) { return parseFloat(a.distance_value) - parseFloat(b.distance_value); })
+    .slice(0, MAX_FLIGHTS);
+
+  if (!flights.length) {
+    el.innerHTML = '<div class="empty-state"><div class="big">&#9992;</div>No aircraft nearby</div>';
+    return;
+  }
+
+  var html = '';
+  for (var i = 0; i < flights.length; i++) {
+    var f = flights[i];
+    var rank = i + 1;
+    var rankCls = rank === 1 ? 'card-rank r1' : 'card-rank';
+    var icao = (f.airline_icao || '').toUpperCase();
+
+    // Primary line
+    var primary;
+    if (f.airline && f.flightno)
+      primary = esc(f.airline) + ' \u2013 ' + esc(f.flightno);
+    else if (f.callsign)
+      primary = esc(f.callsign);
+    else
+      primary = 'ICAO ' + esc(f.icao_id || '?');
+
+    // Secondary: reg + aircraft
+    var regPart = f.reg ? '<span class="reg">' + esc(f.reg) + '</span>' : '';
+    var modelPart = esc(f.aircraft_model || f.type || '');
+    var sep = regPart && modelPart ? ' \u2014 ' : '';
+    var secondary = regPart + sep + modelPart;
+
+    // Route
+    var route = '';
+    if (f.origin && f.destination) {
+      route = '<div class="card-route">';
+      route += flagHtml(f.origin_airport_country_code) + ' ' + esc(f.origin);
+      route += ' <span class="arrow">&#9992;</span> ';
+      if (f.via) {
+        route += flagHtml(f.via_airport_country_code) + ' ' + esc(f.via);
+        route += ' <span class="arrow">&#9992;</span> ';
+      }
+      route += flagHtml(f.destination_airport_country_code) + ' ' + esc(f.destination);
+      route += '</div>';
+    }
+
+    // Badges
+    var dist = f.distance || '';
+    var alt = f.altitude_with_trend || f.altitude || '';
+    var spd = f.speed || '';
+    var badges = '';
+    if (dist) badges += '<div class="badge badge-distance"><span class="label">DIST</span>' + esc(dist) + '</div>';
+    if (alt) badges += '<div class="badge badge-altitude"><span class="label">ALT</span>' + esc(alt) + '</div>';
+    if (spd) badges += '<div class="badge"><span class="label">SPD</span>' + esc(String(spd)) + 'kts</div>';
+
+    html += '<div class="flight-card">'
+      + '<div class="' + rankCls + '">#' + rank + '</div>'
+      + '<div class="card-logo">' + logoHtml(icao) + '</div>'
+      + '<div class="card-body">'
+      + '<div class="card-primary">' + primary + '</div>'
+      + '<div class="card-secondary">' + secondary + '</div>'
+      + route
+      + '</div>'
+      + '<div class="card-badges">' + badges + '</div>'
+      + '</div>';
+  }
+  el.innerHTML = html;
+}
+
+function refresh() {
+  var dot = document.getElementById('statusDot');
+  var txt = document.getElementById('statusText');
+  fetch('/all_aircraft.json')
+    .then(function(r) {
+      if (!r.ok) throw new Error(r.status);
+      return r.json();
+    })
+    .then(function(data) {
+      var flights = data.data || data;
+      renderFlights(flights);
+      dot.className = 'status-dot';
+      txt.textContent = Object.keys(flights).length + ' visible';
+    })
+    .catch(function(e) {
+      dot.className = 'status-dot offline';
+      txt.textContent = 'Error';
+      console.error(e);
+    });
+}
+
+function updateClock() {
+  document.getElementById('clock').textContent = new Date().toLocaleTimeString();
+}
+
+refresh();
+setInterval(refresh, REFRESH_MS);
+updateClock();
+setInterval(updateClock, 1000);
+</script>
+</body>
+</html>
