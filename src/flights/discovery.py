@@ -63,6 +63,35 @@ def create_entities(config: FlightsConfig, device: Device) -> list[Entity]:
                 "{{ value_json.get(first_key, {}) | tojson }}"
             ),
         ),
+    ]
+
+    # Ranked closest aircraft (positions 2-5)
+    for i in range(2, 6):
+        rank_topic = config.get(f"mqtt.topics.closest_{i}", f"flights/closest_{i}")
+        entities.append(
+            Entity(
+                config,
+                device,
+                component="sensor",
+                unique_id=f"closest_{i}",
+                name=f"Closest Aircraft {i}",
+                state_topic=rank_topic,
+                unit_of_measurement=distance_unit,
+                icon="mdi:airplane",
+                value_template=(
+                    "{% set first_key = value_json.keys() | list | first %}"
+                    "{{ value_json.get(first_key, {}).get("
+                    "'distance_value', 0) | float }}"
+                ),
+                json_attributes_topic=rank_topic,
+                json_attributes_template=(
+                    "{% set first_key = value_json.keys() | list | first %}"
+                    "{{ value_json.get(first_key, {}) | tojson }}"
+                ),
+            )
+        )
+
+    entities += [
         Entity(
             config,
             device,

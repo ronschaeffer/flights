@@ -1,0 +1,228 @@
+# Nearby Flights - Mushroom card for more-info popup
+# Shows the 5 closest flights with airline logos, route info, and telemetry badges.
+# Inspired by the web dashboard view.
+#
+# Requirements:
+#   - HACS: mushroom (custom:mushroom-template-card)
+#   - Airline logos in /local/flighttrack/logos/<ICAO>.png
+
+type: vertical-stack
+cards:
+  - type: heading
+    icon: mdi:airplane-multiple
+    heading: Nearby Flights
+    heading_style: title
+    badges:
+      - type: entity
+        show_state: true
+        show_icon: true
+        entity: sensor.flights_visible_aircraft
+        icon: mdi:radar
+    grid_options:
+      columns: full
+      rows: 1
+
+  # --- #1 Closest ---
+  - type: conditional
+    conditions:
+      - condition: numeric_state
+        entity: sensor.flights_closest_aircraft
+        above: 0
+    card:
+      type: custom:mushroom-template-card
+      primary: >
+        {% set s = states.sensor.flights_closest_aircraft.attributes %}
+        {% if s.airline and s.flightno %}
+          #1 {{ s.airline }} - {{ s.flightno }}
+        {% elif s.callsign %}
+          #1 {{ s.callsign }}
+        {% else %}
+          #1 ICAO {{ s.icao_id }}
+        {% endif %}
+      secondary: >
+        {% set s = states.sensor.flights_closest_aircraft.attributes %}
+        {{ s.reg if s.reg else '' }}{{ ' — ' if s.reg and (s.aircraft_model or s.type) else '' }}{{ s.aircraft_model if s.aircraft_model else s.type if s.type else '' }}
+        {%- if s.origin and s.destination %}
+        {{ s.origin }} ✈ {{ s.via ~ ' ✈ ' if s.via else '' }}{{ s.destination }}
+        {%- endif %}
+        📍 {{ states.sensor.flights_closest_aircraft.state }}{{ state_attr('sensor.flights_closest_aircraft', 'distance_unit_of_measurement') or 'mi' }} · ⬆ {{ s.altitude_with_trend if s.altitude_with_trend else s.altitude_ft if s.altitude_ft else '' }}
+      icon: |-
+        {% if not states.sensor.flights_closest_aircraft.attributes.airline_icao %}
+          mdi:airplane
+        {% else %}
+          none
+        {% endif %}
+      layout: horizontal
+      multiline_secondary: true
+      tap_action:
+        action: more-info
+      entity: sensor.flights_closest_aircraft
+      picture: >-
+        {{ '/local/flighttrack/logos/' ~
+        states.sensor.flights_closest_aircraft.attributes.airline_icao | upper ~
+        '.png' if states.sensor.flights_closest_aircraft.attributes.airline_icao
+        else none }}
+
+  # --- #2 ---
+  - type: conditional
+    conditions:
+      - condition: numeric_state
+        entity: sensor.flights_closest_aircraft_2
+        above: 0
+    card:
+      type: custom:mushroom-template-card
+      primary: >
+        {% set s = states.sensor.flights_closest_aircraft_2.attributes %}
+        {% if s.airline and s.flightno %}
+          #2 {{ s.airline }} - {{ s.flightno }}
+        {% elif s.callsign %}
+          #2 {{ s.callsign }}
+        {% else %}
+          #2 ICAO {{ s.icao_id }}
+        {% endif %}
+      secondary: >
+        {% set s = states.sensor.flights_closest_aircraft_2.attributes %}
+        {{ s.reg if s.reg else '' }}{{ ' — ' if s.reg and (s.aircraft_model or s.type) else '' }}{{ s.aircraft_model if s.aircraft_model else s.type if s.type else '' }}
+        {%- if s.origin and s.destination %}
+        {{ s.origin }} ✈ {{ s.via ~ ' ✈ ' if s.via else '' }}{{ s.destination }}
+        {%- endif %}
+        📍 {{ states.sensor.flights_closest_aircraft_2.state }}{{ state_attr('sensor.flights_closest_aircraft_2', 'distance_unit_of_measurement') or 'mi' }} · ⬆ {{ s.altitude_with_trend if s.altitude_with_trend else s.altitude_ft if s.altitude_ft else '' }}
+      icon: |-
+        {% if not states.sensor.flights_closest_aircraft_2.attributes.airline_icao %}
+          mdi:airplane
+        {% else %}
+          none
+        {% endif %}
+      layout: horizontal
+      multiline_secondary: true
+      tap_action:
+        action: more-info
+      entity: sensor.flights_closest_aircraft_2
+      picture: >-
+        {{ '/local/flighttrack/logos/' ~
+        states.sensor.flights_closest_aircraft_2.attributes.airline_icao | upper ~
+        '.png' if states.sensor.flights_closest_aircraft_2.attributes.airline_icao
+        else none }}
+
+  # --- #3 ---
+  - type: conditional
+    conditions:
+      - condition: numeric_state
+        entity: sensor.flights_closest_aircraft_3
+        above: 0
+    card:
+      type: custom:mushroom-template-card
+      primary: >
+        {% set s = states.sensor.flights_closest_aircraft_3.attributes %}
+        {% if s.airline and s.flightno %}
+          #3 {{ s.airline }} - {{ s.flightno }}
+        {% elif s.callsign %}
+          #3 {{ s.callsign }}
+        {% else %}
+          #3 ICAO {{ s.icao_id }}
+        {% endif %}
+      secondary: >
+        {% set s = states.sensor.flights_closest_aircraft_3.attributes %}
+        {{ s.reg if s.reg else '' }}{{ ' — ' if s.reg and (s.aircraft_model or s.type) else '' }}{{ s.aircraft_model if s.aircraft_model else s.type if s.type else '' }}
+        {%- if s.origin and s.destination %}
+        {{ s.origin }} ✈ {{ s.via ~ ' ✈ ' if s.via else '' }}{{ s.destination }}
+        {%- endif %}
+        📍 {{ states.sensor.flights_closest_aircraft_3.state }}{{ state_attr('sensor.flights_closest_aircraft_3', 'distance_unit_of_measurement') or 'mi' }} · ⬆ {{ s.altitude_with_trend if s.altitude_with_trend else s.altitude_ft if s.altitude_ft else '' }}
+      icon: |-
+        {% if not states.sensor.flights_closest_aircraft_3.attributes.airline_icao %}
+          mdi:airplane
+        {% else %}
+          none
+        {% endif %}
+      layout: horizontal
+      multiline_secondary: true
+      tap_action:
+        action: more-info
+      entity: sensor.flights_closest_aircraft_3
+      picture: >-
+        {{ '/local/flighttrack/logos/' ~
+        states.sensor.flights_closest_aircraft_3.attributes.airline_icao | upper ~
+        '.png' if states.sensor.flights_closest_aircraft_3.attributes.airline_icao
+        else none }}
+
+  # --- #4 ---
+  - type: conditional
+    conditions:
+      - condition: numeric_state
+        entity: sensor.flights_closest_aircraft_4
+        above: 0
+    card:
+      type: custom:mushroom-template-card
+      primary: >
+        {% set s = states.sensor.flights_closest_aircraft_4.attributes %}
+        {% if s.airline and s.flightno %}
+          #4 {{ s.airline }} - {{ s.flightno }}
+        {% elif s.callsign %}
+          #4 {{ s.callsign }}
+        {% else %}
+          #4 ICAO {{ s.icao_id }}
+        {% endif %}
+      secondary: >
+        {% set s = states.sensor.flights_closest_aircraft_4.attributes %}
+        {{ s.reg if s.reg else '' }}{{ ' — ' if s.reg and (s.aircraft_model or s.type) else '' }}{{ s.aircraft_model if s.aircraft_model else s.type if s.type else '' }}
+        {%- if s.origin and s.destination %}
+        {{ s.origin }} ✈ {{ s.via ~ ' ✈ ' if s.via else '' }}{{ s.destination }}
+        {%- endif %}
+        📍 {{ states.sensor.flights_closest_aircraft_4.state }}{{ state_attr('sensor.flights_closest_aircraft_4', 'distance_unit_of_measurement') or 'mi' }} · ⬆ {{ s.altitude_with_trend if s.altitude_with_trend else s.altitude_ft if s.altitude_ft else '' }}
+      icon: |-
+        {% if not states.sensor.flights_closest_aircraft_4.attributes.airline_icao %}
+          mdi:airplane
+        {% else %}
+          none
+        {% endif %}
+      layout: horizontal
+      multiline_secondary: true
+      tap_action:
+        action: more-info
+      entity: sensor.flights_closest_aircraft_4
+      picture: >-
+        {{ '/local/flighttrack/logos/' ~
+        states.sensor.flights_closest_aircraft_4.attributes.airline_icao | upper ~
+        '.png' if states.sensor.flights_closest_aircraft_4.attributes.airline_icao
+        else none }}
+
+  # --- #5 ---
+  - type: conditional
+    conditions:
+      - condition: numeric_state
+        entity: sensor.flights_closest_aircraft_5
+        above: 0
+    card:
+      type: custom:mushroom-template-card
+      primary: >
+        {% set s = states.sensor.flights_closest_aircraft_5.attributes %}
+        {% if s.airline and s.flightno %}
+          #5 {{ s.airline }} - {{ s.flightno }}
+        {% elif s.callsign %}
+          #5 {{ s.callsign }}
+        {% else %}
+          #5 ICAO {{ s.icao_id }}
+        {% endif %}
+      secondary: >
+        {% set s = states.sensor.flights_closest_aircraft_5.attributes %}
+        {{ s.reg if s.reg else '' }}{{ ' — ' if s.reg and (s.aircraft_model or s.type) else '' }}{{ s.aircraft_model if s.aircraft_model else s.type if s.type else '' }}
+        {%- if s.origin and s.destination %}
+        {{ s.origin }} ✈ {{ s.via ~ ' ✈ ' if s.via else '' }}{{ s.destination }}
+        {%- endif %}
+        📍 {{ states.sensor.flights_closest_aircraft_5.state }}{{ state_attr('sensor.flights_closest_aircraft_5', 'distance_unit_of_measurement') or 'mi' }} · ⬆ {{ s.altitude_with_trend if s.altitude_with_trend else s.altitude_ft if s.altitude_ft else '' }}
+      icon: |-
+        {% if not states.sensor.flights_closest_aircraft_5.attributes.airline_icao %}
+          mdi:airplane
+        {% else %}
+          none
+        {% endif %}
+      layout: horizontal
+      multiline_secondary: true
+      tap_action:
+        action: more-info
+      entity: sensor.flights_closest_aircraft_5
+      picture: >-
+        {{ '/local/flighttrack/logos/' ~
+        states.sensor.flights_closest_aircraft_5.attributes.airline_icao | upper ~
+        '.png' if states.sensor.flights_closest_aircraft_5.attributes.airline_icao
+        else none }}

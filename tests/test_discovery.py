@@ -39,6 +39,9 @@ def test_entity_types(config):
     # Primary sensors
     assert "closest" in components
     assert components["closest"] == "sensor"
+    for i in range(2, 6):
+        assert f"closest_{i}" in components
+        assert components[f"closest_{i}"] == "sensor"
     assert "visible" in components
     assert components["visible"] == "sensor"
     # Diagnostic sensors
@@ -68,6 +71,20 @@ def test_closest_sensor_properties(config):
     assert payload["state_topic"] == "test/flights/closest"
     # Entity ID prefix should be from config, not the library default
     assert payload["unique_id"] == "flights_test_closest"
+
+
+def test_closest_ranked_sensor_properties(config):
+    """Ranked closest sensors (2-5) have correct topics, unit, and icon."""
+    device = create_device(config)
+    entities = create_entities(config, device)
+
+    for i in range(2, 6):
+        ranked = next(e for e in entities if e.unique_id == f"closest_{i}")
+        payload = ranked.get_config_payload()
+        assert payload["unit_of_measurement"] == "mi"
+        assert payload["icon"] == "mdi:airplane"
+        assert payload["state_topic"] == f"test/flights/closest_{i}"
+        assert payload["unique_id"] == f"flights_test_closest_{i}"
 
 
 def test_visible_sensor_properties(config):
@@ -115,6 +132,8 @@ def test_publish_discovery_builds_bundle(config):
     # Components
     assert "cmps" in payload
     assert "closest" in payload["cmps"]
+    for i in range(2, 6):
+        assert f"closest_{i}" in payload["cmps"]
     assert "visible" in payload["cmps"]
     assert "status" in payload["cmps"]
     assert "receiver" in payload["cmps"]  # health_check defaults to True

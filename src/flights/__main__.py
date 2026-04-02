@@ -79,6 +79,11 @@ def _ensure_output_files() -> None:
         os.path.join(OUTPUT_DIR, "closest_aircraft.json"),
         {"last_update": datetime.now(UTC).isoformat(), "data": {}},
     )
+    for i in range(2, 6):
+        _ensure_json_file(
+            os.path.join(OUTPUT_DIR, f"closest_aircraft_{i}.json"),
+            {"last_update": datetime.now(UTC).isoformat(), "data": {}},
+        )
     _ensure_json_file(
         os.path.join(OUTPUT_DIR, "all_aircraft.json"),
         {"last_update": datetime.now(UTC).isoformat(), "data": {}},
@@ -133,9 +138,11 @@ def _get_receiver_visible(
 
 def _get_closest_aircraft(
     flights_rich: dict[str, dict[str, Any]],
-) -> dict[str, dict[str, Any]]:
+    count: int = 5,
+) -> list[dict[str, dict[str, Any]]]:
+    """Return the *count* closest aircraft, each as a single-entry dict."""
     if not flights_rich:
-        return {}
+        return [{}] * count
 
     def dist_val(f):
         try:
@@ -143,8 +150,15 @@ def _get_closest_aircraft(
         except (ValueError, TypeError):
             return 1e9
 
-    closest_id = min(flights_rich, key=lambda k: dist_val(flights_rich[k]))
-    return {closest_id: flights_rich[closest_id]}
+    sorted_ids = sorted(flights_rich, key=lambda k: dist_val(flights_rich[k]))
+    result: list[dict[str, dict[str, Any]]] = []
+    for i in range(count):
+        if i < len(sorted_ids):
+            hex_id = sorted_ids[i]
+            result.append({hex_id: flights_rich[hex_id]})
+        else:
+            result.append({})
+    return result
 
 
 def _publish_and_save(
@@ -329,10 +343,10 @@ def _run_cycle(
     base_url: str,
     unique_flights_with_timestamps: dict,
     previous_visible: dict,
-    previous_closest: dict,
+    previous_closest: list[dict],
     previous_flights_rich: dict,
     hex_db: dict | None = None,
-) -> tuple[dict, dict, dict]:
+) -> tuple[dict, list[dict], dict]:
     """Run a single fetch → enrich → publish cycle.
 
     Returns updated (previous_visible, previous_closest, previous_flights_rich).
@@ -394,15 +408,27 @@ def _run_cycle(
         os.path.join(OUTPUT_DIR, "visible.json"),
     )
 
-    # Publish closest
-    closest = _get_closest_aircraft(flights_rich)
-    previous_closest = _publish_and_save(
-        publisher,
-        closest_topic,
-        closest,
-        previous_closest,
-        os.path.join(OUTPUT_DIR, "closest_aircraft.json"),
-    )
+    # Publish closest (top 5 ranked positions)
+    closest_topics = [closest_topic]
+    for i in range(2, 6):
+        closest_topics.append(
+            config.get(f"mqtt.topics.closest_{i}", f"flights/closest_{i}")
+        )
+    closest_list = _get_closest_aircraft(flights_rich)
+    new_previous_closest: list[dict] = []
+    for i, (topic, aircraft, prev) in enumerate(
+        zip(closest_topics, closest_list, previous_closest, strict=True)
+    ):
+        suffix = f"_{i + 1}" if i else ""
+        updated = _publish_and_save(
+            publisher,
+            topic,
+            aircraft,
+            prev,
+            os.path.join(OUTPUT_DIR, f"closest_aircraft{suffix}.json"),
+        )
+        new_previous_closest.append(updated)
+    previous_closest = new_previous_closest
 
     # Save all aircraft
     if flights_rich != previous_flights_rich:
@@ -426,9 +452,10 @@ def _run_cycle(
     # Publish status for diagnostic sensors
     _publish_status(publisher, config, visible_count=len(flights))
 
+    closest_ids = [next(iter(c), "none") for c in closest_list]
     print(
         f"Visible: {visible.get('visible_aircraft', 0)}, "
-        f"Closest: {next(iter(closest), 'none')}"
+        f"Closest: {', '.join(closest_ids)}"
     )
 
     return previous_visible, previous_closest, previous_flights_rich
@@ -503,7 +530,7 @@ def cmd_service(config: FlightsConfig) -> None:
     _start_logo_updater(shutdown_event, airlines_json)
 
     prev_vis: dict = {}
-    prev_closest: dict = {}
+    prev_closest: list[dict] = [{}, {}, {}, {}, {}]
     prev_rich: dict = {}
 
     try:
@@ -562,7 +589,7 @@ def cmd_once(config: FlightsConfig) -> None:
             base_url,
             unique_flights_with_timestamps,
             {},
-            {},
+            [{}, {}, {}, {}, {}],
             {},
             hex_db=hex_db,
         )

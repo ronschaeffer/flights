@@ -19,6 +19,10 @@ mqtt:
   topics:
     visible: "flights/visible"
     closest: "flights/closest"
+    closest_2: "flights/closest_2"
+    closest_3: "flights/closest_3"
+    closest_4: "flights/closest_4"
+    closest_5: "flights/closest_5"
     availability: "flights/availability"
     status: "flights/status"
 

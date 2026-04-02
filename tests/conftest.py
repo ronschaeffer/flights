@@ -23,6 +23,10 @@ mqtt:
   topics:
     visible: "test/flights/visible"
     closest: "test/flights/closest"
+    closest_2: "test/flights/closest_2"
+    closest_3: "test/flights/closest_3"
+    closest_4: "test/flights/closest_4"
+    closest_5: "test/flights/closest_5"
     availability: "test/flights/availability"
 
 home_assistant:
