@@ -90,7 +90,7 @@ body {
 <div class="header">
   <div class="header-left">
     <span class="icon">&#9992;</span>
-    <h1>Nearby Flights</h1>
+    <h1>Visible Flights</h1>
   </div>
   <div class="header-right">
     <span><span class="status-dot" id="statusDot"></span>
@@ -102,7 +102,6 @@ body {
 <script>
 // Use relative URLs so it works regardless of how the page is accessed
 const REFRESH_MS = 15000;
-const MAX_FLIGHTS = 5;
 
 function esc(s) {
   var d = document.createElement('div');
@@ -131,7 +130,7 @@ function renderFlights(data) {
   var flights = Object.values(data)
     .filter(function(f) { return f.distance_value != null && f.distance_value !== ''; })
     .sort(function(a, b) { return parseFloat(a.distance_value) - parseFloat(b.distance_value); })
-    .slice(0, MAX_FLIGHTS);
+;
 
   if (!flights.length) {
     el.innerHTML = '<div class="empty-state"><div class="big">&#9992;</div>No aircraft nearby</div>';
