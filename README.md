@@ -18,6 +18,7 @@ Flights connects to a local ADS-B receiver (such as Plane Finder Client, dump109
 | **Aircraft type** | ICAO type code | Boeing 737 MAX 8, Airbus A320 |
 | **Route** | Origin → Destination | Seville SVQ 🇪🇸 → London STN 🇬🇧 |
 | **Registration** | Country lookup | EI-IHP (Ireland 🇮🇪) |
+| **Hex database** | tar1090-db (619K aircraft) | Owner, year, military flag |
 | **Distance** | Haversine calculation | 2.1 mi from observer |
 | **Altitude & trend** | Vertical rate analysis | 16,700ft ⬊ (descending) |
 | **Geographic zone** | Shapely polygon check | Within/outside defined watch area |
@@ -86,13 +87,29 @@ Tracks unique flights over time and calculates:
 
 ---
 
+## 🖼️ Logo Management
+
+Flights includes an automated logo pipeline that keeps airline logos up to date:
+
+- **Missing logo tracking** — when a flight has no matching logo file, the ICAO code is logged to `missing.json` for resolution
+- **SVG ↔ PNG sync** — SVG logos are automatically rasterised to 90×90 PNG via cairosvg, with solid backgrounds (white, or dark slate for light logos)
+- **AI generation (optional)** — missing logos can be generated using Claude or Gemini, producing clean 80×80 SVG icons matching the existing style
+- **Auto-publish** — generated logos are committed, tagged, and pushed to git automatically
+- **Weekly updates** — both the hex database and logo resolver run as background threads in the service
+
+Set `LOGO_AI_PROVIDER` and the corresponding API key to enable AI generation (see Environment Variables below).
+
+---
+
 ## ⚡ CLI
 
 ```
-flights service    Run as a long-running service (default, used by Docker)
-flights once       Single fetch/enrich/publish cycle, then exit
-flights status     Show configuration and check receiver + MQTT connectivity
-flights --version  Show version
+flights service       Run as a long-running service (default, used by Docker)
+flights once          Single fetch/enrich/publish cycle, then exit
+flights status        Show configuration and check receiver + MQTT connectivity
+flights update-data   Download latest hex database from tar1090-db
+flights update-logos  Sync logo formats and generate missing logos (--publish to git push)
+flights --version     Show version
 ```
 
 ---
@@ -110,7 +127,9 @@ docker run -d \
   -e USER_LAT=51.4627 \
   -e USER_LON=-0.3289 \
   -v /path/to/config:/app/config \
+  -v /path/to/data:/app/data \
   -v /path/to/storage:/app/storage \
+  -v /path/to/output:/app/output \
   ghcr.io/ronschaeffer/flights:latest
 ```
 
@@ -130,6 +149,9 @@ docker run -d \
 | `CHECK_INTERVAL` | No | `15` | Seconds between receiver checks |
 | `HOME_ASSISTANT_ENABLED` | No | `true` | Enable HA MQTT discovery |
 | `LOG_LEVEL` | No | `INFO` | `DEBUG`, `INFO`, `WARNING`, `ERROR` |
+| `LOGO_AI_PROVIDER` | No | — | AI provider for logo generation: `claude` or `gemini` |
+| `ANTHROPIC_API_KEY` | No | — | API key for Claude logo generation |
+| `GEMINI_API_KEY` | No | — | API key for Gemini logo generation |
 
 ### Unraid
 
@@ -142,7 +164,7 @@ An Unraid Docker template is included at `unraid/flights.xml`.
 ```bash
 poetry install --with dev   # Install dependencies
 make fix                    # Lint + format (ruff)
-make test                   # Run pytest (38 tests)
+make test                   # Run pytest (40 tests)
 make ci-check               # Full CI check (lint + test)
 make install-hooks          # Install pre-commit hooks
 ```
@@ -155,12 +177,14 @@ src/flights/          Main package
   config.py           YAML config with env var overrides
   discovery.py        HA MQTT device-bundle discovery
   enricher.py         Flight data enrichment engine
+  hex_lookup.py       ICAO hex code → aircraft lookup (tar1090-db)
+  logo_resolver.py    Logo sync, AI generation, and git publishing
   counts.py           Flight statistics and persistence
   mqtt_client.py      MQTT publisher setup (ha-mqtt-publisher)
   server.py           FastAPI web server
-tests/                38 pytest tests
+tests/                40 pytest tests
 config/               YAML configuration files
-data/                 Airlines, aircraft, and airport databases
+data/                 Airlines, aircraft, hex database
 assets/               Airline logos (SVG/PNG), country flags, web assets
 ha_automations/       Example HA automations
 unraid/               Unraid Docker template
