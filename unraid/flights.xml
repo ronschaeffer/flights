@@ -45,6 +45,11 @@
   <!-- Logging -->
   <Config Name="Log Level" Target="LOG_LEVEL" Default="INFO" Mode="" Description="Log level: DEBUG, INFO, WARNING, ERROR" Type="Variable" Display="advanced" Required="false" Mask="false">INFO</Config>
 
+  <!-- Logo AI Generation (optional) -->
+  <Config Name="Logo AI Provider" Target="LOGO_AI_PROVIDER" Default="" Mode="" Description="AI provider for logo generation: claude or gemini (leave empty to disable)" Type="Variable" Display="advanced" Required="false" Mask="false"/>
+  <Config Name="Anthropic API Key" Target="ANTHROPIC_API_KEY" Default="" Mode="" Description="API key for Claude logo generation" Type="Variable" Display="advanced" Required="false" Mask="true"/>
+  <Config Name="Gemini API Key" Target="GEMINI_API_KEY" Default="" Mode="" Description="API key for Gemini logo generation" Type="Variable" Display="advanced" Required="false" Mask="true"/>
+
   <!-- Volumes -->
   <Config Name="Config Directory" Target="/app/config" Default="/mnt/user/appdata/flights/config" Mode="rw" Description="Configuration files (config.yaml)" Type="Path" Display="always" Required="true" Mask="false">/mnt/user/appdata/flights/config</Config>
   <Config Name="Data Directory" Target="/app/data" Default="/mnt/user/appdata/flights/data" Mode="rw" Description="Data storage (airlines, aircraft databases)" Type="Path" Display="always" Required="true" Mask="false">/mnt/user/appdata/flights/data</Config>
