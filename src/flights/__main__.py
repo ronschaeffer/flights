@@ -27,6 +27,8 @@ from flights.counts import (
 )
 from flights.discovery import publish_discovery
 from flights.enricher import create_flights_rich
+from flights.hex_lookup import load_hex_db
+from flights.logo_resolver import update_logos
 from flights.mqtt_client import create_availability, create_publisher
 from flights.server import get_base_url, start_server
 
@@ -248,7 +250,7 @@ def _publish_status(
 
 
 def _load_reference_data():
-    """Load airlines, aircraft, and reference dump data."""
+    """Load airlines, aircraft, hex database, and reference dump data."""
     reference_dump_path = os.path.join(
         BASE_DIR, "data", "planefinder_dump_structure.json"
     )
@@ -261,7 +263,8 @@ def _load_reference_data():
         airlines_json = json.load(f)
     with open(aircraft_path) as f:
         aircraft_json = json.load(f)
-    return airlines_json, aircraft_json
+    hex_db = load_hex_db()
+    return airlines_json, aircraft_json, hex_db
 
 
 def _build_zone(config: FlightsConfig):
@@ -328,6 +331,7 @@ def _run_cycle(
     previous_visible: dict,
     previous_closest: dict,
     previous_flights_rich: dict,
+    hex_db: dict | None = None,
 ) -> tuple[dict, dict, dict]:
     """Run a single fetch → enrich → publish cycle.
 
@@ -362,6 +366,7 @@ def _run_cycle(
             },
         },
         base_url,
+        hex_db=hex_db,
     )
 
     # Flight counts
@@ -438,7 +443,7 @@ def cmd_service(config: FlightsConfig) -> None:
     """Long-running service: fetch → enrich → publish in a loop."""
     _ensure_directories()
     _ensure_output_files()
-    airlines_json, aircraft_json = _load_reference_data()
+    airlines_json, aircraft_json, hex_db = _load_reference_data()
     defined_zone = _build_zone(config)
     base_url = _start_web_server(config)
 
@@ -488,6 +493,15 @@ def cmd_service(config: FlightsConfig) -> None:
     unique_flights_with_timestamps = load_unique_flights_data(unique_flights_file)
     check_interval = int(config.get("receiver.check_interval", 15))
 
+    # Mutable container so the updater thread can swap the hex DB
+    hex_ref: dict[str, Any] = {"db": hex_db}
+
+    def _on_hex_db_update(new_db):
+        hex_ref["db"] = new_db
+
+    _start_hex_db_updater(shutdown_event, _on_hex_db_update)
+    _start_logo_updater(shutdown_event, airlines_json)
+
     prev_vis: dict = {}
     prev_closest: dict = {}
     prev_rich: dict = {}
@@ -506,6 +520,7 @@ def cmd_service(config: FlightsConfig) -> None:
                 prev_vis,
                 prev_closest,
                 prev_rich,
+                hex_db=hex_ref["db"],
             )
             # Wait for interval or refresh command
             refresh_event.wait(check_interval)
@@ -522,7 +537,7 @@ def cmd_once(config: FlightsConfig) -> None:
     """Single fetch → enrich → publish cycle, then exit."""
     _ensure_directories()
     _ensure_output_files()
-    airlines_json, aircraft_json = _load_reference_data()
+    airlines_json, aircraft_json, hex_db = _load_reference_data()
     defined_zone = _build_zone(config)
     base_url = str(config.get("web_server.external_url", "") or "")
 
@@ -549,6 +564,7 @@ def cmd_once(config: FlightsConfig) -> None:
             {},
             {},
             {},
+            hex_db=hex_db,
         )
     finally:
         availability.offline(retain=True)
@@ -610,6 +626,144 @@ def cmd_status(config: FlightsConfig) -> None:
         print("MQTT broker not configured")
 
 
+def _download_hex_db() -> dict[str, Any] | None:
+    """Download the latest hex database from tar1090-db.
+
+    Returns the loaded database dict on success, or None on failure.
+    """
+    import urllib.request
+
+    from flights.hex_lookup import HEX_DB_GZ_PATH
+
+    url = "https://github.com/wiedehopf/tar1090-db/raw/refs/heads/csv/aircraft.csv.gz"
+    logger.info("Downloading hex database from tar1090-db...")
+    try:
+        urllib.request.urlretrieve(url, HEX_DB_GZ_PATH)
+        hex_db = load_hex_db(HEX_DB_GZ_PATH)
+        logger.info("Hex database updated: %d entries", len(hex_db))
+        return hex_db
+    except Exception:
+        logger.exception("Failed to download hex database")
+        return None
+
+
+_HEX_DB_UPDATE_INTERVAL = 7 * 24 * 3600  # 1 week in seconds
+
+
+def _start_hex_db_updater(
+    shutdown_event: threading.Event,
+    update_callback,
+) -> threading.Thread:
+    """Start a daemon thread that refreshes the hex database weekly."""
+
+    def _updater():
+        while not shutdown_event.wait(_HEX_DB_UPDATE_INTERVAL):
+            new_db = _download_hex_db()
+            if new_db is not None:
+                update_callback(new_db)
+
+    t = threading.Thread(target=_updater, name="hex-db-updater", daemon=True)
+    t.start()
+    return t
+
+
+_LOGO_UPDATE_INTERVAL = 7 * 24 * 3600  # 1 week in seconds
+
+
+def _get_logo_ai_config() -> tuple[str | None, str | None]:
+    """Read AI provider and key from environment variables."""
+    provider = os.environ.get("LOGO_AI_PROVIDER", "").lower() or None
+    if provider == "claude":
+        key = os.environ.get("ANTHROPIC_API_KEY")
+    elif provider == "gemini":
+        key = os.environ.get("GEMINI_API_KEY")
+    else:
+        key = None
+    return provider, key
+
+
+def _start_logo_updater(
+    shutdown_event: threading.Event,
+    airlines_json: list,
+) -> threading.Thread:
+    """Start a daemon thread that updates logos weekly."""
+
+    def _updater():
+        while not shutdown_event.wait(_LOGO_UPDATE_INTERVAL):
+            provider, api_key = _get_logo_ai_config()
+            try:
+                summary = update_logos(
+                    ai_provider=provider,
+                    api_key=api_key,
+                    airlines_json=airlines_json,
+                    publish=True,
+                )
+                if summary.get("generated") or summary.get("synced"):
+                    logger.info(
+                        "Logo update: %d generated, %d synced",
+                        len(summary.get("generated", [])),
+                        len(summary.get("synced", [])),
+                    )
+            except Exception:
+                logger.exception("Logo update failed")
+
+    t = threading.Thread(target=_updater, name="logo-updater", daemon=True)
+    t.start()
+    return t
+
+
+def cmd_update_data() -> None:
+    """Download the latest hex database from tar1090-db (CLI command)."""
+    result = _download_hex_db()
+    if result is not None:
+        from flights.hex_lookup import HEX_DB_GZ_PATH
+
+        print(f"OK - {len(result)} aircraft in database")
+        print(f"Saved to {HEX_DB_GZ_PATH}")
+    else:
+        print("FAILED - check logs for details")
+
+
+def cmd_update_logos(publish: bool = False) -> None:
+    """Sync logo formats and optionally generate missing logos (CLI command)."""
+    airlines_path = os.path.join(BASE_DIR, "data", "airlines.json")
+    try:
+        with open(airlines_path) as f:
+            airlines_json = json.load(f)
+    except Exception:
+        airlines_json = []
+
+    provider, api_key = _get_logo_ai_config()
+    if provider:
+        print(f"AI provider: {provider}")
+    else:
+        print("AI generation: disabled (set LOGO_AI_PROVIDER + API key)")
+
+    summary = update_logos(
+        ai_provider=provider,
+        api_key=api_key,
+        airlines_json=airlines_json,
+        publish=publish,
+    )
+
+    synced = summary.get("synced", [])
+    generated = summary.get("generated", [])
+
+    if synced:
+        print(f"Synced {len(synced)} SVGs to PNG: {', '.join(synced[:10])}")
+    if generated:
+        print(f"Generated {len(generated)} logos: {', '.join(generated[:10])}")
+    if not synced and not generated:
+        print("No logos to update")
+
+    print(
+        f"Totals: {summary.get('total_svg', 0)} SVG, {summary.get('total_png', 0)} PNG"
+    )
+
+    if summary.get("published"):
+        print("Changes committed and pushed to git")
+
+
 # ---------------------------------------------------------------------------
 # Entry point
 # ---------------------------------------------------------------------------
@@ -641,6 +795,19 @@ def main() -> None:
         "status",
         help="Show configuration and check connectivity",
     )
+    subparsers.add_parser(
+        "update-data",
+        help="Download latest hex database from tar1090-db",
+    )
+    logos_parser = subparsers.add_parser(
+        "update-logos",
+        help="Sync logo formats and generate missing logos",
+    )
+    logos_parser.add_argument(
+        "--publish",
+        action="store_true",
+        help="Commit, tag, and push logo changes to git",
+    )
 
     args = parser.parse_args()
     config = load_config(args.config)
@@ -659,6 +826,10 @@ def main() -> None:
         cmd_once(config)
     elif command == "status":
         cmd_status(config)
+    elif command == "update-data":
+        cmd_update_data()
+    elif command == "update-logos":
+        cmd_update_logos(publish=getattr(args, "publish", False))
 
 
 if __name__ == "__main__":

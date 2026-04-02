@@ -23,12 +23,14 @@ class FlightEnricher:
         aircraft_json: list,
         reg_parser,
         config: dict,
+        hex_db: dict | None = None,
     ):
         self.base_dir = BASE_DIR
         self.missing_file = os.path.join(BASE_DIR, "output", "missing.json")
         self.lookups = self._create_lookup_dictionaries(airlines_json, aircraft_json)
         self.reg_parser = reg_parser
         self.config = config
+        self.hex_db = hex_db or {}
         self.flights_with_location: list[tuple[float, str]] = []
         self.missing_data_log = self._initialize_missing_data_log()
 
@@ -54,6 +56,7 @@ class FlightEnricher:
             "airlines": {},
             "aircraft": {},
             "airports": {},
+            "logos": {},
         }
         try:
             if os.path.exists(self.missing_file):
@@ -96,6 +99,9 @@ class FlightEnricher:
             )
         }
 
+        # Hex database enrichment (fills gaps from ADS-B data)
+        self._apply_hex_lookup(result, flight_id, flight_data)
+
         self._add_registration_info(result, flight_data)
         self._add_airline_info(result, flight_data)
 
@@ -121,6 +127,34 @@ class FlightEnricher:
         except Exception:
             return ""
 
+    def _apply_hex_lookup(
+        self, result: dict, flight_id: str, flight_data: dict
+    ) -> None:
+        """Enrich from hex database. Fills missing reg/type, adds owner info."""
+        hex_entry = self.hex_db.get(flight_id.upper())
+        if not hex_entry:
+            return
+
+        # Fill missing registration from hex DB
+        if not flight_data.get("reg") and hex_entry.registration:
+            result["reg"] = hex_entry.registration
+            flight_data["reg"] = hex_entry.registration
+
+        # Fill missing type from hex DB
+        if not flight_data.get("type") and hex_entry.type_code:
+            result["type"] = hex_entry.type_code
+            flight_data["type"] = hex_entry.type_code
+
+        # Store hex-derived fields
+        if hex_entry.owner:
+            result["hex_owner"] = hex_entry.owner
+        if hex_entry.description:
+            result["hex_description"] = hex_entry.description
+        if hex_entry.year:
+            result["hex_year"] = hex_entry.year
+        if hex_entry.is_military:
+            result["is_military"] = True
+
     def _add_registration_info(self, result: dict, flight_data: dict) -> None:
         if flight_data.get("reg"):
             parsed_reg = self.reg_parser.parse(flight_data["reg"])
@@ -139,6 +173,7 @@ class FlightEnricher:
             flight_data.get("callsign", ""),
             flight_data.get("flightno", ""),
             flight_data.get("reg", ""),
+            has_hex_owner=bool(result.get("hex_owner")),
         )
         if airline:
             country_code = airline.get("country_code", "").upper()
@@ -153,6 +188,9 @@ class FlightEnricher:
                     "airline_iata": airline.get("iata_code", ""),
                 }
             )
+        elif result.get("hex_owner"):
+            # Fallback: use hex database owner as operator name
+            result["airline"] = result["hex_owner"]
 
     def _add_location_info(
         self, result: dict, flight_data: dict, flight_id: str
@@ -196,6 +234,9 @@ class FlightEnricher:
             result["aircraft_model"] = self.lookups["aircraft"][aircraft_type].get(
                 "aircraft_model", ""
             )
+        elif aircraft_type and result.get("hex_description"):
+            # Not in our DB but hex DB has a description — use it
+            result["aircraft_model"] = result["hex_description"]
         elif aircraft_type:
             entry = {
                 "type": aircraft_type,
@@ -245,7 +286,11 @@ class FlightEnricher:
             pass
 
     def _get_airline_info(
-        self, callsign: str, flightno: str, registration: str
+        self,
+        callsign: str,
+        flightno: str,
+        registration: str,
+        has_hex_owner: bool = False,
     ) -> dict | None:
         airline = None
         if callsign:
@@ -254,7 +299,7 @@ class FlightEnricher:
             airline = self.lookups["airlines_icao"].get(flightno[:3])
         if not airline and flightno:
             airline = self.lookups["airlines_iata"].get(flightno[:2])
-        if not airline and callsign:
+        if not airline and callsign and not has_hex_owner:
             entry = {"callsign": callsign, "reg": registration}
             self._add_reg_country(entry, registration)
             self._update_missing_data_log("airlines", callsign[:3], entry)
@@ -425,6 +470,7 @@ def create_flights_rich(
     distance_unit: str,
     altitude_trends: dict,
     base_url: str,
+    hex_db: dict | None = None,
 ) -> dict:
     """Enrich flights and add logo links."""
     config = {
@@ -435,14 +481,31 @@ def create_flights_rich(
         "altitude_trends": altitude_trends,
         "user_location": user_location,
     }
-    enricher = FlightEnricher(airlines_json, aircraft_json, reg_parser, config)
+    enricher = FlightEnricher(
+        airlines_json, aircraft_json, reg_parser, config, hex_db=hex_db
+    )
     flights_rich = enricher.enrich_flights(flights)
 
+    logos_dir = os.path.join(BASE_DIR, "assets", "images", "logos")
     for flight_data in flights_rich.values():
         airline_icao = flight_data.get("airline_icao", "").upper()
         if airline_icao and base_url:
             flight_data["airline_logo_link"] = "{}/logos/{}".format(
                 base_url.rstrip("/"), airline_icao
             )
+            # Track missing logos
+            has_svg = os.path.exists(
+                os.path.join(logos_dir, "svg", f"{airline_icao}.svg")
+            )
+            has_png = os.path.exists(
+                os.path.join(logos_dir, "png", f"{airline_icao}.png")
+            )
+            if not has_svg and not has_png:
+                airline_name = flight_data.get("airline", "")
+                enricher._update_missing_data_log(
+                    "logos",
+                    airline_icao,
+                    {"name": airline_name} if airline_name else None,
+                )
 
     return flights_rich

@@ -31,6 +31,7 @@ __pypackages__/
 .idea/
 
 # Project specific
+data/aircraft_hex.csv
 output/
 logs/
 storage/

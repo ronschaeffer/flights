@@ -14,6 +14,11 @@ RUN poetry build -f wheel
 FROM python:3.11-slim
 WORKDIR /app
 
+# System deps for cairosvg (SVG → PNG conversion) and git (logo publishing)
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends libcairo2 git && \
+    rm -rf /var/lib/apt/lists/*
+
 COPY --from=builder /build/requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt && rm requirements.txt
 
@@ -24,6 +29,9 @@ RUN pip install --no-cache-dir /tmp/*.whl && rm /tmp/*.whl
 COPY config/config.docker.yaml /app/config-defaults/config.yaml
 COPY config/config.yaml.example /app/config-defaults/config.yaml.example
 COPY data/ /app/data/
+
+# Download tar1090-db hex database (619K+ aircraft, ~9MB gzipped)
+RUN python -c "import urllib.request; urllib.request.urlretrieve('https://github.com/wiedehopf/tar1090-db/raw/refs/heads/csv/aircraft.csv.gz', '/app/data/aircraft_hex.csv.gz')"
 COPY assets/ /app/assets/
 COPY docker-entrypoint.sh /app/
 

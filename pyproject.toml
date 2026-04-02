@@ -1,6 +1,6 @@
 [project]
 name = "flights"
-version = "0.4.0"
+version = "0.5.0"
 description = "Enriches flight data from ADS-B with MQTT and HTTP API for Home Assistant"
 authors = [
     { name = "ronschaeffer", email = "ron@ronschaeffer.com" }
@@ -21,6 +21,7 @@ dependencies = [
     "uvicorn[standard]>=0.20.0",
     "flydenity>=0.1.6",
     "airportsdata>=20241001",
+    "cairosvg>=2.7.0",
 ]
 
 [project.scripts]
@@ -46,6 +47,7 @@ fastapi = ">=0.100.0"
 uvicorn = {version = ">=0.20.0", extras = ["standard"]}
 flydenity = "^0.1.6"
 airportsdata = ">=20241001"
+cairosvg = ">=2.7.0"
 
 [tool.poetry.group.dev.dependencies]
 pytest = "^8.0.0"
