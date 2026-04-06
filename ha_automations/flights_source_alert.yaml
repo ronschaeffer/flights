@@ -20,38 +20,38 @@ trigger:
   # ADS-B receiver goes offline
   - id: receiver_offline
     platform: state
-    entity_id: binary_sensor.mqtt_publisher_receiver
+    entity_id: binary_sensor.flights_ads_b_receiver
     to: "off"
     for:
       minutes: 2
   # ADS-B receiver comes back online
   - id: receiver_online
     platform: state
-    entity_id: binary_sensor.mqtt_publisher_receiver
+    entity_id: binary_sensor.flights_ads_b_receiver
     to: "on"
   # Web server goes offline
   - id: web_server_offline
     platform: state
-    entity_id: binary_sensor.mqtt_publisher_web_server
+    entity_id: binary_sensor.flights_web_server
     to: "off"
     for:
       minutes: 2
   # Web server comes back online
   - id: web_server_online
     platform: state
-    entity_id: binary_sensor.mqtt_publisher_web_server
+    entity_id: binary_sensor.flights_web_server
     to: "on"
   # Flights device becomes unavailable (MQTT disconnect / crash)
   - id: device_unavailable
     platform: state
-    entity_id: sensor.mqtt_publisher_status
+    entity_id: sensor.flights_status
     to: "unavailable"
     for:
       minutes: 2
   # Flights device becomes available again
   - id: device_available
     platform: state
-    entity_id: sensor.mqtt_publisher_status
+    entity_id: sensor.flights_status
     from: "unavailable"
 
 action:
@@ -68,7 +68,7 @@ action:
               message: >-
                 The ADS-B receiver (Plane Finder Client) is not responding
                 or has stopped receiving data. Check the device at
-                {{ state_attr('sensor.mqtt_publisher_status', 'receiver_detail')
+                {{ state_attr('sensor.flights_status', 'receiver_detail')
                    | default('(no detail available)') }}.
 
       - conditions:

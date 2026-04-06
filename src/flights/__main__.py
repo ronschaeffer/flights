@@ -453,6 +453,23 @@ def cmd_service(config: FlightsConfig) -> None:
     availability.online(retain=True)
     publish_discovery(config, publisher)
 
+    # Re-publish discovery + availability on every reconnect so HA recovers
+    # even if EMQX loses retained messages (e.g. broker restart).
+    _orig_on_connect = publisher.client.on_connect
+
+    def _reconnect_on_connect(client, userdata, *args, **kwargs):
+        if _orig_on_connect:
+            _orig_on_connect(client, userdata, *args, **kwargs)
+        if publisher._connected:
+            try:
+                availability.online(retain=True)
+                publish_discovery(config, publisher)
+                logger.info("Re-published discovery and availability after reconnect")
+            except Exception:
+                logger.exception("Failed to re-publish discovery on reconnect")
+
+    publisher.client.on_connect = _reconnect_on_connect
+
     shutdown_event = threading.Event()
     refresh_event = threading.Event()
 
