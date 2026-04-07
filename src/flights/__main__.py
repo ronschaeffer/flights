@@ -29,7 +29,10 @@ from flights.discovery import publish_discovery
 from flights.enricher import create_flights_rich
 from flights.hex_lookup import load_hex_db
 from flights.logo_resolver import update_logos
+from ha_mqtt_publisher import HealthTracker
+
 from flights.mqtt_client import create_availability, create_publisher
+from flights.server import attach_health_router
 from flights.server import get_base_url, start_server
 
 logger = logging.getLogger(__name__)
@@ -445,9 +448,16 @@ def cmd_service(config: FlightsConfig) -> None:
     _ensure_output_files()
     airlines_json, aircraft_json, hex_db = _load_reference_data()
     defined_zone = _build_zone(config)
-    base_url = _start_web_server(config)
-
     publisher = create_publisher(config)
+
+    # Wire up MQTT liveness tracking before starting the web server so that
+    # /health/mqtt exists when uvicorn begins serving and Docker HEALTHCHECK
+    # probes can reflect actual broker health (not just process liveness).
+    health_tracker = HealthTracker(max_publish_age_seconds=300)
+    health_tracker.attach(publisher)
+    attach_health_router(health_tracker)
+
+    base_url = _start_web_server(config)
     publisher.connect()
     availability = create_availability(publisher, config)
     availability.online(retain=True)

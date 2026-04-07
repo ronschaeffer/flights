@@ -182,10 +182,23 @@ def _build_dashboard_html(_base_url: str) -> str:
         return f.read()
 
 
-@app.get("/health")
-async def health_check():
-    """Health check endpoint for Docker HEALTHCHECK."""
-    return {"status": "ok"}
+def attach_health_router(tracker) -> None:
+    """Mount the shared MQTT health router from ha_mqtt_publisher.
+
+    Exposes:
+        GET /health      -> 200 always (process liveness)
+        GET /health/mqtt -> 200 if tracker.is_healthy else 503
+
+    Routes are inserted at the FRONT of ``app.routes`` so they win over the
+    catch-all ``/{file_name}`` route declared at module import time.
+    """
+    from ha_mqtt_publisher import make_fastapi_router
+
+    health_router = make_fastapi_router(tracker)
+    # include_router would append to the end and lose to the catch-all,
+    # so we splice the new routes in at the front instead.
+    new_routes = list(health_router.routes)
+    app.router.routes[:0] = new_routes
 
 
 @app.get("/")

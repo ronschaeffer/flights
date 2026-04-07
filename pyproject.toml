@@ -1,6 +1,6 @@
 [project]
 name = "flights"
-version = "0.5.0"
+version = "0.5.2"
 description = "Enriches flight data from ADS-B with MQTT and HTTP API for Home Assistant"
 authors = [
     { name = "ronschaeffer", email = "ron@ronschaeffer.com" }
@@ -13,7 +13,7 @@ dependencies = [
     "paho-mqtt>=2.1.0",
     "pyyaml>=6.0.1",
     "python-dotenv>=1.1.1",
-    "ha-mqtt-publisher>=0.3.5",
+    "ha-mqtt-publisher>=0.4.0",
     "haversine>=2.9.0",
     "shapely>=2.0.6",
     "tabulate>=0.9.0",
@@ -39,7 +39,7 @@ requests = "^2.31.0"
 paho-mqtt = "^2.1.0"
 pyyaml = "^6.0.1"
 python-dotenv = "^1.1.1"
-ha-mqtt-publisher = "^0.3.5"
+ha-mqtt-publisher = "^0.4.0"
 haversine = "^2.9.0"
 shapely = "^2.0.6"
 tabulate = "^0.9.0"

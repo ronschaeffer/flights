@@ -3,7 +3,22 @@
 from fastapi.testclient import TestClient
 import pytest
 
-from flights.server import _server_config, app
+from ha_mqtt_publisher import HealthTracker
+
+from flights.server import _server_config, app, attach_health_router
+
+# Mount the health router once at module import time so /health and
+# /health/mqtt exist for the TestClient. Tests use a permanently-healthy
+# tracker so the basic /health route returns 200.
+_test_tracker = HealthTracker(max_publish_age_seconds=3600)
+_test_tracker.state.connected = True
+import time as _time
+_test_tracker.state.last_publish_success_at = _time.time()
+try:
+    attach_health_router(_test_tracker)
+except Exception:
+    # Idempotent: ignore if already attached on a re-import
+    pass
 
 
 @pytest.fixture(autouse=True)
