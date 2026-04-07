@@ -38,3 +38,4 @@ storage/
 config/config.yaml
 config/ha_mqtt_disc_payload.json
 .ha_discovery_state.json
+.claude/
