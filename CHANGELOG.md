@@ -2,6 +2,52 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.5.3] - 2026-04-08
+
+### Fixed
+- Lint cleanup: ruff format on `tests/test_server.py` and import-sort on
+  `src/flights/__main__.py`. CI on main was red since v0.5.0 because the
+  v0.5.0 health-tracker commit didn't run `make ci-check` before pushing.
+
+## [0.5.2] - 2026-04-07
+
+### Fixed
+- `.claude/settings.json` accidentally committed by `git add -A`; now
+  gitignored.
+
+## [0.5.1] - skipped
+
+Tag existed on the remote pointing at an older commit before the v0.5.x
+health-tracker work; jumped to v0.5.2.
+
+## [0.5.0] - 2026-04-07
+
+### Added
+- `/health/mqtt` endpoint via `ha_mqtt_publisher` v0.4.0's shared
+  `HealthTracker`. The endpoint returns 200 only when the MQTT publisher
+  is connected AND has published successfully in the last 5 minutes,
+  otherwise 503. The Docker `HEALTHCHECK` now probes this instead of
+  plain `/health`, so a real broker outage actually marks the container
+  unhealthy.
+- `attach_health_router(tracker)` function in `server.py` that mounts the
+  shared FastAPI router with route precedence over the catch-all
+  `/{file_name}` route.
+
+### Changed
+- Bumped `ha-mqtt-publisher` to `>=0.4.0`.
+- Dockerfile `HEALTHCHECK` switched from `/health` to `/health/mqtt` and
+  asserts HTTP 200 (was: any successful response).
+- `cmd_service` now creates and attaches a `HealthTracker` before starting
+  the web server, so `/health/mqtt` is reachable from the moment uvicorn
+  begins serving.
+
+### Why
+Addresses the failure mode observed on 2026-04-07 where the EMQX broker
+crash-looped for hours and the `flights` container kept reporting healthy
+because `/health` only verified the FastAPI process was up, not whether
+MQTT was actually working. See
+https://github.com/ronschaeffer/ha_mqtt_publisher/blob/main/CHANGELOG.md#040--2026-04-07.
+
 ## [0.3.0] - 2026-04-01
 
 ### Breaking Changes

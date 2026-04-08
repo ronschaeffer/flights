@@ -65,7 +65,8 @@ A built-in FastAPI web server provides JSON data and static image assets.
 | Endpoint | Description |
 |---|---|
 | `/` | Home page — lists available JSON files and image directories |
-| `/health` | Health check (used by Docker HEALTHCHECK) |
+| `/health` | Process liveness — always returns 200 |
+| `/health/mqtt` | MQTT broker liveness (since v0.5.0) — returns 200 if the publisher is connected and a successful publish has happened in the last 5 minutes; 503 otherwise. **This is what the Docker HEALTHCHECK probes**, so a real broker outage now actually marks the container unhealthy. Built on `ha_mqtt_publisher`'s shared [`HealthTracker`](https://github.com/ronschaeffer/ha_mqtt_publisher#health--liveness). |
 | `/{file_name}` | JSON output files: `visible`, `closest_aircraft`, `all_aircraft` |
 | `/logos` | List all airline logos (SVG and PNG) |
 | `/logos/{icao}` | Airline logo by ICAO code (e.g. `/logos/BAW`) |
