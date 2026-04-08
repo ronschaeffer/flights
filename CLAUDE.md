@@ -78,10 +78,28 @@ See `unraid/flights.xml` for the Unraid template.
 Set `WEB_SERVER_EXTERNAL_URL` to your host IP for correct URL generation.
 
 Container name: `flights`
-Image: `ghcr.io/ronschaeffer/flights:latest`
+Image: `ghcr.io/ronschaeffer/flights:latest` (template is pinned to `:0.5.3`)
 Port: 47474 → 47475
 Volumes: config, data, storage, output
 Env vars for AI logos: `LOGO_AI_PROVIDER=claude`, `ANTHROPIC_API_KEY=...`
+
+## MQTT-aware healthcheck (since v0.5.0)
+
+`cmd_service` creates a `HealthTracker(max_publish_age_seconds=300)`,
+attaches it to the publisher (so every connect/disconnect/publish updates
+state), and mounts `make_fastapi_router(tracker)` on the FastAPI `app`
+via `attach_health_router()` in `server.py` BEFORE starting uvicorn.
+Routes are inserted at the FRONT of `app.router.routes` so they win
+against the catch-all `/{file_name}` route declared at module import time.
+
+The Dockerfile `HEALTHCHECK` probes `/health/mqtt`, which returns 503 when
+the publisher is disconnected from the broker or when no successful publish
+has happened in the last 5 minutes. **Do not remove this** — it's the
+mechanism that detects real broker outages. The plain `/health` endpoint
+is process-liveness only and should not be probed.
+
+Tests mount the router at module-import time in `tests/test_server.py`
+with a permanently-healthy tracker so `/health` returns 200 in unit tests.
 
 ## Ship it checklist
 
