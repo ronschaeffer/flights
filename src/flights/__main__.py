@@ -12,6 +12,7 @@ import time
 from typing import Any
 
 from flydenity import Parser
+from ha_mqtt_publisher import HealthTracker
 import requests
 import shapely.geometry
 
@@ -29,11 +30,8 @@ from flights.discovery import publish_discovery
 from flights.enricher import create_flights_rich
 from flights.hex_lookup import load_hex_db
 from flights.logo_resolver import update_logos
-from ha_mqtt_publisher import HealthTracker
-
 from flights.mqtt_client import create_availability, create_publisher
-from flights.server import attach_health_router
-from flights.server import get_base_url, start_server
+from flights.server import attach_health_router, get_base_url, start_server
 
 logger = logging.getLogger(__name__)
 

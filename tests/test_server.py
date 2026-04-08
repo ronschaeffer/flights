@@ -1,9 +1,10 @@
 """Tests for the web server."""
 
-from fastapi.testclient import TestClient
-import pytest
+import time as _time
 
+from fastapi.testclient import TestClient
 from ha_mqtt_publisher import HealthTracker
+import pytest
 
 from flights.server import _server_config, app, attach_health_router
 
@@ -12,7 +13,6 @@ from flights.server import _server_config, app, attach_health_router
 # tracker so the basic /health route returns 200.
 _test_tracker = HealthTracker(max_publish_age_seconds=3600)
 _test_tracker.state.connected = True
-import time as _time
 _test_tracker.state.last_publish_success_at = _time.time()
 try:
     attach_health_router(_test_tracker)
