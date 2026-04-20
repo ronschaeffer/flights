@@ -1,0 +1,38 @@
+# Checks pfclient status at the end of the Saturday night suppression window.
+#
+# The main recovery automation (flights_ads_b_receiver_recovery.yaml)
+# suppresses notifications during Sat 23:00-Sun 02:00 due to a recurring
+# outage in that window. This automation fires at 02:00 Sunday and notifies
+# if pfclient is still offline and the Pi is reachable.
+#
+# Import: Settings -> Automations -> Create Automation -> ... -> Import YAML
+
+alias: "Flights: pfclient check after Saturday window"
+description: >
+  At 02:00 Sunday, notifies if pfclient is still unresponsive after the
+  Saturday night suppression window.
+mode: single
+
+trigger:
+  - platform: time
+    at: "02:00:00"
+
+condition:
+  - condition: time
+    weekday:
+      - sun
+  - condition: state
+    entity_id: binary_sensor.flights_ads_b_receiver
+    state: "off"
+  - condition: state
+    entity_id: device_tracker.flightrack_wired
+    state: home
+
+action:
+  - action: persistent_notification.create
+    data:
+      notification_id: flights_recovery_action
+      title: "Flights: pfclient unresponsive"
+      message: >
+        Flighttrack Pi is online but pfclient is still unresponsive after
+        the Saturday night window. Manual intervention may be needed.

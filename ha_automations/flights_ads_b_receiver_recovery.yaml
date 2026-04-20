@@ -1,0 +1,72 @@
+# Responds when the ADS-B receiver (pfclient) has been offline for 10 minutes.
+#
+# Branches on whether the Pi itself is reachable:
+#   - Pi offline: creates a notification and power-cycles via ESPHome switch.
+#   - Pi online:  creates a notification (manual intervention needed).
+#
+# The notification is suppressed during Sat 23:00-Sun 02:00 to avoid false
+# alerts from a recurring Saturday night pfclient outage. A companion
+# automation (flights_pfclient_check_after_saturday_window.yaml) checks at
+# 02:00 Sunday and notifies if pfclient is still down.
+#
+# Import: Settings -> Automations -> Create Automation -> ... -> Import YAML
+
+alias: "Flights: ADS-B receiver recovery"
+description: >
+  If the ADS-B receiver (pfclient) stays offline for 10 minutes, checks whether
+  the Pi itself is down or just pfclient has crashed, and responds accordingly.
+  10-minute delay avoids false triggers from the scheduled Monday reboot
+  (~42s boot time). Notification suppressed Sat 23:00-Sun 02:00.
+mode: single
+
+trigger:
+  - platform: state
+    entity_id: binary_sensor.flights_ads_b_receiver
+    to: "off"
+    for:
+      minutes: 10
+    id: receiver_offline
+
+action:
+  - choose:
+      - alias: Pi is offline - power cycle
+        conditions:
+          - condition: state
+            entity_id: device_tracker.flightrack_wired
+            state: not_home
+        sequence:
+          - action: persistent_notification.create
+            data:
+              notification_id: flights_recovery_action
+              title: "Flights: Pi offline - power cycling"
+              message: >
+                Flighttrack Pi has been unreachable for 10 minutes.
+                Triggering power cycle via ESPHome switch.
+          - action: button.press
+            target:
+              entity_id: button.flighttrack_reboot_power_switch
+          - delay:
+              seconds: 30
+          - action: button.press
+            target:
+              entity_id: button.flighttrack_reboot_power_switch
+
+      - alias: Pi is up but pfclient crashed
+        conditions:
+          - condition: state
+            entity_id: device_tracker.flightrack_wired
+            state: home
+          - condition: not
+            conditions:
+              - condition: template
+                value_template: >
+                  {{ (now().weekday() == 5 and now().hour >= 23) or
+                     (now().weekday() == 6 and now().hour < 2) }}
+        sequence:
+          - action: persistent_notification.create
+            data:
+              notification_id: flights_recovery_action
+              title: "Flights: pfclient unresponsive"
+              message: >
+                Flighttrack Pi is online but pfclient has been unresponsive
+                for 10 minutes. Manual intervention may be needed.
