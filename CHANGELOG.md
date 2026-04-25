@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.5.4] - 2026-04-25
+
+### Fixed
+- Receiver polling now uses a shared `requests.Session` with HTTP keep-alive
+  instead of creating a new TCP connection on every 15s cycle. Previously
+  pfclient (the Planefinder ADS-B receiver) was leaving a fraction of these
+  short-lived connections in `CLOSE-WAIT`, accumulating to 190+ zombie
+  sockets after ~17 days of uptime. Both `_get_receiver_data` (aircraft
+  endpoint) and `_check_receiver` (stats endpoint) are now wrapped in `with`
+  context managers so responses are explicitly closed and the underlying
+  connection is returned to the session pool.
+- Bumped `flights/__init__.py` `__version__` to match `pyproject.toml`
+  (was stuck at 0.5.0 since v0.5.x bumps only updated pyproject).
+
 ## [0.5.3] - 2026-04-08
 
 ### Fixed

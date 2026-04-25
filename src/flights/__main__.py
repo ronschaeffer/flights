@@ -38,6 +38,11 @@ logger = logging.getLogger(__name__)
 OUTPUT_DIR = os.path.join(BASE_DIR, "output")
 STORAGE_DIR = os.path.join(BASE_DIR, "storage")
 
+# Shared HTTP session for receiver polling. Using a Session enables
+# HTTP keep-alive so the 15s polling loop reuses a single TCP connection
+# instead of churning through new ones (which pfclient leaks as CLOSE-WAIT).
+_HTTP_SESSION = requests.Session()
+
 
 # ---------------------------------------------------------------------------
 # Helpers
@@ -107,9 +112,9 @@ def _get_receiver_data(url: str) -> dict[str, Any] | None:
     if not url:
         return None
     try:
-        resp = requests.get(url, timeout=5)
-        if resp.status_code == 200:
-            return resp.json()
+        with _HTTP_SESSION.get(url, timeout=5) as resp:
+            if resp.status_code == 200:
+                return resp.json()
     except Exception:
         logger.exception("Error fetching receiver data")
     return None
@@ -198,10 +203,10 @@ def _check_receiver(config: FlightsConfig) -> tuple[str, str]:
     )
     stats_url = f"{base}/ajax/stats"
     try:
-        resp = requests.get(stats_url, timeout=5)
-        if resp.status_code != 200:
-            return "offline", f"HTTP {resp.status_code} from {stats_url}"
-        data = resp.json()
+        with _HTTP_SESSION.get(stats_url, timeout=5) as resp:
+            if resp.status_code != 200:
+                return "offline", f"HTTP {resp.status_code} from {stats_url}"
+            data = resp.json()
         bytes_ps = data.get("receiver_bytes_in_ps", 0)
         if bytes_ps > 0:
             return "online", f"Receiving {bytes_ps} bytes/s"
