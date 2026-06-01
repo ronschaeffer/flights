@@ -276,6 +276,28 @@ def _generate_with_gemini(
         return None
 
 
+def _generate_with_router(
+    icao_code: str, airline_name: str, api_key: str
+) -> str | None:
+    """Generate an SVG logo via the local-AI gateway (ai_router).
+
+    Routed through the LiteLLM gateway; the model/alias is chosen by AI_MODEL
+    (or AI_API_KEY presence). The passed ``api_key`` is ignored — the gateway
+    key comes from the ``AI_API_KEY`` env. Selected with ``provider="local"``.
+    """
+    try:
+        import ai_router
+
+        text = ai_router.chat(
+            _SVG_STYLE_PROMPT.format(airline_name=airline_name, icao_code=icao_code),
+            max_tokens=4096,
+        )
+        return _extract_svg(text)
+    except Exception:
+        logger.exception("Router (local-AI) logo generation failed for %s", icao_code)
+        return None
+
+
 def generate_missing_logos(
     provider: str | None = None,
     api_key: str | None = None,
@@ -300,6 +322,7 @@ def generate_missing_logos(
     generator = {
         "claude": _generate_with_claude,
         "gemini": _generate_with_gemini,
+        "local": _generate_with_router,
     }.get(provider)
 
     if not generator:

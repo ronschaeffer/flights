@@ -34,6 +34,8 @@ packages = [
 package-mode = true
 
 [tool.poetry.dependencies]
+# Local-AI gateway helper. Path dep for dev; switch to PyPI/git at activation.
+ai-router = { path = "../ai_router", develop = true }
 python = "^3.11"
 requests = "^2.31.0"
 paho-mqtt = "^2.1.0"
