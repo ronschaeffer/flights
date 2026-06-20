@@ -21,6 +21,7 @@ and serves data via an HTTP API with airline logos and country flags.
 - `haversine` (distance calculations)
 - `shapely` (geographic zone filtering)
 - `cairosvg` (SVG → PNG logo conversion)
+- `ai-router` (private git dep, **dev group only** — local-AI gateway helper). Lazy import in `logo_resolver.py` gated by `AI_API_KEY`; the gateway runs as its own container so this is NOT in the runtime/Docker image. See CI note below.
 
 ## Toolchain
 
@@ -80,13 +81,17 @@ unraid/              Unraid Docker template XML
 `ci.yml`: lint + test on Python 3.11 and 3.12.
 `docker-publish.yml`: build and push to GHCR on `v*` tag.
 
+**Private git dep auth:** `ai-router` is a private repo, so every workflow running `poetry install --with dev` first configures a git credential from the `AI_ROUTER_PAT` repo secret:
+`git config --global url."https://x-access-token:${{ secrets.AI_ROUTER_PAT }}@github.com/".insteadOf "https://github.com/"`
+The Docker build is unaffected (it exports `--without dev`, so ai-router is excluded). If CI suddenly fails at "Install dependencies", check this step and the secret. Do NOT convert ai-router back to a local path dep — it breaks CI and Docker.
+
 ## Docker / Unraid
 
 See `unraid/flights.xml` for the Unraid template.
 Set `WEB_SERVER_EXTERNAL_URL` to your host IP for correct URL generation.
 
 Container name: `flights`
-Image: `ghcr.io/ronschaeffer/flights:latest` (template is pinned to `:0.6.0`)
+Image: `ghcr.io/ronschaeffer/flights:latest` (template tracks `:latest`, unpinned 2026-06-20). Port mapping is **host 47474 → container 47475** (inverted vs. intuition; collides with linuxbox if you flip it).
 Port: 47474 → 47475
 Volumes: config, data, storage, output
 Env vars for AI logos: `ANTHROPIC_API_KEY=...` (claude is the default provider; set `LOGO_AI_PROVIDER` explicitly to override). Bind-mount `LOGO_CACHE_DIR` to persist on-demand-generated PNGs.
