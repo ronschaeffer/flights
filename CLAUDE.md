@@ -64,8 +64,16 @@ unraid/              Unraid Docker template XML
 - SVGs: 80×80 viewBox, icon-style, no text/wordmarks
 - PNGs: 90×90, solid background (white, or dark slate for light logos)
 - Weekly background thread syncs formats and generates missing logos via AI
-- AI generation requires: `LOGO_AI_PROVIDER` (claude/gemini) + API key env var
+- AI generation requires `LOGO_AI_PROVIDER` (claude/gemini) + API key env var.
+  When unset, the provider defaults to `claude` if `ANTHROPIC_API_KEY` is set,
+  else `gemini` if `GEMINI_API_KEY` is set. Model is `claude-sonnet-4-6`
+  (centralised `DEFAULT_CLAUDE_MODEL` in `logo_resolver.py`, kept in sync with
+  Stopover/Ticked).
 - Generated logos are auto-committed, tagged, and pushed to git
+- **On-demand path:** a `/logos/{icao}` request with no static logo generates a
+  logo on the fly, caching the PNG in `LOGO_CACHE_DIR` (default `cache/logos/`).
+  Serving order: static -> AI cache -> on-demand generation -> `_NONE`
+  placeholder (so an unknown ICAO renders the placeholder, never a 404).
 
 ## CI
 
@@ -78,10 +86,10 @@ See `unraid/flights.xml` for the Unraid template.
 Set `WEB_SERVER_EXTERNAL_URL` to your host IP for correct URL generation.
 
 Container name: `flights`
-Image: `ghcr.io/ronschaeffer/flights:latest` (template is pinned to `:0.5.3`)
+Image: `ghcr.io/ronschaeffer/flights:latest` (template is pinned to `:0.6.0`)
 Port: 47474 → 47475
 Volumes: config, data, storage, output
-Env vars for AI logos: `LOGO_AI_PROVIDER=claude`, `ANTHROPIC_API_KEY=...`
+Env vars for AI logos: `ANTHROPIC_API_KEY=...` (claude is the default provider; set `LOGO_AI_PROVIDER` explicitly to override). Bind-mount `LOGO_CACHE_DIR` to persist on-demand-generated PNGs.
 
 ## MQTT-aware healthcheck (since v0.5.0)
 

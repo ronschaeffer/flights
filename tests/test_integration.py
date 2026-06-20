@@ -125,8 +125,13 @@ def test_discovery_bundle_roundtrip(live_config):
         )
         topic = f"{discovery_prefix}/device/{prefix}/config"
 
-        # Use mqtt_test_harness to read back the retained message
-        from mqtt_test_harness import MQTTHarness
+        # Use mqtt_test_harness to read back the retained message.
+        # The harness is an optional local fixture (requires a live broker); skip
+        # cleanly when it is not present rather than failing the suite/CI.
+        import pytest
+
+        mqtt_test_harness = pytest.importorskip("mqtt_test_harness")
+        MQTTHarness = mqtt_test_harness.MQTTHarness
 
         async def _check():
             async with MQTTHarness() as h:

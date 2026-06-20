@@ -701,8 +701,19 @@ _LOGO_UPDATE_INTERVAL = 7 * 24 * 3600  # 1 week in seconds
 
 
 def _get_logo_ai_config() -> tuple[str | None, str | None]:
-    """Read AI provider and key from environment variables."""
+    """Read AI provider and key from environment variables.
+
+    Claude is the first-priority provider (aligned with Stopover/Ticked): when
+    LOGO_AI_PROVIDER is unset, default to "claude" if ANTHROPIC_API_KEY is
+    present, otherwise "gemini" if GEMINI_API_KEY is present. An explicit
+    LOGO_AI_PROVIDER always wins.
+    """
     provider = os.environ.get("LOGO_AI_PROVIDER", "").lower() or None
+    if provider is None:
+        if os.environ.get("ANTHROPIC_API_KEY"):
+            provider = "claude"
+        elif os.environ.get("GEMINI_API_KEY"):
+            provider = "gemini"
     if provider == "claude":
         key = os.environ.get("ANTHROPIC_API_KEY")
     elif provider == "gemini":

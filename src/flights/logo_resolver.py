@@ -222,6 +222,10 @@ def sync_formats() -> dict[str, list[str]]:
 # AI logo generation
 # ---------------------------------------------------------------------------
 
+# In-use Claude model, aligned with Stopover (config.py ai_model) and Ticked
+# (internal/ai/claude/claude.go DefaultModel). Keep in sync when bumping.
+DEFAULT_CLAUDE_MODEL = "claude-sonnet-4-6"
+
 
 def _generate_with_claude(
     icao_code: str, airline_name: str, api_key: str
@@ -232,7 +236,7 @@ def _generate_with_claude(
 
         client = anthropic.Anthropic(api_key=api_key)
         message = client.messages.create(
-            model="claude-sonnet-4-20250514",
+            model=DEFAULT_CLAUDE_MODEL,
             max_tokens=4096,
             messages=[
                 {
@@ -526,3 +530,82 @@ def update_logos(
     summary["total_png"] = len(png_codes)
 
     return summary
+
+
+# ---------------------------------------------------------------------------
+# On-demand logo generation (cache miss in server)
+# ---------------------------------------------------------------------------
+
+#: Directory for AI-generated PNG logos (writable at runtime; bind-mounted in Docker)
+LOGO_CACHE_DIR = os.environ.get(
+    "LOGO_CACHE_DIR",
+    os.path.join(BASE_DIR, "cache", "logos"),
+)
+
+
+def generate_logo_on_demand(
+    icao_code: str,
+    airline_name: str | None = None,
+) -> str | None:
+    """Generate a PNG logo for *icao_code* on demand and return its path.
+
+    Checks ``LOGO_CACHE_DIR`` first; generates via Claude only when the
+    environment variable ``LOGO_AI_PROVIDER=claude`` and ``ANTHROPIC_API_KEY``
+    are both set.  Saves the PNG to the cache dir so subsequent requests are
+    served from disk.
+
+    Returns the absolute path to the cached PNG, or ``None`` on failure.
+    """
+    provider = os.environ.get("LOGO_AI_PROVIDER", "").lower()
+    api_key = os.environ.get("ANTHROPIC_API_KEY", "")
+
+    if not provider or not api_key:
+        logger.debug(
+            "AI logo generation disabled - skipping on-demand for %s", icao_code
+        )
+        return None
+
+    os.makedirs(LOGO_CACHE_DIR, exist_ok=True)
+    cache_png = os.path.join(LOGO_CACHE_DIR, f"{icao_code}.png")
+
+    # Cache hit
+    if os.path.exists(cache_png):
+        return cache_png
+
+    name = airline_name or icao_code
+    logger.info(
+        "On-demand logo generation for %s (%s) via %s", icao_code, name, provider
+    )
+
+    # Generate SVG
+    generator = {"claude": _generate_with_claude}.get(provider)
+    if not generator:
+        logger.warning("Unsupported AI provider for on-demand generation: %s", provider)
+        return None
+
+    svg_text = generator(icao_code, name, api_key)
+    if not svg_text or not _validate_svg(svg_text):
+        logger.warning("Invalid SVG from AI for %s", icao_code)
+        return None
+
+    # Write SVG to a temp path and convert to PNG
+    import tempfile
+
+    with tempfile.NamedTemporaryFile(suffix=".svg", delete=False, mode="w") as tmp:
+        tmp.write(svg_text)
+        tmp_svg = tmp.name
+
+    try:
+        success = svg_to_png(tmp_svg, cache_png)
+    finally:
+        try:
+            os.unlink(tmp_svg)
+        except OSError:
+            pass
+
+    if success and os.path.exists(cache_png):
+        logger.info("Cached AI-generated logo for %s at %s", icao_code, cache_png)
+        return cache_png
+
+    logger.warning("svg_to_png failed for on-demand %s", icao_code)
+    return None

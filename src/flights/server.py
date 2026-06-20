@@ -492,7 +492,15 @@ async def read_output_file(file_name: str):
 
 @app.get("/logos/{file_name}")
 async def read_logo_file(file_name: str):
-    """Serve an airline logo."""
+    """Serve an airline logo.
+
+    Lookup order:
+    1. Static assets (assets/images/logos/{svg,png}/)
+    2. AI-generated PNG cache (LOGO_CACHE_DIR / cache/logos/) - PNG only
+    3. On-demand AI generation via Claude when LOGO_AI_PROVIDER=claude
+    """
+    from flights.logo_resolver import LOGO_CACHE_DIR, generate_logo_on_demand
+
     name, ext = os.path.splitext(file_name)
     ext = ext.lower() if ext else ""
 
@@ -503,21 +511,42 @@ async def read_logo_file(file_name: str):
     if ".." in file_name or file_name.startswith("/"):
         raise HTTPException(status_code=400, detail="Invalid file name")
 
+    icao = name.upper()
+
     if ext:
         dir_path = os.path.join(base_dir, ext.lstrip("."))
-        file_path = os.path.join(dir_path, name.upper() + ext)
+        file_path = os.path.join(dir_path, icao + ext)
         media_type = "image/svg+xml" if ext == ".svg" else "image/png"
-    else:
-        file_path, media_type = _try_file_with_ext(
-            base_dir, name.upper(), none_fallback=True
-        )
-        if not file_path:
-            raise HTTPException(status_code=404, detail="Image not found")
+        # Explicit extension: validate path and serve (or 404)
+        if file_path and os.path.exists(file_path):
+            if not os.path.abspath(file_path).startswith(os.path.abspath(base_dir)):
+                raise HTTPException(status_code=400, detail="Invalid file path")
+            return _get_file_content(file_path, media_type)
+        raise HTTPException(status_code=404, detail="Image not found")
 
-    if not os.path.abspath(file_path).startswith(os.path.abspath(base_dir)):
-        raise HTTPException(status_code=400, detail="Invalid file path")
+    # No extension — try real logo first (no _NONE fallback yet)
+    file_path, media_type = _try_file_with_ext(base_dir, icao, none_fallback=False)
+    if file_path and os.path.exists(file_path):
+        if not os.path.abspath(file_path).startswith(os.path.abspath(base_dir)):
+            raise HTTPException(status_code=400, detail="Invalid file path")
+        return _get_file_content(file_path, media_type)
 
-    return _get_file_content(file_path, media_type)
+    # No real static logo — try AI cache then on-demand generation
+    cache_png = os.path.join(LOGO_CACHE_DIR, f"{icao}.png")
+    if not os.path.exists(cache_png):
+        cache_png = generate_logo_on_demand(icao) or ""
+
+    if cache_png and os.path.exists(cache_png):
+        return _get_file_content(cache_png, "image/png")
+
+    # Final fallback: _NONE placeholder
+    none_path, none_media = _try_file_with_ext(base_dir, icao, none_fallback=True)
+    if none_path and os.path.exists(none_path):
+        if not os.path.abspath(none_path).startswith(os.path.abspath(base_dir)):
+            raise HTTPException(status_code=400, detail="Invalid file path")
+        return _get_file_content(none_path, none_media)
+
+    raise HTTPException(status_code=404, detail="Image not found")
 
 
 @app.get("/flags/{file_name}")

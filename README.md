@@ -69,7 +69,7 @@ A built-in FastAPI web server provides JSON data and static image assets.
 | `/health/mqtt` | MQTT broker liveness (since v0.5.0) — returns 200 if the publisher is connected and a successful publish has happened in the last 5 minutes; 503 otherwise. **This is what the Docker HEALTHCHECK probes**, so a real broker outage now actually marks the container unhealthy. Built on `ha_mqtt_publisher`'s shared [`HealthTracker`](https://github.com/ronschaeffer/ha_mqtt_publisher#health--liveness). |
 | `/{file_name}` | JSON output files: `visible`, `closest_aircraft`, `all_aircraft` |
 | `/logos` | List all airline logos (SVG and PNG) |
-| `/logos/{icao}` | Airline logo by ICAO code (e.g. `/logos/BAW`) |
+| `/logos/{icao}` | Airline logo by ICAO code (e.g. `/logos/BAW`). Lookup order: static asset -> AI-generated cache -> on-demand AI generation -> `_NONE` placeholder |
 | `/flags` | List all country flags (SVG and PNG) |
 | `/flags/{code}` | Country flag by ISO code (e.g. `/flags/gb`) |
 | `/endpoints` | API documentation with examples |
@@ -94,11 +94,12 @@ Flights includes an automated logo pipeline that keeps airline logos up to date:
 
 - **Missing logo tracking** — when a flight has no matching logo file, the ICAO code is logged to `missing.json` for resolution
 - **SVG ↔ PNG sync** — SVG logos are automatically rasterised to 90×90 PNG via cairosvg, with solid backgrounds (white, or dark slate for light logos)
-- **AI generation (optional)** — missing logos can be generated using Claude or Gemini, producing clean 80×80 SVG icons matching the existing style
+- **AI generation (optional)** — missing logos can be generated using Claude (default) or Gemini, producing clean 80×80 SVG icons matching the existing style
+- **On-demand generation** — a `/logos/{icao}` request with no static logo triggers a one-off AI generation, cached as PNG in `LOGO_CACHE_DIR` so subsequent requests are served from disk; falls back to the `_NONE` placeholder when generation is disabled or fails
 - **Auto-publish** — generated logos are committed, tagged, and pushed to git automatically
 - **Weekly updates** — both the hex database and logo resolver run as background threads in the service
 
-Set `LOGO_AI_PROVIDER` and the corresponding API key to enable AI generation (see Environment Variables below).
+Set `LOGO_AI_PROVIDER` and the corresponding API key to enable AI generation (see Environment Variables below). When `LOGO_AI_PROVIDER` is unset, the provider defaults to **Claude** if `ANTHROPIC_API_KEY` is present (falling back to Gemini if only `GEMINI_API_KEY` is set), aligning with the in-use Claude model (`claude-sonnet-4-6`) across the wider app suite.
 
 ---
 
@@ -150,9 +151,10 @@ docker run -d \
 | `CHECK_INTERVAL` | No | `15` | Seconds between receiver checks |
 | `HOME_ASSISTANT_ENABLED` | No | `true` | Enable HA MQTT discovery |
 | `LOG_LEVEL` | No | `INFO` | `DEBUG`, `INFO`, `WARNING`, `ERROR` |
-| `LOGO_AI_PROVIDER` | No | — | AI provider for logo generation: `claude` or `gemini` |
+| `LOGO_AI_PROVIDER` | No | `claude`\* | AI provider for logo generation: `claude` or `gemini`. \*Defaults to `claude` when `ANTHROPIC_API_KEY` is set, else `gemini` when `GEMINI_API_KEY` is set |
 | `ANTHROPIC_API_KEY` | No | — | API key for Claude logo generation |
 | `GEMINI_API_KEY` | No | — | API key for Gemini logo generation |
+| `LOGO_CACHE_DIR` | No | `cache/logos/` | Directory for AI-generated PNG logos (bind-mount in Docker to persist) |
 
 ### Unraid
 

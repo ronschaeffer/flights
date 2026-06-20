@@ -128,3 +128,90 @@ def test_dashboard_in_endpoints(client):
     response = client.get("/endpoints.json")
     data = response.json()
     assert "/dashboard" in data["available_endpoints"]
+
+
+# ---------------------------------------------------------------------------
+# AI on-demand logo generation tests
+# ---------------------------------------------------------------------------
+
+
+def test_logo_ai_fallback_serves_none_placeholder_when_disabled(
+    client, tmp_path, monkeypatch
+):
+    """With generation disabled and no logo/cache, the _NONE placeholder is served (200).
+
+    The HA dashboard's picture: field expects an image for every airline, so an
+    unknown ICAO must still resolve to the _NONE placeholder rather than a 404
+    (which would render as a broken image). generate_logo_on_demand returns None
+    when LOGO_AI_PROVIDER is unset, and the server falls through to _NONE.
+    """
+    import flights.logo_resolver as lr
+
+    called = []
+
+    def mock_generate(icao_code, airline_name=None):
+        called.append(icao_code)
+        return None  # disabled — no generation
+
+    monkeypatch.delenv("LOGO_AI_PROVIDER", raising=False)
+    monkeypatch.setattr(lr, "generate_logo_on_demand", mock_generate)
+
+    cache_dir = tmp_path / "logo-cache"
+    cache_dir.mkdir()
+    monkeypatch.setattr(lr, "LOGO_CACHE_DIR", str(cache_dir))
+
+    # XYZNOTEXIST has no static logo and no cache entry -> _NONE placeholder
+    response = client.get("/logos/XYZNOTEXIST")
+    assert response.status_code == 200
+    # _NONE placeholder is served (svg or png — both ship as assets)
+    assert response.headers["content-type"] in ("image/png", "image/svg+xml")
+    # generation was attempted exactly once (cache miss) before the _NONE fallback
+    assert called == ["XYZNOTEXIST"]
+
+
+def test_logo_ai_fallback_serves_cached_png(client, tmp_path, monkeypatch):
+    """When a cached PNG exists in LOGO_CACHE_DIR it is served directly."""
+    from PIL import Image
+
+    import flights.logo_resolver as lr
+
+    # Write a tiny 1x1 PNG into a temp cache dir
+    cache_dir = tmp_path / "logo-cache"
+    cache_dir.mkdir()
+    png_path = cache_dir / "XYZNOTEXIST.png"
+    img = Image.new("RGB", (1, 1), color=(255, 0, 0))
+    img.save(str(png_path))
+
+    monkeypatch.setattr(lr, "LOGO_CACHE_DIR", str(cache_dir))
+
+    # Mock generate_logo_on_demand to return the cached path (cache hit branch)
+    monkeypatch.setattr(
+        lr, "generate_logo_on_demand", lambda code, airline_name=None: str(png_path)
+    )
+
+    response = client.get("/logos/XYZNOTEXIST")
+    assert response.status_code == 200
+    assert response.headers["content-type"] == "image/png"
+
+
+def test_logo_ai_fallback_calls_generate_on_demand(client, tmp_path, monkeypatch):
+    """On cache miss, generate_logo_on_demand is called and its PNG result is served."""
+    from PIL import Image
+
+    import flights.logo_resolver as lr
+
+    cache_dir = tmp_path / "logo-cache"
+    cache_dir.mkdir()
+    generated_png = cache_dir / "XYZNOTEXIST.png"
+
+    def mock_generate(icao_code, airline_name=None):
+        img = Image.new("RGB", (1, 1), color=(0, 0, 255))
+        img.save(str(generated_png))
+        return str(generated_png)
+
+    monkeypatch.setattr(lr, "LOGO_CACHE_DIR", str(cache_dir))
+    monkeypatch.setattr(lr, "generate_logo_on_demand", mock_generate)
+
+    response = client.get("/logos/XYZNOTEXIST")
+    assert response.status_code == 200
+    assert response.headers["content-type"] == "image/png"

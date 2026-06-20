@@ -1,4 +1,5 @@
 """Tests for the local-AI (ai_router) logo generator and 'local' provider dispatch."""
+
 import logging
 
 from flights import logo_resolver

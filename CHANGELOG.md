@@ -2,6 +2,29 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.6.0] - 2026-06-20
+
+### Added
+- **On-demand logo generation.** A `/logos/{icao}` request for an airline with
+  no static logo now triggers a one-off AI generation, rasterised to PNG and
+  cached in `LOGO_CACHE_DIR` so subsequent requests are served from disk. The
+  full serving order is: static asset -> AI-generated cache -> on-demand
+  generation -> `_NONE` placeholder. An unknown ICAO with generation disabled
+  still resolves to the `_NONE` placeholder (200), never a broken-image 404, so
+  the Home Assistant dashboard `picture:` field always renders.
+- `LOGO_CACHE_DIR` environment variable (default `cache/logos/`) for the
+  AI-generated PNG cache; bind-mount in Docker to persist across restarts.
+
+### Changed
+- **Claude is now the default logo AI provider.** When `LOGO_AI_PROVIDER` is
+  unset, the provider defaults to `claude` if `ANTHROPIC_API_KEY` is present
+  (falling back to `gemini` when only `GEMINI_API_KEY` is set). An explicit
+  `LOGO_AI_PROVIDER` always wins.
+- Claude logo generation model bumped from the pinned `claude-sonnet-4-20250514`
+  to `claude-sonnet-4-6` via a new centralised `DEFAULT_CLAUDE_MODEL` constant,
+  aligning the in-use Claude model with Stopover (`config.ai_model`) and Ticked
+  (`internal/ai/claude/claude.go` `DefaultModel`).
+
 ## [0.5.4] - 2026-04-25
 
 ### Fixed
