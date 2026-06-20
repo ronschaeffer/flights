@@ -20,6 +20,9 @@ jobs:
       - name: Install Poetry
         run: pip install poetry
 
+      - name: Configure git auth for private ai_router
+        run: git config --global url."https://x-access-token:${{ secrets.AI_ROUTER_PAT }}@github.com/".insteadOf "https://github.com/"
+
       - name: Install dependencies
         run: poetry install --with dev
 
@@ -44,6 +47,9 @@ jobs:
 
       - name: Install Poetry
         run: pip install poetry
+
+      - name: Configure git auth for private ai_router
+        run: git config --global url."https://x-access-token:${{ secrets.AI_ROUTER_PAT }}@github.com/".insteadOf "https://github.com/"
 
       - name: Install dependencies
         run: poetry install --with dev

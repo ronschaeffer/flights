@@ -34,8 +34,6 @@ packages = [
 package-mode = true
 
 [tool.poetry.dependencies]
-# Local-AI gateway helper. Path dep for dev; switch to PyPI/git at activation.
-ai-router = { path = "../ai_router", develop = true }
 python = "^3.11"
 requests = "^2.31.0"
 paho-mqtt = "^2.1.0"
@@ -59,6 +57,12 @@ ruff = "^0.12.0"
 httpx = ">=0.24.0"
 pytest-asyncio = "^1.3.0"
 codespell = "^2.4.2"
+pillow = ">=10.0.0"
+# Local-AI gateway helper (private repo). Dev/CI only — the src import is lazy
+# and the gateway runs as its own container, so it is intentionally NOT in the
+# runtime/Docker image (export uses --without dev). CI clones it via the
+# AI_ROUTER_PAT credential (see .github/workflows/ci.yml).
+ai-router = { git = "https://github.com/ronschaeffer/ai_router.git", branch = "master" }
 
 [build-system]
 requires = ["poetry-core"]
