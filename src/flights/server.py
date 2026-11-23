@@ -490,6 +490,28 @@ async def read_output_file(file_name: str):
     return Response(content=formatted, media_type="application/json")
 
 
+_AIRLINE_NAMES: dict[str, str] | None = None
+
+
+def _airline_name(icao: str) -> str | None:
+    """Airline name for an ICAO code from data/airlines.json (loaded once), or None."""
+    global _AIRLINE_NAMES
+    if _AIRLINE_NAMES is None:
+        try:
+            import json
+
+            with open(os.path.join(BASE_DIR, "data", "airlines.json")) as f:
+                _AIRLINE_NAMES = {
+                    a["icao_code"].upper(): a.get("name") or ""
+                    for a in json.load(f)
+                    if a.get("icao_code")
+                }
+        except Exception:
+            logger.exception("Could not load airline names")
+            _AIRLINE_NAMES = {}
+    return _AIRLINE_NAMES.get(icao.upper()) or None
+
+
 @app.get("/logos/{file_name}")
 async def read_logo_file(file_name: str):
     """Serve an airline logo.
@@ -534,7 +556,7 @@ async def read_logo_file(file_name: str):
     # No real static logo — try AI cache then on-demand generation
     cache_png = os.path.join(LOGO_CACHE_DIR, f"{icao}.png")
     if not os.path.exists(cache_png):
-        cache_png = generate_logo_on_demand(icao) or ""
+        cache_png = generate_logo_on_demand(icao, _airline_name(icao)) or ""
 
     if cache_png and os.path.exists(cache_png):
         return _get_file_content(cache_png, "image/png")
